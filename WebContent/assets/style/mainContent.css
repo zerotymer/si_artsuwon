@@ -16,13 +16,15 @@
 
 h1 {
     text-align: center;
+    font-family: 'Nanum Gothic', sans-serif;
+        font-weight: 900;
 }
 
 content {
     scroll-snap-type: mandatory;
 }
 
-#wrapper {
+.wrapper {
     width: 1200px;
     margin: 0 auto;
 }
@@ -36,31 +38,52 @@ content {
     display: flex;
         flex-direction: row;
         justify-content: center;
+        gap: 10px;
     scroll-snap-align: start;
 }
-.calendear div:first-child {
-    font: 11px 'Nanum Gothic', sans-serif;
+.calendar > div:first-child {
+    font: 20px 'Nanum Gothic', sans-serif;
+        font-weight: 700;
+        line-height: 30px;
+}
+.calendar > div:nth-child(2) {
+    filter: invert(40%);
+    margin-bottom: 50px;
+}
+
+.calendar > div:nth-child(2) > img:first-child {
+    margin-top: 2px;
+}
+.calendar > div:nth-child(2) > img:last-child {
+    margin-bottom: 2px;
 }
 
 
-
-.days {
+.days > ul {
     display: flex;
         flex-direction: row;
-    font: 11px 'Nanum Gothic', sans-serif;
-    line-height: 32px;    
+    padding: 0;
+    font: 12px 'Nanum Gothic', sans-serif;
+        font-weight: 600;
+        line-height: 29px;    
+    list-style: none;
 }
-
-
-.days>span {
-    display: inline-block;
+.days li {
     width: 30px;
     height: 30px;
+    display: inline-block;
     text-align: center;
+/*    border: 2px solid red;*/
+    border-radius: 30px;
 }
+
+
 .hollyday {
     color: red;
 }
+
+
+
 
 
 
@@ -74,8 +97,7 @@ content {
         flex-flow: row nowrap;
     position: relative;
     width: 1000px;
-    height: 300px;
-    margin-bottom: 400px;
+    margin-bottom: 150px;
     scroll-snap-align: start;
 }
 .card-item {
