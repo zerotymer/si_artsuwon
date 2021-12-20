@@ -1,0 +1,76 @@
+.calendar {
+    margin: 0 auto;
+/*    width: 1000px;*/
+    width: 1000px;
+}
+
+.calendar>table {
+    border-top: 1px solid black;
+    width: 100%;
+}
+
+.calendar th {
+    background-color: lightgray;
+    height: 70px;
+}
+
+.calendar td {
+    border-right: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    min-height: 200px;
+    width: 150px;
+    padding: 4px;
+    vertical-align: top;
+}
+
+.calendar td>div:first-child {
+    padding: 2px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.calendar td>div:nth-child(2) {
+    
+}
+
+.calendar td>div:last-child {
+    font-size: 14px;
+}
+
+.calendar td>div:nth-child(2)>span {
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: 14px;
+}
+
+/* CLASS */
+
+.calendar .regular {
+    background-color: green;
+}
+
+.calendar .citizen {
+    background-color: purple;
+    color: white;
+    font-weight: 700;
+}
+
+.calendar .rounds {
+    background-color: skyblue;
+}
+
+.calendar .outside {
+    background-color: orange;
+}
+
+.calendar .education {
+    background-color: pink;
+}
+
+.calendar .gray {
+    color: lightgray;
+}
+
+.calendar .today {
+    background-color: skyblue;
+}

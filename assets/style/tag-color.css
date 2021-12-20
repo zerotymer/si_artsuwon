@@ -1,0 +1,45 @@
+/* 색정의 */
+:root {
+    --regular-color: #94C83D;
+    --citizen-color: #961783;
+    --tour-color: #39C;
+    --outside-color: #C60;
+    --education-color: #F69;
+}
+
+/* 정기공연 */
+.regluar-font-color {
+    color: var(--regular-color);
+}
+.regular-back-color {
+    background-color: var(--regular-color);
+}
+
+/* 시민공연 */
+.citizen-font-color {
+    color: var(--citizen-color);
+}
+.citizen-back-color {
+    background-color: var(--citizen-color);
+}
+/* 순회공연 */
+.tour-font-color {
+    color: var(--tour-color);
+}
+.tour-back-color {
+    background-color: var(--tour-color);
+}
+/* 외부공연 */
+.outside-font-color {
+    color: var(--outside-color);
+}
+.outside-back-color {
+    background-color: var(--outside-color);
+}
+/* 교육공연 */
+.education-font-color {
+    color: var(--education-color);
+}
+.education-back-color {
+    background-color: var(--education-color);
+}

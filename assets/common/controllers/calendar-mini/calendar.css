@@ -1,0 +1,130 @@
+.calendar {
+    width: 300px;
+}
+.calendar>.frame {
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 8px;
+}
+
+/* calendar HEADER */
+.calendar>.frame>div {
+    width: 100%;
+    height: 50px;
+}
+
+.calendar>.frame>div>div {
+    float: left;
+    box-sizing: border-box;
+    vertical-align: center;
+}
+
+.calendar>.frame>div>div:first-child {
+    width: 10%;
+    height: 100%;
+}
+
+.calendar>.frame>div>div:nth-child(2) {
+    width: 80%;
+    height: 100%;
+    padding: 6px;
+}
+
+.calendar>.frame>div>div:last-child {
+    width: 10%;
+    height: 100%;
+}
+
+.calendar .title {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+/* calendar CONTENTS */
+.calendar table {
+    width: 100%;
+}
+
+.calendar tr {
+    width: 100%;
+}
+
+.calendar tr>* {
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    margin: 8px;
+
+}
+
+.calendar th {
+
+}
+
+.calendar td {
+    border-radius: 30px;
+}
+
+.calendar tr>*:first-child {
+    color: red;
+}
+
+.calendar tr>*:last-child {
+    color: blue;
+}
+
+.calendar tr {
+    border: 0px solid green;
+}
+
+/* border  */
+.calendar .regular {
+    border: 1px solid green;
+    color: black;
+}
+
+.calendar .citizen {
+    border: 2px dashed purple;
+    color: black;
+}
+
+.calendar .rounds {
+    border: 1px dotted skyblue;
+    color: black;
+}
+
+.calendar .outside {
+    border: 2px solid orange;
+    color: black;
+}
+
+.calendar .education {
+    border: 3px double pink;
+    color: black;
+}
+
+/* CAPTION */
+.caption {
+    width: 100%;
+    height: 20px;
+    padding: 3px;
+}
+.caption>div {
+    float: left;
+    height: 100%;
+    width: 20%;
+}
+.caption>div>div {
+    float: left;
+    width: 30%;
+    height: 100%;
+    border-radius: 10px;
+}
+.caption>div>span {
+    float: right;
+    width: 60%;
+}
