@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
 /* 제목태그는 접근성 향상을 위한 주석용도 */
 .comment {
     display: none;
@@ -21,8 +23,48 @@ content {
 }
 
 #wrapper {
-    width: 1000px;
+    width: 1200px;
+    margin: 0 auto;
 }
+
+
+
+
+/* */
+.calendar {
+    flex: 1 0 auto;
+    display: flex;
+        flex-direction: row;
+        justify-content: center;
+    scroll-snap-align: start;
+}
+.calendear div:first-child {
+    font: 11px 'Nanum Gothic', sans-serif;
+}
+
+
+
+.days {
+    display: flex;
+        flex-direction: row;
+    font: 11px 'Nanum Gothic', sans-serif;
+    line-height: 32px;    
+}
+
+
+.days>span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.hollyday {
+    color: red;
+}
+
+
+
+
 
 
 
@@ -30,7 +72,6 @@ content {
 .perf-cards {
     display: flex;
         flex-flow: row nowrap;
-    background-color: gray;
     position: relative;
     width: 1000px;
     height: 300px;
@@ -45,6 +86,7 @@ content {
     background-size: cover;
     flex: 0 0 260px;
     z-index: 30;
+    overflow: hidden;
 }
 
 .card-item img {
@@ -56,17 +98,38 @@ content {
 .card-detail {
     width: 100%;
     height: 100%;
-    padding: 12px 16px;
+    padding: 20px;
     z-index: 100;
     background-color: rgba(255, 255, 255, 0.97);
     position: relative;
-    overflow: hidden;
-    
 }
 .card-detail>div:first-child {
     width: 100%;
-    height: 290px;
+    height: 276px;
 }
+
+.card-detail .tag {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+}
+.card-detail h5 {
+    margin-top: 10px;
+    margin-bottom: 28px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+}
+.card-detail span:not(.tag) {
+    display: block;
+    margin-top: 2px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: gray;
+}
+
+
+
 .reserve-btn {
     position: relative;
         bottom: 0;
@@ -80,44 +143,34 @@ content {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Mouse Over */
 .card-item:hover > .card-detail {
-    float: left;
+    position: relative;
     top: -366px;
+    
+    transition: position 2s;
 }
 
 
 .reserve-btn:hover {
     background-color: black;
     color: white;
-}
-
-/* */
-.calendar {
-    display: flex;
-        flex-direction: row;
-    scroll-snap-align: start;
-}
-.carlendar {
-    display: flex;
-    flex-direction: row;
-}
-.calendar .days>span {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    margin-left: 5px;
-    background-color: skyblue;
-    text-align: center;
-}
-
-
-.days {
-    display: flex;
-        flex-direction: row;
-    font: 12px 'Nanum Gothic', sans-serif;
-    line-height: 32px;
-}
-.days span {
-    width: 14px;
 }
