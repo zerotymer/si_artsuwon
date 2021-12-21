@@ -2,6 +2,11 @@ package kr.or.artsuwon.common;
 
 import java.sql.*;
 
+/**
+ * JDBC 사용을 위한 공통 클래스.
+ * sigleton 패턴으로 사용한다.
+ * @author 신현진
+ */
 public class JDBCTemplate {
     /// FIELDs
     final private static String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";
@@ -10,6 +15,12 @@ public class JDBCTemplate {
     final private static String DB_PASSWORD = "gucci951124";
 
     /// METHODs
+
+    /**
+     * Connection을 생성하는 메소드
+     * @return Connection
+     * @author 신현진
+     */
     public static Connection getConnection() {
         Connection conn = null;
 
@@ -28,6 +39,11 @@ public class JDBCTemplate {
         return conn;
     }
 
+    /**
+     * Commit을 수행하는 메소드
+     * @param conn Connection
+     * @author 신현진
+     */
     public static void commit(Connection conn) {
         try {
             conn.commit();
@@ -36,6 +52,11 @@ public class JDBCTemplate {
         }
     }
 
+    /**
+     * Rollback을 수행하는 메소드
+     * @param conn Connection
+     * @author 신현진
+     */
     public static void rollback(Connection conn) {
         try {
             conn.rollback();
@@ -44,6 +65,11 @@ public class JDBCTemplate {
         }
     }
 
+    /**
+     * 사용한 Connection을 닫는 메소드
+     * @param conn Connection
+     * @author 신현진
+     */
     public static void close(Connection conn) {
         try {
             conn.close();
@@ -52,6 +78,11 @@ public class JDBCTemplate {
         }
     }
 
+    /**
+     * 사용한 ResultSet을 닫는 메소드
+     * @param rset ResultSet
+     * @author 신현진
+     */
     public static void close(ResultSet rset) {
         try {
             rset.close();
@@ -60,6 +91,11 @@ public class JDBCTemplate {
         }
     }
 
+    /**
+     * 사용한 Statement를 닫는 메소드
+     * @param stmt Statement
+     * @author 신현진
+     */
     public static void close(Statement stmt) {
         try {
             stmt.close();
