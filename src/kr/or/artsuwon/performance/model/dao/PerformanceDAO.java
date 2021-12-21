@@ -58,7 +58,6 @@ public class PerformanceDAO {
                         rset.getInt("PFMC_NO"),
                         rset.getString("LOCATION"),
                         rset.getString("PRICE"),
-                        rset.getString("MEMO"),
                         rset.getDate("PFMC_DATE"),
                         rset.getInt("RESTRICTION")
                 );

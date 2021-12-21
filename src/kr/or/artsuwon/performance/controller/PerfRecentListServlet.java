@@ -1,5 +1,6 @@
 package kr.or.artsuwon.performance.controller;
 
+import kr.or.artsuwon.common.NullChecker;
 import kr.or.artsuwon.common.Tuple;
 import kr.or.artsuwon.performance.model.service.PerformanceService;
 import kr.or.artsuwon.performance.model.service.PerformanceServiceImpl;
@@ -10,6 +11,8 @@ import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.ServletException;
@@ -40,26 +43,32 @@ public class PerfRecentListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Parameters
-		int count = request.getParameter("count") != null ? Integer.parseInt(request.getParameter("count")) : 4;
+		int count = NullChecker.NullCheckParseInt(request.getParameter("count"), 4);
 
 		// Business Logic
 		ArrayList<Tuple<PerformanceSchedule, PerformanceInfomation>> list = service.getRecentPerformances(count);
 
-		JSONArray array = new JSONArray();
+		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+
+		JSONObject map = new JSONObject();
 		for (Tuple<PerformanceSchedule, PerformanceInfomation> tuple : list) {
-			JSONObject map = new JSONObject();
-			map.put("no", tuple.getFirst().getPerformanceNo());			// 공연번호
-			map.put("title", tuple.getSecond().getTitle());				// 공연제목
-			map.put("date", tuple.getFirst().getPerformnaceDate());		// 공연일자
-			map.put("location", tuple.getFirst().getLocation());		// 공연장소
-			map.put("photo", tuple.getSecond().getPhoto());				// 공연사진
-			array.add(map);
+			JSONObject json = new JSONObject();
+			json.put("no", tuple.getFirst().getPerformanceNo());							// 공연번호
+			json.put("title", tuple.getSecond().getTitle());								// 공연제목
+//			json.put("date", tuple.getFirst().getPerformnaceDate());						// 공연일자
+			json.put("data", dFormat.format(tuple.getFirst().getPerformnaceDate()));		//공연일장
+			json.put("location", tuple.getFirst().getLocation());							// 공연장소
+			json.put("photo", NullChecker.NullCheckString(tuple.getSecond().getPhoto()));	// 공연사진
+
+			map.put(tuple.getFirst().getPerformanceNo(), json);
 		}
 
 		// View
-		response.setCharacterEncoding("UTF-8");							// Encoding
+		response.setCharacterEncoding(StandardCharsets.UTF_8.toString());							// Encoding
+		response.setContentType("application/json");					// Content Type
 		PrintWriter out = response.getWriter();
-		out.print(array);
+		out.print(map);
 	}
 
 	/**
