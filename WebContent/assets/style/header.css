@@ -1,24 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-
 body {
-    width: 100%;
-    margin: 0;
+    height: 100%;
 }
 
 header {
-    position: sticky;
+    position: absolute;
     top: -48px;
     width: 100%;
-/*    height: 100%;*/
     z-index: 800;
-        background-color: skyblue;
 }
 
 /* 메인 공지사항을 위한 공간. */
 .header-noti {
-    display: fixed;
+    position: sticky;
     background-color: rgba(0, 0, 0, 0.3);
-    top: 0;
+    top: -48px;
     width: 100%;
     height: 48px;
     color: white;
@@ -28,9 +24,11 @@ header {
 /* 헤더 영역 */
 .header-nav {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 20px;
+    position: relative;
+/*        top: 48px;*/
     width: 100%;
     height: 100px;
     background-color: rgba(0, 0, 0, 0.4);
@@ -166,8 +164,7 @@ header {
     visibility: hidden;
     position: relative;
     background-color: white;
-/*    margin-top: 100px;*/
-/*    top: 100px;*/
+    margin-top: 48px;
     width: 100%;
     height: 100px !important;
     z-index: 10;

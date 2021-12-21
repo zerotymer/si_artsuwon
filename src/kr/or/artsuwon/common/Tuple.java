@@ -8,19 +8,19 @@ package kr.or.artsuwon.common;
  */
 public class Tuple<T, E> {
     /// FIELDs
-	private T valueLeft;
-    private E valueRight;
+	private T first;
+    private E second;
 
     /// CONSTRUCTORs
-    public Tuple(T valueLeft, E valueRight) {
-        this.valueLeft = valueLeft;
-        this.valueRight = valueRight;
+    public Tuple(T first, E second) {
+        this.first = first;
+        this.second = second;
     }
 
     /// GETTERs
-    public T getValueLeft() { return valueLeft; }
-    public E getValueRight() { return valueRight; }
+    public T getFirst() { return first; }
+    public E getSecond() { return second; }
     /// SETTERs
-    public void setValueLeft(T valueLeft) { this.valueLeft = valueLeft; }
-    public void setValueRight(E valueRight) { this.valueRight = valueRight; }
+    public void setFirst(T first) { this.first = first; }
+    public void setSecond(E second) { this.second = second; }
 }

@@ -17,7 +17,7 @@
 h1 {
     text-align: center;
     font-family: 'Nanum Gothic', sans-serif;
-        font-weight: 900;
+    font-weight: 900;
 }
 
 content {
@@ -30,22 +30,22 @@ content {
 }
 
 
-
-
 /* */
 .calendar {
     flex: 1 0 auto;
     display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 10px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
     scroll-snap-align: start;
 }
+
 .calendar > div:first-child {
     font: 20px 'Nanum Gothic', sans-serif;
-        font-weight: 700;
-        line-height: 30px;
+    font-weight: 700;
+    line-height: 30px;
 }
+
 .calendar > div:nth-child(2) {
     filter: invert(40%);
     margin-bottom: 50px;
@@ -54,52 +54,45 @@ content {
 .calendar > div:nth-child(2) > img:first-child {
     margin-top: 2px;
 }
+
 .calendar > div:nth-child(2) > img:last-child {
     margin-bottom: 2px;
 }
 
-
 .days > ul {
     display: flex;
-        flex-direction: row;
+    flex-direction: row;
     padding: 0;
     font: 12px 'Nanum Gothic', sans-serif;
-        font-weight: 600;
-        line-height: 29px;    
+    font-weight: 600;
+    line-height: 29px;
     list-style: none;
 }
+
 .days li {
     width: 30px;
     height: 30px;
     display: inline-block;
     text-align: center;
-/*    border: 2px solid red;*/
+    /*    border: 2px solid red;*/
     border-radius: 30px;
 }
-
 
 .hollyday {
     color: red;
 }
 
 
-
-
-
-
-
-
-
-
 /* performance-list */
 .perf-cards {
     display: flex;
-        flex-flow: row nowrap;
+    flex-flow: row nowrap;
     position: relative;
     width: 1000px;
     margin-bottom: 150px;
     scroll-snap-align: start;
 }
+
 .card-item {
     width: 260px;
     height: 368px;
@@ -117,6 +110,7 @@ content {
     z-index: 50;
     aspect-ratio: 16/9;
 }
+
 .card-detail {
     width: 100%;
     height: 100%;
@@ -125,7 +119,8 @@ content {
     background-color: rgba(255, 255, 255, 0.97);
     position: relative;
 }
-.card-detail>div:first-child {
+
+.card-detail > div:first-child {
     width: 100%;
     height: 276px;
 }
@@ -135,12 +130,14 @@ content {
     font-size: 12px;
     font-weight: 500;
 }
+
 .card-detail h5 {
     margin-top: 10px;
     margin-bottom: 28px;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px;
 }
+
 .card-detail span:not(.tag) {
     display: block;
     margin-top: 2px;
@@ -150,11 +147,9 @@ content {
     color: gray;
 }
 
-
-
 .reserve-btn {
     position: relative;
-        bottom: 0;
+    bottom: 0;
     width: 100%;
     height: 50px;
     border: 2px solid black;
@@ -164,30 +159,11 @@ content {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Mouse Over */
 .card-item:hover > .card-detail {
     position: relative;
     top: -366px;
-    
+
     transition: position 2s;
 }
 
