@@ -2,6 +2,7 @@ package kr.or.artsuwon.performance.controller;
 
 import kr.or.artsuwon.common.NullChecker;
 import kr.or.artsuwon.common.Tuple;
+import kr.or.artsuwon.performance.model.common.PerfCategory;
 import kr.or.artsuwon.performance.model.service.PerformanceService;
 import kr.or.artsuwon.performance.model.service.PerformanceServiceImpl;
 import kr.or.artsuwon.performance.model.vo.PerformanceInfomation;
@@ -28,8 +29,10 @@ public class PerfRecentListCategoryServlet extends HttpServlet {
 	/// FIELDs
 	private static final long serialVersionUID = 1L;
 	private PerformanceService service = new PerformanceServiceImpl();
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd(EEE) aaa hh:mm");			// 날짜 출력 포멧
-       
+	private final SimpleDateFormat dayFormat = new SimpleDateFormat("MM.dd");			// 날짜 출력 포멧
+	private final SimpleDateFormat weekdayFormat = new SimpleDateFormat("EEE요일");		// 요일 출력 포멧
+	private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");			// 시간 출력 포멧
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -43,22 +46,28 @@ public class PerfRecentListCategoryServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Parameters
-//		int count = NullChecker.NullCheckParseInt(request.getParameter("count"), 4);
-		String category = request.getParameter("category");
+		String category = NullChecker.NullCheckString(request.getParameter("category"), "None");
+		PerfCategory perfCategory = PerfCategory.valueOf(category.toUpperCase());
 
 		// Business Logic
-		ArrayList<Tuple<PerformanceSchedule, PerformanceInfomation>> list = service.getRecentPerformances(count);
+		ArrayList<Tuple<PerformanceSchedule, PerformanceInfomation>> list = service.getRecentPerformances(perfCategory);
 
 		JSONArray array = new JSONArray();
 		for (Tuple<PerformanceSchedule, PerformanceInfomation> tuple : list) {
 			JSONObject json = new JSONObject();
-			json.put("perf_no", tuple.getFirst().getPerformanceNo());						// 공연번호
-			json.put("schedule_no", tuple.getFirst().getScheduleNo());						// 스케줄번호
-			json.put("title", tuple.getSecond().getTitle());								// 공연제목
-			json.put("category", tuple.getSecond().getCategory());							// 공연카테고리
-			json.put("date", dateFormat.format(tuple.getFirst().getPerformnaceDate()));		// 공연일자
-			json.put("location", tuple.getFirst().getLocation());							// 공연장소
-			json.put("photo", NullChecker.NullCheckString(tuple.getSecond().getPhoto()));	// 공연사진
+			json.put("perf_no", tuple.getFirst().getPerformanceNo());							// 공연번호
+			json.put("schedule_no", tuple.getFirst().getScheduleNo());							// 스케줄번호
+			json.put("location", tuple.getFirst().getLocation());								// 공연장소
+			json.put("day", dayFormat.format(tuple.getFirst().getPerformnaceDate()));			// 공연일자
+			json.put("weekday", weekdayFormat.format(tuple.getFirst().getPerformnaceDate()));	// 공연요일
+			json.put("time", timeFormat.format(tuple.getFirst().getPerformnaceDate()));			// 공연시간
+			json.put("photo", NullChecker.NullCheckString(tuple.getSecond().getPhoto()));		// 공연사진
+			json.put("category", tuple.getSecond().getCategory());								// 공연카테고리
+			json.put("title", tuple.getSecond().getTitle());									// 공연제목
+			json.put("conductor", tuple.getSecond().getConductor());							// 지휘자
+			json.put("collaborator", tuple.getSecond().getCollaborator());						// 협연자
+			json.put("program", tuple.getSecond().getPrograms());								// 프로그램
+			json.put("price", tuple.getFirst().getPrice());										// 공연가격
 
 			array.add(json);
 		}
