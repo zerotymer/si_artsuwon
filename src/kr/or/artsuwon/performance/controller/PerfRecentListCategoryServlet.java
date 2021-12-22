@@ -14,7 +14,6 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,10 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class PerfRecentList
+ * Servlet implementation class PerfRecentListCategoryServlet
  */
-@WebServlet("/performance/recentList.do")
-public class PerfRecentListServlet extends HttpServlet {
+@WebServlet("/performance/recentByCategory.do")
+public class PerfRecentListCategoryServlet extends HttpServlet {
 	/// FIELDs
 	private static final long serialVersionUID = 1L;
 	private PerformanceService service = new PerformanceServiceImpl();
@@ -34,7 +33,7 @@ public class PerfRecentListServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PerfRecentListServlet() {
+    public PerfRecentListCategoryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,7 +43,8 @@ public class PerfRecentListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Parameters
-		int count = NullChecker.NullCheckParseInt(request.getParameter("count"), 4);
+//		int count = NullChecker.NullCheckParseInt(request.getParameter("count"), 4);
+		String category = request.getParameter("category");
 
 		// Business Logic
 		ArrayList<Tuple<PerformanceSchedule, PerformanceInfomation>> list = service.getRecentPerformances(count);

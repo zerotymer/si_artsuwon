@@ -25,4 +25,17 @@ public enum PerfCategory {
 
         return "";
     }
+
+    public String toQueryString() {
+        switch(this) {
+            case NONE:      return "1=1 ";
+            case REGUALR:   return "category LIKE '정기공연%' ";
+            case CITIZEN:   return "category LIKE '시민공연%' ";
+            case TOUR:      return "category LIKE '순회공연%' ";
+            case OUTSIDE:   return "category LIKE '외부공연%' ";
+            case EDUCATION: return "category LIKE '교육공연%' ";
+        }
+
+        return "";
+    }
 }

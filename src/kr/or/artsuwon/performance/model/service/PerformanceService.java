@@ -1,6 +1,7 @@
 package kr.or.artsuwon.performance.model.service;
 
 import kr.or.artsuwon.common.Tuple;
+import kr.or.artsuwon.performance.model.common.PerfCategory;
 import kr.or.artsuwon.performance.model.vo.PerformanceInfomation;
 import kr.or.artsuwon.performance.model.vo.PerformanceSchedule;
 
@@ -14,4 +15,12 @@ public interface PerformanceService {
      * @author 신현진
      */
     ArrayList<Tuple<PerformanceSchedule, PerformanceInfomation>> getRecentPerformances(int count);
+
+    /**
+     * 최근 공연일정을 가져옵니다.
+     * @param category 공연 카테고리
+     * @return 최근 공연일정
+     * @author 신현진
+     */
+    ArrayList<Tuple<PerformanceSchedule, PerformanceInfomation>> getRecentPerformances(PerfCategory category);
 }

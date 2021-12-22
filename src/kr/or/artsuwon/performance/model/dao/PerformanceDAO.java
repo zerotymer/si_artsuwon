@@ -6,10 +6,7 @@ import kr.or.artsuwon.performance.model.common.PerfCategory;
 import kr.or.artsuwon.performance.model.vo.PerformanceInfomation;
 import kr.or.artsuwon.performance.model.vo.PerformanceSchedule;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -107,14 +104,12 @@ public class PerformanceDAO {
                 "FROM pfmc_schedule " +
                     "LEFT JOIN pfmc USING (pfmc_no) " +
                 "WHERE pfmc_date > SYSDATE " +
-                    "AND CATEGORY = ? " +
+                    "AND " + category.toQueryString() +
                 "ORDER BY pfmc_date ASC";
-        ResultSet rset = null;
         ArrayList<Tuple<PerformanceSchedule, PerformanceInfomation>> list = new ArrayList<>();
 
-        try (PreparedStatement pstmt = conn.prepareStatement(QUERY)) {
-//            pstmt.setInt(1, count + 1);
-            rset = pstmt.executeQuery();
+        try (Statement stmt = conn.createStatement();
+             ResultSet rset = stmt.executeQuery(QUERY)) {
 
             while (rset.next()) {
                 PerformanceSchedule schedule = new PerformanceSchedule(
@@ -146,10 +141,7 @@ public class PerformanceDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            JDBCTemplate.close(rset);
-            // AutoCloseable pstmt
-        }
+        } // AutoCloseable rset, pstmt
 
         return list;
     }
