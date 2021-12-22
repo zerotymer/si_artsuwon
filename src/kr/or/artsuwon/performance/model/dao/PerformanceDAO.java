@@ -113,7 +113,7 @@ public class PerformanceDAO {
         ArrayList<Tuple<PerformanceSchedule, PerformanceInfomation>> list = new ArrayList<>();
 
         try (PreparedStatement pstmt = conn.prepareStatement(QUERY)) {
-            pstmt.setInt(1, count + 1);
+//            pstmt.setInt(1, count + 1);
             rset = pstmt.executeQuery();
 
             while (rset.next()) {
