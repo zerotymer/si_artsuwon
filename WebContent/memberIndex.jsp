@@ -8,7 +8,11 @@
 </head>
 <body>
 
-	<a href="/member"></a>
+	<form action="/member/login.do" method="post">
+		<input type="text" name="userId" placeholder="ID"/><br>
+		<input type="password" name="userPwd" placeholder="Password"/><br>
+		<input type="submit" value="로그인"/>
+	</form>
 
 </body>
 </html>
