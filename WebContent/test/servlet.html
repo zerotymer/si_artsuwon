@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <!-- jQuery Library -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <button onclick="ajaxTest()">test</button>
+	<div id="result" style="border: 1px solid red; width: 300px; height: 300px;"></div>
+
+    <script>
+      function ajaxTest() {
+        // Tesing Ajax
+        $.ajax({
+          url: '/performance/recentList.do',
+          type: 'get',
+          data: { count: 5 },
+          dataType: 'json',
+          success: out => console.log(out),
+          error: () => console.log('ajax 통신 실패'),
+        })
+      }
+    </script>
+  </body>
+</html>
