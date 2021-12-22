@@ -34,22 +34,22 @@ public class MemberDAO {
 				
 				m = new Member();
 			
-				m.setMemberNo(rset.getInt("memberNo"));
-				m.setMemberId(rset.getString("memberId"));
-				m.setMemberPwd(rset.getString("memberPwd"));
-				m.setMemberName(rset.getString("memberName"));
+				m.setMemberNo(rset.getInt("member_No"));
+				m.setMemberId(rset.getString("member_Id"));
+				m.setMemberPwd(rset.getString("member_Pwd"));
+				m.setMemberName(rset.getString("member_Name"));
 				m.setBirthDate(rset.getDate("birthDate"));
 				m.setEmail(rset.getString("email"));
 				m.setPhone(rset.getString("phone"));
 				m.setAddress(rset.getString("address"));
-				m.setDetailAddress(rset.getString("detailAddress"));
-				m.setZipCode(rset.getString("zipCode"));
+				m.setDetailAddress(rset.getString("detail_Address"));
+				m.setZipCode(rset.getString("zip_Code"));
 				m.setGender(rset.getString("gender").charAt(0));
-				m.setEnrollDate(rset.getDate("enrollDate"));
-				m.setWithDrawDate(rset.getDate("withDrawDate"));
-				m.setEmailYN(rset.getString("emailYN").charAt(0));
-				m.setSmsYN(rset.getString("smsYN").charAt(0));
-				m.setMemberStatus(rset.getString("memberStatus").charAt(0));
+				m.setEnrollDate(rset.getDate("enroll_Date"));
+				m.setWithDrawDate(rset.getDate("withDraw_Date"));
+				m.setEmailYN(rset.getString("email_YN").charAt(0));
+				m.setSmsYN(rset.getString("sms_YN").charAt(0));
+				m.setMemberStatus(rset.getString("member_Status").charAt(0));
 				
 			}
 		} catch (SQLException e) {
