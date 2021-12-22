@@ -12,6 +12,6 @@ public interface MemberService {
 	 * @return Member
 	 * Description : 로그인 시 사용하는 메소드
 	 */
-	public Member selectOneMember(String userId, String userPwd);
+	public Member selectOneMember(String memberId, String memberPwd);
 
 }

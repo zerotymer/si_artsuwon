@@ -4,10 +4,10 @@ import java.sql.Date;
 
 public class Member {
 	
-	private int userNo;
-	private String userId;
-	private String userPwd;
-	private String userName;
+	private int memberNo;
+	private String memberId;
+	private String memberPwd;
+	private String memberName;
 	private Date birthDate;
 	private String email;
 	private String phone;
@@ -19,40 +19,25 @@ public class Member {
 	private Date withDrawDate;
 	private char emailYN;
 	private char smsYN;
-	private char userStatus;
+	private char memberStatus;
 	
 	
 	
-	
-	
-	@Override
-	public String toString() {
-		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
-				+ ", birthDate=" + birthDate + ", email=" + email + ", phone=" + phone + ", address=" + address
-				+ ", detailAddress=" + detailAddress + ", zipCode=" + zipCode + ", gender=" + gender + ", enrollDate="
-				+ enrollDate + ", withDrawDate=" + withDrawDate + ", emailYN=" + emailYN + ", smsYN=" + smsYN
-				+ ", userStatus=" + userStatus + "]";
-	}
-
-
-
-
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 
-	public Member(int userNo, String userId, String userPwd, String userName, Date birthDate, String email,
+
+	public Member(int memberNo, String memberId, String memberPwd, String memberName, Date birthDate, String email,
 			String phone, String address, String detailAddress, String zipCode, char gender, Date enrollDate,
-			Date withDrawDate, char emailYN, char smsYN, char userStatus) {
+			Date withDrawDate, char emailYN, char smsYN, char memberStatus) {
 		super();
-		this.userNo = userNo;
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.userName = userName;
+		this.memberNo = memberNo;
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
 		this.birthDate = birthDate;
 		this.email = email;
 		this.phone = phone;
@@ -64,51 +49,68 @@ public class Member {
 		this.withDrawDate = withDrawDate;
 		this.emailYN = emailYN;
 		this.smsYN = smsYN;
-		this.userStatus = userStatus;
+		this.memberStatus = memberStatus;
 	}
 
 
-	
-	
-	
-	public int getUserNo() {
-		return userNo;
+
+	@Override
+	public String toString() {
+		return "Member [memberNo=" + memberNo + ", memberId=" + memberId + ", memberPwd=" + memberPwd + ", memberName="
+				+ memberName + ", birthDate=" + birthDate + ", email=" + email + ", phone=" + phone + ", address="
+				+ address + ", detailAddress=" + detailAddress + ", zipCode=" + zipCode + ", gender=" + gender
+				+ ", enrollDate=" + enrollDate + ", withDrawDate=" + withDrawDate + ", emailYN=" + emailYN + ", smsYN="
+				+ smsYN + ", memberStatus=" + memberStatus + "]";
 	}
 
 
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+
+	public int getMemberNo() {
+		return memberNo;
 	}
 
 
-	public String getUserId() {
-		return userId;
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+
+	public String getMemberId() {
+		return memberId;
 	}
 
 
-	public String getUserPwd() {
-		return userPwd;
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 
-	public void setUserPwd(String userPwd) {
-		this.userPwd = userPwd;
+
+	public String getMemberPwd() {
+		return memberPwd;
 	}
 
 
-	public String getUserName() {
-		return userName;
+
+	public void setMemberPwd(String memberPwd) {
+		this.memberPwd = memberPwd;
 	}
 
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+
+	public String getMemberName() {
+		return memberName;
 	}
+
+
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
 
 
 	public Date getBirthDate() {
@@ -116,9 +118,11 @@ public class Member {
 	}
 
 
+
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
+
 
 
 	public String getEmail() {
@@ -126,9 +130,11 @@ public class Member {
 	}
 
 
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 
 
 	public String getPhone() {
@@ -136,9 +142,11 @@ public class Member {
 	}
 
 
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 
 
 	public String getAddress() {
@@ -146,9 +154,11 @@ public class Member {
 	}
 
 
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 
 
 	public String getDetailAddress() {
@@ -156,9 +166,11 @@ public class Member {
 	}
 
 
+
 	public void setDetailAddress(String detailAddress) {
 		this.detailAddress = detailAddress;
 	}
+
 
 
 	public String getZipCode() {
@@ -166,9 +178,11 @@ public class Member {
 	}
 
 
+
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
+
 
 
 	public char getGender() {
@@ -176,9 +190,11 @@ public class Member {
 	}
 
 
+
 	public void setGender(char gender) {
 		this.gender = gender;
 	}
+
 
 
 	public Date getEnrollDate() {
@@ -186,9 +202,11 @@ public class Member {
 	}
 
 
+
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
+
 
 
 	public Date getWithDrawDate() {
@@ -196,9 +214,11 @@ public class Member {
 	}
 
 
+
 	public void setWithDrawDate(Date withDrawDate) {
 		this.withDrawDate = withDrawDate;
 	}
+
 
 
 	public char getEmailYN() {
@@ -206,9 +226,11 @@ public class Member {
 	}
 
 
+
 	public void setEmailYN(char emailYN) {
 		this.emailYN = emailYN;
 	}
+
 
 
 	public char getSmsYN() {
@@ -216,19 +238,23 @@ public class Member {
 	}
 
 
+
 	public void setSmsYN(char smsYN) {
 		this.smsYN = smsYN;
 	}
 
 
-	public char getUserStatus() {
-		return userStatus;
+
+	public char getMemberStatus() {
+		return memberStatus;
 	}
 
 
-	public void setUserStatus(char userStatus) {
-		this.userStatus = userStatus;
+
+	public void setMemberStatus(char memberStatus) {
+		this.memberStatus = memberStatus;
 	}
+	
 	
 	
 	

@@ -13,13 +13,14 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public Member selectOneMember(String userId, String userPwd) {
+	public Member selectOneMember(String memberId, String memberPwd) {
 		
 		Connection conn = JDBCTemplate.getConnection();
-		Member m = mDAO.selectOneMember(userId, userPwd, conn);
+		Member m = mDAO.selectOneMember(memberId, memberPwd, conn);
 		
+		JDBCTemplate.close(conn);
 		
-		return null;
+		return m;
 	}
 
 }

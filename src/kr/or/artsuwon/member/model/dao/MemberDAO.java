@@ -6,25 +6,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import kr.or.artsuwon.common.JDBCTemplate;
 import kr.or.artsuwon.member.model.vo.Member;
 
 public class MemberDAO {
 
-	public Member selectOneMember(String userId, String userPwd, Connection conn) {
+	public Member selectOneMember(String memberId, String memberPwd, Connection conn) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		Member m = null;
 		
-		String query = "SELECT * FROM WHERE USERID=? AND USERPWD=? AND USERSTATUS='0'";
+		String query = "SELECT * FROM MEMBER WHERE MEMBER_ID=? AND MEMBER_PWD=? AND MEMBER_STATUS='0'";
 		
 		try {
 			
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setString(1, userId);
-			pstmt.setString(2, userPwd);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, memberPwd);
 			
 			rset = pstmt.executeQuery();
 			
@@ -32,27 +33,11 @@ public class MemberDAO {
 			{
 				
 				m = new Member();
-				
-				/*private int userNo;
-				private String userId;
-				private String userPwd;
-				private String userName;
-				private Date birthDate;
-				private String email;
-				private String phone;
-				private String address;
-				private String detailAddress;
-				private String zipCode;
-				private char gender;
-				private Date enrollDate;
-				private Date withDrawDate;
-				private char emailYN;
-				private char smsYN;
-				private char userStatus;*/
-				
-				m.setUserNo(rset.getInt("userNo"));
-				m.setUserId(rset.getString("userId"));
-				m.setUserPwd(rset.getString("userName"));
+			
+				m.setMemberNo(rset.getInt("memberNo"));
+				m.setMemberId(rset.getString("memberId"));
+				m.setMemberPwd(rset.getString("memberPwd"));
+				m.setMemberName(rset.getString("memberName"));
 				m.setBirthDate(rset.getDate("birthDate"));
 				m.setEmail(rset.getString("email"));
 				m.setPhone(rset.getString("phone"));
@@ -64,15 +49,18 @@ public class MemberDAO {
 				m.setWithDrawDate(rset.getDate("withDrawDate"));
 				m.setEmailYN(rset.getString("emailYN").charAt(0));
 				m.setSmsYN(rset.getString("smsYN").charAt(0));
-				m.setUserStatus(rset.getString("userStatus").charAt(0));
+				m.setMemberStatus(rset.getString("memberStatus").charAt(0));
 				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
 		
-		return null;
+		return m;
 	}
 
 }

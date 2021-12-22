@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<form action="/member/login.do" method="post">
-		<input type="text" name="memberId" placeholder="ID"/><br>
-		<input type="password" name="memberPwd" placeholder="Password"/><br>
-		<input type="submit" value="로그인"/>
-	</form>
-
+	
+	<script>
+		alert('로그인에 실패하였습니다. ID 또는 비밀번호 재확인 바랍니다.');
+		location.replace('/');
+	</script>
+	
 </body>
 </html>
