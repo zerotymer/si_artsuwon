@@ -338,4 +338,4 @@ GitHub.sublime-settings
 .prettierrc
 .idea/**
 
-test
+WebContent/test/
