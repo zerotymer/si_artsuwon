@@ -337,4 +337,9 @@ GitHub.sublime-settings
 .project
 .prettierrc
 .idea/**
+<<<<<<< HEAD
 /build/
+=======
+
+test
+>>>>>>> 3478c144e7d187a794825dc75b5765d2ab793682
