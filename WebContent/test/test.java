@@ -27,6 +27,32 @@ public class PerformanceDAO {
     }
 
 
+    public int updatePost(Connection conn, Notice notice) {
+        PreparedStatement pstmt = null;
+        int result =0;
+
+        String query = "UPDATE NOTICE SET NOTICE_CONTENT=?, NOTICE_TITLE=? WHERE NOTICE_NO=?";
+
+        try {
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, notice.getNoticeContent());
+            pstmt.setString(2, notice.getNoticeTitle());
+            pstmt.setInt(3, notice.getNoticeNo());
+
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally
+        {
+            JDBCTemplate.close(pstmt);
+        }
+        return result;
+    }
+
+
+
     /**
      * 최근 공연일정을 조회하는 메서드
      * @param conn 연결정보
