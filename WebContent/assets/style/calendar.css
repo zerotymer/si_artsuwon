@@ -50,11 +50,6 @@
 .calendar-mini table {
     width: 100%;
 }
-
-.calendar-mini tr {
-    width: 100%;
-}
-
 .calendar-mini tr>* {
     text-align: center;
     width: 30px;
@@ -75,59 +70,48 @@
 .calendar-mini tr>*:first-child {
     color: red;
 }
-
 .calendar-mini tr>*:last-child {
     color: blue;
 }
-
 .calendar-mini tr {
     border: 0px solid green;
 }
 
-/* border  */
+
+/* CATEGORY-BORDER */
 .calendar-mini .regular {
     border: 1px solid green;
-    color: black;
 }
-
 .calendar-mini .citizen {
     border: 2px dashed purple;
-    color: black;
 }
-
-.calendar-mini .rounds {
+.calendar-mini .tour {
     border: 1px dotted skyblue;
-    color: black;
 }
-
 .calendar-mini .outside {
     border: 2px solid orange;
-    color: black;
 }
-
 .calendar-mini .education {
     border: 3px double pink;
-    color: black;
 }
 
 /* CAPTION */
-.caption {
-    width: 100%;
-    height: 20px;
-    padding: 3px;
+.calendar-mini .caption {
+    display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 4px;
+    margin-top: 4px;
+    color: black;
 }
-.caption>div {
-    float: left;
-    height: 100%;
-    width: 20%;
-}
-.caption>div>div {
-    float: left;
-    width: 30%;
-    height: 100%;
+.calendar-mini .caption > div {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    line-height: 36px;
+    box-sizing: border-box;
     border-radius: 10px;
-}
-.caption>div>span {
-    float: right;
-    width: 60%;
 }
