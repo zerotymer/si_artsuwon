@@ -63,4 +63,16 @@ public class MemberDAO {
 		return m;
 	}
 
+	public int insertOneMember(Member m, Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = "";
+		
+		
+		
+		return 0;
+	}
+
 }

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.artsuwon.member.model.service.MemberService;
+import kr.or.artsuwon.member.model.service.MemberServiceImpl;
 import kr.or.artsuwon.member.model.vo.Member;
 
 /**
@@ -43,6 +45,7 @@ public class MemberJoinServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		char smsYN = request.getParameter("sms").charAt(0);
 		
+		/* 오류 잡고 다시 해보기
 		System.out.println(memberName);
 		System.out.println(memberId);
 		System.out.println(memberPwd);
@@ -51,8 +54,15 @@ public class MemberJoinServlet extends HttpServlet {
 		System.out.println(address);
 		System.out.println(detailAddress);
 		System.out.println(phone);
-		System.out.println(email);
-		System.out.println(smsYN);
+		System.out.println(phone);
+		System.out.println(smsYN);*/
+		
+		Member m = new Member(memberName, memberId, memberPwd, birthDate, gender, address, detailAddress, phone, email, smsYN);
+		
+		MemberService mService = new MemberServiceImpl();
+		int result = mService.insertOneMember(m);
+		
+		
 		
 	}
 

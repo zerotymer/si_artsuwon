@@ -182,7 +182,7 @@
 							<option>017</option>
 							<option>018</option>
 							<option>019</option>
-						</select> - <input type="text" name="phone" maxlength="4"/> - <input type="text" name="phone" maxlength="4"/> <br>
+						</select> - <input type="text" name="phone" maxlength="4" size="4"/> - <input type="text" name="phone" maxlength="4" size="4"/> <br>
 				이메일 : <input type="text" name="email"/> @ <input type="text"  name="email"/> 
 						<select>
 							<option>직접입력</option>

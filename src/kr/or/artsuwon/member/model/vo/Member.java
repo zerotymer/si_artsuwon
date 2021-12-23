@@ -51,6 +51,40 @@ public class Member {
 		this.smsYN = smsYN;
 		this.memberStatus = memberStatus;
 	}
+	
+	
+
+
+
+	/**
+	 * 작성자 : 김영주
+	 * 작성일 : 2021.12.23
+	 * MemberJoinServlet에 필요한 메소드
+	 * @param memberName
+	 * @param memberId
+	 * @param memberPwd
+	 * @param birthDate
+	 * @param gender
+	 * @param address
+	 * @param detailAddress
+	 * @param phone
+	 * @param email
+	 * @param smsYN
+	 */
+	public Member(String memberName, String memberId, String memberPwd, Date birthDate, char gender, 
+				  String address, String detailAddress, String phone, String email, char smsYN) {
+		super();
+		this.memberName = memberName;
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.address = address;
+		this.detailAddress = detailAddress;
+		this.phone = phone;
+		this.email = email;
+		this.smsYN = smsYN;
+	}
 
 
 
