@@ -15,9 +15,10 @@
 		Member m = (Member)session.getAttribute("member");
 	%>
 	
-	<% if(m != null){ %>
+	<% if(m != null){ %> 
 	
-		[<a href="/member/memberCheck.do"><%=m.getMemberName() %></a>] 님 환영합니다. <a href="/member/logout.do">로그아웃</a><br>
+		[<%=m.getMemberName() %>]님 환영합니다. <a href="/member/logout.do">로그아웃</a><br>
+		
 		
 	<%}else{ %>
 	
@@ -25,6 +26,8 @@
 			<input type="text" name="memberId" placeholder="ID"/><br>
 			<input type="password" name="memberPwd" placeholder="Password"/><br>
 			<input type="submit" value="로그인"/>
+			<br>
+			<a href="/views/member/memberJoinus.jsp">회원가입</a>
 		</form>
 	
 	<%} %>
