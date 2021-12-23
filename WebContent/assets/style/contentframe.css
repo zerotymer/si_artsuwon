@@ -39,10 +39,8 @@ content {
 .nav-menu {
     display: flex;
         flex-direction: row;
-    
     margin: 0;
     padding: 0;
-    
     list-style: none;
 }
 .LNB a {
@@ -91,11 +89,11 @@ content {
 
 
 .nav-submenu {
+    display: none;
     top: -500px;
     position: relative;
     padding: 0;
     list-style: none;
-    visibility: hidden;
     z-index: 100;
 }
 
@@ -127,9 +125,9 @@ content {
 
 /* MOUSE OVER */
 .menu-item:hover > .nav-submenu {
+    display: block;
     top: 1px;
     z-index: 99;
-    visibility: visible;
     
     transition-property: top;
     transition-duration: 0.5s;

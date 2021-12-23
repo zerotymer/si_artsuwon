@@ -43,4 +43,19 @@ public class PerformanceServiceImpl implements PerformanceService {
         JDBCTemplate.close(conn);
         return list;
     }
+
+
+    /**
+     * 최근 공연일정을 조회하는 메서드
+     * @param date 조회할 월
+     * @return 최근 공연일정 리스트
+     * @author 신현진
+     */
+    @Override
+    public ArrayList<Tuple<PerformanceSchedule, PerformanceInfomation>> getRecentPerformancesByMonth(java.util.Date date) {
+        Connection conn = JDBCTemplate.getConnection();
+        ArrayList<Tuple<PerformanceSchedule, PerformanceInfomation>> list = pDAO.selectPrefScheduleByMonth(conn, date);
+        JDBCTemplate.close(conn);
+        return list;
+    }
 }

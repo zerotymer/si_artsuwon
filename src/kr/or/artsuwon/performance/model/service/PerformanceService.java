@@ -23,4 +23,13 @@ public interface PerformanceService {
      * @author 신현진
      */
     ArrayList<Tuple<PerformanceSchedule, PerformanceInfomation>> getRecentPerformances(PerfCategory category);
+
+
+    /**
+     * 특정 월의 공연일정을 가져옵니다.
+     * @param date 조회할 월
+     * @return 공연일정 리스트
+     * @author 신현진
+     */
+    ArrayList<Tuple<PerformanceSchedule, PerformanceInfomation>> getRecentPerformancesByMonth(java.util.Date date);
 }

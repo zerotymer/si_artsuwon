@@ -50,18 +50,14 @@
   background-color: #333;
 }
 
-
-
-
-
-
-/* performance */
+/* PERFORMANCE: 공연목록 */
 .performance {
+  display: flex;
+    flex-direction: column;
+  float: left;
   width: 790px;
   margin: 0 auto;
   margin-top: 30px;
-  display: flex;
-  flex-direction: column;
 }
 
 .preformance div {
@@ -211,4 +207,11 @@
 }
 
 
-/*  */
+/* CALENDAR */
+.calendar {
+  float: right;
+  width: 300px;
+  height: 300px;
+  margin-top: 30px;
+  background-color: red;;
+}

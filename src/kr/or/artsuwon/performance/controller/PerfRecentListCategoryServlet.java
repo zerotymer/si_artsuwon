@@ -73,8 +73,8 @@ public class PerfRecentListCategoryServlet extends HttpServlet {
 		}
 
 		// View
-		response.setCharacterEncoding(StandardCharsets.UTF_8.toString());							// Encoding
-		response.setContentType("application/json");					// Content Type
+		response.setCharacterEncoding(StandardCharsets.UTF_8.toString());						// Encoding
+		response.setContentType("application/json");											// Content Type
 		PrintWriter out = response.getWriter();
 		out.print(array);
 	}

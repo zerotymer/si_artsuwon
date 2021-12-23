@@ -19,6 +19,11 @@
   color: var(--regular-color);
   background-color: white;
 }
+.regular-invert-color {
+  color: white;
+  background-color: var(--regular-color);
+  font-weight: 700;
+}
 
 /* 시민공연 */
 .citizen-font-color {
@@ -31,6 +36,11 @@
   border: 1px solid var(--citizen-color);
   color: var(--citizen-color);
   background-color: white;
+}
+.citizen-invert-color {
+  color: white;
+  background-color: var(--citizen-color);
+  font-weight: 700;
 }
 
 /* 순회공연 */
@@ -45,6 +55,11 @@
   color: var(--tour-color);
   background-color: white;
 }
+.tour-invert-color {
+  color: white;
+  background-color: var(--tour-color);
+  font-weight: 700;
+}
 
 /* 외부공연 */
 .outside-font-color {
@@ -58,6 +73,11 @@
   color: var(--outside-color);
   background-color: white;
 }
+.outside-invert-color {
+  color: white;
+  background-color: var(--outside-color);
+  font-weight: 700;
+}
 
 /* 교육공연 */
 .education-font-color {
@@ -70,6 +90,11 @@
   border: 1px solid var(--education-color);
   color: var(--education-color);
   background-color: white;
+}
+.education-invert-color {
+  color: white;
+  background-color: var(--education-color);
+  font-weight: 700;
 }
 
 /* border */

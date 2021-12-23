@@ -337,5 +337,6 @@ GitHub.sublime-settings
 .project
 .prettierrc
 .idea/**
+*.iml
 
 WebContent/test/
