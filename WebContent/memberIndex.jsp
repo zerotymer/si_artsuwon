@@ -4,15 +4,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>MEMBER MAIN PAGE</title>
 </head>
 <body>
-
-	<form action="/member/login.do" method="post">
-		<input type="text" name="memberId" placeholder="ID"/><br>
-		<input type="password" name="memberPwd" placeholder="Password"/><br>
-		<input type="submit" value="로그인"/>
-	</form>
+	
+	<!-- Header -->
+    <%@ include file="/views/common/header.html" %>
+	
+	<%
+		Member m = (Member)session.getAttribute("member");
+	%>
+	
+	<% if(m != null){ %>
+	
+		[<a href="/member/memberCheck.do"><%=m.getMemberName() %></a>] 님 환영합니다. <a href="/member/logout.do">로그아웃</a><br>
+		
+	<%}else{ %>
+	
+		<form action="/member/login.do" method="post">
+			<input type="text" name="memberId" placeholder="ID"/><br>
+			<input type="password" name="memberPwd" placeholder="Password"/><br>
+			<input type="submit" value="로그인"/>
+		</form>
+	
+	<%} %>
+	
+	<!-- footer -->
+    <%@ include file="/views/common/footer.html" %>
 
 </body>
 </html>
