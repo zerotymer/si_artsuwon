@@ -340,4 +340,3 @@ GitHub.sublime-settings
 *.iml
 
 WebContent/test/
-!WebContent/include/
