@@ -12,7 +12,6 @@ body {
 
 content {
     z-index: 1;
-    
     width: 100%;
     margin: 0;
     padding: 0;
@@ -20,10 +19,10 @@ content {
     background-color: white;
 }
 
-.wrapper {
-    width: 1000px;
+.wrapper,
+.LNB {
+    width: 1200px;
     margin: 0 auto;
-    
 }
 
 
@@ -35,22 +34,13 @@ content {
 /*    margin: 0;*/
 
 }
-.LNB {
-    width: 1000px;
-    margin: 0 auto;
-    
-    
-/*    background-color: red;*/
-}
 
 /* Menu */
 .nav-menu {
     display: flex;
         flex-direction: row;
-    
     margin: 0;
     padding: 0;
-    
     list-style: none;
 }
 .LNB a {
@@ -99,11 +89,11 @@ content {
 
 
 .nav-submenu {
+    display: none;
     top: -500px;
     position: relative;
     padding: 0;
     list-style: none;
-    visibility: hidden;
     z-index: 100;
 }
 
@@ -135,9 +125,9 @@ content {
 
 /* MOUSE OVER */
 .menu-item:hover > .nav-submenu {
+    display: block;
     top: 1px;
     z-index: 99;
-    visibility: visible;
     
     transition-property: top;
     transition-duration: 0.5s;
