@@ -24,6 +24,10 @@
   background-color: var(--regular-color);
   font-weight: 700;
 }
+.regular-tag span {
+  color: black;
+  background-color: var(--regular-color);
+}
 
 /* 시민공연 */
 .citizen-font-color {
@@ -41,6 +45,10 @@
   color: white;
   background-color: var(--citizen-color);
   font-weight: 700;
+}
+.citizen-tag span {
+  color: white;
+  background-color: var(--citizen-color);
 }
 
 /* 순회공연 */
@@ -60,6 +68,10 @@
   background-color: var(--tour-color);
   font-weight: 700;
 }
+.tour-tag span {
+  color: white;
+  background-color: var(--tour-color);
+}
 
 /* 외부공연 */
 .outside-font-color {
@@ -78,6 +90,10 @@
   background-color: var(--outside-color);
   font-weight: 700;
 }
+.outside-tag span {
+  color: white;
+  background-color: var(--outside-color);
+}
 
 /* 교육공연 */
 .education-font-color {
@@ -95,6 +111,10 @@
   color: white;
   background-color: var(--education-color);
   font-weight: 700;
+}
+.education-tag span {
+  color: white;
+  background-color: var(--education-color);
 }
 
 /* border */

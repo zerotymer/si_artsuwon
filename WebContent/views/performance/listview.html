@@ -3,9 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <title>Document</title>
-    <link rel="stylesheet" href="/assets/style/contentframe.css" />
-    <link rel="stylesheet" href="/assets/style/performance.css" />
-    <link rel="stylesheet" href="/assets/style/tag-color.css">
+    <!-- jQuery Library -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/style/contentframe.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/style/performance.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/style/tag-color.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/style/calendar.css" />
   </head>
 
   <body>
@@ -57,7 +72,6 @@
         <!-- 공연일정 -->
         <div class="content-title">
           <h2>공연일정</h2>
-          
         </div>
         <!-- 공연타입 선택 -->
         <div class="content-type">
@@ -75,8 +89,8 @@
         <!-- 공연목록 -->
         <div class="list-container">
           <div class="performance">
-            <!-- item -->
-            <div class="perf_item">
+            <!-- items -->
+            <div class="perf-item">
               <div class="title">
                 <span>12.10</span>
                 <span>금요일</span>
@@ -117,7 +131,7 @@
               </div>
             </div>
 
-            <div class="perf_item">
+            <div class="perf-item">
               <div class="title">
                 <span>12.10</span>
                 <span>금요일</span>
@@ -133,10 +147,10 @@
                     <span>시민공연</span>
                     <span>찾아가는음악회</span>
                   </div>
-                  <div>
+                  <div class="perf-title">
                     <span><h2>미라클 서울-그래도 크리스마스</h2></span>
                   </div>
-                  <div>
+                  <div class="perf-table">
                     <dl>
                       <dt>지휘자</dt>
                       <dd>데이비드 이</dd>
@@ -157,12 +171,152 @@
                 </div>
               </div>
             </div>
+
+            <div class="perf-item">
+              <div class="title">
+                <span>12.24</span>
+                <span>금요일</span>
+                <span>00:00</span>
+                <span>수원SK아트리움</span>
+              </div>
+              <div class="detail">
+                <div class="image">
+                  <img src="/upload/show/00005.jpg" />
+                </div>
+                <div class="content">
+                  <div class="tag regular-tag">
+                    <span>정기공연</span>
+                    <span>관현악</span>
+                  </div>
+                  <div class="perf-title">
+                    <span><h2>합창 교향곡</h2></span>
+                  </div>
+                  <div class="perf-table">
+                    <dl>
+                      <dt>지휘자</dt>
+                      <dd>김휘휘</dd>
+                      <dt>협연자</dt>
+                      <dd>이아경<br />박승주<br />심기환</dd>
+                      <dt>지휘자</dt>
+                      <dd>베토벤 합창</dd>
+                      <dt>가격</dt>
+                      <dd>S20000,A10000,B5000</dd>
+                    </dl>
+                  </div>
+                  <div class="buttons">
+                    <div class="detailBtn" onclick="showDetail(6)">
+                      <span>자세히 보기</span>
+                    </div>
+                    <div class="reserveBtn" onclick="showReservePage(6)">
+                      <span>예매하기</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <!-- CALENDAR -->
           <div class="calendar">
-            1
+            <div class="frame">
+              <!-- calendar HEADER -->
+              <div>
+                <div>/</div>
+                <div align="center">
+                  <sapn class="title"> 2021년 11월</sapn>
+                </div>
+                <div>\</div>
+              </div>
+              <!-- calendar CONTENTS -->
+              <table>
+                <thead>
+                  <tr>
+                    <th>일</th>
+                    <th>월</th>
+                    <th>화</th>
+                    <th>수</th>
+                    <th>목</th>
+                    <th>금</th>
+                    <th>토</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td class="citizen">4</td>
+                    <td>5</td>
+                    <td>6</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td class="citizen">11</td>
+                    <td>12</td>
+                    <td>13</td>
+                  </tr>
+                  <tr>
+                    <td>14</td>
+                    <td class="citizen">15</td>
+                    <td>16</td>
+                    <td class="education">17</td>
+                    <td>18</td>
+                    <td>19</td>
+                    <td class="education">20</td>
+                  </tr>
+                  <tr>
+                    <td>21</td>
+                    <td class="citizen">22</td>
+                    <td>23</td>
+                    <td>24</td>
+                    <td>25</td>
+                    <td>26</td>
+                    <td class="regular">27</td>
+                  </tr>
+                  <tr>
+                    <td>29</td>
+                    <td>30</td>
+                    <td>31</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="caption">
+              <!-- caption -->
+              <div>
+                <div class="regular"></div>
+                <span>정기</span>
+              </div>
+              <div>
+                <div class="citizen"></div>
+                <span>시민</span>
+              </div>
+              <div>
+                <div class="rounds"></div>
+                <span>순회</span>
+              </div>
+              <div>
+                <div class="outside"></div>
+                <span>외부</span>
+              </div>
+              <div>
+                <div class="education"></div>
+                <span>교육</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </content>
+    <script src="/assets/js/listview.js"></script>
+    <script src="/assets/js/calendar.js" type="application/javascript"></script>
   </body>
 </html>
