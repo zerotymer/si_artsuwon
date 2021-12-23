@@ -9,11 +9,14 @@
 
 <body>
     <!-- Header -->
-    <%@ include file="/inline/_header.html" %>
+    <%@ include file="/include/_header.jsp" %>
     <!-- Content -->
     <%@ include file="/views/mainContent.html" %>
     <!-- footer -->
-    <%@ include file="/inline/_footer.html" %>
+    <%@ include file="/include/_footer.jsp" %>
+    <script>
+
+    </script>
 </body>
 
 </html>
