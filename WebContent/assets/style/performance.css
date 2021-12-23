@@ -3,6 +3,10 @@
 
 /* TAG NAV */
 
+.content {
+  background-color: white;
+}
+
 .content-title {
   width: 100%;
   padding: 30px;
