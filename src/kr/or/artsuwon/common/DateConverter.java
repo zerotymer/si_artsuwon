@@ -4,6 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 날짜 관련 공통 클래스
+ * sigleton 패턴으로 사용
+ */
 public class DateConverter {
 
     /**
