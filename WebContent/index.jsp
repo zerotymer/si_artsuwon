@@ -9,11 +9,11 @@
 
 <body>
     <!-- Header -->
-    <%@ include file="/views/common/header.html" %>
+    <%@ include file="/inline/_header.html" %>
     <!-- Content -->
     <%@ include file="/views/mainContent.html" %>
     <!-- footer -->
-    <%@ include file="/views/common/footer.html" %>
+    <%@ include file="/inline/_footer.html" %>
 </body>
 
 </html>
