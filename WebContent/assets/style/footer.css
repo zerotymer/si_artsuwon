@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap');
 
 /* Footer */
-footer { 
+.footer { 
+    position: relative;
+    float: none;
+    bottom: 0;
     background-color: #202020;
     color: #858585;
     width: 100%;
@@ -9,7 +12,7 @@ footer {
     align-content: center;
 }
 
-footer>div:first-child {
+.footer>div:first-child {
     height: 60px;
     display: flex;
     flex-direction: row;
@@ -62,13 +65,13 @@ footer>div:first-child {
 }
 
 /* */
-footer>div:last-child {
+.footer>div:last-child {
     border-top: 1px solid #858585;
     padding: 20px;
     display: flex;
     flex-direction: row;
 }
-footer>div:last-child img {
+.footer>div:last-child img {
     width: 60px;
     height: 60px;
     margin: 5px;

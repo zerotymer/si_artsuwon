@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/assets/style/footer.css">
-<footer>
+
+<link rel="stylesheet" type="text/css" href="/assets/style/footer.css">
+
+<!-- Footer -->
+<div class="footer">
   <div class="wrapper">
     <div id="FNB">
       <ul>
@@ -28,4 +31,4 @@
       COPYRIGHT: 해당페이지는 교육용으로 제작되었습니다.(C장조)
     </div>
   </div>
-</footer>
+</div>

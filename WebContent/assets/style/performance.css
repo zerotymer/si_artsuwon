@@ -55,7 +55,9 @@
   font-weight: 700;
   background-color: #333;
 }
-
+.content .tag > span {
+  margin-left: 10px;
+}
 /* PERFORMANCE: 공연목록 */
 .performance {
   display: flex;
@@ -229,4 +231,18 @@
   min-height: 300px;
   /* height: 140px; */
 }
+<<<<<<< HEAD
 >>>>>>> bb3ec48632b4fbef19b6ead6e4ef14453b9de48b
+=======
+
+
+
+
+
+
+/* ----- EVENT ----- */
+/* CATEGORY */
+.content-type li {
+  cursor: pointer;
+}
+>>>>>>> a12e4a1a89c22aaf975c54743d8b721adafa14e6

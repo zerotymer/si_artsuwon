@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/assets/style/header.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<header>
-  <div class="header-noti">
-    <!-- 공지사항 -->
-    공지사항 작성란
-  </div>
-  <!-- Header Navi-->
+
+<link rel="stylesheet" type="text/css" href="/assets/style/header.css" />
+
+<!-- Header -->
+<div class="header-noti">
+  <!-- 공지사항 -->
+  공지사항 작성란
+</div>
+<!-- Header Navi-->
+<div class="header">
   <div class="header-nav">
     <div class="header-logo">
       <img
@@ -19,7 +21,7 @@
         <li class="menu">
           <a href="">공연/예매</a>
           <ul>
-            <li class="submenu"><a href="1">공연일정</a></li>
+            <li class="submenu"><a href="/views/performance/listview.html">공연일정</a></li>
             <li class="submenu"><a href="1">공연소개</a></li>
             <li class="submenu"><a href="1">예매안내</a></li>
           </ul>
@@ -58,4 +60,4 @@
     </div>
   </div>
   <div class="header-subnav"></div>
-</header>
+</div>
