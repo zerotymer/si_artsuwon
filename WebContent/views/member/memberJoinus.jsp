@@ -195,8 +195,8 @@
 							<option>hotmail.com</option>
 						</select>
 						<br>
-				뉴스레터 및 SMS수신동의 : <input type="checkbox" name="smsYN" value="agreement" checked/>동의합니다.
-									<input type="checkbox" name="smsYN" value="notAgreement"/>동의하지 않습니다.<br>
+				뉴스레터 및 SMS수신동의 : <input type="checkbox" name="smsYN" value="Y" checked/>동의합니다.
+									<input type="checkbox" name="smsYN" value="N"/>동의하지 않습니다.<br>
 			
 		</fieldset>
 		

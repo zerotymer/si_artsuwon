@@ -43,25 +43,13 @@ public class MemberJoinServlet extends HttpServlet {
 		String detailAddress = request.getParameter("detailAddress");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
-		char smsYN = request.getParameter("sms").charAt(0);
+		char smsYN = request.getParameter("smsYN").charAt(0);
 		
-		/* 오류 잡고 다시 해보기
-		System.out.println(memberName);
-		System.out.println(memberId);
-		System.out.println(memberPwd);
-		System.out.println(birthDate);
-		System.out.println(gender);
-		System.out.println(address);
-		System.out.println(detailAddress);
-		System.out.println(phone);
-		System.out.println(phone);
-		System.out.println(smsYN);*/
 		
 		Member m = new Member(memberName, memberId, memberPwd, birthDate, gender, address, detailAddress, phone, email, smsYN);
 		
 		MemberService mService = new MemberServiceImpl();
 		int result = mService.insertOneMember(m);
-		
 		
 		
 	}
