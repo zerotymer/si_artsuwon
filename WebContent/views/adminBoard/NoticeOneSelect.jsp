@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <%@page import="vo.Admin"%>
 <%@page import="vo.Notice"%>
+=======
+<%@ page import="kr.or.artsuwon.adminBoard.model.vo.Notice" %>
+<%@ page import="kr.or.artsuwon.adminMngm.model.vo.Admin" %>
+>>>>>>> 53fdcb91b1146cc383c8528d72825908e003e2a7
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -37,7 +42,11 @@
 
 
 	<%
+<<<<<<< HEAD
 	Notice notice =(Notice)request.getAttribute("notice"); 
+=======
+	Notice notice =(Notice)request.getAttribute("notice");
+>>>>>>> 53fdcb91b1146cc383c8528d72825908e003e2a7
 	%>
 	
 	
@@ -49,7 +58,11 @@
 	
 	 <% 
                  //admin객체에서 id 확인 수정버튼 활성화 
+<<<<<<< HEAD
                  Admin admin = (Admin)session.getAttribute("admin"); %> 
+=======
+                 Admin admin = (Admin)session.getAttribute("admin"); %>
+>>>>>>> 53fdcb91b1146cc383c8528d72825908e003e2a7
            
 	
 	

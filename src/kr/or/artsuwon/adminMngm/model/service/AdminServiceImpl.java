@@ -8,12 +8,12 @@ import kr.or.artsuwon.adminMngm.model.vo.Admin;
 import kr.or.artsuwon.common.JDBCTemplate;
 
 public class AdminServiceImpl implements AdminService{
-	AdminDAO adminDAO = new AdminDAO();
+AdminDAO adminDAO = new AdminDAO();
 	
 	@Override
 	public Admin selectOneAdmin(String adminId, String adminPwd) {
 		Connection conn = JDBCTemplate.getConnection();
-		Admin admin = adminDAO.selectOneAdmin(conn, adminId, adminPwd);
+		Admin admin = adminDAO.selectOneAdmin(conn,adminId,adminPwd);
 		JDBCTemplate.close(conn);
 		
 		return admin;
@@ -30,8 +30,7 @@ public class AdminServiceImpl implements AdminService{
 		
 		//페이지 네비바 개수 1,2,3으로 나오게 설정
 		int naviCountPerPage = 3;
-		String pageNaviType = "admin";
-		String pageNavi = adminDAO.getPageNavi(conn,naviCountPerPage,recordCountPerPage,currentPage,pageNaviType);
+		String pageNavi = adminDAO.getPageNavi(conn,naviCountPerPage,recordCountPerPage,currentPage);
 		JDBCTemplate.close(conn);
 		
 		HashMap<String, Object> adminListMap = new HashMap<String, Object>();

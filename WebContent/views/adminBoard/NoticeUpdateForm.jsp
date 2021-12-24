@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 <%@page import="vo.Notice"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+=======
+<%@ page import="kr.or.artsuwon.adminBoard.model.vo.Notice" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+>>>>>>> 53fdcb91b1146cc383c8528d72825908e003e2a7
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,7 +40,11 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
        			<%@include file="/views/admin/top_navi.jsp" %>
 	   
 	   <%
+<<<<<<< HEAD
 	Notice notice =(Notice)request.getAttribute("notice"); 
+=======
+	Notice notice =(Notice)request.getAttribute("notice");
+>>>>>>> 53fdcb91b1146cc383c8528d72825908e003e2a7
 	%>
 	
 	   
