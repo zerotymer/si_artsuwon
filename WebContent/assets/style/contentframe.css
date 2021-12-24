@@ -11,6 +11,7 @@ body {
 }
 
 content {
+    display: block;
     z-index: 1;
     width: 100%;
     min-height: 600px;

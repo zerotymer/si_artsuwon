@@ -1,13 +1,14 @@
 // JavaScript for listview.html
 const IMAGE_PATH = '/upload/show/';
 const ALT_IMAGE = '/upload/show/default.gif';
+var source;
 
 window.addEventListener("load", function () {
     // initialize the listview
 
     createPrefData();
 
-
+    console.log(source);
 
 });
 
@@ -21,10 +22,10 @@ function createPrefData(month = new Date().getMonth() + 1, year = new Date().get
         },
         dataType: 'JSON',
         success: out => {
+            source = out;
             let div = document.getElementsByClassName('performance')[0];
             div.innerHTML = '';
             out.forEach(value => {
-                console.log(value);
                 div.appendChild(createPrefItem(value));
             });
         },
