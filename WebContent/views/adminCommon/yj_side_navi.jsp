@@ -19,7 +19,7 @@
                     <li class="nav-item">
                     	<%-- 최고관리자만 운영진관리 탭 나타남 --%>
 	                    <c:if test="${String.valueOf(sessionScope.admin.superAdminYN) eq 'Y'}">
-		                    <a class="nav-link active" href="/selectAllPfmcList.do">
+		                    <a class="nav-link active" href="/adminPfmc/selectAllPfmcList.do">
 			                    <i class="fa fa-music">
 			                    </i>
 			                    <span style="font-size:17px;">공연현황</span>
