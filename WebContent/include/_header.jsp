@@ -21,7 +21,7 @@
         <li class="menu">
           <a href="">공연/예매</a>
           <ul>
-            <li class="submenu"><a href="/views/performance/listview/html">공연일정</a></li>
+            <li class="submenu"><a href="/views/performance/listview.html">공연일정</a></li>
             <li class="submenu"><a href="1">공연소개</a></li>
             <li class="submenu"><a href="1">예매안내</a></li>
           </ul>

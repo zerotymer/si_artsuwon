@@ -53,7 +53,9 @@
   font-weight: 700;
   background-color: #333;
 }
-
+.content .tag > span {
+  margin-left: 10px;
+}
 /* PERFORMANCE: 공연목록 */
 .performance {
   display: flex;

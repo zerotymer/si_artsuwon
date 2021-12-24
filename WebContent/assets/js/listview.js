@@ -11,7 +11,11 @@ window.addEventListener("load", function () {
 
 
 });
-
+/**
+ * ajax를 통하여 공연데이터를 가져온다.
+ * @param {number} month 
+ * @param {number} year 
+ */
 function createPrefData(month = new Date().getMonth() + 1, year = new Date().getFullYear()) {
     var data = $.ajax({
         url: "/performance/recentByCategory.do",
@@ -176,7 +180,9 @@ function showReservePage(scheduleNo) {
     alert(scheduleNo);
 }
 
-
+/**
+ * 공연목록을 갱신
+ */
 function resetCategory() {
     let div = document.getElementsByClassName('performance')[0];
     div.innerHTML = '';
@@ -184,6 +190,10 @@ function resetCategory() {
 
     resetCategoryClass('ALL');
 }
+/**
+ * 카테고리 선택에 따른 공연목록 갱신
+ * @param {string} category 카테고리명
+ */
 function filterByCategory(category) {
     let div = document.getElementsByClassName('performance')[0];
     div.innerHTML = '';
@@ -192,6 +202,10 @@ function filterByCategory(category) {
 
     resetCategoryClass(category);
 }
+/**
+ * 카테고리 선택에 따른 버튼 색상 변경
+ * @param {string}} category 카테고리명
+ */
 function resetCategoryClass(category) {
     let $lis = $('.content-type li');
     $lis.removeClass();
