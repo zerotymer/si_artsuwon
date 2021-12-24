@@ -1,0 +1,19 @@
+아작스 서버 처리는 공연 수정에서만
+
+공연 최초 등록 시에는 모두 폼태그로 전송 (부모없이 자식 테이블이 인서트될 수 없음)
+
+$.ajax({
+											url:"/insertPfmcSkdl.do",
+											data:{"pfmcDate" : pfmcDate,
+												  "location" : location,
+												  "price" : price,
+												  "restriction" : restriction},
+											type:"get",
+											dataType:"json",
+											success:function(){
+												console.log('pfmc_schedule 등록 성공');
+											},
+											error:function(){
+												console.log("ajax 에러");
+											}
+										});
