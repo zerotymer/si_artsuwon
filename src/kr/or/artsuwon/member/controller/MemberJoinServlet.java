@@ -1,6 +1,9 @@
 package kr.or.artsuwon.member.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,19 +37,31 @@ public class MemberJoinServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String memberName = request.getParameter("memberName");
-		String memberId = request.getParameter("memberId");
-		String memberPwd = request.getParameter("memberPwd");
-		String birthDate = request.getParameter("birthDate");
-		char gender = request.getParameter("gender").charAt(0);
-		String address = request.getParameter("address");
-		String detailAddress = request.getParameter("detailAddress");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		char smsYN = request.getParameter("smsYN").charAt(0);
-		
-		
-		Member m = new Member(memberName, memberId, memberPwd, birthDate, gender, address, detailAddress, phone, email, smsYN);
+		//date 타입
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	      
+	    String memberName = request.getParameter("memberName");
+	    String memberId = request.getParameter("memberId");
+	    String memberPwd = request.getParameter("memberPwd");
+	    String birthDate = request.getParameter("birthDate");
+	    
+	    Date date = null;
+	    try {
+	       date = dateFormat.parse(birthDate);
+	    } catch (ParseException e) {
+	       e.printStackTrace();
+	    }
+	    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	    
+	    char gender = request.getParameter("gender").charAt(0);
+	    String address = request.getParameter("address");
+	    String detailAddress = request.getParameter("detailAddress");
+	    String phone = request.getParameter("phone");
+	    String email = request.getParameter("email");
+	    char smsYN = request.getParameter("smsYN").charAt(0);
+	      
+	      
+	    Member m = new Member(memberName, memberId, memberPwd, sqlDate, gender, address, detailAddress, phone, email, smsYN);
 		
 		MemberService mService = new MemberServiceImpl();
 		int result = mService.insertOneMember(m);
