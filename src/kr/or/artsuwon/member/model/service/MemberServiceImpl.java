@@ -31,7 +31,24 @@ public class MemberServiceImpl implements MemberService {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = mDAO.insertOneMember(m, conn);
 		
-		return 0;
+		if(result>0) JDBCTemplate.commit(conn);
+		else		 JDBCTemplate.rollback(conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+
+	@Override
+	public boolean selectIdCheck(String memberId) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		boolean result = mDAO.selectIdCheck(memberId, conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
 	}
 
 }

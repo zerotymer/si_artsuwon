@@ -24,4 +24,13 @@ public interface MemberService {
 	 */
 	public int insertOneMember(Member m);
 
+	/**
+	 * 작성자 : 김영주
+	 * 작성일 : 2021.12.24
+	 * @param memberId
+	 * @return boolean
+	 * Description : 신규 회원 추가 시 아이디 중복 체크 메소드
+	 */
+	public boolean selectIdCheck(String memberId);
+
 }

@@ -27,7 +27,8 @@
 			<legend>기본정보</legend>
 			
 				이름 : <input type="text" name="memberName"/><br>
-				아이디 : <input type="text" name="memberId" id="memberId"> <input type="button" onclick="idCheck();" value="중복확인"/><br>
+				아이디 : <input type="text" name="memberId" id="memberId"> <button id="btn">중복확인</button><br>
+					   <span id="msg"></span>
 				영문소문자, 숫자 10~30자리 이내<br>
 				비밀번호 : <input type="password" name="memberPwd"/><br>
 				영문대/소, 숫자, 특수문자 2가지 이상 조합, 10~20자리 이내<br>
@@ -204,12 +205,38 @@
 	</form>
 	
 	
-	<script> 
-		function idCheck(){
+	
+	
+	
+	
+	
+	<script>
+		$('#memberId').click(function(){
+
+			var userId = $('#memberId').val();
 			
-			window.open("/views/member/idCheck.jsp", "_blank", "width=300px, height=300px");
+			$.ajax({
+				url : "/member/memberIdCheck.do",
+				data : {"memberId": memberId},
+				type : "get",
+				success : function(result){
+					
+					if(result=="true")
+					{
+						$('#msg').html("사용불가").css('color','red');
+					}else{
+						$('#msg').html("사용가능").css('color','blue');
+					}
+					
+				},
+				error : function(){
+					console.log('ajax 통신 실패');
+				}
+			})
 			
-		};
+			
+			
+		});
 	</script>
 	
 	
