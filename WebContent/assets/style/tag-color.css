@@ -7,6 +7,16 @@
   --education-color: #f69;
 }
 
+.all-border-color {
+  color: black;
+  background-color: white;
+}
+.all-invert-color {
+  color: white;
+  background-color: #333;
+  font-weight: 700;
+}
+
 /* 정기공연 */
 .regular-font-color {
   color: var(--regular-color);

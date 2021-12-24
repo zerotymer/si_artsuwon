@@ -76,12 +76,12 @@
         <div class="content-type">
           <h3>공연타입 선택</h3>
           <ul>
-            <li class="invert">ALL</li>
-            <li class="regular-border-color">정기공연</li>
-            <li class="citizen-border-color">시민공연</li>
-            <li class="tour-border-color">순회공연</li>
-            <li class="outside-border-color">외부공연</li>
-            <li class="education-border-color">교육공연</li>
+            <li category="all" class="all-border-color" onclick="resetCategory();">ALL</li>
+            <li category="regular" class="regular-border-color" onclick="filterByCategory('정기공연');">정기공연</li>
+            <li category="citizen" class="citizen-border-color" onclick="filterByCategory('시민공연');">시민공연</li>
+            <li category="tour" class="tour-border-color" onclick="filterByCategory('순회공연');">순회공연</li>
+            <li category="outside" class="outside-border-color" onclick="filterByCategory('외부공연');">외부공연</li>
+            <li category="education" class="education-border-color" onclick="filterByCategory('교육공연');">교육공연</li>
           </ul>
         </div>
 
@@ -125,90 +125,6 @@
                   <div class="buttons">
                     <div class="detailBtn"><span>자세히 보기</span></div>
                     <div class="reserveBtn"><span>예매하기</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="perf-item">
-              <div class="title">
-                <span>12.10</span>
-                <span>금요일</span>
-                <span>19:30</span>
-                <span>은평문화예술회관 공연장</span>
-              </div>
-              <div class="detail">
-                <div class="image">
-                  <img src="/upload/show/default.gif" />
-                </div>
-                <div class="content">
-                  <div class="tag tag_purple">
-                    <span>시민공연</span>
-                    <span>찾아가는음악회</span>
-                  </div>
-                  <div class="perf-title">
-                    <span><h2>미라클 서울-그래도 크리스마스</h2></span>
-                  </div>
-                  <div class="perf-table">
-                    <dl>
-                      <dt>지휘자</dt>
-                      <dd>데이비드 이</dd>
-                      <dt>협연자</dt>
-                      <dd>존 노<br />111<br />222</dd>
-                      <dt>프로그램</dt>
-                      <dd>베토벤</dd>
-                      <dt>가격</dt>
-                      <dd>무료</dd>
-                      <dt>협찬사</dt>
-                      <dd>하나</dd>
-                    </dl>
-                  </div>
-                  <div class="buttons">
-                    <div class="detailBtn"><span>자세히 보기</span></div>
-                    <div class="reserveBtn"><span>예매하기</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="perf-item">
-              <div class="title">
-                <span>12.24</span>
-                <span>금요일</span>
-                <span>00:00</span>
-                <span>수원SK아트리움</span>
-              </div>
-              <div class="detail">
-                <div class="image">
-                  <img src="/upload/show/00005.jpg" />
-                </div>
-                <div class="content">
-                  <div class="tag regular-tag">
-                    <span>정기공연</span>
-                    <span>관현악</span>
-                  </div>
-                  <div class="perf-title">
-                    <span><h2>합창 교향곡</h2></span>
-                  </div>
-                  <div class="perf-table">
-                    <dl>
-                      <dt>지휘자</dt>
-                      <dd>김휘휘</dd>
-                      <dt>협연자</dt>
-                      <dd>이아경<br />박승주<br />심기환</dd>
-                      <dt>지휘자</dt>
-                      <dd>베토벤 합창</dd>
-                      <dt>가격</dt>
-                      <dd>S20000,A10000,B5000</dd>
-                    </dl>
-                  </div>
-                  <div class="buttons">
-                    <div class="detailBtn" onclick="showDetail(6)">
-                      <span>자세히 보기</span>
-                    </div>
-                    <div class="reserveBtn" onclick="showReservePage(6)">
-                      <span>예매하기</span>
-                    </div>
                   </div>
                 </div>
               </div>

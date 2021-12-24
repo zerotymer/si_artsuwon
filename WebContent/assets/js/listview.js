@@ -5,10 +5,10 @@ var source;
 
 window.addEventListener("load", function () {
     // initialize the listview
-
     createPrefData();
 
-    console.log(source);
+    // Event 처리
+
 
 });
 
@@ -23,11 +23,7 @@ function createPrefData(month = new Date().getMonth() + 1, year = new Date().get
         dataType: 'JSON',
         success: out => {
             source = out;
-            let div = document.getElementsByClassName('performance')[0];
-            div.innerHTML = '';
-            out.forEach(value => {
-                div.appendChild(createPrefItem(value));
-            });
+            resetCategory();
         },
         error: () => console.log('ajax 통신 에러')
     });
@@ -178,4 +174,30 @@ function showDetail(scheduleNo) {
 
 function showReservePage(scheduleNo) {
     alert(scheduleNo);
+}
+
+
+function resetCategory() {
+    let div = document.getElementsByClassName('performance')[0];
+    div.innerHTML = '';
+    source.forEach(value => div.appendChild(createPrefItem(value)));
+
+    resetCategoryClass('ALL');
+}
+function filterByCategory(category) {
+    let div = document.getElementsByClassName('performance')[0];
+    div.innerHTML = '';
+    source.filter( value => (value['category'].split('/')[0] === category)
+    ).forEach(value => div.appendChild(createPrefItem(value)));
+
+    resetCategoryClass(category);
+}
+function resetCategoryClass(category) {
+    let $lis = $('.content-type li');
+    $lis.removeClass();
+    $lis.each((index, li) => {
+        var value = li.getAttribute('category');
+        li.classList.add(value + '-border-color');
+        (li.innerText == category) && li.classList.add(value + '-invert-color');
+    });
 }

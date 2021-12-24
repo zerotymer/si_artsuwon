@@ -227,3 +227,14 @@
   min-height: 300px;
   /* height: 140px; */
 }
+
+
+
+
+
+
+/* ----- EVENT ----- */
+/* CATEGORY */
+.content-type li {
+  cursor: pointer;
+}
