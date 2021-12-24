@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Cute+Font&family=Noto+Sans+KR:wght@500&family=Sunflower:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+/* TAG NAV */
+
+.content {
+  background-color: white;
+}
+
+.content-title {
+  width: 100%;
+  padding: 30px;
+  font: 20px 'Noto Sans KR', sans-serif;
+  font-weight: 100;
+}
+
+
+/* CONTENT-TYPE */
+.content-type {
+  width: 100%;
+  height: 96px;
+  padding: 30px;
+  background-color: #ddd;
+  box-sizing: border-box;
+}
+.content-type h3 {
+  float: left;
+  margin: auto;
+  font: bold 20px/36px 'Noto Sans KR', sans-serif;
+}
+.content-type ul {
+  display: flex;
+    flex-direction: row;
+    gap: 10px;
+  list-style: none;
+  float: left;
+  margin: auto;
+  margin-left: 80px;
+  padding: 0;
+}
+.content-type li {
+  display: inline-block;
+  width: 100px;
+  height: 36px;
+  /* padding: 6px 20px; */
+  font: 13px/36px 'Noto Sans KR', sans-serif;
+  text-align: center;
+  border: 1px solid ;
+  border-radius: 36px;
+}
+.content-type .invert {
+  color: white;
+  font-weight: 700;
+  background-color: #333;
+}
+.content .tag > span {
+  margin-left: 10px;
+}
+/* PERFORMANCE: 공연목록 */
+.performance {
+  display: flex;
+    flex-direction: column;
+  float: left;
+  width: 790px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.preformance div {
+  box-sizing: border-box;
+}
+
+/* FLEX ITEM(perf-item) 관련 */
+
+.perf-item {
+  width: 100%; /* TEST */
+  height: 420px;
+  border-top: 2px solid gray;
+}
+
+.perf-item:first-child {
+  border-top: 2px solid black;
+}
+
+/* TITLE 관련 */
+.perf-item .title {
+  width: 100%;
+  height: 70px;
+  border-bottom: 1px solid lightgray;
+}
+
+.perf-item > .title > span:first-child {
+  /* DATE: eg. 12.10 */
+  margin-left: 30px;
+  line-height: 70px;
+  font-weight: 600;
+  font-family: 'Cute Font', cursive;
+  font-size: 3em;
+}
+
+.perf-item > .title > span:nth-child(2) {
+  /* year & weekday: eg. 금요일 */
+  width: 60px;
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 16px;
+  font-family: 'Black Han Sans', sans-serif;
+  color: lightseagreen;
+}
+
+.perf-item > .title > span:nth-child(3) {
+  /* time: eg. 19:30 */
+  width: 50px;
+  height: 100%;
+  margin-left: 30px;
+  line-height: 70px;
+  color: darkgray;
+  font-size: 36px;
+  font-family: 'Cute Font', cursive;
+}
+
+.perf-item > .title > span:last-child {
+  /* location: eg. 대한성공회 서울주교좌성당 */
+  margin-left: 10px;
+  font-size: 24px;
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 70px;
+}
+
+/* DETAIL */
+
+.perf-item .detail {
+  width: 100%;
+  height: 350px;
+  padding: 30px 0px;
+}
+
+.perf-item .image {
+  width: 200px;
+  float: left;
+}
+
+.detail .content {
+  width: 540px;
+  float: left;
+  margin-left: 40px;
+}
+
+/* image */
+.perf-item .image > img {
+  width: 200px !important;
+  height: 288px;
+  aspect-ratio: 3/4;
+}
+
+/* TAG 관련 */
+.perf-item .content > div:first-child > span {
+  padding: 2px 10px;
+  font-family: 'Black Han Sans', sans-serif;
+}
+
+/* 제목 */
+.perf-item .content > div:nth-child(2) {
+  font-family: 'Noto Sans KR', sans-serif;
+  /*    font-size: 20px;*/
+}
+.perf-item .content h2 {
+  margin: 10px 0;
+}
+
+/* dl */
+.perf-item dl {
+  width: 100%;
+  color: darkgray;
+  align-self: stretch;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+}
+.perf-item dl > * {
+  display: inline-block;
+}
+.perf-item dl > dt {
+  width: 80px;
+  vertical-align: top;
+}
+.perf-item dl > dd {
+  width: 420px;
+  margin-left: 20px;
+}
+
+/* buttons */
+
+.perf-item .buttons > div {
+  width: 150px;
+  height: 50px;
+  float: left;
+  margin-right: 20px;
+  text-align: center;
+  line-height: 50px;
+  font-family: 'Black Han Sans', sans-serif;
+}
+
+.tag_purple > span {
+  background-color: purple;
+  color: white;
+}
+
+.detailBtn {
+  border: 1px solid black;
+  color: black;
+}
+.reserveBtn {
+  border: 1px solid red;
+  color: red;
+}
+
+
+/* CALENDAR */
+.calendar {
+  float: right;
+  width: 300px;
+  height: 300px;
+  margin-top: 30px;
+  /* background-color: red;; */
+}
+
+.pref-title {}
+.pref-table dl {
+  min-height: 300px;
+  /* height: 140px; */
+}
+
+
+
+
+
+
+/* ----- EVENT ----- */
+/* CATEGORY */
+.content-type li {
+  cursor: pointer;
+}

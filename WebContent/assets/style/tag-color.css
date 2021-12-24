@@ -1,49 +1,130 @@
 /* 색정의 */
 :root {
-    --regular-color: #94C83D;
-    --citizen-color: #961783;
-    --tour-color: #39C;
-    --outside-color: #C60;
-    --education-color: #F69;
+  --regular-color: #94c83d;
+  --citizen-color: #961783;
+  --tour-color: #39c;
+  --outside-color: #c60;
+  --education-color: #f69;
+}
+
+.all-border-color {
+  color: black;
+  background-color: white;
+}
+.all-invert-color {
+  color: white;
+  background-color: #333;
+  font-weight: 700;
 }
 
 /* 정기공연 */
 .regular-font-color {
-    color: var(--regular-color);
+  color: var(--regular-color);
 }
 .regular-back-color {
-    background-color: var(--regular-color);
+  background-color: var(--regular-color);
+}
+.regular-border-color {
+  border: 1px solid var(--regular-color);
+  color: var(--regular-color);
+  background-color: white;
+}
+.regular-invert-color {
+  color: white;
+  background-color: var(--regular-color);
+  font-weight: 700;
+}
+.regular-tag span {
+  color: black;
+  background-color: var(--regular-color);
 }
 
 /* 시민공연 */
 .citizen-font-color {
-    color: var(--citizen-color);
+  color: var(--citizen-color);
 }
 .citizen-back-color {
-    background-color: var(--citizen-color);
+  background-color: var(--citizen-color);
 }
+.citizen-border-color {
+  border: 1px solid var(--citizen-color);
+  color: var(--citizen-color);
+  background-color: white;
+}
+.citizen-invert-color {
+  color: white;
+  background-color: var(--citizen-color);
+  font-weight: 700;
+}
+.citizen-tag span {
+  color: white;
+  background-color: var(--citizen-color);
+}
+
 /* 순회공연 */
 .tour-font-color {
-    color: var(--tour-color);
+  color: var(--tour-color);
 }
 .tour-back-color {
-    background-color: var(--tour-color);
+  background-color: var(--tour-color);
 }
+.tour-border-color {
+  border: 1px solid var(--tour-color);
+  color: var(--tour-color);
+  background-color: white;
+}
+.tour-invert-color {
+  color: white;
+  background-color: var(--tour-color);
+  font-weight: 700;
+}
+.tour-tag span {
+  color: white;
+  background-color: var(--tour-color);
+}
+
 /* 외부공연 */
 .outside-font-color {
-    color: var(--outside-color);
+  color: var(--outside-color);
 }
 .outside-back-color {
-    background-color: var(--outside-color);
+  background-color: var(--outside-color);
 }
+.outside-border-color {
+  border: 1px solid var(--outside-color);
+  color: var(--outside-color);
+  background-color: white;
+}
+.outside-invert-color {
+  color: white;
+  background-color: var(--outside-color);
+  font-weight: 700;
+}
+.outside-tag span {
+  color: white;
+  background-color: var(--outside-color);
+}
+
 /* 교육공연 */
 .education-font-color {
-    color: var(--education-color);
+  color: var(--education-color);
 }
 .education-back-color {
-    background-color: var(--education-color);
+  background-color: var(--education-color);
 }
-
-
+.education-border-color {
+  border: 1px solid var(--education-color);
+  color: var(--education-color);
+  background-color: white;
+}
+.education-invert-color {
+  color: white;
+  background-color: var(--education-color);
+  font-weight: 700;
+}
+.education-tag span {
+  color: white;
+  background-color: var(--education-color);
+}
 
 /* border */
