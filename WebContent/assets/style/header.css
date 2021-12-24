@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-body {
-    height: 100%;
-}
 
-header {
+.header {
     position: sticky;
     top: 0px;
     width: 100%;
@@ -34,7 +31,6 @@ header {
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 600;
 }
-
 .header-logo {
     width: 60px;
     height: 60px;
@@ -46,11 +42,11 @@ header {
     flex: 1 0 400px;
     max-width: 700px;
 }
-
 .gnb ul {
     display: flex;
         flex-direction: row;
         justify-content: space-evenly;
+    margin-top: 0;
     padding: 0;
     list-style: none;
     box-sizing: border-box;
@@ -68,7 +64,6 @@ header {
     border: 3px solid rgba(0, 0, 0, 0);
     z-index: 800;
 }
-
 .menu > a {
     display: block;
     width: 100%;
@@ -84,16 +79,15 @@ header {
 
 /* submenu */
 .menu ul {
+    display: none;
     float: left;
     position: relative;
     top: -4px;
     height: 80px;
     list-style: none;
     z-index: 699;
-    visibility: hidden;
     margin-top: 10px;
 }
-
 .gnb a > strong {
     color: #F36F21;
     /* border-bottom: 3px solid #F36F21; */
@@ -103,12 +97,11 @@ header {
 
 .submenu {
     width: 150px;
-    /*    display: inline-block;*/
+    display: none;
     margin-top: 10px;
     flex: 0 0 150px;
     z-index: 700;
 }
-
 .submenu a {
     /* display: fixed; */
     font-size: bold 17px/80px 'Noto Sans KR', sans-serif;
@@ -129,13 +122,11 @@ header {
     padding: 0;
     margin: 0 40px 0 0;
 }
-
 .icons a {
     display: inline-block;
     text-decoration: none;
     color: white;
 }
-
 .icon_box {
     /* height: 30px; */
     width: 80px;
@@ -148,7 +139,6 @@ header {
     /* margin-left: 10px; */
     text-align: center;
 }
-
 .icon {
     flex: 0 0 100%;
     width: 32px;
@@ -161,38 +151,23 @@ header {
 
 /* SUBNAV */
 .header-subnav {
-    display: block;
-    visibility: hidden;
+    display: none;
     position: relative;
     background-color: white;
     margin-top: 0;
     width: 100%;
     height: 100px;
     z-index: 10;
+    border-bottom: 1px solid #858585;
 }
 
-
-
-/* 일반 페이지를 위한 css */
-content .test {
-    min-height: 600px;
-}
 
 /* 헤더 뒷 배경 */
-content .header-back {
-    position: absolute;
-    width: 100%;
-    height: 148px;
-    top: -148px;
-    /*    filter: blur(4px);*/
-}
-
 .header-back img {
     width: 100%;
     display: block;
     visibility: hidden;
 }
-
 .header-back-small {
     /* 헤더 뒷 배경 작은사이즈 */
     width: 100%;
@@ -200,151 +175,71 @@ content .header-back {
     /*    background-size: cover;*/
     /*    overflow: hidden;*/
 }
-
 .header-back-large {
     /* 헤더 뒷 배경 큰사이즈 */
     width: 100%
 }
 
-/* CONTENT-MENU */
-.content-menu {
-    width: 100%;
-    height: 57px;
-    background-color: white;
-    border-bottom: 1px solid lightgray;
-    z-index: 900;
-}
 
-.content-menu > ul {
-    display: flex;
-    flex-direction: row;
-    padding: 0;
-    margin-left: 400px;
-}
+/* Event */
 
-.content-mainmenu {
-    list-style: none;
-    height: 100%;
-    width: 200px;
-    box-sizing: border-box;
-    display: block;
-    line-height: 57px;
-    border-right: 1px solid lightgray;
-}
-
-.content-mainmenu:first-child {
-    height: 100%;
-    width: 57px;
-    border-left: 1px solid lightgray;
-}
-
-.content-mainmenu > ul {
-    /*    display: flex;*/
-    /*        flex-direction: column;*/
-    display: none;
-    width: 200px;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    background-color: white;
-    border: 1px solid lightgray;
-    border-top: none;
-    box-sizing: border-box;
-}
-
-.content-submenu {
-    height: 50px;
-    list-style: none;
-    margin: 6px;
-}
-
-.content-menu a {
-    padding-left: 20px;
-    text-decoration: none;
-    color: black;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-.content-submenu strong {
-    color: #C7510B;
-}
-
-
-
-
-
-/* Evnet */
-
-header:hover > .header-nav {
+.header:hover > .header-nav {
     background-color: white;
     border-bottom: 1px solid lightgray;
 }
-
-header:hover a {
+.header:hover a {
     color: black;
 }
-
-header:hover > .header-subnav {
+.header:hover > .header-subnav {
     position: absolute;
     display: block;
-    visibility: visible;
 }
-
-header:hover .header-logo {
+.header:hover .submenu {
+    display: inline-block;
+}
+.header:hover .header-logo {
     filter: invert(100%);
 }
-
-header:hover .icon {
+.header:hover .icon {
     filter: none;
 }
-
-header:hover .icon_box {
+.header:hover .icon_box {
     filter: invert(100%);
 }
-
 .menu:hover {
     background-color: white;
     color: black;
-
 }
-
 .menu:hover > a {
     border-bottom: 4px solid black;
 
     transition-property: border-bottom;
     transition-duration: 2s;
 }
-
 .menu:hover ul {
-    visibility: visible;
+    display: flex;
+        flex-direction: row;
     color: black;
     z-index: 900;
 }
-
 .menu ul:hover {
     visibility: visible;
     color: black;
     z-index: 900;
 }
-
-header:hover .icon_box {
+.header:hover .icon_box {
     filter: none;
     border: 1px solid black;
 }
-
-
 .icon:hover {
     filter: invert(50%) !important;
     /* border-radius: 100%; */
     /* background-color: black; */
 }
 
-
-
 .content-mainmenu:hover > ul {
     display: inline-block;
 }
-
 .content-mainmenu:hover > a {
     color: black;
 }
