@@ -63,4 +63,72 @@ public class MemberDAO {
 		return m;
 	}
 
+	public int insertOneMember(Member m, Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = "INSERT INTO MEMBER VALUES (MEMBER_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ZIP_CODE=' ', ?, SYSDATE, WITHDRAW_DATE=' ', ?, ?, MEMBER_STATUS='0');
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, m.getMemberId());
+			pstmt.setString(2, m.getMemberPwd());
+			pstmt.setString(3, m.getMemberName());
+			pstmt.setString(4, m.getBirthDate());
+			pstmt.setString(5, m.getEmail());
+			pstmt.setString(6, m.getPhone());
+			pstmt.setString(7, m.getAddress());
+			pstmt.setString(8, m.getDetailAddress());
+			pstmt.setString(9, String.valueOf(m.getGender()));
+			pstmt.setString(10, String.valueOf(m.getSmsYN()));
+			pstmt.setString(11, String.valueOf(m.getSmsYN()));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public boolean selectIdCheck(String memberId, Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset  = null;
+
+		boolean result = false;
+		
+		String query = "SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_ID=?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+			{
+				result = true;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

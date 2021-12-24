@@ -12,6 +12,7 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO mDAO = new MemberDAO();
 	
 	
+	
 	@Override
 	public Member selectOneMember(String memberId, String memberPwd) {
 		
@@ -21,6 +22,33 @@ public class MemberServiceImpl implements MemberService {
 		JDBCTemplate.close(conn);
 		
 		return m;
+	}
+
+
+	@Override
+	public int insertOneMember(Member m) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		int result = mDAO.insertOneMember(m, conn);
+		
+		if(result>0) JDBCTemplate.commit(conn);
+		else		 JDBCTemplate.rollback(conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+
+	@Override
+	public boolean selectIdCheck(String memberId) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		boolean result = mDAO.selectIdCheck(memberId, conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
 	}
 
 }

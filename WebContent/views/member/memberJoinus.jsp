@@ -27,12 +27,13 @@
 			<legend>기본정보</legend>
 			
 				이름 : <input type="text" name="memberName"/><br>
-				아이디 : <input type="text" name="memberId" id="memberId"> <input type="button" onclick="idCheck();" value="중복확인"/><br>
-				영문소문자, 숫자 10~30자리 이내
+				아이디 : <input type="text" name="memberId" id="memberId"> <button id="btn">중복확인</button><br>
+					   <span id="msg"></span>
+				영문소문자, 숫자 10~30자리 이내<br>
 				비밀번호 : <input type="password" name="memberPwd"/><br>
-				영문대/소, 숫자, 특수문자 2가지 이상 조합, 10~20자리 이내
-				비밀번호 확인 : <input type="password" name="memberPwd_re"/>
-				동일한 비밀번호를 한 번 더 입력해주시기 바랍니다.
+				영문대/소, 숫자, 특수문자 2가지 이상 조합, 10~20자리 이내<br>
+				비밀번호 확인 : <input type="password" name="memberPwd_re"/><br>
+				동일한 비밀번호를 한 번 더 입력해주시기 바랍니다.<br>
 				생년월일 : <select name="birthDate">
 							<option>1940</option>
 							<option>1941</option>
@@ -118,10 +119,58 @@
 							<option>2020</option>
 							<option>2021</option>
 						</select>년 
-				
-						<input type="text" name="birthDate"/>월 <input type="text" name="birthDate"/>일 
+						
+						<select name="birthDate">
+							<option>01</option>
+							<option>02</option>
+							<option>03</option>
+							<option>04</option>
+							<option>05</option>
+							<option>06</option>
+							<option>07</option>
+							<option>08</option>
+							<option>09</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+						</select>월
+						
+						<select>
+							<option>01</option>
+							<option>02</option>
+							<option>03</option>
+							<option>04</option>
+							<option>05</option>
+							<option>06</option>
+							<option>07</option>
+							<option>08</option>
+							<option>09</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+							<option>13</option>
+							<option>14</option>
+							<option>15</option>
+							<option>16</option>
+							<option>17</option>
+							<option>18</option>
+							<option>19</option>
+							<option>20</option>
+							<option>21</option>
+							<option>22</option>
+							<option>23</option>
+							<option>24</option>
+							<option>25</option>
+							<option>26</option>
+							<option>27</option>
+							<option>28</option>
+							<option>29</option>
+							<option>30</option>
+							<option>31</option>
+						</select>일
+						<br>
 				성별 : <input type="checkbox" name="gender" value="M" checked/>남자
-					 <input type="checkbox" name="gender" value="F" checked/>여자<br>
+					 <input type="checkbox" name="gender" value="F" />여자<br>
 				
 			<legend>추가정보</legend>
 			
@@ -134,24 +183,60 @@
 							<option>017</option>
 							<option>018</option>
 							<option>019</option>
-						</select> - <input type="text" name="phone"/> - <input type="text" name="phone"/> <br>
-				이메일 : <input type="text"/> @ <input type="text"/><br>
-				뉴스레터 및 SMS수신동의 : <input type="checkbox" name="sms" value="agreement"/>동의합니다.
-									<input type="checkbox" name="sms" value="agreement"/>동의하지 않습니다.<br>
+						</select> - <input type="text" name="phone" maxlength="4" size="4"/> - <input type="text" name="phone" maxlength="4" size="4"/> <br>
+				이메일 : <input type="text" name="email"/> @ <input type="text"  name="email"/> 
+						<select>
+							<option>직접입력</option>
+							<option>naver.com</option>
+							<option>daum.net</option>
+							<option>nate.com</option>
+							<option>gmail.com</option>
+							<option>hanmail.net</option>
+							<option>hotmail.com</option>
+						</select>
+						<br>
+				뉴스레터 및 SMS수신동의 : <input type="checkbox" name="smsYN" value="Y" checked/>동의합니다.
+									<input type="checkbox" name="smsYN" value="N"/>동의하지 않습니다.<br>
 			
 		</fieldset>
 		
-		<input type="rset" value="취소"/> <input type="submit" value="가입 완료" id="joinBtn"/>
+		<input type="reset" value="취소"/> <input type="submit" value="가입 완료" id="joinBtn"/>
 		
 	</form>
 	
 	
-	<script> 
-		function idCheck(){
+	
+	
+	
+	
+	
+	<script>
+		$('#memberId').click(function(){
+
+			var userId = $('#memberId').val();
 			
-			window.open("/views/member/idCheck.jsp", "_blank", "width=300px, height=300px");
+			$.ajax({
+				url : "/member/memberIdCheck.do",
+				data : {"memberId": memberId},
+				type : "get",
+				success : function(result){
+					
+					if(result=="true")
+					{
+						$('#msg').html("사용불가").css('color','red');
+					}else{
+						$('#msg').html("사용가능").css('color','blue');
+					}
+					
+				},
+				error : function(){
+					console.log('ajax 통신 실패');
+				}
+			})
 			
-		};
+			
+			
+		});
 	</script>
 	
 	
