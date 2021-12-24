@@ -13,26 +13,26 @@
     box-sizing: border-box;
 }
 
-/* FLEX ITEM(flex_item) 관련 */
+/* FLEX ITEM(perf_item) 관련 */
 
-.flex_item {
+.perf_item {
     width: 100%; /* TEST */
     height: 420px;
     border-top: 2px solid gray;
 }
 
-.flex_item:first-child {
+.perf_item:first-child {
     border-top: 2px solid black;
 }
 
 /* TITLE 관련 */
-.flex_item .title {
+.perf_item .title {
     width: 100%;
     height: 70px;
     border-bottom: 1px solid lightgray;
 }
 
-.flex_item>.title>span:first-child {
+.perf_item>.title>span:first-child {
     /* DATE: eg. 12.10 */
     margin-left: 30px;
     line-height: 70px;
@@ -41,7 +41,7 @@
     font-size: 3em;
 }
 
-.flex_item>.title>span:nth-child(2) {
+.perf_item>.title>span:nth-child(2) {
     /* year & weekday: eg. 금요일 */
     width: 60px;
     display: inline-block;
@@ -51,7 +51,7 @@
     color: lightseagreen;
 }
 
-.flex_item>.title>span:nth-child(3) {
+.perf_item>.title>span:nth-child(3) {
     /* time: eg. 19:30 */
     width: 50px;
     height: 100%;
@@ -62,7 +62,7 @@
     font-family: 'Cute Font', cursive;
 }
 
-.flex_item>.title>span:last-child {
+.perf_item>.title>span:last-child {
     /* location: eg. 대한성공회 서울주교좌성당 */
     margin-left: 10px;
     font-size: 24px;
@@ -73,13 +73,13 @@
 
 /* DETAIL */
 
-.flex_item .detail {
+.perf_item .detail {
     width: 100%;
     height: 350px;
     padding: 30px 0px;
 }
 
-.flex_item .image {
+.perf_item .image {
     width: 200px;
     float: left;
 }
@@ -91,43 +91,43 @@
 }
 
 /* image */
-.flex_item .image>img {
+.perf_item .image>img {
     width: 200px;
 }
 
 /* TAG 관련 */
-.flex_item .content>div:first-child>span {
+.perf_item .content>div:first-child>span {
     padding: 2px 10px;
     font-family: 'Black Han Sans', sans-serif;
 }
 
 
 /* 제목 */
-.flex_item .content>div:nth-child(2) {
+.perf_item .content>div:nth-child(2) {
     font-family: 'Noto Sans KR', sans-serif;
 /*    font-size: 20px;*/
 }
-.flex_item .content h2 {
+.perf_item .content h2 {
     margin: 10px 0;
 }
 
 
 /* dl */
-.flex_item dl {
+.perf_item dl {
     width: 100%;
     color: darkgray;
     align-self: stretch;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
 }
-.flex_item dl>* {
+.perf_item dl>* {
     display: inline-block;
 }
-.flex_item dl>dt {
+.perf_item dl>dt {
     width: 80px;
     vertical-align: top;
 }
-.flex_item dl>dd {
+.perf_item dl>dd {
     width: 420px;
     margin-left: 20px;
 }
@@ -135,7 +135,7 @@
 
 /* buttons */
 
-.flex_item .buttons>div {
+.perf_item .buttons>div {
     width: 150px;
     height: 50px;
     float: left;

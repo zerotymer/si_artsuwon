@@ -43,6 +43,9 @@ public class AdminDAO {
 	}
 	
 
+	
+
+		
 		public ArrayList<Admin> selectAllSubAdmin(Connection conn, int currentPage, int recordCountPerPage) {
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
@@ -91,8 +94,8 @@ public class AdminDAO {
 		}
 		
 		
-		public String getPageNavi(Connection conn, int naviCountPerPage, int recordCountPerPage, int currentPage, String pageNaviType) {
-			int TotalRecordCount = totalCount(conn,pageNaviType); //전체 개수 (58)
+		public String getPageNavi(Connection conn, int naviCountPerPage, int recordCountPerPage, int currentPage) {
+			int TotalRecordCount = totalCount(conn); //전체 개수 (58)
 			int TotalPageCount = 0; //전체 개수를 recordPerPage로 나누면 5.8페이지(6페이지)
 			
 			//전체 개수 (전체 개수를 recordPerPage로 나누면 5.8 -> 6으로 올리기)
@@ -112,10 +115,7 @@ public class AdminDAO {
 			}
 			
 			//페이지 네비바
-			String pageNaviUrl = "/selectAllSubAdminList.do"; //기본이 admin
-			if (pageNaviType == "pfmc") {
-				pageNaviUrl = "/selectAllPfmcList.do";
-			}
+			String pageNaviUrl = "/adminMngm/selectAllSubAdminList.do";
 			
 			StringBuilder sb = new StringBuilder();
 			if(startNavi != 1) {
@@ -158,17 +158,12 @@ public class AdminDAO {
 
 
 			// 데이터 총 개수 구하는 메서드 따로 작성
-			public int totalCount(Connection conn, String pageNaviType) {
+			public int totalCount(Connection conn) {
 				PreparedStatement pstmt = null;
 				ResultSet rset = null;
 				int count = 0;
 				
-				String sql = "";
-				if(pageNaviType=="admin") {
-					sql = "SELECT COUNT(*) AS COUNT FROM ADMIN WHERE SUPER_ADMIN_YN='N'";
-				}else {
-					sql = "SELECT COUNT(*) AS COUNT FROM PFMC";
-				}
+				String sql = "SELECT COUNT(*) AS COUNT FROM ADMIN WHERE SUPER_ADMIN_YN='N'";
 				
 				try {
 					pstmt = conn.prepareStatement(sql);

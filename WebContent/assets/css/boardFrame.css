@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+
+        
+/*게시판 제목*/
+.title{
+font-size : 50px;
+text-align:center;
+padding : 20px;
+}
+
+ /*게시판 검색*/
+.search{
+font-size: 20px;
+text-align : center;
+padding : 30px;
+}
+
+/*게시판 상태*/
+.table_box{
+font-size : 20px;
+text-align:left;
+float:left;
+width : 40%;
+}
+
+/*게시판 상태2*/
+.default_info{
+font-size: 20px;
+text-align:right;
+float:right;
+width:40%;
+}
+
+/*게시판(공지) 내용*/
+#notice-board{
+width:100%;
+height:60%;
+float:left;
+text-align: left;
+}
+
+/*게시판 페이지 네비*/
+.board-page{
+width:100%;
+height:50px;
+float:left;
+padding : 10px;
+text-align: center;
+}
+        

@@ -65,7 +65,7 @@ function createCard(card) {
     // 상세정보 - 내용
     let content = document.createElement('div');            // 상세정보 - 내용 div
 
-    let $spanTag = $(document.createElement('span'));           // 상세정보 - 내용 span tag
+    let $spanTag = $(document.createElement('span'));       // 상세정보 - 내용 span tag
     var tag = card['category'];                             // 공연 카테고리
     $spanTag.addClass('tag');
     $spanTag.text(tag);
