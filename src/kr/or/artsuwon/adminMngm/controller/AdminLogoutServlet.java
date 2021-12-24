@@ -20,7 +20,7 @@ public class AdminLogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		response.sendRedirect("/views/adminMngm/index.jsp");
+		response.sendRedirect("/views/adminMngm/adminIndex.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
