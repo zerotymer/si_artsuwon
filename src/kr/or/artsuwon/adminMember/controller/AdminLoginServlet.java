@@ -10,7 +10,7 @@ import kr.or.artsuwon.adminMngm.model.service.AdminService;
 import kr.or.artsuwon.adminMngm.model.service.AdminServiceImpl;
 import kr.or.artsuwon.adminMngm.model.vo.Admin;
 
-@WebServlet("/adminMngm/adminLogin.do")
+@WebServlet("/adminMngm/_adminLogin.do")
 public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

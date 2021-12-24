@@ -3,8 +3,8 @@
 
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="vo.Notice"%>
-<%@page import="vo.Admin"%>
+<%@ page import="kr.or.artsuwon.adminMngm.model.vo.Admin" %>
+<%@ page import="kr.or.artsuwon.adminBoard.model.vo.Notice" %>
 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

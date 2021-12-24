@@ -96,7 +96,7 @@ public class BoardAdminServiceImpl implements BoardAdminService {
 
         ArrayList<Notice> list = bDAO.selectSearchPostList(conn, currentPage, recordCountPerPage, keyword, type);
 
-
+    	return null;
     }
 
 

@@ -1,5 +1,5 @@
-<%@page import="vo.Admin"%>
-<%@page import="vo.Notice"%>
+<%@ page import="kr.or.artsuwon.adminBoard.model.vo.Notice" %>
+<%@ page import="kr.or.artsuwon.adminMngm.model.vo.Admin" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -37,7 +37,7 @@
 
 
 	<%
-	Notice notice =(Notice)request.getAttribute("notice"); 
+	Notice notice =(Notice)request.getAttribute("notice");
 	%>
 	
 	
@@ -49,7 +49,7 @@
 	
 	 <% 
                  //admin객체에서 id 확인 수정버튼 활성화 
-                 Admin admin = (Admin)session.getAttribute("admin"); %> 
+                 Admin admin = (Admin)session.getAttribute("admin"); %>
            
 	
 	
