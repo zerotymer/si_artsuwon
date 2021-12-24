@@ -1,6 +1,5 @@
-<%@page import="kr.or.artsuwon.adminBoard.model.vo.Notice"%>
-<%@page import="kr.or.artsuwon.adminMngm.model.vo.Admin"%>
-
+<%@page import="vo.Admin"%>
+<%@page import="vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,13 +24,13 @@
 
 	<div id="wrapper">
 		<!--사이드 네비바 include-->
-         <%@include file="/views/adminCommon/side_navi.jsp" %>
+         <%@include file="/views/admin/side_navi.jsp" %>
     
         	<!-- 컨텐츠 영역 -->
        		<div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
             	<!--상단 네비바 include-->
-       			<%@include file="/views/adminCommon/top_navi.jsp" %>
+       			<%@include file="/views/admin/top_navi.jsp" %>
 	   
 
 
