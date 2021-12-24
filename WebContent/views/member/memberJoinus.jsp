@@ -169,8 +169,8 @@
 							<option>31</option>
 						</select>일
 						<br>
-				성별 : <input type="checkbox" name="gender" value="M" checked/>남자
-					 <input type="checkbox" name="gender" value="F" />여자<br>
+				성별 : <input type="radio" name="gender" value="M" checked/>남자
+					 <input type="radio" name="gender" value="F" />여자<br>
 				
 			<legend>추가정보</legend>
 			
@@ -195,8 +195,8 @@
 							<option>hotmail.com</option>
 						</select>
 						<br>
-				뉴스레터 및 SMS수신동의 : <input type="checkbox" name="smsYN" value="Y" checked/>동의합니다.
-									<input type="checkbox" name="smsYN" value="N"/>동의하지 않습니다.<br>
+				뉴스레터 및 SMS수신동의 : <input type="radio" name="smsYN" value="Y" checked/>동의합니다.
+									<input type="radio" name="smsYN" value="N"/>동의하지 않습니다.<br>
 			
 		</fieldset>
 		
