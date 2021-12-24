@@ -68,7 +68,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String query = "INSERT INTO MEMBER VALUES (MEMBER_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ZIP_CODE=' ', ?, SYSDATE, WITHDRAW_DATE=' ', ?, ?, MEMBER_STATUS='0');
+		String query = "INSERT INTO MEMBER VALUES (MEMBER_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, '00000', ?, SYSDATE, NULL, ?, ?, '0')";
 		
 		try {
 			
@@ -77,7 +77,7 @@ public class MemberDAO {
 			pstmt.setString(1, m.getMemberId());
 			pstmt.setString(2, m.getMemberPwd());
 			pstmt.setString(3, m.getMemberName());
-			pstmt.setString(4, m.getBirthDate());
+			pstmt.setDate(4, m.getBirthDate());
 			pstmt.setString(5, m.getEmail());
 			pstmt.setString(6, m.getPhone());
 			pstmt.setString(7, m.getAddress());
