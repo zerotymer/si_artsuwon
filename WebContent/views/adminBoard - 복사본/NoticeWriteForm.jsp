@@ -1,6 +1,3 @@
-<%@page import="kr.or.artsuwon.adminBoard.model.vo.Notice"%>
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,19 +23,13 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 
 	<div id="wrapper">
 		<!--사이드 네비바 include-->
-         <%@include file="/views/adminCommon/side_navi.jsp" %>
+         <%@include file="/views/admin/side_navi.jsp" %>
     
         	<!-- 컨텐츠 영역 -->
        		<div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
             	<!--상단 네비바 include-->
-       			<%@include file="/views/adminCommon/top_navi.jsp" %>
-	   
-	   <%
-	Notice notice =(Notice)request.getAttribute("notice"); 
-	%>
-	
-	   
+       			<%@include file="/views/admin/top_navi.jsp" %>
 	   
 
 	<div class="card shadow">
@@ -53,11 +44,11 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                         <div class="container" style="padding-top: -3px;">
                             <p class="text-center"><span class="by">공지사항</span><span class="date"></span></p>
                             
-                          <form action="/notice/noticePostUpdate.do" method="post" id="textUpdateForm">        
+                         
                           
-                            <hr/><input class="form-control-sm" name="noticeTitle" type="text" style="width: 80%;height: 20px;transform: translate(47px) scale(1.12);border-top-style: solid;border-top-color: rgb(237,237,237);
-                            border-right-style: solid;border-right-color: rgb(237,237,237);border-left-style: solid;border-left-color: rgb(237,237,237);margin-bottom: 0px;margin-top: 20px;" value="<%=notice.getNoticeTitle() %>" /></
-                            <div style="padding: 0px;padding-left: 0;margin: 48px 0px 0px 488.8px;margin-left: 69%;margin-top: 47px;margin-right: 0px;font-size: 12px;padding-right: 0px;">
+                            <hr /><input class="form-control-sm" name="noticeTitle" type="text" style="width: 80%;height: 20px;transform: translate(47px) scale(1.12);border-top-style: solid;border-top-color: rgb(237,237,237);
+                            border-right-style: solid;border-right-color: rgb(237,237,237);border-left-style: solid;border-left-color: rgb(237,237,237);margin-bottom: 0px;margin-top: 20px;" placeholder="제목을 입력하세요" />
+                            <div style="padding: 0px;padding-left: 0;margin: 48px 0px 0px 488.8px;margin-left: 69%;margin-top: 47px;margin-right: 0px;font-size: 12px;padding-right: 0px;" >
                                 <div class="btn-group" role="group" style="border-style: none;border-color: var(--bs-gray-100);margin-right: 26px;padding-right: 0px;margin-top: 0px;padding-top: 0px;"></div>
                             </div>
                             <div>
@@ -66,57 +57,30 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                 
                                 <button class="btn btn-secondary btn-sm" type="submit" style="width: 56px;height: 28px;margin: 0px;padding: 0;padding-left: 0px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 0;border-style: none;border-color: 
                                 rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);border-left-style: none;border-left-color: rgb(255,255,255);
-                                font-size: 13px;text-align: center;">업로드</button><%=notice.getFileRename() %></span></p>
+                                font-size: 13px;text-align: center;">업로드</button>Sept 8th, 2016 </span></p>
                             </div>
                         </div>
                     </section>
                     <hr />
                     <div class="intro"></div>
                     <div class="text" style="padding-bottom: 8%;padding-top: 10px;">
-                    <textarea class="form-control-sm"  name="noticeContent" style="width: 100%;height: 500px;" maxlength="3000" value="<%=notice.getNoticeContent() %>"> </textarea>
+                    <textarea class="form-control-sm"  name="noticeContent" style="width: 100%;height: 500px;" placeholder="내용을 입력하세요" maxlength="3000"></textarea>
                         <figure class="figure d-block"></figure>
-                        <hr /><button class="btn btn-light btn-sm" id="#modifyBtn"
-                        type="submit"  style="width: 61px;height: 28px;margin: 2px;padding: 2px 2px;padding-left: 3px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 90%;border-style: none;border-color: rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);border-left-style: none;
-                        border-left-color: rgb(255,255,255);font-size: 13px;text-align: center; 
+                        <hr /><button class="btn btn-light btn-sm" onclick="location.replace('/notice/adminNoticeAllList.do');" 
+                        type="submit" style="width: 61px;height: 28px;margin: 2px;padding: 2px 2px;padding-left: 3px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 90%;border-style: none;border-color: rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);border-left-style: none;
+                        border-left-color: rgb(255,255,255);font-size: 13px;text-align: center;
                         ">완료</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-<input type="hidden" name="boardNo" value="<%=notice.getNoticeNo() %>"/>
-	<input name="noticeTitle"  style="color: rgb(0,0,0); value="<%=notice.getNoticeTitle() %>"/>
-	
-	
 </form>
 
 </div>
 
 
 
-              
-                      <script>
-                      $('#modifyBtn').click(function(){
-                    
-                    	  var text = $(this).text();
-                    	  
-                    	  if(text=='수정')
-                    	{
-                    		  $(this).text('완료');
-                    		  $('#contentArea').prop('disable',false);
-                    	
-                    		  
-                    	}else if(text='완료')
-                    		{
-                    			$('#textUpdateForm').submit();
-                    		}
-                    	  
-                    	  
-                      });
-                    
-                      </script>
-                      
 
 
 

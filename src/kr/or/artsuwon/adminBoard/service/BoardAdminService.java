@@ -1,11 +1,13 @@
-package service;
+package kr.or.artsuwon.adminBoard.service;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import vo.Notice;
+import kr.or.artsuwon.adminBoard.model.vo.Notice;
 
-public interface BoardService {
+
+public interface BoardAdminService {
 
 
 	// 글목록보기

@@ -1,5 +1,4 @@
-<%@page import="kr.or.artsuwon.adminBoard.model.vo.Notice"%>
-
+<%@page import="vo.Notice"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -26,13 +25,13 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 
 	<div id="wrapper">
 		<!--사이드 네비바 include-->
-         <%@include file="/views/adminCommon/side_navi.jsp" %>
+         <%@include file="/views/admin/side_navi.jsp" %>
     
         	<!-- 컨텐츠 영역 -->
        		<div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
             	<!--상단 네비바 include-->
-       			<%@include file="/views/adminCommon/top_navi.jsp" %>
+       			<%@include file="/views/admin/top_navi.jsp" %>
 	   
 	   <%
 	Notice notice =(Notice)request.getAttribute("notice"); 

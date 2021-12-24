@@ -1,15 +1,17 @@
-package service;
+package kr.or.artsuwon.adminBoard.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import DAO.BoardDAO;
-import common.JDBCTemplate;
-import vo.Notice;
+import kr.or.artsuwon.adminBoard.model.dao.BoardAdminDAO;
+import kr.or.artsuwon.adminBoard.model.vo.Notice;
+import kr.or.artsuwon.common.JDBCTemplate;
 
-public class BoardServiceImpl implements BoardService{
-	private BoardDAO bDAO = new BoardDAO();
+
+
+public class BoardAdminServiceImpl implements BoardAdminService{
+	private BoardAdminDAO bDAO = new BoardAdminDAO();
 	
 
 	
@@ -99,15 +101,10 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public HashMap<String, Object> selectSearchPost(int currentPage, String keyword, String type) {
-		Connection conn = JDBCTemplate.getConnection();
-		
-		int recordCountPerPage = 10;
-		
-		ArrayList<Notice> list = bDAO.selectSearchPostList(conn, currentPage, recordCountPerPage, keyword, type);
-		
-		
-		
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 
 
 	
