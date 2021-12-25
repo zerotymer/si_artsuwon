@@ -32,8 +32,8 @@
 	
 	<form action="" method="">
 		<fieldset>
-			<legend>예매 정보</legend>
-			
+			<legend>예매확인/취소</legend>
+			예약한 공연의 이름
 		</fieldset>
 	</form>
 	
