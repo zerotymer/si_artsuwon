@@ -33,4 +33,12 @@ public interface MemberService {
 	 */
 	public boolean selectIdCheck(String memberId);
 
+	/**작성자 : 김영주
+	 * 작성일 : 2021.12.24
+	 * @param m
+	 * @return int
+	 * Description : 회원 정보 수정 메소드
+	 */
+	public int updateOneMember(Member m);
+
 }

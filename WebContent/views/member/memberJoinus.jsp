@@ -180,7 +180,7 @@
 			<legend>추가정보</legend>
 			
 				주소 : <input type="address" name="address" id="sample5_address" onclick="sample5_execDaumPostcode()"/>  <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-				상세 주소 : <input type="text" name="detailAddress"/><br>
+				상세주소 : <input type="text" name="detailAddress"/><br>
 				휴대폰 : <select name="phone">
 							<option>010</option>
 							<option>011</option>
@@ -200,8 +200,8 @@
 							<option>hotmail.com</option>
 						</select>
 						<br>
-				뉴스레터 및 SMS수신동의 : <input type="radio" name="smsYN" value="Y" checked/>동의합니다.
-									<input type="radio" name="smsYN" value="N"/>동의하지 않습니다.<br>
+				SMS 수신동의 : <input type="radio" name="smsYN" value="Y" checked/>동의합니다.
+							 <input type="radio" name="smsYN" value="N"/>동의하지 않습니다.<br>
 			
 		</fieldset>
 		
@@ -214,7 +214,7 @@
 	
 	
 	
-	
+	<%-- 아이디 중복 체크 Script --%>
 	<script>
 		$('#btn').click(function(){
 
@@ -246,6 +246,8 @@
 	
 	
 	
+	
+	<%-- 주소 검색 API --%>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 	<script>
