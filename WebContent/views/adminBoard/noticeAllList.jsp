@@ -1,10 +1,11 @@
+<%@page import="kr.or.artsuwon.adminMngm.model.vo.Admin"%>
+<%@page import="kr.or.artsuwon.adminBoard.model.vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page import="kr.or.artsuwon.adminMngm.model.vo.Admin" %>
-<%@ page import="kr.or.artsuwon.adminBoard.model.vo.Notice" %>
+
 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -54,13 +55,13 @@
 
 	<div id="wrapper">
 		<!--사이드 네비바 include-->
-		<%@include file="/views/admin/side_navi.jsp"%>
+		<%@include file="/views/adminCommon/side_navi.jsp"%>
 
 		<!-- 컨텐츠 영역 -->
 		<div class="d-flex flex-column" id="content-wrapper">
 			<div id="content">
 				<!--상단 네비바 include-->
-				<%@include file="/views/admin/top_navi.jsp"%>
+				<%@include file="/views/adminCommon/top_navi.jsp"%>
 
 
 
