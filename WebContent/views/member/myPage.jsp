@@ -29,6 +29,16 @@
 		Member m = (Member)session.getAttribute("member");
 	%>
 	
+	
+	<form action="" method="">
+		<fieldset>
+			<legend>예매 정보</legend>
+			
+		</fieldset>
+	</form>
+	
+	
+	
 	<form action="/member/memberUpdate.do" method="post">
 		<fieldset>
 			<legend>기본 정보</legend>
@@ -65,7 +75,7 @@
 		
 		</fieldset>
 		
-		<input type="reset" value="취소"/> <input type="submit" id="submitBtn" value="변경하기"/> <input type="button" id="withDrawBtn"/><br>
+		<input type="reset" value="취소"/> <input type="submit" id="submitBtn" value="변경하기"/>      <button id="withDrawBtn">회원탈퇴</button><br>
 		
 	</form>
 	
@@ -96,6 +106,7 @@
 	<%--변경 재확인 --%>
 	<script>
 		$('#submitBtn').click(function(){
+			
 			var result = window.confirm("회원정보를 변경하시겠습니까?");
 			
 				if(result)
@@ -105,10 +116,38 @@
 				{
 					return false;
 				}
+				
 		});
 	</script>
 	
 	
+	<%--회원 탈퇴 버튼 --%>
+	<script>
+		$('#withDrawBtn').click(function(){
+			
+			var memberId = $('#memberId').val();
+			
+			$.ajax({
+				
+				url : "/member/memberCheck.do",
+				data : {"memberId": memberId},
+				type : "post",
+				success : function(result){
+					
+					if(result == "true")
+					{
+						location.href = "/member/memberWithDraw.do";					
+					}
+					
+				},
+				error : function(){
+					alret('탈퇴 실패하였습니다.');
+				}
+			});
+		
+			
+		});
+	</script>
 	
 	
 	
