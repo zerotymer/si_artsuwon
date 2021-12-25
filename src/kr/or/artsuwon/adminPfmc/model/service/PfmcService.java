@@ -16,12 +16,15 @@ public interface PfmcService {
 	//공연 등록하기
 	public int insertPfmc(Performance pfmc);
 
-	//공연 정보 가져오기 (수정시)
+	//수정시 공연 정보 가져오기 (pfmc테이블 정보만)
 	public Performance showPfmcInfo(int pfmcNo);
 	
-	//공연 스케줄 추가하기 (수정시)
+	//수정시 공연 스케줄 추가하기 (ajax)
 	public void insertPfmcSkdl();
 
-	//공연 스케줄 가져오기 (수정시)
+	//동적 테이블 공연 스케줄 가져오기
 	public ArrayList<PerformanceSkdl> selectPfmcSkdl(int pfmcNo);
+
+	//공연 수정하기
+	public int updatePfmc(Performance pfmc);
 }

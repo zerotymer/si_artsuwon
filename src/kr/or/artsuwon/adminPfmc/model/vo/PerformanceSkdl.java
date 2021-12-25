@@ -1,5 +1,6 @@
 package kr.or.artsuwon.adminPfmc.model.vo;
 
+
 public class PerformanceSkdl {
 	private int scheduleNo;
 	private int pfmcNo;
@@ -8,6 +9,7 @@ public class PerformanceSkdl {
 	private String pfmcDate;
 	private String pfmcTime;
 	private int restriction;
+	private String restrictionName;
 	
 	
 	public PerformanceSkdl() {
@@ -84,10 +86,21 @@ public class PerformanceSkdl {
 		this.restriction = restriction;
 	}
 
+	public String getRestrictionName() {
+		return restrictionName;
+	}
+
+
+	public void setRestrictionName(String restrictionName) {
+		this.restrictionName = restrictionName;
+	}
+
+
 	@Override
 	public String toString() {
 		return "PerformanceSkdl [scheduleNo=" + scheduleNo + ", pfmcNo=" + pfmcNo + ", location=" + location
 				+ ", price=" + price + ", pfmcDate=" + pfmcDate + ", pfmcTime=" + pfmcTime + ", restriction="
 				+ restriction + "]";
 	}
+	
 }

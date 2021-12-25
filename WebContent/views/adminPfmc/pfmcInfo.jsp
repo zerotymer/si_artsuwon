@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>관리자 페이지</title>
+    <title>공연 정보</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
@@ -36,11 +36,12 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
             <div class="col-md-12">
                 <div class="card shadow mb-3">
                     <div class="card-header py-3">
-                        <p class="text-primary m-0 fw-bold">공연 등록</p>
+                        <p class="text-primary m-0 fw-bold">공연 정보</p>
                     </div>
                     
                     <div class="card-body">
-                        <form action="/adminPfmc/insertPfmc.do" method="post" enctype="multipart/form-data">
+                        <form action="/adminPfmc/updatePfmc.do" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="pfmcNo" value="${requestScope.pfmcNo}">
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
@@ -86,25 +87,25 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                             <table class="table my-0" id="dynamicTable" style="border-style:solid; border-width:1px;">
                                                 <thead>
                                                     <tr style="text-align:center;">
-                                                        <th style="width:10%;">공연일자</th>
-                                                        <th style="width:12%;">시간</th>
-                                                        <th style="width:15%;">장소</th>
+                                                        <th style="width:8%;">공연일자</th>
+                                                        <th style="width:8%;">시간</th>
+                                                        <th style="width:23%;">장소</th>
                                                         <th>가격</th>
-                                                        <th style="width:10%;">좌석제한</th>
+                                                        <th style="width:12%;">좌석제한</th>
                                                         <th style="width:6%;"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr style="text-align:center;">
-                                                        <td style="width:10%;">
+                                                        <td>
                                                         	<input class="form-control" type="date" id="pfmcDate" style="text-align:center;">
                                                         </td>
                                                         
-                                                        <td style="width:12%;">
+                                                        <td>
                                                         	<input class="form-control" type="text" id="time" placeholder="hh:mm" style="text-align:center;">
                                                         </td>
                                                         
-                                                        <td style="width:15%;">
+                                                        <td>
                                                         	<input class="form-control" type="text" id="location">
                                                         </td>
                                                         
@@ -112,13 +113,17 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                                         	<input class="form-control" type="text" id="price">
                                                         </td>
                                                         
-                                                        <td style="width:8%;">
-                                                        	<input class="form-control" type="text" id="restriction">
+                                                        <td>
+                                                        	<select class="form-select" name="restriction" id="restriction">
+                                           						 <option value="제한없음">제한없음</option>
+                                           						 <option value="1단계">1단계</option>
+                                           						 <option value="2단계">2단계</option>
+                                           						 <option value="3단계">3단계</option>
+                                           					</select>
                                                         </td>
-                                                        
-                                                        <td style="width:6%;">
-                                                        
-                                                        <button class="btn btn-secondary btn-sm" type="button" onclick="tableCreate()">추가</button></td>
+                                                        <td>
+                                                        	<button class="btn btn-secondary btn-sm" type="button" onclick="tableCreate()">추가</button>
+                                                        </td>
                                                         
                                                     </tr>
                                                 </tbody>
@@ -128,11 +133,9 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                 </div>
                                 
                           
-                          
-                         
-                         <!-- 공연 스캐줄 데이터 가져오기-->
+                         <!-- 공연 스케줄 데이터 가져오기-->
                          <script>
-                        	 window.onload = function(){
+                        	 window.onload = (function(){
                          		console.log('체크');
                          		$.ajax({
                              		url:"/adminPfmc/selectPfmcSkdl.do",
@@ -140,69 +143,65 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                              		type:"get",
                              		dataType:"json",
                              		success:function(data){
-                             			//하나씩 꺼내서 테이블에 append
+                             			//한줄씩 만들어서 테이블에 append
 	                           			var html = '';
 	                           			$.each(data, function(index,item) {
-	                           				html += '<tr>';
+	                           				html += '<tr style="text-align:center;">';
 	                           				html += '<td><input type="hidden" name="pfmcDate" value="' + item.pfmcDate + '">'+item.pfmcDate+'</td>';
 	                           				html += '<td><input type="hidden" name="pfmcTime" value="' + item.pfmcTime + '">'+item.pfmcTime+'</td>';
 	                           				html += '<td><input type="hidden" name="location" value="' + item.location + '">'+item.location+'</td>';
 	                           				html += '<td><input type="hidden" name="price" value="' + item.price + '">'+item.price+'</td>';
-	                           				html += '<td><input type="hidden" name="restriction" value="' + item.restriction + '">'+item.restriction+'</td>';
+	                           				html += '<td><input type="hidden" name="restrictionName" value="' + item.restrictionName + '">'+item.restrictionName+'</td>';
+	                           				html += '<td><button class="btn btn-outline-danger btn-sm" type="button" id="delete">삭제</button></td>';
 	                           				html += '</tr>';
-	                           				
-	                        			$("#dynamicTable").append(html);
-	                           			}
+	                           			});
+	                           			$("#dynamicTable").append(html);
                              		},
 	                             		error:function(){
 	                             			console.log('ajax통신 실패');
 	                             	}
                          	});
-                         }
-                         
+                         });
                         </script>
                                 
-                                 <!-- 동적 테이블 추가 -->
-                                  <script>
-                                      function tableCreate(){
-										var tc = new Array();
-										var html = '';
-													
-										var pfmcDate = $("#pfmcDate").val();
-										var time = $("#time").val();
-										var location = $("#location").val();
-										var price = $("#price").val();
-										var restriction = $("#restriction").val();
+                        <!-- 동적 테이블 추가 -->
+                         <script>
+                            function tableCreate(){
+							var tc = new Array();
+							var html = '';
 										
-										html += '<tr style="text-align:center;">';
-										html += '<td><input type="hidden" name="pfmcDate" value="' + pfmcDate + '">'+pfmcDate+'</td>';
-										html += '<td><input type="hidden" name="pfmctime" value="'+time+'">'+time+'</td>';
-										html += '<td><input type="hidden" name="location" value="'+location+'">'+location+'</td>';
-										html += '<td><input type="hidden" name="price" value="'+price+'">'+price+'</td>';
-										html += '<td><input type="hidden" name="restriction" value="'+restriction+'">'+restriction+'</td>';
-										html += '<td>'+'<button class="btn btn-outline-danger btn-sm" type="button" id="delete">삭제</button></td>';
-										html += '</tr>';
-													
-										$("#dynamicTable").append(html);
-													
-										$("#pfmcDate").val('');
-										$("#time").val('');
-										$("#location").val('');
-										$("#price").val('');
-										$("#restriction").val('');
-									}
-                               	  </script>
-                               
-	                               <!-- 동적 테이블 삭제 -->
-	                               <script>
-	                                  	$(document).on('click','#delete',function(){
-	                                  		$('#dynamicTable tbody tr:last').remove();
-	                                  	})
-	                               </script> 
-                                 
-                               	 
-	                               
-	                               
+							var pfmcDate = $("#pfmcDate").val();
+							var time = $("#time").val();
+							var location = $("#location").val();
+							var price = $("#price").val();
+							var restriction = $("#restriction").val();
+							
+							html += '<tr style="text-align:center;">';
+							html += '<td><input type="hidden" name="pfmcDate" value="' + pfmcDate + '">'+pfmcDate+'</td>';
+							html += '<td><input type="hidden" name="pfmctime" value="'+time+'">'+time+'</td>';
+							html += '<td><input type="hidden" name="location" value="'+location+'">'+location+'</td>';
+							html += '<td><input type="hidden" name="price" value="'+price+'">'+price+'</td>';
+							html += '<td><input type="hidden" name="restriction" value="'+restriction+'">'+restriction+'</td>';
+							html += '<td><button class="btn btn-outline-danger btn-sm" type="button" id="delete">삭제</button></td>';
+							html += '</tr>';
+										
+							$("#dynamicTable").append(html);
+										
+							$("#pfmcDate").val('');
+							$("#time").val('');
+							$("#location").val('');
+							$("#price").val('');
+							$("#restriction").val('');
+						}
+                		</script>
+                            
+                            
+                         <!-- 동적 테이블 삭제 -->
+                         <script>
+                           	$(document).on('click','#delete',function(){
+                           		$('#dynamicTable tbody tr:last').remove();
+                           	})
+                         </script> 
                                  
                                 <div class="mb-3">
 	                                 <label class="form-label" for="signature" style="margin-bottom:0;"><strong>프로그램 설명</strong><br></label>
@@ -227,24 +226,25 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                 
                                 <div class="mb-3">
                                 	<label class="form-label" for="signature" style="margin-bottom:0;"><strong>사진</strong><br></label>
-                                	<input class="form-control" type="file" name="file" value="${requestScope.pfmc.photo }">
+                                	<input class="form-control" type="file" name="file">
+                                	<div style="font-size:14px"><b>* 현재 등록된 파일 : </b>${requestScope.pfmc.photo }</div>
+                                	<input type="hidden" name="prevPhoto" value="${requestScope.pfmc.photo }">
                                 </div>
-                                 
                                 
-                            <button class="btn btn-primary" type="submit">Button</button>
+                            <button class="btn btn-primary" type="submit">수정하기</button>
                             </form>
                                 <div class="mb-3"></div>
                                  
                                   
                                   
-                                 <!-- 사진 등록 용량 안내 -->
+                                 <!-- 사진 등록 용량 안내 -->	
                                   <script>
-                                   document.getElementById('file').onchange=function(){
+                                   document.getElementById('file').onchange=(function(){
                                 		var file = document.getElementById('file');
                                 		var fileSize = file.files[0].size/1024/1024;
-                                		}
+                                		});
 
-                                	document.getElementById('fileSubmitBtn').onclick=function(){
+                                	document.getElementById('fileSubmitBtn').onclick=(function(){
                                 		var file = document.getElementById('file');
                                 		var fileSize = file.files[0].size;
                                 		if(fileSize>(50*1024*1024)){
@@ -253,7 +253,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                 		}else{
                                 			return true;
                                 		}
-                                	};	
+                                	});	
                                   </script>
                                   
                              </div>
@@ -273,8 +273,8 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     
-    <script src="<%=request.getContextPath()%>/assets/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/theme.js"></script>
    
 </body>
 </html>
