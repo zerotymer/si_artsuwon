@@ -20,4 +20,10 @@ public interface AdminService {
 
 	//운영진 한명 정보 가져오기 (수정시)
 	public Admin showAdminInfo(int adminNo);
+
+	//(최고 관리자가)운영진 정보 수정
+	public int updateAdminInfo(Admin admin);
+
+	//일반 운영진 비밀번호 변경
+	public int updateAdminPwd(int adminNo, String currentPwd, String newPwd);
 }
