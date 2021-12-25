@@ -1,48 +1,137 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
+:root {
+    --darkblue-color: #1F2C5C;
+}
+
 
 .detailView {
     width: 800px;
 
-    border: 1px solid red;
     font-family: 'Noto Sans KR', sans-serif;
 }
+
+/* title */
+.detailView .title {
+    text-align: center;
+}
+.detailView .title h2 {
+    font: 300 1.5rem 'Noto Sans KR', sans-serif;
+}
+
+.detailView .tag {
+    padding: 3px 6px;
+}
+
+/* graybox */
 
 .detailView .graybox {
     display: flex;
         flex-direction: column;
-    background-color: #ddd;
+    background-color: #FBFBFB;
+    border: 1px solid #F0F0F0;
     
 }
 
 .detailView .graybox > div {
-    border-bottom: 1px dashed #999;
+    border-bottom: 1px dashed #A7B3BA;
 }
 
-.subtitle {
-    width: 120px;
-    height: 34px;
-    padding: 2px 10px;
-    font: 16px/34px; 
+.feature dl,
+.feature dd {
+    margin: 0;
+    padding: 0;
+}
+
+.feature {
+    display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: flex-start;
+}
+
+.feature > dl {
+    display: flex;
+        flex-direction: row;
+        gap: 10px;
+}
+
+.feature dt {
+    display: inline-block;
+    vertical-align: top;
+    width: 90px;
+    height: 24px;
+    font: 14px/24px; 
     color: white;
-    background-color: #1F2C5C;
+    background-color: var(--darkblue-color);
+    text-align: center;
+}
+.feature dd {
+    display: inline-block;
+    font: 200 13.3px/24px 'Noto Sans KR', sans-serif;
 }
 
-.graybox .list dt {
+.feature .flex-column {
+    display: flex;
+        flex-direction: column;
+        gap: 10px;
+}
+
+.feature dt {
     margin-left: 20px;
 }
 
 
-.graybox .reserveDiv {
+.reserveDiv {
     width: 100%;
-    padding: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .reserveDiv .reserveBtn {
     padding: 10px 30px;
-    margin: 0 auto;
     font: 20px/40px 'Noto Sans KR', sans-serif;
         font-weight: 500;
     color: white;
-    background-color: #888;
+    background-color: #666;
+}
+
+.reserveDiv > div {
+    margin-top: 40px;
+}
+
+
+
+/* notes */
+.notes {
+    margin-top: 40px;
+}
+.notes-btns ul {
+    display: flex;
+        flex-direction: row;
+        justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.notes-btns h3 {
+    padding: 0 20px 0 20px;
+    color: #666;
+    border-right: 3px solid #F0F0F0;
+}
+.notes-btns li:last-child > h3 {
+    border-right: none;
+}
+.notes-btns .active {
+    border-bottom: 2px solid black;
+    color: black;
+}
+
+
+/* detail-note */
+.detail-note {
+    width: 100%;
+    min-height: 300px;
+    border: 1px solid #DDD;
 }
