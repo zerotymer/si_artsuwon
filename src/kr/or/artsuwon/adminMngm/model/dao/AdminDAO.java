@@ -43,9 +43,6 @@ public class AdminDAO {
 	}
 	
 
-	
-
-		
 		public ArrayList<Admin> selectAllSubAdmin(Connection conn, int currentPage, int recordCountPerPage) {
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
@@ -277,5 +274,53 @@ public class AdminDAO {
 				JDBCTemplate.close(pstmt);
 			}
 			return admin;
+		}
+
+
+		public int updateAdminInfo(Connection conn, Admin admin) {
+			PreparedStatement pstmt = null;
+			int resultRow = 0;
+			
+			String sql = "UPDATE ADMIN SET ADMIN_NAME=?, ADMIN_EMAIL=? WHERE ADMIN_ID=?";
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, admin.getAdminName());
+				pstmt.setString(2, admin.getAdminEmail());
+				pstmt.setString(3, admin.getAdminId());
+				
+				resultRow = pstmt.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(pstmt);
+			}
+			return resultRow;
+			
+		}
+
+
+		public int updateAdminPwd(Connection conn, int adminNo, String currentPwd, String newPwd) {
+			PreparedStatement pstmt = null;
+			int resultRow = 0;
+			
+			String sql = "UPDATE ADMIN SET ADMIN_PWD=? WHERE ADMIN_NO=? AND ADMIN_PWD=? ";
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, newPwd);
+				pstmt.setInt(2, adminNo);
+				pstmt.setString(3, currentPwd);
+				resultRow = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(pstmt);
+			}
+			return resultRow;
 		}
 }

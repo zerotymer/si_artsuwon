@@ -21,6 +21,7 @@
 	<% if(m != null){ %> 
 	
 		[<%=m.getMemberName() %>]님 환영합니다. <a href="/member/logout.do">로그아웃</a><br>
+		<a href="/member/memberMyPage.do">마이 페이지</a><br>
 		
 		
 	<%}else{ %>
