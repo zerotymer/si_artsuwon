@@ -22,20 +22,28 @@
     vertical-align: center;
 }
 
-.calendar-mini>.frame>div>div:first-child {
-    width: 10%;
-    height: 100%;
+
+.calendar-header {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
 }
 
-.calendar-mini>.frame>div>div:nth-child(2) {
-    width: 80%;
+.calendar-header > div {
+    margin: 4px 0px;
+}
+
+.calendar-header > .btnDiv {
+    width: 40px;
+    height: 100%;
+    margin: 8px 14px;
+}
+
+.calendar-header > .dateDiv {
+    width: 200px;
     height: 100%;
     padding: 6px;
-}
-
-.calendar-mini>.frame>div>div:last-child {
-    width: 10%;
-    height: 100%;
 }
 
 .calendar-mini .calendar-date {
@@ -43,8 +51,11 @@
     width: 100%;
     margin: 0 auto;
     font-weight: 700;
-    font-size: 1.5em;
+    font-size: 20px;
 }
+
+
+
 
 /* calendar CONTENTS */
 .calendar-mini table {
