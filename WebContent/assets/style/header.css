@@ -249,7 +249,7 @@
 
 
 
-/* TEST */
+/* 개인정보 */
 .my-ul {
     display: none;
     /* display: flex; */
@@ -257,13 +257,14 @@
     list-style: none;
     position: absolute;
     padding: 0;
+    margin-top: 32px;
+    background-color: #EEE;
 }
 
 .my-ul > li {  
     display: inline-block;
     padding: 10px;
-    border-bottom: 1px solid #858585;
-    background-color: white;
+    border-bottom: 1px solid #888;
 }
 .my-ul a {
     display: block;

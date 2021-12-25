@@ -1,0 +1,10 @@
+
+.detailView {
+
+}
+
+.detailView .graybox {
+    display: flex;
+        flex-direction: column;    
+    background-color: #ddd;
+}
