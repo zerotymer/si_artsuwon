@@ -161,4 +161,29 @@ public class MemberDAO {
 		return result;
 	}
 
+	public int deleteOneMember(int memberNo, Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = "UPDATE MEMBER SET MEMBER_STATUS='2' WHERE MEMBER_NO=?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

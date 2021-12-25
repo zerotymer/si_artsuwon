@@ -10,7 +10,7 @@ import kr.or.artsuwon.adminPfmc.model.vo.PerformanceSkdl;
 import kr.or.artsuwon.common.JDBCTemplate;
 
 public class PfmcServiceImpl implements PfmcService{
-	PfmcDAO pfmcDAO = new PfmcDAO();
+PfmcDAO pfmcDAO = new PfmcDAO();
 	
 	@Override
 	public int deletePfmc(String pfmcNo) {
@@ -46,7 +46,6 @@ public class PfmcServiceImpl implements PfmcService{
 	public int insertPfmc(Performance pfmc) {
 		Connection conn = JDBCTemplate.getConnection();
 		int resultRow = pfmcDAO.insertPfmc(conn, pfmc);
-		
 		if(resultRow>0) JDBCTemplate.commit(conn);
 		else JDBCTemplate.rollback(conn);
 		return resultRow;
@@ -72,5 +71,14 @@ public class PfmcServiceImpl implements PfmcService{
 		ArrayList<PerformanceSkdl> pfmcSkdlList = pfmcDAO.selectPfmcSkdl(conn, pfmcNo);
 		JDBCTemplate.close(conn);
 		return pfmcSkdlList;
+	}
+
+	@Override
+	public int updatePfmc(Performance pfmc) {
+		Connection conn = JDBCTemplate.getConnection();
+		int resultRow = pfmcDAO.updatePfmc(conn, pfmc);
+		if(resultRow>0) JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		return resultRow;
 	}
 }

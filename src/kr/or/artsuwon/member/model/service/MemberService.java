@@ -41,4 +41,13 @@ public interface MemberService {
 	 */
 	public int updateOneMember(Member m);
 
+	/**
+	 * 작성자 : 김영주
+	 * 작성일 : 2021.12.25
+	 * @param memberNo
+	 * @return int
+	 * Description : 회원 탈퇴 메소드
+	 */
+	public int deleteOneMember(int memberNo);
+
 }
