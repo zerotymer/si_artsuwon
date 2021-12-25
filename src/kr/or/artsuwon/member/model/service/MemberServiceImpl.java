@@ -66,4 +66,19 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+
+	@Override
+	public int deleteOneMember(int memberNo) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		int result = mDAO.deleteOneMember(memberNo, conn);
+		
+		if(result>0) JDBCTemplate.commit(conn);
+		else		 JDBCTemplate.rollback(conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }
