@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+
+.detailView {
+    width: 800px;
+
+    border: 1px solid red;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.detailView .graybox {
+    display: flex;
+        flex-direction: column;
+    background-color: #ddd;
+    
+}
+
+.detailView .graybox > div {
+    border-bottom: 1px dashed #999;
+}
+
+.subtitle {
+    width: 120px;
+    height: 34px;
+    padding: 2px 10px;
+    font: 16px/34px; 
+    color: white;
+    background-color: #1F2C5C;
+}
+
+.graybox .list dt {
+    margin-left: 20px;
+}
+
+
+.graybox .reserveDiv {
+    width: 100%;
+    padding: 20px;
+}
+
+.reserveDiv .reserveBtn {
+    padding: 10px 30px;
+    margin: 0 auto;
+    font: 20px/40px 'Noto Sans KR', sans-serif;
+        font-weight: 500;
+    color: white;
+    background-color: #888;
+}
