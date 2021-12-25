@@ -10,21 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.or.artsuwon.member.model.service.MemberService;
-import kr.or.artsuwon.member.model.service.MemberServiceImpl;
-import kr.or.artsuwon.member.model.vo.Member;
-
 /**
- * Servlet implementation class MemberLoginServlet
+ * Servlet implementation class MemberMyPageServlet
  */
-@WebServlet("/member/login.do")
-public class MemberLoginServlet extends HttpServlet {
+@WebServlet("/member/memberMyPage.do")
+public class MemberMyPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public MemberLoginServlet() {
+    public MemberMyPageServlet() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -33,30 +30,16 @@ public class MemberLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String memberId = request.getParameter("memberId");
-		String memberPwd = request.getParameter("memberPwd");
+		HttpSession session = request.getSession();
 		
-		MemberService mService = new MemberServiceImpl();
-		Member m = mService.selectOneMember(memberId, memberPwd);
+		RequestDispatcher view;
 		
-		if(m != null)
+		if(session.getAttribute("member") != null)
 		{
-			HttpSession session = request.getSession();
-			session.setAttribute("member", m);
-			
-			response.sendRedirect("/views/member/myPage.jsp");
-			
-			
+			view = request.getRequestDispatcher("/views/member/myPage.jsp");
 		}else {
-			
-			RequestDispatcher view = request.getRequestDispatcher("/views/member/memberLoginFail.jsp");
-			
-			view.forward(request, response);
-			
+			view = request.getRequestDispatcher("/views/common/memberError.jsp");
 		}
-		
-		
-		
 		
 	}
 

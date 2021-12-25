@@ -41,6 +41,14 @@ public class Admin {
 		this.totalCount = totalCount;
 	}
 	
+	
+	public Admin(String adminId, String adminName, String adminEmail) {
+		super();
+		this.adminId = adminId;
+		this.adminName = adminName;
+		this.adminEmail = adminEmail;
+	}
+
 	public int getNum() {
 		return num;
 	}

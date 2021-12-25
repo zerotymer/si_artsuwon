@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<!-- jQuery 라이브러리 -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,7 +38,8 @@
 				영문대/소, 숫자, 특수문자 2가지 이상 조합, 10~20자리 이내<br>
 				비밀번호 확인 : <input type="password" name="memberPwd_re"/><br>
 				동일한 비밀번호를 한 번 더 입력해주시기 바랍니다.<br>
-				생년월일 : <select name="birthDate">
+				생년월일 : 
+				<select name="birthDate">
 							<option>1940</option>
 							<option>1941</option>
 							<option>1941</option>
@@ -175,7 +180,7 @@
 			<legend>추가정보</legend>
 			
 				주소 : <input type="address" name="address" id="sample5_address" onclick="sample5_execDaumPostcode()"/>  <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-				상세 주소 : <input type="text" name="detailAddress"/><br>
+				상세주소 : <input type="text" name="detailAddress"/><br>
 				휴대폰 : <select name="phone">
 							<option>010</option>
 							<option>011</option>
@@ -195,8 +200,8 @@
 							<option>hotmail.com</option>
 						</select>
 						<br>
-				뉴스레터 및 SMS수신동의 : <input type="radio" name="smsYN" value="Y" checked/>동의합니다.
-									<input type="radio" name="smsYN" value="N"/>동의하지 않습니다.<br>
+				SMS 수신동의 : <input type="radio" name="smsYN" value="Y" checked/>동의합니다.
+							 <input type="radio" name="smsYN" value="N"/>동의하지 않습니다.<br>
 			
 		</fieldset>
 		
@@ -209,9 +214,9 @@
 	
 	
 	
-	
+	<%-- 아이디 중복 체크 Script --%>
 	<script>
-		$('#memberId').click(function(){
+		$('#btn').click(function(){
 
 			var userId = $('#memberId').val();
 			
@@ -241,6 +246,8 @@
 	
 	
 	
+	
+	<%-- 주소 검색 API --%>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 	<script>

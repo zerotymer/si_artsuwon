@@ -1,0 +1,117 @@
+<%@page import="kr.or.artsuwon.member.model.vo.Member"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!-- jQuery 라이브러리 -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>My Page</title>
+
+	<style>
+		fieldset {
+			width: 300px;
+			height: 500px;
+			margin: 0 auto;
+		}
+		legend {
+			text-align: center;
+		}
+	</style>
+
+</head>
+<body>
+	
+	<%
+		Member m = (Member)session.getAttribute("member");
+	%>
+	
+	<form action="/member/memberUpdate.do" method="post">
+		<fieldset>
+			<legend>기본 정보</legend>
+			이름 : <%=m.getMemberName() %> <br>
+			생년월일 : <%=m.getBirthDate() %> <br>
+			성별 : <%=m.getGender() %><br>
+		</fieldset>
+		
+		<fieldset>
+			<legend>추가 정보</legend>
+			주소 : <input type="address" name="address" id="sample5_address" onclick="sample5_execDaumPostcode()"/>  <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+			상세주소 : <input type="text" name="detailAddress"/><br>
+			핸드폰 : <select name="phone">
+							<option>010</option>
+							<option>011</option>
+							<option>016</option>
+							<option>017</option>
+							<option>018</option>
+							<option>019</option>
+					</select> - <input type="text" name="phone" maxlength="4" size="4"/> - <input type="text" name="phone" maxlength="4" size="4"/> <br>
+			이메일 : <input type="text" name="email"/> @ <input type="text"  name="email"/> 
+						<select>
+							<option>직접입력</option>
+							<option>naver.com</option>
+							<option>daum.net</option>
+							<option>nate.com</option>
+							<option>gmail.com</option>
+							<option>hanmail.net</option>
+							<option>hotmail.com</option>
+						</select>
+						<br>
+			SMS 수신동의 : <input type="radio" name="smsYN" value="Y" checked/>동의합니다.
+						 <input type="radio" name="smsYN" value="N"/>동의하지 않습니다.<br>
+		
+		</fieldset>
+		
+		<input type="reset" value="취소"/> <input type="submit" id="submitBtn" value="변경하기"/> <input type="button" id="withDrawBtn"/><br>
+		
+	</form>
+	
+	
+	
+	
+	
+	
+	<%--주소 검색 API --%>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+	<script>
+	    
+	    function sample5_execDaumPostcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                var addr = data.address; // 최종 주소 변수
+	
+	                // 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById("sample5_address").value = addr;
+	               
+	            }
+	        }).open();
+	    }
+	</script>
+	
+	
+	<%--변경 재확인 --%>
+	<script>
+		$('#submitBtn').click(function(){
+			var result = window.confirm("회원정보를 변경하시겠습니까?");
+			
+				if(result)
+				{
+					return true;
+				}else
+				{
+					return false;
+				}
+		});
+	</script>
+	
+	
+	
+	
+	
+	
+</body>
+</html>

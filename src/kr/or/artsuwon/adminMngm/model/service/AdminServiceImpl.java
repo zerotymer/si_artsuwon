@@ -83,4 +83,26 @@ AdminDAO adminDAO = new AdminDAO();
 		
 		return admin;
 	}
+
+
+	@Override
+	public int updateAdminInfo(Admin admin) {
+		Connection conn = JDBCTemplate.getConnection();
+		int resultRow = adminDAO.updateAdminInfo(conn, admin);
+		if(resultRow>0) JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		
+		return resultRow;
+	}
+
+
+	@Override
+	public int updateAdminPwd(int adminNo, String currentPwd, String newPwd) {
+		Connection conn = JDBCTemplate.getConnection();
+		int resultRow = adminDAO.updateAdminPwd(conn, adminNo,currentPwd,newPwd);
+		if(resultRow>0) JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		
+		return resultRow;
+	}
 }
