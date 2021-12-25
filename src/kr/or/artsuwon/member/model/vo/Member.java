@@ -23,36 +23,30 @@ public class Member {
 	
 	
 	
-	public Member() {
+	
+	
+	/**
+	 * 작성자 : 김영주
+	 * 작성일 : 2021.12.24
+	 * MemberUpdateServlet에 필요한 메소드
+	 * @param memberId
+	 * @param email
+	 * @param phone
+	 * @param address
+	 * @param detailAddress
+	 * @param smsYN
+	 */
+	public Member(String memberId, String email, String phone, String address, String detailAddress, char smsYN) {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-
-
-	public Member(int memberNo, String memberId, String memberPwd, String memberName, Date birthDate, String email,
-			String phone, String address, String detailAddress, String zipCode, char gender, Date enrollDate,
-			Date withDrawDate, char emailYN, char smsYN, char memberStatus) {
-		super();
-		this.memberNo = memberNo;
 		this.memberId = memberId;
-		this.memberPwd = memberPwd;
-		this.memberName = memberName;
-		this.birthDate = birthDate;
 		this.email = email;
 		this.phone = phone;
 		this.address = address;
 		this.detailAddress = detailAddress;
-		this.zipCode = zipCode;
-		this.gender = gender;
-		this.enrollDate = enrollDate;
-		this.withDrawDate = withDrawDate;
-		this.emailYN = emailYN;
 		this.smsYN = smsYN;
-		this.memberStatus = memberStatus;
 	}
-	
-	
+
+
 
 
 
@@ -86,6 +80,39 @@ public class Member {
 		this.smsYN = smsYN;
 	}
 
+	
+	
+	
+	
+	public Member() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public Member(int memberNo, String memberId, String memberPwd, String memberName, Date birthDate, String email,
+			String phone, String address, String detailAddress, String zipCode, char gender, Date enrollDate,
+			Date withDrawDate, char emailYN, char smsYN, char memberStatus) {
+		super();
+		this.memberNo = memberNo;
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.birthDate = birthDate;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.detailAddress = detailAddress;
+		this.zipCode = zipCode;
+		this.gender = gender;
+		this.enrollDate = enrollDate;
+		this.withDrawDate = withDrawDate;
+		this.emailYN = emailYN;
+		this.smsYN = smsYN;
+		this.memberStatus = memberStatus;
+	}
+	
 
 
 	@Override

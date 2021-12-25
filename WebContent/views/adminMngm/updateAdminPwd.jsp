@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>운영진 정보</title>
+    <title>비밀번호 변경</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
@@ -41,50 +41,33 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                  <div class="col-lg-6" style="margin-left: 6%;">
                    <div class="p-5" style="width:180%;">
                      <div class="text-center">
-                         <h4 class="text-dark mb-4"><b>운영진 수정</b></h4>
+                         <h4 class="text-dark mb-4"><b>비밀번호 변경</b></h4>
                      </div>
                       <hr>
-                      <form action="/adminMngm/updateAdminInfo.do" method="post">
+                      <form action="/adminMngm/updateAdminPwd.do" method="post">
 	                      <div class="mb-3">
-	                         <input class="form-control form-control-user" type="text" name="adminId" value="${requestScope.admin.adminId }" readonly>
+	                         <input class="form-control form-control-user" type="password" name="currentPwd" placeholder="현재 비밀번호를 입력하세요">
+	                         <span id="msg1"></span>
 	                      </div>
-	                                      
-	                      <%--일반관리자 본인만 비번 변경 가능 (최고관리자가 변경 불가)--%>
-	                      <c:if test="${String.valueOf(sessionScope.admin.superAdminYN) eq 'N'}">
-		                      <div class="mb-3">
-			                       <button class="btn btn-primary d-block btn-user w-100" type="button" id="changePwdBtn">비밀번호 변경</button>
-		                      </div>
-	                      </c:if>  
+	                                
+	                      <div class="mb-3">
+	                         <input class="form-control form-control-user" type="password" name="newPwd" placeholder="새 비밀번호를 입력하세요">
+	                         <span id="msg2"></span>
+	                      </div>
+	                             
+	                      <div class="mb-3">
+	                         <input class="form-control form-control-user" type="password" name="newPwd_re" placeholder="새 비밀번호를 다시 입력하세요">
+	                      </div>
+	                                   
 	                      
 	                      <div class="mb-3">
-		                      <input class="form-control form-control-user" type="text" name="adminName" id="adminName" value="${requestScope.admin.adminName }">
-	                      </div> 
-	                          
-		                  <div class="mb-3">
-		                      <input class="form-control form-control-user" type="text" name="adminEmail" id="adminEmail" value="${requestScope.admin.adminEmail }">
-	                      </div> 
-	                      
-	                      <%--일반 관리자는 비밀번호만 변경 가능 --%> 
-	                      <c:if test="${String.valueOf(sessionScope.admin.superAdminYN) eq 'Y'}">
-	                      	<button class="btn btn-primary d-block btn-user w-100" id="editBtn" type="submit">수정하기</button>
-	                      </c:if>
+		                       <button class="btn btn-primary d-block btn-user w-100" type="submit">변경하기</button>
+		                       <span id="msg3"></span>
+	                      </div>
 	                 </form>
                      <hr>
-                     	   <script>
-                     	   		window.onload = function(){
-                     	   		var superAdminYN = "${String.valueOf(sessionScope.admin.superAdminYN)}"
-                     	   		if (superAdminYN == 'N'){
-                     	   			$("b").text("프로필");
-                     	   			$('#adminName').attr('readonly',true);
-                     	   			$('#adminEmail').attr('readonly',true);
-                     	   		}
-                     	   		
-                     	   		$('#changePwdBtn').click(function(){
-                     	   			location.href = '/views/adminMngm/updateAdminPwd.jsp';
-                     	   		})
-                   	   		}
-                    	   </script>
-                     	   
+                     	  
+                         
 	                        </div>
 	                    </div>
 	                </div>
@@ -102,8 +85,8 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/theme.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
 </body>
 </html>
 
