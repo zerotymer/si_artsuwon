@@ -1,5 +1,7 @@
 package kr.or.artsuwon.adminPfmc.model.vo;
 
+import java.sql.Date;
+
 public class Performance {
 	private int num; //로우넘
 	private int pfmcNo;
@@ -20,7 +22,7 @@ public class Performance {
 	private String pfmcTime;
 	private String location;
 	private String price;
-	private int restriction;
+	private String restriction;
 	
 	
 	public Performance() {
@@ -31,7 +33,7 @@ public class Performance {
 	//공연 최초 등록시 모든 데이터
 	public Performance(String category, String title, String conductor, String collaborator, String programs,
 			String introduction, String programNote, String relatedPackage, String photo, String memo, String pfmcDate,
-			String pfmcTime, String location, String price, int restriction) {
+			String pfmcTime, String location, String price, String restriction) {
 		super();
 		this.category = category;
 		this.title = title;
@@ -50,10 +52,11 @@ public class Performance {
 		this.restriction = restriction;
 	}
 
-
-	public Performance(String category, String title, String conductor, String collaborator, String programs,
+	//공연 수정시 (11개), 동적 테이블은 ajax로 따로
+	public Performance(int pfmcNo, String category, String title, String conductor, String collaborator, String programs,
 			String introduction, String programNote, String relatedPackage, String memo, String photo) {
 		super();
+		this.pfmcNo = pfmcNo;
 		this.category = category;
 		this.title = title;
 		this.conductor = conductor;
@@ -85,10 +88,15 @@ public class Performance {
 		this.memo = memo;
 		this.pfmcStatus = pfmcStatus;
 	}
+	
+
+	
 
 	public int getNum() {
 		return num;
 	}
+
+
 
 	public void setNum(int num) {
 		this.num = num;
@@ -223,11 +231,11 @@ public class Performance {
 		this.price = price;
 	}
 
-	public int getRestriction() {
+	public String getRestriction() {
 		return restriction;
 	}
 
-	public void setRestriction(int restriction) {
+	public void setRestriction(String restriction) {
 		this.restriction = restriction;
 	}
 
