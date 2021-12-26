@@ -2,6 +2,7 @@
 
 :root {
     --darkblue-color: #1F2C5C;
+    --reserve-color: #EF4C49;
 }
 
 .detailView {
@@ -107,7 +108,7 @@ article {
     margin-left: 20px;
 }
 
-
+/* reserve Btn */
 .reserveDiv {
     width: 100%;
     padding: 40px;
@@ -115,16 +116,23 @@ article {
     text-align: center;
 }
 .reserveDiv .reserveBtn {
-    padding: 10px 30px;
+    width: 200px;
+    height: 60px;
+    padding: 10px 50px;
     font: 20px/40px 'Noto Sans KR', sans-serif;
         font-weight: 500;
     color: white;
-    background-color: #666;
+    background-color: var(--reserve-color);
 }
 .reserveDiv > div {
     margin-top: 40px;
 }
-
+.reserveDiv .endReserve {
+    background-color: #666;
+}
+.reserveDiv .endReserve {
+    background-color: #666;
+}
 
 
 /* notes */
@@ -143,6 +151,7 @@ article {
     padding: 0 20px 0 20px;
     color: #666;
     border-right: 3px solid #F0F0F0;
+    cursor: pointer;
 }
 .notes-btns li:last-child > h3 {
     border-right: none;
@@ -161,6 +170,12 @@ article {
     width: 100%;
     min-height: 300px;
     border: 1px solid #DDD;
+}
+.detail-note > div {
+    padding: 20px;
+}
+.detail-note .disable {
+    display: none;
 }
 
 /* poster */

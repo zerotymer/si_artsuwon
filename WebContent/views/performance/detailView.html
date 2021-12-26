@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="/assets/style/contentframe.css">
-    <link rel="stylesheet" href="/assets/style/detailview.css">
     <link rel="stylesheet" href="/assets/style/tag-color.css">
+    <link rel="stylesheet" href="./detailview.css">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
                         <a href=""><img src="/assets/icon/home.svg" alt=""></a>
                     </li>
                     <li class="menu-item">
-                        <a href=""><strong>공연/예매</strong></a>
+                        <a href=""><b>공연/예매</b></a>
                         <ul class="nav-submenu">
                             <li class="submenu-item"><a href=""><strong>공연/예매</strong></a></li>
                             <li class="submenu-item"><a href="">교육</a></li>
@@ -29,7 +29,7 @@
                         </ul>
                     </li>
                     <li class="menu-item">
-                        <a href=""><strong>공연일정</strong></a>
+                        <a href=""><b>공연일정</b></a>
                         <ul class="nav-submenu">
                             <li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
                             <li class="submenu-item"><a href="">공연소개</a></li>
@@ -94,7 +94,7 @@
                         </div>
                         <div class="reserveDiv">
                             <span class="reserveBtn">
-                                공연종료
+                                예약하기
                             </span>
                             <div>
         <b><pre>※ 공연 당일 티켓은 각 공연장 콜센터와 현장 매표소에서 구입하실 수 있습니다.
@@ -107,16 +107,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class='notes'>
+                    <div class="notes">
                         <div class="notes-btns">
                             <ul>
-                                <li class="active"><h3>공연소개</h3></li>
-                                <li><h3>프로그램 노트</h3></li>
-                                <li><h3>연관패키지</h3></li>
+                                <li class="noteBtn active" onclick="changeNote(this, 'note1');"><h3>공연소개</h3></li>
+                                <li class="noteBtn" onclick="changeNote(this, 'note2');""><h3>프로그램 노트</h3></li>
+                                <li class="noteBtn" onclick="changeNote(this, 'note3');"><h3>연관패키지</h3></li>
                             </ul>
                         </div>
                         <div class="detail-note">
-                            
+                            <div class="note " id="note1">1111</div>
+                            <div class="note disable" id="note2">2222</div>
+                            <div class="note disable" id="note3">3333</div>
                         </div>
                     </div>
                 </article>
@@ -126,6 +128,7 @@
             </div>
         </div>
     </content>
+    <script src="./detailview.js"></script>
 </body>
 
 </html>
