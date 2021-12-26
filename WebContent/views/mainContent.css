@@ -19,11 +19,9 @@ h1 {
     font-family: 'Nanum Gothic', sans-serif;
     font-weight: 900;
 }
-
 content {
     scroll-snap-type: mandatory;
 }
-
 .wrapper {
     width: 1200px;
     margin: 0 auto;
@@ -39,26 +37,21 @@ content {
     gap: 10px;
     scroll-snap-align: start;
 }
-
 .calendar > div:first-child {
     font: 20px 'Nanum Gothic', sans-serif;
     font-weight: 700;
     line-height: 30px;
 }
-
 .calendar > div:nth-child(2) {
     filter: invert(40%);
     margin-bottom: 50px;
 }
-
 .calendar > div:nth-child(2) > img:first-child {
     margin-top: 2px;
 }
-
 .calendar > div:nth-child(2) > img:last-child {
     margin-bottom: 2px;
 }
-
 .days > ul {
     display: flex;
     flex-direction: row;
@@ -68,7 +61,6 @@ content {
     line-height: 29px;
     list-style: none;
 }
-
 .days li {
     width: 30px;
     height: 30px;
@@ -77,15 +69,12 @@ content {
     /*    border: 2px solid red;*/
     border-radius: 30px;
 }
-
-
 .saturday {
     color: blue;
 }
 .sunday {
     color: red;
 }
-
 
 
 /* performance-list */
@@ -97,7 +86,6 @@ content {
     margin-bottom: 150px;
     scroll-snap-align: start;
 }
-
 .card-item {
     width: 260px;
     height: 368px;
@@ -108,14 +96,12 @@ content {
     z-index: 30;
     overflow: hidden;
 }
-
 .card-item img {
     width: 100%;
     height: 100%;
     z-index: 50;
     aspect-ratio: 16/9;
 }
-
 .card-detail {
     width: 100%;
     height: 100%;
@@ -124,25 +110,21 @@ content {
     background-color: rgba(255, 255, 255, 0.97);
     position: relative;
 }
-
 .card-detail > div:first-child {
     width: 100%;
     height: 276px;
 }
-
 .card-detail .tag {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 12px;
     font-weight: 500;
 }
-
 .card-detail h5 {
     margin-top: 10px;
     margin-bottom: 28px;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px;
 }
-
 .card-detail span:not(.tag) {
     display: block;
     margin-top: 2px;
@@ -151,7 +133,6 @@ content {
     font-weight: 400;
     color: gray;
 }
-
 .reserve-btn {
     position: relative;
     bottom: 0;
@@ -160,9 +141,8 @@ content {
     border: 2px solid black;
     text-align: center;
     line-height: 40px;
+    cursor: pointer;
 }
-
-
 
 /* Mouse Over */
 .card-item:hover > .card-detail {
@@ -171,8 +151,6 @@ content {
 
     transition: position 2s;
 }
-
-
 .reserve-btn:hover {
     background-color: black;
     color: white;

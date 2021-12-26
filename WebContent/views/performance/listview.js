@@ -69,7 +69,7 @@ function createPrefItem(data) {
     var dt = document.createElement('dt');
     dt.innerText = "지휘자";
     var dd = document.createElement('dd');
-    dd.innerText = data['conductor'];
+    dd.innerText = data['conductor'].split('/')[0];
     dl.appendChild(dt);
     dl.appendChild(dd);
 
@@ -77,7 +77,7 @@ function createPrefItem(data) {
     var dt = document.createElement('dt');
     dt.innerText = "협연자";
     var dd = document.createElement('dd');
-    dd.innerHTML = data['collaborator'].split(',').join('<br>');
+    dd.innerHTML = data['collaborator'].split('/').filter( (value, index) => index % 2 == 0).join('<br>');
     dl.appendChild(dt);
     dl.appendChild(dd);
 
@@ -171,11 +171,11 @@ function createPrefItem(data) {
  * @param {*} scheduleNo 
  */
 function showDetail(scheduleNo) {
-    alert(scheduleNo);
+    location.replace("/performance/detailInfo.do?scheduleNo=" + scheduleNo);
 }
 
 function showReservePage(scheduleNo) {
-    alert(scheduleNo);
+    location.replace("/reservation/reserve.do?scheduleNo=" + scheduleNo);
 }
 
 /**

@@ -65,7 +65,6 @@
   margin: 0 auto;
   margin-top: 30px;
 }
-
 .preformance div {
   box-sizing: border-box;
 }
@@ -73,11 +72,10 @@
 /* FLEX ITEM(perf-item) 관련 */
 
 .perf-item {
-  width: 100%; /* TEST */
-  height: 420px;
+  position: relative;
+  width: 100%;
   border-top: 2px solid gray;
 }
-
 .perf-item:first-child {
   border-top: 2px solid black;
 }
@@ -88,7 +86,6 @@
   height: 70px;
   border-bottom: 1px solid lightgray;
 }
-
 .perf-item > .title > span:first-child {
   /* DATE: eg. 12.10 */
   margin-left: 30px;
@@ -97,7 +94,6 @@
   font-family: 'Cute Font', cursive;
   font-size: 3em;
 }
-
 .perf-item > .title > span:nth-child(2) {
   /* year & weekday: eg. 금요일 */
   width: 60px;
@@ -107,7 +103,6 @@
   font-family: 'Black Han Sans', sans-serif;
   color: lightseagreen;
 }
-
 .perf-item > .title > span:nth-child(3) {
   /* time: eg. 19:30 */
   width: 50px;
@@ -118,7 +113,6 @@
   font-size: 36px;
   font-family: 'Cute Font', cursive;
 }
-
 .perf-item > .title > span:last-child {
   /* location: eg. 대한성공회 서울주교좌성당 */
   margin-left: 10px;
@@ -130,19 +124,18 @@
 /* DETAIL */
 
 .perf-item .detail {
+  display: flex;
+    flex-direction: row;
+    /* gap: 20px; */
   width: 100%;
-  height: 350px;
+  height: auto;
   padding: 30px 0px;
 }
-
 .perf-item .image {
   width: 200px;
-  float: left;
 }
-
 .detail .content {
   width: 540px;
-  float: left;
   margin-left: 40px;
 }
 
@@ -169,6 +162,8 @@
 }
 
 /* dl */
+.perf-item .list {
+}
 .perf-item dl {
   width: 100%;
   color: darkgray;
@@ -189,7 +184,6 @@
 }
 
 /* buttons */
-
 .perf-item .buttons > div {
   width: 150px;
   height: 50px;
@@ -198,13 +192,12 @@
   text-align: center;
   line-height: 50px;
   font-family: 'Black Han Sans', sans-serif;
+  cursor: pointer;
 }
-
 .tag_purple > span {
   background-color: purple;
   color: white;
 }
-
 .detailBtn {
   border: 1px solid black;
   color: black;
@@ -224,7 +217,7 @@
   /* background-color: red;; */
 }
 
-.pref-title {}
+/* .pref-title {} */
 .pref-table dl {
   min-height: 300px;
   /* height: 140px; */
