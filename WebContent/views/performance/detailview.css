@@ -7,6 +7,8 @@
 
 .detailView {
     width: 1200px;
+    margin: 0 auto;
+    margin-top: 40px;
 
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -96,6 +98,7 @@ article {
 }
 .feature dd {
     display: inline-block;
+    vertical-align: top;
     margin-left: 10px;
     font: 200 13.3px/24px 'Noto Sans KR', sans-serif;
 }
@@ -181,5 +184,8 @@ article {
 /* poster */
 .detailView .poster {
     float: right;
+    width: 250px;
+}
+.detailView .poster img {
     width: 250px;
 }

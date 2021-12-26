@@ -13,17 +13,18 @@
     <div class="header-logo">
       <img
         style="width: 60px; filter: invert(100%)"
-        src="/assets/images/logo.jpg"
-      />
+        src="/assets/images/logo.jpg" />
     </div>
     <nav id="gnb" class="gnb">
       <ul>
         <li class="menu">
           <a href="">공연/예매</a>
           <ul>
-            <li class="submenu"><a href="/views/performance/listview.html">공연일정</a></li>
-            <li class="submenu"><a href="1">공연소개</a></li>
-            <li class="submenu"><a href="1">예매안내</a></li>
+            <li class="submenu">
+              <a href="/views/performance/listview.html">공연일정</a>
+            </li>
+            <li class="submenu"><a href="/views/performance">공연소개</a></li>
+            <li class="submenu"><a href="/views/performance">예매안내</a></li>
           </ul>
         </li>
         <li class="menu">
@@ -46,17 +47,36 @@
       </ul>
     </nav>
     <div class="icons">
-      <span
-        ><a href=""><img class="icon" src="/assets/icon/member.svg" /></a
-      ></span>
-      <span
-        ><a href=""><img class="icon" src="/assets/icon/schedule1.svg" /></a
-      ></span>
-      <span
-        ><a href=""><img class="icon" src="/assets/icon/search_icon.svg" /></a
-      ></span>
-      <span class="icon_box"><a href="">기관소개</a></span>
-      <span class="icon_box"><a href="">정보공개</a></span>
+      <span class="my-span">
+        <img class="icon" src="/assets/icon/member.svg" />
+        <ul class="my-ul">
+          <li id="login">
+            <a href="1">로그인</a>
+          </li>
+          <li>
+            <a href="1">마이페이지</a>
+          </li>
+          <li>
+            <a href="1">로그아웃</a>
+          </li>
+        </ul>
+      </span>
+      <span>
+        <a href="">
+          <img class="icon" src="/assets/icon/schedule1.svg" />
+        </a>
+      </span>
+      <span>
+        <a href="">
+          <img class="icon" src="/assets/icon/search_icon.svg" />
+        </a>
+      </span>
+      <span class="icon_box">
+        <a href="">기관소개</a>
+      </span>
+      <span class="icon_box">
+        <a href="">정보공개</a>
+      </span>
     </div>
   </div>
   <div class="header-subnav"></div>

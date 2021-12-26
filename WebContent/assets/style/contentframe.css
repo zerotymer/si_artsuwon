@@ -17,7 +17,7 @@ content {
     min-height: 600px;
     margin: 0;
     padding: 0;
-    
+    overflow: hidden;
     background-color: white;
 }
 
@@ -26,8 +26,6 @@ content {
     width: 1200px;
     margin: 0 auto;
 }
-
-
 
 /* Navigation */
 .nav_div {

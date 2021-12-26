@@ -58,4 +58,18 @@ public class PerformanceServiceImpl implements PerformanceService {
         JDBCTemplate.close(conn);
         return list;
     }
+
+    /**
+     * 일정번호로 공연정보 및 공연일정을 가져온다.
+     * @param scheduleNo 일정번호
+     * @return 공연정보 및 공연일정. 없으면 Null
+     * @author
+     */
+    @Override
+    public Tuple<PerformanceSchedule, PerformanceInfomation> getOnePrefByScheduleNo(int scheduleNo) {
+        Connection conn = JDBCTemplate.getConnection();
+        Tuple<PerformanceSchedule, PerformanceInfomation> tuple = pDAO.selectOnePrefByScheduleNo(conn, scheduleNo);
+        JDBCTemplate.close(conn);
+        return tuple;
+    }
 }

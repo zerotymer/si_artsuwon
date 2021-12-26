@@ -3,12 +3,12 @@
 /* Footer */
 .footer { 
     position: relative;
-    float: none;
     bottom: 0;
     background-color: #202020;
     color: #858585;
     width: 100%;
     margin: 0px;
+    margin-top: 40px;
     align-content: center;
 }
 
