@@ -88,8 +88,6 @@ public class PerformanceDAO {
         return list;
     }
 
-
-
     /**
      * 최근 공연일정을 조회하는 메서드
      * @param conn 연결정보
@@ -145,7 +143,6 @@ public class PerformanceDAO {
 
         return list;
     }
-
 
     /**
      * 최근 공연일정을 조회하는 메서드
@@ -209,5 +206,61 @@ public class PerformanceDAO {
         return list;
     }
 
+    /**
+     * 일정번호로 공연정보를 포함하여 가져온다.
+     * @param conn 연결정보
+     * @param scheduleNo  일정번호
+     * @return 공연정보 및 공연일정. 없으면 null
+     * @author 신현진
+     */
+    public Tuple<PerformanceSchedule, PerformanceInfomation> selectOnePrefByScheduleNo(Connection conn, int scheduleNo) {
+        final String QUERY =
+                "SELECT * " +
+                "FROM pfmc_schedule " +
+                    "LEFT JOIN pfmc using (pfmc_no) " +
+                "WHERE schedule_no = ?";
+        Tuple<PerformanceSchedule, PerformanceInfomation> data = null;
+        ResultSet rset = null;
 
+        try (PreparedStatement pstmt = conn.prepareStatement(QUERY)) {
+            pstmt.setInt(1, scheduleNo);
+            rset = pstmt.executeQuery();
+
+            if (rset.next()) {
+                PerformanceSchedule schedule = new PerformanceSchedule(
+                        rset.getInt("SCHEDULE_NO"),
+                        rset.getInt("PFMC_NO"),
+                        rset.getString("LOCATION"),
+                        rset.getString("PRICE"),
+                        rset.getDate("PFMC_DATE"),
+                        rset.getInt("RESTRICTION")
+                );
+
+                PerformanceInfomation info = new PerformanceInfomation(
+                        rset.getInt("PFMC_NO"),
+                        rset.getString("CATEGORY"),
+                        rset.getString("TITLE"),
+                        rset.getString("CONDUCTOR"),
+                        rset.getString("COLLABORATOR"),
+                        rset.getString("PROGRAMS"),
+                        rset.getString("INTRODUCTION"),
+                        rset.getString("PROGRAM_NOTE"),
+                        rset.getString("RELATED_PACKAGE"),
+                        rset.getString("PHOTO"),
+                        rset.getString("MEMO"),
+                        rset.getString("PFMC_STATUS").charAt(0)
+                );
+
+                data = new Tuple<>(schedule, info);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(rset);
+            // AutoCloseable pstmt
+        }
+
+        return data;
+    }
 }

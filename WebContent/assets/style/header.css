@@ -115,12 +115,13 @@
 /* ICONS */
 .icons {
     display: flex;
-    flex-flow: row nowrap;
-    gap: 10px;
-    justify-content: space-between;
+        flex-flow: row nowrap;
+        gap: 10px;
+        justify-content: space-between;
     align-items: center;
     padding: 0;
     margin: 0 40px 0 0;
+    flex: 0 1 400px;
 }
 .icons a {
     display: inline-block;
@@ -179,6 +180,8 @@
     /* 헤더 뒷 배경 큰사이즈 */
     width: 100%
 }
+
+
 
 
 /* Event */
@@ -242,4 +245,35 @@
 }
 .content-mainmenu:hover > a {
     color: black;
+}
+
+
+
+/* 개인정보 */
+.my-ul {
+    display: none;
+    /* display: flex; */
+        /* flex-direction: column; */
+    list-style: none;
+    position: absolute;
+    padding: 0;
+    margin-top: 32px;
+    background-color: #EEE;
+}
+
+.my-ul > li {  
+    display: inline-block;
+    padding: 10px;
+    border-bottom: 1px solid #888;
+}
+.my-ul a {
+    display: block;
+    position: relative;
+    width: 120px;
+    height: 36px;
+    font: bold 14px/40px 'Noto Sans KR', sans-serif;
+}
+.my-span:hover .my-ul {
+    display: flex;
+        flex-direction: column;
 }

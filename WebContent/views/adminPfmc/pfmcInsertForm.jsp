@@ -86,25 +86,25 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                             <table class="table my-0" id="dynamicTable" style="border-style:solid; border-width:1px;">
                                                 <thead>
                                                     <tr style="text-align:center;">
-                                                        <th style="width:10%;">공연일자</th>
-                                                        <th style="width:12%;">시간</th>
-                                                        <th style="width:15%;">장소</th>
+                                                        <th style="width:8%;">공연일자</th>
+                                                        <th style="width:8%;">시간</th>
+                                                        <th style="width:23%;">장소</th>
                                                         <th>가격</th>
-                                                        <th style="width:10%;">좌석제한</th>
+                                                        <th style="width:12%;">좌석제한</th>
                                                         <th style="width:6%;"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr style="text-align:center;">
-                                                        <td style="width:10%;">
+                                                        <td>
                                                         	<input class="form-control" type="date" id="pfmcDate" style="text-align:center;">
                                                         </td>
                                                         
-                                                        <td style="width:7%;">
+                                                        <td>
                                                         	<input class="form-control" type="text" id="time" placeholder="hh:mm" style="text-align:center;">
                                                         </td>
                                                         
-                                                        <td style="width:15%;">
+                                                        <td>
                                                         	<input class="form-control" type="text" id="location">
                                                         </td>
                                                         
@@ -112,13 +112,18 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                                         	<input class="form-control" type="text" id="price">
                                                         </td>
                                                         
-                                                        <td style="width:10%;">
-                                                        	<input class="form-control" type="text" id="restriction">
+                                                        <td>
+                                                        	<select class="form-select" name="restriction" id="restriction">
+                                           						 <option value="제한없음">제한없음</option>
+                                           						 <option value="1단계">1단계</option>
+                                           						 <option value="2단계">2단계</option>
+                                           						 <option value="3단계">3단계</option>
+                                           					</select>
+                                                        </td>
+                                                        <td>
+                                                        	<button class="btn btn-secondary btn-sm" type="button" onclick="tableCreate()">추가</button>
                                                         </td>
                                                         
-                                                        <td style="width:6%;">
-                                                        
-                                                        <button class="btn btn-secondary btn-sm" type="button" onclick="tableCreate()">추가</button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -193,7 +198,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                 </div>
                                  
                                 
-                            <button class="btn btn-primary" type="submit">Button</button>
+                            <button class="btn btn-primary" type="submit">등록하기</button>
                             </form>
                                 <div class="mb-3"></div>
                                  

@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+:root {
+    --darkblue-color: #1F2C5C;
+    --reserve-color: #EF4C49;
+}
+
+.detailView {
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 40px;
+
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+article {
+    float: left;
+    width: 840px;
+}
+
+/* title */
+.detailView .title {
+    text-align: center;
+}
+.detailView .title h2 {
+    font: 300 1.5rem 'Noto Sans KR', sans-serif;
+}
+.detailView .tag {
+    padding: 3px 6px;
+}
+
+/* graybox */
+
+.detailView .graybox {
+    display: flex;
+        flex-direction: column;
+    background-color: #FBFBFB;
+    border: 1px solid #F0F0F0;
+    
+}
+.detailView .graybox > div {
+    border-bottom: 1px dashed #A7B3BA;
+    padding: 20px;
+}
+
+
+/* SCHEDULE */
+.detailView .schedule {
+    display: flex;
+        flex-direction: row;
+        gap: 20px;
+        justify-content: center;
+    width: 100%;
+    height: 108px;
+    padding: 24px;
+    font: 1em 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
+}
+.detailView .schedule img {
+    width: 56px;
+    height: 56px;
+}
+.detailView .schedule dl, 
+.detailView .schedule dd {
+    padding: 0;
+    margin: 0;
+}
+.detailView .schedule dd {
+    font: 700 1.2em 'Noto Sans KR', sans-serif;
+    color: var(--darkblue-color);
+}
+
+/* feature */
+.feature dl,
+.feature dd {
+    margin: 0;
+    padding: 0;
+}
+.feature {
+    display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: flex-start;
+}
+.feature > dl {
+    display: flex;
+        flex-direction: row;
+}
+.feature dt {
+    display: inline-block;
+    vertical-align: top;
+    width: 90px;
+    height: 24px;
+    font: 14px/24px; 
+    color: white;
+    background-color: var(--darkblue-color);
+    text-align: center;
+}
+.feature dd {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    font: 200 13.3px/24px 'Noto Sans KR', sans-serif;
+}
+.feature .flex-column {
+    display: flex;
+        flex-direction: column;
+        gap: 10px;
+}
+.feature dt {
+    margin-left: 20px;
+}
+
+/* reserve Btn */
+.reserveDiv {
+    width: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.reserveDiv .reserveBtn {
+    width: 200px;
+    height: 60px;
+    padding: 10px 50px;
+    font: 20px/40px 'Noto Sans KR', sans-serif;
+        font-weight: 500;
+    color: white;
+    background-color: var(--reserve-color);
+}
+.reserveDiv > div {
+    margin-top: 40px;
+}
+.reserveDiv .endReserve {
+    background-color: #666;
+}
+.reserveDiv .endReserve {
+    background-color: #666;
+}
+
+
+/* notes */
+.notes {
+    margin-top: 40px;
+}
+.notes-btns ul {
+    display: flex;
+        flex-direction: row;
+        justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.notes-btns h3 {
+    padding: 0 20px 0 20px;
+    color: #666;
+    border-right: 3px solid #F0F0F0;
+    cursor: pointer;
+}
+.notes-btns li:last-child > h3 {
+    border-right: none;
+}
+
+/* .active */
+.notes-btns .active {
+    border-bottom: 2px solid black;
+}
+.notes-btns .active h3 {
+    color: black;
+}
+
+/* detail-note */
+.detail-note {
+    width: 100%;
+    min-height: 300px;
+    border: 1px solid #DDD;
+}
+.detail-note > div {
+    padding: 20px;
+}
+.detail-note .disable {
+    display: none;
+}
+
+/* poster */
+.detailView .poster {
+    float: right;
+    width: 250px;
+}
+.detailView .poster img {
+    width: 250px;
+}

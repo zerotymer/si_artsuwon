@@ -6,18 +6,16 @@ var source;
 window.addEventListener("load", function () {
     // initialize the listview
     createPrefData();
-
-    // Event 처리
-
-
+    // console.log(source);
 });
+
 /**
  * ajax를 통하여 공연데이터를 가져온다.
  * @param {number} month 
  * @param {number} year 
  */
 function createPrefData(month = new Date().getMonth() + 1, year = new Date().getFullYear()) {
-    var data = $.ajax({
+    $.ajax({
         url: "/performance/recentByCategory.do",
         type: 'GET',
         data: {
@@ -123,7 +121,7 @@ function createPrefItem(data) {
     (tags[0] === "시민공연") && tag.classList.add('citizen-tag');
     (tags[0] === "순회공연") && tag.classList.add('tour-tag');
     (tags[0] === "외부공연") && tag.classList.add('outside-tag');
-    (tags[0] === "교육공연") && tag.classList.add('educatio-tagn');
+    (tags[0] === "교육공연") && tag.classList.add('education-tag');
 
     let content = document.createElement('div');                          // 공연정보내용을 담는 div
     content.classList.add('content');

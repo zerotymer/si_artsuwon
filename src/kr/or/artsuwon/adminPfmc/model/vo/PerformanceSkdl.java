@@ -1,5 +1,4 @@
 package kr.or.artsuwon.adminPfmc.model.vo;
-
 public class PerformanceSkdl {
 	private int scheduleNo;
 	private int pfmcNo;
@@ -8,12 +7,12 @@ public class PerformanceSkdl {
 	private String pfmcDate;
 	private String pfmcTime;
 	private int restriction;
+	private String restrictionName;
 	
 	
 	public PerformanceSkdl() {
 		super();
 	}
-
 
 	public PerformanceSkdl(int scheduleNo, int pfmcNo, String location, String price, String pfmcDate, String pfmcTime,
 			int restriction) {
@@ -24,6 +23,18 @@ public class PerformanceSkdl {
 		this.price = price;
 		this.pfmcDate = pfmcDate;
 		this.pfmcTime = pfmcTime;
+		this.restriction = restriction;
+	}
+
+	//ajax 공연 스케줄 insert
+	public PerformanceSkdl(int pfmcNo, String pfmcDate, String pfmcTime, String location, String price, 
+			int restriction) {
+		super();
+		this.pfmcNo = pfmcNo;
+		this.pfmcDate = pfmcDate;
+		this.pfmcTime = pfmcTime;
+		this.location = location;
+		this.price = price;
 		this.restriction = restriction;
 	}
 
@@ -84,10 +95,21 @@ public class PerformanceSkdl {
 		this.restriction = restriction;
 	}
 
+	public String getRestrictionName() {
+		return restrictionName;
+	}
+
+
+	public void setRestrictionName(String restrictionName) {
+		this.restrictionName = restrictionName;
+	}
+
+
 	@Override
 	public String toString() {
 		return "PerformanceSkdl [scheduleNo=" + scheduleNo + ", pfmcNo=" + pfmcNo + ", location=" + location
 				+ ", price=" + price + ", pfmcDate=" + pfmcDate + ", pfmcTime=" + pfmcTime + ", restriction="
 				+ restriction + "]";
 	}
+	
 }
