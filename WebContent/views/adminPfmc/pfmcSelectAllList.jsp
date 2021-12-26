@@ -42,20 +42,24 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                 <!-- 컨테이너 -->
                 <div class="container-fluid">
                     <div class="card shadow">
-                        <form>
+                        <form action="/adminPfmc/searchPfmc.do" method="get">
                         	<div class="card-header py-3">
-		                        <span><b>공연일시 </b></span><input type="date" name="startDate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                        <span><b>공연일시 </b></span>
+		                        <input type="date" name="srchDate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                        
 		                        <span><b>공연분류 </b>
-		                        <select name="">
-		                        	<option value="">정기공연/관현악</option>
-		                        	<option value="">시민공연/특별공연</option>
-		                        	<option value="">시민공연/찾아가는음악회</option>
-		                        	<option value="">교육공연/일반인교육</option>
+		                        <select name="srchCategory">
+		                        	<option value="">공연분류</option>
+		                        	<option value="정기공연/관현악">정기공연/관현악</option>
+		                        	<option value="시민공연/특별공연">시민공연/특별공연</option>
+		                        	<option value="시민공연/찾아가는음악회">시민공연/찾아가는음악회</option>
+		                        	<option value="교육공연/일반인교육">교육공연/일반인교육</option>
 		                        </select>
 		                        </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                        <span><b>공연명 </b></span><input type="text" name="showName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                        
+		                        <span><b>공연명 </b></span><input type="text" name="srchPfmcName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	                            <button class="btn btn-primary" type="submit">공연 조회</button>&nbsp;&nbsp;&nbsp;
+	                            
 	                            <button type="button" onclick="location.href='/views/adminPfmc/pfmcInsertForm.jsp';" class="btn btn-primary" >공연 등록</button>
 	                        </div>
                      	</form>
@@ -64,10 +68,9 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                             <div class="row">
                                 <div class="col-md-6 text-nowrap">
                                     <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-	                                    <select>
-		                                    <option value="12" selected="">최근순</option>
-		                                    <option value="13">공연번호순</option>
-		                                    <option value="14">가격순</option>
+	                                    <select id="sortOption" onchange="sortPfmc();">
+		                                    <option value="번호순">번호순</option>
+		                                    <option value="최근순">최근순</option>
 	                            		</select>
                                     </div>
                                 </div>
@@ -108,7 +111,6 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                             <script>
 	                            function deletePfmc (e) {
 	                            	var pfmcNo = $(e).attr('value');
-	                            	console.log(pfmcNo);
 	                            	var pfmcTitle = $('#pfmcNo'+pfmcNo).text();
 	                            	var choice = confirm(pfmcTitle + " 을(를) 삭제하시겠습니까?");
 	                            	
@@ -134,6 +136,10 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 	                            	    alert("삭제가 취소되었습니다.");
 	                            	}
 	                            }
+                            </script>
+                            
+                            <!-- 정렬 -->
+                            <script>
                             </script>
                             
               <div class="row">
@@ -164,8 +170,8 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     
-    <script src="<%=request.getContextPath()%>/assets/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/theme.js"></script>
 </body>
 </html>
 
