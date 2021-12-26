@@ -1,8 +1,18 @@
 ///// JavaScript for calendar-mini.js
 // Need to import jQurey
 
+// TODO: closer 함수
+window.addEventListener("load", function () {
+    var curdate = setCurDate();
+    this.document.getElementsByClassName('curBtn')[0].onclick = curdate(-1);
+    this.document.getElementsByClassName('curBtn')[1].onclick = curdate(1);
+});
 
-
+/**
+ * 달력의 내용 생성
+ * @param {number} month 
+ * @param {number} year 
+ */
 function createTbody(month = new Date().getMonth(), year = new Date().getFullYear()) {
     let tbody = document.getElementById("miniCalendar-tbody");
     // remove all tbody child
@@ -61,6 +71,10 @@ function createTbody(month = new Date().getMonth(), year = new Date().getFullYea
     });
 }
 
+/**
+ * 현재 날짜에 대한 설정
+ * @returns 
+ */
 function setCurDate() {
     // initialize
     var cur_date = new Date();
@@ -78,9 +92,3 @@ function setCurDate() {
 }
 
 
-
-window.addEventListener("load", function () {
-    var curdate = setCurDate();
-    this.document.getElementsByClassName('curBtn')[0].onclick = curdate(-1);
-    this.document.getElementsByClassName('curBtn')[1].onclick = curdate(1);
-});

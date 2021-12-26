@@ -77,15 +77,15 @@ function createPrefItem(data) {
     var dt = document.createElement('dt');
     dt.innerText = "협연자";
     var dd = document.createElement('dd');
-    dd.innerHTML = data['collaborator'].split('/').filter( (value, index) => index % 2 == 0).join('<br>');
+    dd.innerHTML = data['collaborator'].split('/').filter( (value, index) => index % 2 == 0).join('<br />');
     dl.appendChild(dt);
     dl.appendChild(dd);
 
     // 프로그램
     var dt = document.createElement('dt');
-    dt.innerText = "지휘자";
+    dt.innerText = "프로그램";
     var dd = document.createElement('dd');
-    dd.innerHTML = data['program'].split(',').join('<br/>');
+    dd.innerHTML = data['program'].split('/').filter( (value, index) => index %2 == 0).join('<br />');
     dl.appendChild(dt);
     dl.appendChild(dd);
 
