@@ -1,3 +1,5 @@
+<%@page import="kr.or.artsuwon.csBoard.vo.csBoard"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="kr.or.artsuwon.member.model.vo.Member"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -35,6 +37,20 @@
 
 <body id="page-top">
 
+	
+<%
+	//페이징 처리되어 넘어온 데이터를 가져와야 함
+	
+	HashMap<String,Object> pageDataMap = (HashMap<String,Object>)request.getAttribute("pageDataMap");
+
+	ArrayList<csBoard> list = (ArrayList<csBoard>)pageDataMap.get("list");
+	String pageNavi = (String)pageDataMap.get("pageNavi");
+	int currentPage = (int)request.getAttribute("currentPage");
+
+	String keyword = (String)request.getAttribute("keyword");
+%>
+			
+			
 
 
 	<div id="wrapper">
@@ -172,15 +188,17 @@
 												</tr>
 											</thead>
 											<tbody>
+											
+												<%for(csBoard b : list) { %>
 												<tr>
 													<td><img class="rounded-circle me-2" width="30"
-														height="30" src="/assets/images/memberPicture.jpg" />박진경</td>
-													<td>3월 11일에 진행된 &quot;The art of love&quot; 역대급 공연이라고
-														생각..</td>
-													<td>공연감상평</td>
-													<td>2021/09/23</td>
+														height="30" src="/assets/images/memberPicture.jpg" /><%=b.getCsWriter() %></td>
+													<td><%=b.getCsTitle() %></td>
+													<td>CS</td>
+													<td><%=b.getCsDate() %></td>
 												</tr>
-												<tr>
+												<%} %>
+												<!-- <tr>
 													<td></td>
 													<td>그여자의 소설 감상평</td>
 													<td>공연감상평<br /></td>
@@ -233,7 +251,7 @@
 													<td></td>
 													<td></td>
 													<td><br /></td>
-												</tr>
+												</tr> -->
 											</tbody>
 											
 										</table>

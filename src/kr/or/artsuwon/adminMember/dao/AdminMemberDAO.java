@@ -1,15 +1,13 @@
 package kr.or.artsuwon.adminMember.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import kr.or.artsuwon.board.model.dao.csBoard;
-import kr.or.artsuwon.board.model.vo.Board;
 import kr.or.artsuwon.common.JDBCTemplate;
+import kr.or.artsuwon.csBoard.vo.csBoard;
 import kr.or.artsuwon.member.model.vo.Member;
 
 public class AdminMemberDAO {
@@ -93,16 +91,24 @@ public class AdminMemberDAO {
 		switch(type)
 		{
 		case "memberId" : 
-			query = " SELECT * FROM CS WHERE CS_WRITER = ?";
+			query = " SELECT * " + 
+					"FROM (" + 
+					"    SELECT ROW_NUMBER() OVER(ORDER BY cs_No DESC) AS NUM, CS.*, member.member_name" + 
+					"    FROM CS LEFT JOIN MEMBER ON (CS.CS_WRITER=MEMBER.MEMBER_ID) " + 
+					"    WHERE MEMBER.MEMBER_STATUS='0' " + 
+					"        AND MEMBER_ID LIKE ?)" + 
+					"WHERE NUM BETWEEN ? AND ?" + 
+					"ORDER BY NUM ASC";
 				break;
 		case "memberName" :
-			query = " SELECT * " +
-					"		 FROM (SELECT ROW_NUMBER() OVER(order BY csNo DESC) AS NUM, CSBOARD.* ,csWriter" +
-					"        FROM CS " +
-					"        LEFT JOIN MEMBER ON (CSBOARD.WRITER=MEMBER.USERID)" +
-					"        WHERE MEMBER.MEMBER_STATUS='0' AND MEMBER_ID like ?" +
-					"        ) " +
-					"		 WHERE NUM BETWEEN ? AND ?";
+			query = " SELECT * " + 
+					"FROM (" + 
+					"    SELECT ROW_NUMBER() OVER(ORDER BY cs_No DESC) AS NUM, CS.*, member.member_name" + 
+					"    FROM CS LEFT JOIN MEMBER ON (CS.CS_WRITER=MEMBER.MEMBER_ID) " + 
+					"    WHERE MEMBER.MEMBER_STATUS='0' " + 
+					"        AND MEMBER_NAME LIKE ?)" + 
+					"WHERE NUM BETWEEN ? AND ?" + 
+					"ORDER BY NUM ASC";
 				break;
 			
 		}
@@ -171,7 +177,7 @@ public class AdminMemberDAO {
 			String keyword, String type) {
 		
 		int recordTotalCount = totalSearchCount(conn,keyword,type); //검색된 전체 글 개수
-		/*System.out.println(recordtotalConunt);*/
+		/*System.out.println(recordTotalCount);*/
 		
 		int pageTotalCount = 0; // 전체 페이지 개수
 		
@@ -189,12 +195,8 @@ public class AdminMemberDAO {
 		
 		int startNavi = (((currentPage-1) / naviCountPerPage) * naviCountPerPage) +1;
 		int endNavi = startNavi + (naviCountPerPage-1);
-		//단, 위에 공식은 문제가 없지만, 하나의 상황에서는 예외가 있다.
-		//만약 현재 페이지가 21페이지라면? < 21 22
-		// startNavi = (((21-1) / 5)*5)+1 -> 21
-		// endNavi = 21 + (5-1) -> 25
 		
-		//만약 공식으로 구한 endNavi 가 총 page수보다 크다면 총 page수로 셋탕하여라 라는 코드
+		
 		if(endNavi> pageTotalCount)
 		{
 			endNavi = pageTotalCount;
@@ -213,16 +215,16 @@ public class AdminMemberDAO {
 		for(int i = startNavi; i<=endNavi; i++)
 		{
 			if(i==currentPage) {
-				sb.append("<a href='/board/boardPostSearch.do?currentPage="+i+"&keyword="+keyword+"&type="+type+"'><b style='font-size:1.2em'>"+i+"</b></a> ");
+				sb.append("<a href='/admin/userPostSearch.do?currentPage="+i+"&keyword="+keyword+"&type="+type+"'><b style='font-size:1.2em'>"+i+"</b></a> ");
 			}else
 			{
-				sb.append("<a href='/board/boardPostSearch.do?currentPage="+i+"&keyword="+keyword+"&type="+type+"'>"+i+"</a> ");
+				sb.append("<a href='/admin/userPostSearch.do?currentPage="+i+"&keyword="+keyword+"&type="+type+"'>"+i+"</a> ");
 			}
 			
 		}
 		if(endNavi!=pageTotalCount)
 		{
-			sb.append(" <a href ='/board/boardPostSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"&type="+type+"'>Next ></a> ");
+			sb.append(" <a href ='/admin/userPostSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"&type="+type+"'>Next ></a> ");
 		}
 		
 		
@@ -250,57 +252,26 @@ public class AdminMemberDAO {
 		switch(type)
 		{
 		case "memberId" : 
-				query = "SELECT COUNT(*) as count FROM CS " + 
-						"    LEFT JOIN MEMBER ON (BOARD.Writer = MEMBER.USERID) " + 
-						"WHERE BOARD.END_YN='N' AND SUBJECT like ?";
+				query = "SELECT COUNT(*) AS COUNT " + 
+						"FROM CS  LEFT JOIN MEMBER ON (CS.CS_WRITER=MEMBER.MEMBER_ID) WHERE MEMBER.MEMBER_STATUS='0'" + 
+						"AND MEMBER_ID LIKE ?";
 				break;
 			
 		case "memberName" :
-				query = "SELECT COUNT(*) as count FROM CS " + 
-						"    LEFT JOIN MEMBER ON (BOARD.Writer = MEMBER.USERID) " + 
-						"WHERE BOARD.END_YN='N' AND USERNAME like ?";
+				query = "SELECT COUNT(*) AS COUNT " + 
+						"FROM CS  LEFT JOIN MEMBER ON (CS.CS_WRITER=MEMBER.MEMBER_ID) WHERE MEMBER.MEMBER_STATUS='0'" + 
+						"AND MEMBER_NAME LIKE ?";
 				break;
 			
 		}
-		
-		
-		/*
-		 * switch(type)
-		{
-		case "memberId" : 
-			query = " SELECT * " + 
-					"		 FROM (SELECT ROW_NUMBER() OVER(order BY csNo DESC) AS NUM, CSBOARD.* ,csWriter" + 
-					"        FROM CSBOARD " + 
-					"        LEFT JOIN MEMBER ON (CSBOARD.WRITER=MEMBER.USERID)" + 
-					"        WHERE MEMBER.MEMBER_STATUS='0' AND MEMBER_ID like ?" + 
-					"        ) " + 
-					"		 WHERE NUM BETWEEN ? AND ?";
-				break;
-		case "memberName" :
-			query = " SELECT * " + 
-					"		 FROM (SELECT ROW_NUMBER() OVER(order BY csNo DESC) AS NUM, CSBOARD.* ,csWriter" + 
-					"        FROM CSBOARD " + 
-					"        LEFT JOIN MEMBER ON (BOARD.WRITER=MEMBER.MEMBER_NAME)" + 
-					"        WHERE MEMBER.MEMBER_STATUS='0' AND MEMBER_NAME like ?" + 
-					"        ) " + 
-					"		 WHERE NUM BETWEEN ? AND ?";
-				break;
-			
-		}*/
 		
 		
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			
-			if(type.equals("all"))
-			{
-				pstmt.setString(1, "%"+keyword+"%");
-				pstmt.setString(2, "%"+keyword+"%");
-			}else
-			{
-				pstmt.setString(1, "%"+keyword+"%");
-			}
+			pstmt.setString(1, "%"+keyword+"%");
+			
 			
 			
 			rset = pstmt.executeQuery();
@@ -323,6 +294,8 @@ public class AdminMemberDAO {
 		
 		return count;
 	}
+
+	
 
 
 
