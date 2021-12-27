@@ -10,7 +10,7 @@ public class Reservation {
     /// FIELDs
     private String reservationNo;           // RESERVATION_NO: 예약번호
     private int performanceNo;              // PFMC_NO: 공연번호
-    private String invoiceNo;                  // INVOICE_NO: 결제번호
+    private String invoiceNo;               // INVOICE_NO: 결제번호
     private String payMethod;               // PAY_METHOD: 결제방법
     private String  reservationId;          // RESERVATION_ID: 예약자ID
     private Date reservationDate;           // RESERVATION_DATE: 예약일자
