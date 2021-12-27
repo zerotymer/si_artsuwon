@@ -1,6 +1,4 @@
 package kr.or.artsuwon.adminPfmc.model.vo;
-
-
 public class PerformanceSkdl {
 	private int scheduleNo;
 	private int pfmcNo;
@@ -16,7 +14,6 @@ public class PerformanceSkdl {
 		super();
 	}
 
-
 	public PerformanceSkdl(int scheduleNo, int pfmcNo, String location, String price, String pfmcDate, String pfmcTime,
 			int restriction) {
 		super();
@@ -26,6 +23,18 @@ public class PerformanceSkdl {
 		this.price = price;
 		this.pfmcDate = pfmcDate;
 		this.pfmcTime = pfmcTime;
+		this.restriction = restriction;
+	}
+
+	//ajax 공연 스케줄 insert
+	public PerformanceSkdl(int pfmcNo, String pfmcDate, String pfmcTime, String location, String price, 
+			int restriction) {
+		super();
+		this.pfmcNo = pfmcNo;
+		this.pfmcDate = pfmcDate;
+		this.pfmcTime = pfmcTime;
+		this.location = location;
+		this.price = price;
 		this.restriction = restriction;
 	}
 

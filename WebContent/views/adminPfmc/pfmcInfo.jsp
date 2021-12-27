@@ -102,7 +102,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                                         </td>
                                                         
                                                         <td>
-                                                        	<input class="form-control" type="text" id="time" placeholder="hh:mm" style="text-align:center;">
+                                                        	<input class="form-control" type="text" id="pfmcTime" placeholder="hh:mm" style="text-align:center;">
                                                         </td>
                                                         
                                                         <td>
@@ -152,7 +152,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 	                           				html += '<td><input type="hidden" name="location" value="' + item.location + '">'+item.location+'</td>';
 	                           				html += '<td><input type="hidden" name="price" value="' + item.price + '">'+item.price+'</td>';
 	                           				html += '<td><input type="hidden" name="restrictionName" value="' + item.restrictionName + '">'+item.restrictionName+'</td>';
-	                           				html += '<td><button class="btn btn-outline-danger btn-sm" type="button" id="delete">삭제</button></td>';
+	                           				html += '<td><button class="btn btn-outline-danger btn-sm" type="button" value="'+item.scheduleNo+'" onclick="skdlDelete(this);">삭제</button></td>';
 	                           				html += '</tr>';
 	                           			});
 	                           			$("#dynamicTable").append(html);
@@ -164,43 +164,73 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                          });
                         </script>
                                 
-                        <!-- 동적 테이블 추가 -->
+                        <!-- 동적 테이블에 스케줄 추가 -->
                          <script>
                             function tableCreate(){
 							var tc = new Array();
 							var html = '';
 										
 							var pfmcDate = $("#pfmcDate").val();
-							var time = $("#time").val();
+							var pfmcTime = $("#pfmcTime").val();
 							var location = $("#location").val();
 							var price = $("#price").val();
 							var restriction = $("#restriction").val();
 							
-							html += '<tr style="text-align:center;">';
-							html += '<td><input type="hidden" name="pfmcDate" value="' + pfmcDate + '">'+pfmcDate+'</td>';
-							html += '<td><input type="hidden" name="pfmctime" value="'+time+'">'+time+'</td>';
-							html += '<td><input type="hidden" name="location" value="'+location+'">'+location+'</td>';
-							html += '<td><input type="hidden" name="price" value="'+price+'">'+price+'</td>';
-							html += '<td><input type="hidden" name="restriction" value="'+restriction+'">'+restriction+'</td>';
-							html += '<td><button class="btn btn-outline-danger btn-sm" type="button" id="delete">삭제</button></td>';
-							html += '</tr>';
-										
-							$("#dynamicTable").append(html);
-										
-							$("#pfmcDate").val('');
-							$("#time").val('');
-							$("#location").val('');
-							$("#price").val('');
-							$("#restriction").val('');
+							$.ajax({
+								url:"/adminPfmc/insertPfmcSkdl.do",
+								data : {"pfmcNo" : ${requestScope.pfmcNo},
+										"pfmcDate" : pfmcDate,
+										"pfmcTime" : pfmcTime,
+										"location" : location,
+										"price" : price,
+										"restriction" : restriction},
+								type:"post",
+								success:function(scheduleNo){
+									html += '<tr style="text-align:center;">';
+									html += '<td><input type="hidden" name="pfmcDate" value="' + pfmcDate + '">'+pfmcDate+'</td>';
+									html += '<td><input type="hidden" name="pfmctime" value="'+pfmcTime+'">'+pfmcTime+'</td>';
+									html += '<td><input type="hidden" name="location" value="'+location+'">'+location+'</td>';
+									html += '<td><input type="hidden" name="price" value="'+price+'">'+price+'</td>';
+									html += '<td><input type="hidden" name="restriction" value="'+restriction+'">'+restriction+'</td>';
+									html += '<td><button class="btn btn-outline-danger btn-sm" type="button" value="'+scheduleNo+'" onclick="skdlDelete(this);">삭제</button></td>';
+									html += '</tr>';
+												
+									$("#dynamicTable").append(html);
+												
+									$("#pfmcDate").val('');
+									$("#pfmcTime").val('');
+									$("#location").val('');
+									$("#price").val('');
+									$("#restriction").val('');
+									},
+								error:function(){
+									console.log('ajax 통신 실패');
+								}
+							})
 						}
                 		</script>
                             
                             
                          <!-- 동적 테이블 삭제 -->
                          <script>
-                           	$(document).on('click','#delete',function(){
-                           		$('#dynamicTable tbody tr:last').remove();
-                           	})
+                           	function skdlDelete(e){
+                               	var scheduleNo = $(e).attr('value');
+                               	$.ajax({
+                               		url:"/adminPfmc/deletePfmcSkdl.do",
+                               		data:{"scheduleNo":scheduleNo},
+                               		type:"get",
+                               		success:function(resultRow){
+                               			if(resultRow>0){
+                               				//삭제할 로우 특정
+                               				$(e).parents('tr').remove();
+                               				//location.reload();
+                               			}
+                               		},
+                               		error:function(){
+                               			console.log('ajax 통신 실패');
+                               		}
+                               	})
+                           	}
                          </script> 
                                  
                                 <div class="mb-3">
@@ -238,23 +268,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                   
                                   
                                  <!-- 사진 등록 용량 안내 -->	
-                                  <script>
-                                   document.getElementById('file').onchange=(function(){
-                                		var file = document.getElementById('file');
-                                		var fileSize = file.files[0].size/1024/1024;
-                                		});
-
-                                	document.getElementById('fileSubmitBtn').onclick=(function(){
-                                		var file = document.getElementById('file');
-                                		var fileSize = file.files[0].size;
-                                		if(fileSize>(50*1024*1024)){
-                                			alert('업로드 가능한 최대 사이즈는 50MB입니다');
-                                			return false;
-                                		}else{
-                                			return true;
-                                		}
-                                	});	
-                                  </script>
+                                
                                   
                              </div>
                          </div>

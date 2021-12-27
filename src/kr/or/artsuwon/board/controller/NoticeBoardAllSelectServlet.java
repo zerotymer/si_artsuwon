@@ -16,51 +16,53 @@ import kr.or.artsuwon.board.model.service.BoardServiceImpl;
 /**
  * Servlet implementation class BoardAllSelectServlet
  */
-@WebServlet("/board/boardAllSelect.do")
-public class BoardAllSelectServlet extends HttpServlet {
+@WebServlet("/board/NoticeAllSelect.do")
+public class NoticeBoardAllSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BoardAllSelectServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		int currentPage;
-		
-		if(request.getParameter("currentPage")==null)
-		{
-			currentPage=1;
-		}else {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-		
-		BoardService bService = new BoardServiceImpl();
-		HashMap<String,Object> pageDataMap = bService.selectAllPostList(currentPage);
-		
-		
-		RequestDispatcher view = request.getRequestDispatcher("/views/board/notice-board.jsp");
-		
-		request.setAttribute("pageDataMap", pageDataMap);
-		request.setAttribute("currentPage", currentPage);
-		
-		view.forward(request, response);
-		
-		
-		
+	public NoticeBoardAllSelectServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+
+		int currentPage;
+
+		if (request.getParameter("currentPage") == null) {
+			
+			currentPage = 1;
+		} else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+
+		
+		BoardService bService = new BoardServiceImpl();
+		HashMap<String, Object> pageDataMap = bService.NoticeSelect(currentPage);
+
+		RequestDispatcher view = request.getRequestDispatcher("/views/board/notice-board.jsp");
+
+		request.setAttribute("pageDataMap", pageDataMap);
+		request.setAttribute("currentPage", currentPage);
+		view.forward(request, response);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
