@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.artsuwon.adminMngm.model.service.AdminService;
 import kr.or.artsuwon.adminMngm.model.service.AdminServiceImpl;
 
-
 @WebServlet("/adminMngm/deleteAdmin.do")
 public class DeleteAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
