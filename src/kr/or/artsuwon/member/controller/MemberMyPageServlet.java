@@ -1,6 +1,7 @@
 package kr.or.artsuwon.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import kr.or.artsuwon.member.model.service.MemberService;
+import kr.or.artsuwon.member.model.service.MemberServiceImpl;
+import kr.or.artsuwon.member.model.vo.Member;
+import kr.or.artsuwon.member.model.vo.Reservation;
 
 /**
  * Servlet implementation class MemberMyPageServlet
@@ -34,12 +40,33 @@ public class MemberMyPageServlet extends HttpServlet {
 		
 		RequestDispatcher view;
 		
+		
+	    String memberId = ((Member)(request.getSession()).getAttribute("member")).getMemberId();
+	    String memberPwd = ((Member)(request.getSession()).getAttribute("member")).getMemberPwd();
+	    
+		MemberService mService = new MemberServiceImpl();
+		Member m = mService.selectOneMember(memberId, memberPwd);
+		
 		if(session.getAttribute("member") != null)
 		{
 			view = request.getRequestDispatcher("/views/member/myPage.jsp");
+			
 		}else {
 			view = request.getRequestDispatcher("/views/common/memberError.jsp");
 		}
+		
+		ArrayList<Reservation> list = mService.selectMemberReservation(memberId);
+		
+		
+		// RequestDispatcher 사용해서 Member랑 Reservation list 다 보내기
+		RequestDispatcher info;
+		if(session.getAttribute("list") != null) 
+		{
+			info = request.getRequestDispatcher("");
+		}else {
+			info = request.getRequestDispatcher("");
+		}
+		
 		
 	}
 

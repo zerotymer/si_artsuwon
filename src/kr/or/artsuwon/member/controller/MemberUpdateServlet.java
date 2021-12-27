@@ -37,19 +37,17 @@ public class MemberUpdateServlet extends HttpServlet {
 		
 		String address = request.getParameter("address");
 	    String detailAddress = request.getParameter("detailAddress");
-	    String phone = request.getParameter("phone");
-	    String email = request.getParameter("email");
+	    String phone1 = request.getParameter("phone1");
+	    String phone2 = request.getParameter("phone2");
+	    String phone3 = request.getParameter("phone3");
+	    String email1 = request.getParameter("email1");
+	    String email2 = request.getParameter("email2");
 	    char smsYN = request.getParameter("smsYN").charAt(0);
 	    
-	    System.out.println(address);
-	    System.out.println(detailAddress);
-	    System.out.println(phone);
-	    System.out.println(email);
-	    System.out.println(smsYN);
 		
 	    String memberId = ((Member)(request.getSession()).getAttribute("member")).getMemberId();
 		
-	    Member m = new Member(memberId, address, detailAddress, phone, email, smsYN);
+	    Member m = new Member(memberId, address, detailAddress, phone1+phone2+phone3, email1+email2, smsYN, smsYN);
 	    
 	    MemberService mService = new MemberServiceImpl();
 	    int result = mService.updateOneMember(m);

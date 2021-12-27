@@ -1,8 +1,8 @@
 package kr.or.artsuwon.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,18 +32,9 @@ public class MemberCheckServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		RequestDispatcher view;
+		PrintWriter out = response.getWriter();
 		
-		if(session.getAttribute("member") != null)
-		{
-			view = request.getRequestDispatcher("/views/member/myPagePasswordCheck.jsp");
-			
-		}else {
-			
-			view = request.getRequestDispatcher("/views/common/memberError.jsp");
-		}
-		
-		view.forward(request, response);
+		out.print(session.getAttribute("member") != null);
 		
 	}
 

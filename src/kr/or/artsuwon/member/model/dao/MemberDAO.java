@@ -1,13 +1,14 @@
 package kr.or.artsuwon.member.model.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import kr.or.artsuwon.common.JDBCTemplate;
 import kr.or.artsuwon.member.model.vo.Member;
+import kr.or.artsuwon.member.model.vo.Reservation;
 
 public class MemberDAO {
 
@@ -136,7 +137,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String query = "UPDATE MEMBER SET ADDRESS=?, DETAIL_ADDRESS=?, PHONE=?, EMAIL=?, SMS_YN=? WHERE MEMBER_ID=?";
+		String query = "UPDATE MEMBER SET ADDRESS=?, DETAIL_ADDRESS=?, PHONE=?, EMAIL=?, EMAIL_YN=?, SMS_YN=? WHERE MEMBER_ID=?";
 		
 		try {
 			
@@ -146,8 +147,9 @@ public class MemberDAO {
 			pstmt.setString(2, m.getDetailAddress());
 			pstmt.setString(3, m.getPhone());
 			pstmt.setString(4, m.getEmail());
-			pstmt.setString(5, String.valueOf(m.getSmsYN()));
-			pstmt.setString(6, m.getMemberId());
+			pstmt.setString(5, String.valueOf(m.getEmailYN()));
+			pstmt.setString(6, String.valueOf(m.getSmsYN()));
+			pstmt.setString(7, m.getMemberId());
 			
 			result = pstmt.executeUpdate();
 			
@@ -184,6 +186,50 @@ public class MemberDAO {
 		}
 		
 		return result;
+	}
+
+	public ArrayList<Reservation> selectMemberReservation(String memberId, Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		ArrayList<Reservation> list = new ArrayList<Reservation>();
+		
+		String query = "SELECT * FROM RESERVATION WHERE RESERVATION_ID=?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next())
+			{
+				/*
+				list.setReservationNo(rset.getInt("reservationNo"));
+				list.setPerformanceNo(rset.getInt("performanceNo"));
+				list.setInvoiceNo(rset.getInt("invoiceNo"));
+				list.setPayMethod(rset.getString("payMethod"));
+				list.setReservationId(rset.getString("reservationId"));
+				list.setReservationDate(rset.getDate("reservationDate"));
+				list.setReservationPrice(rset.getInt("reservationPrice"));
+				list.setSeatCode(rset.getString("seatCode"));
+				
+				list.add(list);*/
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
+		
 	}
 
 }
