@@ -20,7 +20,7 @@ public class ReservationDAO {
      * @author 신현진
      */
     public ArrayList<Reservation> selectAllReservationByPerfSchedule(Connection conn, int scheduleNo) {
-        final String QUERY = "SELECT * FROM reservation WHERE schedule_no = ? ";
+        final String QUERY = "SELECT * FROM reservation WHERE pfmc_no = ? ";
         ResultSet rset = null;
         ArrayList<Reservation> list = new ArrayList<>();
 
@@ -60,7 +60,7 @@ public class ReservationDAO {
      * @author 신현진
      */
     public ArrayList<SeatInfomation> selectAllSeatsByRestriction(Connection conn, int restriction) {
-        final String QUERY = "SELECT * FROM seat_info WHERE restriction < ?";
+        final String QUERY = "SELECT * FROM seat_info WHERE restriction <= ?";
         ResultSet rset = null;
         ArrayList<SeatInfomation> list = new ArrayList<>();
 
@@ -76,6 +76,8 @@ public class ReservationDAO {
                     rset.getString("SPECIAL_NEED").charAt(0),
                     rset.getString("RESTRICTION").charAt(0),
                     rset.getString("MEMO"));
+
+                list.add(seatInfomation);
             }
 
         } catch (SQLException e) {

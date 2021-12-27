@@ -1,9 +1,10 @@
 package kr.or.artsuwon.reservation.controller;
 
+import com.google.gson.Gson;
 import kr.or.artsuwon.common.NullChecker;
 import kr.or.artsuwon.reservation.model.service.ReservationService;
 import kr.or.artsuwon.reservation.model.service.ReservationServiceImpl;
-import kr.or.artsuwon.reservation.model.vo.SeatInfomation;
+import kr.or.artsuwon.reservation.model.vo.Reservation;
 import org.json.simple.JSONObject;
 
 import java.io.IOException;
@@ -16,10 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class RequestSeatInfoServlet
+ * Servlet implementation class RequestAllReserveSeatServlet
  */
-@WebServlet("/seat/requestInfo.do")
-public class RequestSeatInfoServlet extends HttpServlet {
+@WebServlet("/seat/requestReservedSeat.json")
+public class RequestAllReserveSeatServlet extends HttpServlet {
 	/// FIELDs
 	private static final long serialVersionUID = 1L;
 	private ReservationService service = new ReservationServiceImpl();
@@ -27,7 +28,7 @@ public class RequestSeatInfoServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RequestSeatInfoServlet() {
+    public RequestAllReserveSeatServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,25 +37,17 @@ public class RequestSeatInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/// Paramerters
-		int restriction = NullChecker.NullCheckParseInt(request.getParameter("restriction"), 5);	// 제약조건: 기본 5(모두 가능)
+		// Parameters
+		int scheduleNo = NullChecker.NullCheckParseInt(request.getParameter("scheduleNo"), 73);
 
 		// Business Logic
-		ArrayList<SeatInfomation> list = service.getAllSeatsByRestriction(restriction);
+		ArrayList<Reservation> list = service.getAllReservationByPerfSchedule(scheduleNo);
 
-		// return Json
+		// Encoding
 		JSONObject json = new JSONObject();
-		for (SeatInfomation seat : list) {
-			JSONObject obj = new JSONObject();
-			obj.put("code", seat.getCode().trim());
-			obj.put("location", String.valueOf(seat.getLocation()));
-			obj.put("grade", String.valueOf(seat.getGrade()));
-			obj.put("restriction", String.valueOf(seat.getRestriction()));
-			obj.put("special", seat.getSpecialNeed() == 'Y');
-
-			json.put(seat.getCode().trim(), obj);
+		for (Reservation r : list) {
+			json.put(r.getSeatCode(), r.getSeatCode());
 		}
-
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
