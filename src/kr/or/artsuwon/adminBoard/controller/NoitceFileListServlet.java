@@ -1,26 +1,29 @@
-package kr.or.artsuwon.member.controller;
+package kr.or.artsuwon.adminBoard.controller;
+
+
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import kr.or.artsuwon.adminBoard.service.BoardAdminServiceImpl;
+
+
 
 /**
- * Servlet implementation class MemberCheckServlet
+ * Servlet implementation class NoitceFileListServlet
  */
-@WebServlet("/member/memberCheck.do")
-public class MemberCheckServlet extends HttpServlet {
+@WebServlet("/adminNotice/noticeFileList.do")
+public class NoitceFileListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberCheckServlet() {
+    public NoitceFileListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,12 +32,9 @@ public class MemberCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		
-		PrintWriter out = response.getWriter();
-		
-		out.print(session.getAttribute("member") != null);
+	
+		BoardAdminServiceImpl bService = new BoardAdminServiceImpl();
+		bService.selectFileList(userId);
 		
 	}
 

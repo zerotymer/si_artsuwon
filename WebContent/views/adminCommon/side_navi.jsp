@@ -35,7 +35,7 @@
                         
                         <div class="nav-item dropdown show visible" style="text-align: center;font-size: 13px;"><a aria-expanded="true" data-bs-toggle="dropdown" href="#" style="color: rgb(0,0,0);border-bottom-style: solid;border-bottom-color: rgb(225,216,212);font-weight: bold;">게시판 관리 </a>
                             <div class="dropdown-menu dropdown-menu-start show">
-                            <a class="dropdown-item" href="/artsuwon/adminNoticeAllList.do" style="background: #f7f7f7;">공지사항</a>
+                            <a class="dropdown-item" href="/adminNotice/adminNoticeAllList.do" style="background: #f7f7f7;">공지사항</a>
                             <a class="dropdown-item" href="/artsuwon/" style="background: #f7f7f7;">뉴스&amp;이슈</a>
                             <a class="dropdown-item" href="#" style="background: #f7f7f7;">사진 갤러리</a>
                             <a class="dropdown-item" href="#" style="background: #f7f7f7;">동영상 갤러리</a>

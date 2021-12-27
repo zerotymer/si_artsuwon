@@ -16,7 +16,7 @@ import java.util.HashMap;
 /**
  * Servlet implementation class AdminNoticeAllServlet
  */
-@WebServlet("/notice/adminNoticeAllList.do")
+@WebServlet("/adminNotice/adminNoticeAllList.do")
 public class AdminNoticeAllServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -54,7 +54,7 @@ public class AdminNoticeAllServlet extends HttpServlet {
         request.setAttribute("pageDataMap", pageDataMap);
 
 
-        RequestDispatcher view = request.getRequestDispatcher("/views/board/noticeAllList.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/views/AdminBoard/noticeAllList.jsp");
 
         request.setAttribute("pageDataMap", pageDataMap);
         request.setAttribute("currentPage", currentPage);

@@ -1,3 +1,4 @@
+<%@page import="kr.or.artsuwon.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,10 +22,15 @@
 </head>
 <body>
 
+	<%
+		Member m = (Member)session.getAttribute("member");
+	%>
+
 	<div id="passwordForm">
-		<form action="/member/memberMyPage.do" method="post">
+		<form action="/member/memberWithDraw.do" method="post">
 			<fieldset>
 				<legend style="text-align: center;">비밀번호 확인</legend>
+				<input type="hidden" name="memberId" value="<%=m.getMemberId() %>"/>
 				<input type="password" class="b-block w-100"  name="userPwd" placeholder="PW를 입력하세요"/><br><br>
 				<input type="submit" class="btn btn-primary b-block w-100" value="탈퇴"/>
 			</fieldset>

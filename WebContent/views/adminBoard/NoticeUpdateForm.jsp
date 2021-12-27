@@ -53,7 +53,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                         <div class="container" style="padding-top: -3px;">
                             <p class="text-center"><span class="by">공지사항</span><span class="date"></span></p>
                             
-                          <form action="/notice/noticePostUpdate.do" method="post" id="textUpdateForm">        
+                          <form action="updateAction.jsp" method="post" id="updateAction">        
                           
                             <hr/><input class="form-control-sm" name="noticeTitle" type="text" style="width: 80%;height: 20px;transform: translate(47px) scale(1.12);border-top-style: solid;border-top-color: rgb(237,237,237);
                             border-right-style: solid;border-right-color: rgb(237,237,237);border-left-style: solid;border-left-color: rgb(237,237,237);margin-bottom: 0px;margin-top: 20px;" value="<%=notice.getNoticeTitle() %>" /></

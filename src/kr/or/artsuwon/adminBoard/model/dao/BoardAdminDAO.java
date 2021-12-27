@@ -305,92 +305,282 @@ public class BoardAdminDAO {
 
 
     public ArrayList<Notice> selectSearchPostList(Connection conn, int currentPage, int recordCountPerPage,
-                                                  String keyword, String type) {
-        PreparedStatement pstmt = null;
-        ResultSet rset = null;
-        ArrayList<Notice> list = new ArrayList<Notice>();
+			String keyword, String type) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Notice> list = new ArrayList<Notice>();
+		
+		int start = currentPage * recordCountPerPage -(recordCountPerPage-1);
+		int end = currentPage * recordCountPerPage;
+		
+		
+		String query="SELECT * FROM (SELECT ROW_NUMBER() OVER(order BY NOTICE_NO DESC) AS NUM, NOTICE.* " + 
+				"FROM NOTICE ";
+		
+		switch(type.toLowerCase())
+		{
+		case "noticetitle":
+			 query += " WHERE NOTICE_DEL_YN='N' AND NOTICE_TITLE LIKE ?) " + 
+				      " WHERE NUM BETWEEN ? AND ? ";
+			 break;
+			
+		case "noticecontent" :
+			 query += " WHERE NOTICE_DEL_YN='N' AND NOTICE_CONTENT LIKE ?) " + 
+			 		  " WHERE NUM BETWEEN ? AND ? ";
+			 break;
+		
+		case "all" : 
+			 query += " WHERE NOTICE_DEL_YN='N' AND (NOTICE_TITLE LIKE ? OR NOTICE_CONTENT LIKE ?) ) " +
+				      " WHERE NUM BETWEEN ? AND ? ";
+			 break;
+		default: query = "SELECT * FROM notice";
+		}
+		
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			if(type.toLowerCase().equals("all"))
+			{
+				pstmt.setString(1, "%"+keyword+"%");
+				pstmt.setString(2, "%"+keyword+"%");
+				pstmt.setInt(3, start);
+				pstmt.setInt(4, end);
+			}else
+			{
+				pstmt.setString(1,"%"+keyword+"%");
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+			}
+			
+			rset = pstmt.executeQuery();
+			
+			
+			while(rset.next())
+			{		
+				Notice notice = new Notice();
+				
+				notice.setNoticeNo(rset.getInt("NOTICE_NO"));
+				notice.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				notice.setRegDate(rset.getDate("REG_DATE"));
+				notice.setNoticeDelYN(rset.getString("NOTICE_DEL_YN").charAt(0));
+				notice.setNoticePin(rset.getInt("NOTICE_PIN"));
+			
+				list.add(notice);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally
+		{
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
+		
+	}
 
-        int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
-        int end = currentPage * recordCountPerPage;
 
-        String query = "";
+	public String getSearchPageNavi(Connection conn, int naviCountPerPage, int recordCountPerPage, int currentPage,
+			String keyword, String type) {
+		
+		
+		int recordTotalCount = totalSearchCount(conn,keyword,type); // 전체 글개수 
+		 
+		int pageTotalCount = 0; // 전체 페이지 개수
+		
+		pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
+		
+		int startNavi = (((currentPage-1)/naviCountPerPage) * naviCountPerPage)+1;
+		int endNavi = startNavi + (naviCountPerPage-1);
+		
+		
+		 
+		 if(endNavi > pageTotalCount)
+			{
+				endNavi = pageTotalCount;
+			}
+		 
+		 StringBuilder sb = new StringBuilder();
+		 
+	        if(startNavi==1) {
+
+	            sb.append("<li class='page-item disabled'><span class='page-link'' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>"+
+	               	  "</span></li>");
+
+	        }else
+	        {
+	        sb.append("<li class='page-item'><a class='page-link text-dark'" + 
+	                "href='/board/noticePostSearch.do?currentPage="+(startNavi-1)+"&keyword="+keyword+"&type="+type+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" + 
+	                "</a></li>");
+	        }
+
+	        for(int i=startNavi; i<=endNavi; i++)
+	        {
+	            if(i==currentPage)
+	            {
+	                sb.append("<li class='page-item active' aria-current='page'>" + 
+	                        "<a class='page-link' href='/board/noticePostSearch.do?currentPage="+i+"&keyword="+keyword+"&type="+type+"'>"+i+"</a></li>");
+	            }else
+	            {
+	                sb.append("<li class='page-item'><a class='page-link text-dark' href='/board/noticePostSearch.do?currentPage="+i+"&keyword="+keyword+"&type="+type+"'>"+i+"</a></li>");
+	            }
+
+	        }
+
+	        if(endNavi==pageTotalCount)
+	        {
+	            sb.append("<li class='page-item disabled'><span class='page-link'" + 
+	                    "aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + 
+	                    "</span></li>");
+	        }else
+	        {
+	            sb.append("<li class='page-item'><a class='page-link text-dark'" + 
+	                "href='/board/noticePostSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"&type="+type+"' aria-label='Next'> <span aria-hidden='true'>&&raquo;</span>" + 
+	                "</a></li>");
+	        }
 
 
-        switch (type) {
-            case "noticeTitle":
-                query = "SELECT *" +
-                        "FROM(SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC)" +
-                        "AS NUM, NOTICE.* FROM NOTICE WHERE NOTICE_DEL_YN='N' AND  NOTICE_TITLE=?) " +
-                        "WHERE NUM BETWEEN ? AND ?";
-
-                break;
-
-            case "noticeContent":
-                query = "SELECT *" +
-                        "FROM(SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC)" +
-                        "AS NUM, NOTICE.* FROM NOTICE WHERE NOTICE_DEL_YN='N' AND NOTICE_CONTENT=?) " +
-                        "WHERE NUM BETWEEN ? AND ?";
-
-                break;
-            case "all":
-
-                query = "SELECT *" +
-                        "FROM(SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC)" +
-                        "AS NUM, NOTICE.* FROM NOTICE WHERE NOTICE_DEL_YN='N' AND "
-                        + "(NOTICE_TITLE LIKE? OR NOTICE_CONTENT=?) " +
-                        "WHERE NUM BETWEEN ? AND ?";
-
-                break;
-
-        }
+			return sb.toString();		
+		
+		
+		
+		
+	}
 
 
-        try {
-            pstmt = conn.prepareStatement(query);
+	private int totalSearchCount(Connection conn, String keyword, String type) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int count = 0;
+		// TODO DEBUG
+		/*System.out.println(keyword);
+		System.out.println(type);*/
+		
+		String query = "";
+				
+		switch(type.toLowerCase())
+		{ 
+		case "noticetitle":
+		 query = "SELECT COUNT(*) as count FROM NOTICE WHERE NOTICE_DEL_YN='N' AND  NOTICE_TITLE=? ";
+		 break;
+		 
+		case "noticecontent" :
+			 query = "SELECT COUNT(*) as count FROM NOTICE WHERE NOTICE_DEL_YN='N' AND NOTICE_CONTENT=?";
+			 break;
+			 
+		case "all" : 
+			 query = "SELECT COUNT(*) as count FROM NOTICE WHERE NOTICE_DEL_YN='N' AND (NOTICE_TITLE=? OR NOTICE_CONTENT=?)";
+			 break;
+		}
+		
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			if(type.toLowerCase().equals("all"))
+			{
+				pstmt.setString(1, "%"+keyword+"%");
+				pstmt.setString(2, "%"+keyword+"%");
+			}else
+			{	//all은 keyword가 하나만있으면 된다
+				pstmt.setString(1, "%"+keyword+"%");
+			}
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+			{
+				count = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+			
+		}
+		return count;
+		
+		
+		
+	}
 
-            if (type.equals("all")) {
-                pstmt.setString(1, keyword);
-                pstmt.setString(2, keyword);
-                pstmt.setInt(3, start);
-                pstmt.setInt(4, end);
-            } else {
-                pstmt.setString(1, keyword);
-                pstmt.setInt(2, start);
-                pstmt.setInt(3, end);
-            }
+
+	public int deleteAdminPost(Connection conn, String[] boardNoValues) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		
+		String values = String.join(",", boardNoValues);
+		String query =" UPDATE NOTICE SET NOTICE_DEL_YN='Y' WHERE NOTICE_NO IN("+values+")";
+		
+		try {
+			pstmt =conn.prepareStatement(query);
+			result=pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally
+		{
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	
+		
+}
 
 
-            rset = pstmt.executeQuery();
-
-            while (rset.next()) {
-                Notice notice = new Notice();
-
-                notice.setNoticeNo(rset.getInt("NOTICE_NO"));
-                notice.setNoticeTitle(rset.getString("NOTICE_TITLE"));
-                notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
-                notice.setRegDate(rset.getDate("REG_DATE"));
-                notice.setNoticeDelYN(rset.getString("NOTICE_DEL_YN").charAt(0));
-                notice.setNoticePin(rset.getInt("NOTICE_PIN"));
-                notice.setFileName(rset.getString("FILE_NAME"));
-                notice.setFileRename(rset.getString("FILE_RENAME"));
-                notice.setFilePath(rset.getString("FILE_PATH"));
-                notice.setFileSize(rset.getInt("FILE_SIZE"));
-
-                list.add(notice);
-            }
-
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-            JDBCTemplate.close(rset);
-            JDBCTemplate.close(pstmt);
-        }
-
-        return list;
-
-    }
-
+	public int uploadFile(Connection conn,Notice notice) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		long fileSize = 0;
+		
+		
+		//파일명이 null로 들어오면 파일관련컬럼을 널로 처리
+		String query =  "";
+		
+		if(fileSize != 0 ) {
+			query = "INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL,?,?,SYSDATE,0,'N',0,?,?,?,?)";
+		}
+		else 
+		{
+		query = "INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL,?,?,SYSDATE,0,'N',0,null,null,null,null)";
+		
+		}
+					
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, notice.getNoticeTitle());
+			pstmt.setString(2, notice.getNoticeContent());
+			
+			if(fileSize != 0 ) {	
+				pstmt.setString(3, notice.getFileName());
+				pstmt.setString(4, notice.getFileRename());
+				pstmt.setString(5, notice.getFilePath());
+				pstmt.setLong(6, notice.getFileSize());
+			}
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+		
+	
 
 }
 		

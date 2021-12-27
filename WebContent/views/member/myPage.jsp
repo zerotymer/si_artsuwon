@@ -1,4 +1,5 @@
 <%@page import="kr.or.artsuwon.member.model.vo.Member"%>
+<%@page import="kr.or.artsuwon.member.model.vo.Reservation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -27,15 +28,25 @@
 	
 	<%
 		Member m = (Member)session.getAttribute("member");
+		Reservation r = (Reservation)session.getAttribute("reservation");
 	%>
 	
 	
-	<form action="" method="">
+	
+	<form action="/member/memberMyPage.do" method="post">
 		<fieldset>
-			<legend>예매 정보</legend>
-			
+			<legend>예매확인/취소</legend>
+			예약한 공연의 이름
+			예약번호 : <%=r.getReservationNo() %><br>
+			공연번호 : <%=r.getPerformanceNo() %><br>
+			결제번호 : <%=r.getInvoiceNo() %><br>
+			결제방법 : <%=r.getPayMethod() %><br>
+			예약자 ID : <%=r.getReservationId() %><br>
+			예약일자 : <%=r.getReservationDate() %><br>
+			결제금액 : <%=r.getReservationPrice() %><br>
+			예약좌석 : <%=r.getSeatCode() %><br>
 		</fieldset>
-	</form>
+	</form> 
 	
 	
 	
@@ -45,43 +56,44 @@
 			이름 : <%=m.getMemberName() %> <br>
 			생년월일 : <%=m.getBirthDate() %> <br>
 			성별 : <%=m.getGender() %><br>
+			비밀번호 변경 : <input type="button" id="pwdChangeBtn" value="비밀번호 변경"/><br>
 		</fieldset>
 		
 		<fieldset>
 			<legend>추가 정보</legend>
 			주소 : <input type="address" name="address" id="sample5_address" onclick="sample5_execDaumPostcode()"/>  <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
 			상세주소 : <input type="text" name="detailAddress"/><br>
-			핸드폰 : <select name="phone">
+			핸드폰 : <select name="phone1">
 							<option>010</option>
 							<option>011</option>
 							<option>016</option>
 							<option>017</option>
 							<option>018</option>
 							<option>019</option>
-					</select> - <input type="text" name="phone" maxlength="4" size="4"/> - <input type="text" name="phone" maxlength="4" size="4"/> <br>
-			이메일 : <input type="text" name="email"/> @ <input type="text"  name="email"/> 
-						<select>
-							<option>직접입력</option>
-							<option>naver.com</option>
-							<option>daum.net</option>
-							<option>nate.com</option>
-							<option>gmail.com</option>
-							<option>hanmail.net</option>
-							<option>hotmail.com</option>
-						</select>
-						<br>
+					</select> - <input type="text" name="phone2" maxlength="4" size="4"/> - <input type="text" name="phone3" maxlength="4" size="4"/> <br>
+			이메일 : <input type="text" name="email1"/> @ <input type="text"  name="email1"/> <br>
 			SMS 수신동의 : <input type="radio" name="smsYN" value="Y" checked/>동의합니다.
 						 <input type="radio" name="smsYN" value="N"/>동의하지 않습니다.<br>
 		
 		</fieldset>
 		
-		<input type="reset" value="취소"/> <input type="submit" id="submitBtn" value="변경하기"/>      <button id="withDrawBtn">회원탈퇴</button><br>
-		
+		<input type="reset" value="취소"/> <input type="submit" id="submitBtn" value="변경하기"/>     
+	
 	</form>
 	
+	<button id="withDrawBtn">회원탈퇴</button><br>
 	
 	
 	
+	
+	
+	
+	<%--비밀번호 변경 --%>
+	<script>
+	$('#pwdChangeBtn').click(function(){
+		window.open("/views/member/memberPasswordChangeWindow.jsp","_blank","width=400px, height=300px");
+	});
+	</script>	
 	
 	
 	<%--주소 검색 API --%>
@@ -125,28 +137,22 @@
 	<script>
 		$('#withDrawBtn').click(function(){
 			
-			var memberId = $('#memberId').val();
 			
-			$.ajax({
-				
-				url : "/member/memberCheck.do",
-				data : {"memberId": memberId},
-				type : "post",
-				success : function(result){
-					
-					if(result == "true")
-					{
-						location.href = "/member/memberWithDraw.do";					
-					}
-					
-				},
-				error : function(){
-					alret('탈퇴 실패하였습니다.');
-				}
-			});
-		
+			// 1. 탈퇴를 진행하시겠습니까?
+			// 2. 탈퇴를 하시게 되면, 데이터는 절대 복구 불가능합니다.
+			
+			if(window.confirm("탈퇴를 진행하시겠습니까?") && window.confirm("탈퇴를 하시게 되면, 데이터는 절대 복구 불가능합니다."))
+			{
+				return true;
+			}else
+			{
+				return false;
+			}
+
+			
 			
 		});
+	
 	</script>
 	
 	

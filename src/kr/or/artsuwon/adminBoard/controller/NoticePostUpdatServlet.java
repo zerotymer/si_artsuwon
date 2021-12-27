@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class NoticePostUpdatServlet
  */
-@WebServlet("/notice/noticePostUpdate.do")
+@WebServlet("/adminNotice/noticePostUpdate.do")
 public class NoticePostUpdatServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -56,7 +56,7 @@ public class NoticePostUpdatServlet extends HttpServlet {
         if (result > 0) {
             response.sendRedirect("/notice/noticeOneSelectContent.do?noticeNo=" + noticeNo + "&currentPage=" + currentPage);
         } else {
-            response.sendRedirect("/views/commons/error.jsp");
+            response.sendRedirect("/views/adminCommons/error.jsp");
         }
 
     }

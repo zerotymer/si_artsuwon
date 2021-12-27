@@ -17,7 +17,7 @@
 	<%}else{%>
 		alert('이미 삭제된 글이거나 잘못된 요청입니다.')
 	<%}%>
-	location.replace('/notice/adminNoticeAllList.do')
+	location.replace('/adminNotice/adminNoticeAllList.do')
 	
 	</script>
 </body>

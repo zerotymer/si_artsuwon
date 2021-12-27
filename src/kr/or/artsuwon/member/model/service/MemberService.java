@@ -1,6 +1,9 @@
 package kr.or.artsuwon.member.model.service;
 
+import java.util.ArrayList;
+
 import kr.or.artsuwon.member.model.vo.Member;
+import kr.or.artsuwon.member.model.vo.Reservation;
 
 public interface MemberService {
 
@@ -49,5 +52,14 @@ public interface MemberService {
 	 * Description : 회원 탈퇴 메소드
 	 */
 	public int deleteOneMember(int memberNo);
+
+	/**
+	 * 작성자 : 김영주
+	 * 작성일 : 2021.12.26
+	 * @param memberId
+	 * @return Member
+	 * Description : 예약 정보를 가져오는 메소드
+	 */
+	public ArrayList<Reservation> selectMemberReservation(String memberId);
 
 }

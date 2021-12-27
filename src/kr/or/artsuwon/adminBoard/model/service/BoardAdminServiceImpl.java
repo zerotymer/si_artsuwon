@@ -98,6 +98,30 @@ public class BoardAdminServiceImpl implements BoardAdminService {
 
     	return null;
     }
+    
+	@Override
+	public int deleteAdminPost(String[] noticeNoValues) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = bDAO.deleteAdminPost(conn,noticeNoValues);
+		if(result==noticeNoValues.length)JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+
+
+	@Override
+	public int insertFileUpload(Notice notice) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = bDAO.uploadFile(conn,notice);
+		if(result>0) JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		JDBCTemplate.close(conn);
+		return result;
+		
+	}
+
 
 
 }
