@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="kr.or.artsuwon.member.model.vo.Member"%>
 <%@page import="kr.or.artsuwon.member.model.vo.Reservation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -28,27 +29,39 @@
 	
 	<%
 		Member m = (Member)session.getAttribute("member");
-		Reservation r = (Reservation)session.getAttribute("reservation");
+		ArrayList<Reservation> list = (ArrayList<Reservation>)request.getAttribute("list");
+		System.out.println(list);
 	%>
 	
 	
+	<%if(list !=null){ %>
 	
-	<form action="/member/memberMyPage.do" method="post">
+	<form>
 		<fieldset>
 			<legend>예매확인/취소</legend>
-			예약한 공연의 이름
-			예약번호 : <%=r.getReservationNo() %><br>
-			공연번호 : <%=r.getPerformanceNo() %><br>
-			결제번호 : <%=r.getInvoiceNo() %><br>
-			결제방법 : <%=r.getPayMethod() %><br>
-			예약자 ID : <%=r.getReservationId() %><br>
+			
+			
+			<% for (Reservation r : list) {%>
+			
+			예약번호 : <%= r.getReservationNo() %><br>
+			공연번호 : <%= r.getPerformanceNo() %><br>
+			공연이름 : <%= r.getTitle() %><br>
+			결제번호 : <%= r.getInvoiceNo() %><br>
+			결제방법 : <%= r.getPayMethod() %><br>
+			예약자 ID : <%= r.getReservationId() %><br>
 			예약일자 : <%=r.getReservationDate() %><br>
 			결제금액 : <%=r.getReservationPrice() %><br>
 			예약좌석 : <%=r.getSeatCode() %><br>
+			
+			<% }%>
+			
+			<%if(list.isEmpty()) {%>
+				<h4>현재 예약 정보가 없습니다.</h4>
+			<%} %>
 		</fieldset>
 	</form> 
 	
-	
+	<%} %>
 	
 	<form action="/member/memberUpdate.do" method="post">
 		<fieldset>
@@ -71,13 +84,13 @@
 							<option>018</option>
 							<option>019</option>
 					</select> - <input type="text" name="phone2" maxlength="4" size="4"/> - <input type="text" name="phone3" maxlength="4" size="4"/> <br>
-			이메일 : <input type="text" name="email1"/> @ <input type="text"  name="email1"/> <br>
+			이메일 : <input type="text" name="email1"/> @ <input type="text"  name="email2"/> <br>
 			SMS 수신동의 : <input type="radio" name="smsYN" value="Y" checked/>동의합니다.
 						 <input type="radio" name="smsYN" value="N"/>동의하지 않습니다.<br>
 		
 		</fieldset>
 		
-		<input type="reset" value="취소"/> <input type="submit" id="submitBtn" value="변경하기"/>     
+		<input type="reset" value="취소" id="reset"/> <input type="submit" id="submitBtn" value="변경하기"/>     
 	
 	</form>
 	
@@ -156,6 +169,15 @@
 	</script>
 	
 	
+	<%--취소 후 메인화면으로 이동 --%>
+	<script>
+		$('#reset').click(function(){
+			
+			location.replace("/");
+			return false;
+			
+		});
+	</script>
 	
 	
 </body>

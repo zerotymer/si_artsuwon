@@ -97,4 +97,21 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+
+	@Override
+	public int updatePwdMember(String memberId, String pwd, String newPwd) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		int result = mDAO.updatePwdMember(memberId, pwd, newPwd, conn);
+		
+		if(result>0) JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		
+		JDBCTemplate.close(conn);
+		
+		
+		return result;
+		
+	}
+
 }

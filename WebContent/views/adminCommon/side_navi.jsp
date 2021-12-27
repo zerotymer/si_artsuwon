@@ -41,6 +41,8 @@
                             <a class="dropdown-item" href="#" style="background: #f7f7f7;">동영상 갤러리</a>
                             <a class="dropdown-item" href="#" style="background: #f7f7f7;">1 :1 문의게시판</a></div>
                         </div>
+                        
+                       
                     </li>
                     <li class="nav-item"></li>
                 </ul>

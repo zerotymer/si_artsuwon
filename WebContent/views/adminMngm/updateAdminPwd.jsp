@@ -23,7 +23,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 	
     <div id="wrapper">
 		<!--사이드 네비바 include-->
-         <%@include file="/views/adminCommon/yj_side_navi.jsp" %>
+         <%@include file="/views/adminCommon/side_navi.jsp" %>
     
         <!-- 컨텐츠 영역 -->
         <div class="d-flex flex-column" id="content-wrapper">

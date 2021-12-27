@@ -177,7 +177,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 							var restriction = $("#restriction").val();
 							
 							if(pfmcDate==""){
-								alert('날짜를 입력하세요');
+								alert('공연일자를 입력하세요');
 								return false;
 							}else if(pfmcTime==""){
 								alert('시간을 입력하세요');
