@@ -31,7 +31,6 @@ public class DeletePfmcServlet extends HttpServlet {
 		//응답
 		PrintWriter out = response.getWriter();
 		out.print(resultRow);
-				
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
