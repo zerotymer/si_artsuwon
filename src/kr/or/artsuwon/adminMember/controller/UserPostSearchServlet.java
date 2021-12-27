@@ -14,16 +14,16 @@ import kr.or.artsuwon.adminMember.service.AdminMemberService;
 import kr.or.artsuwon.adminMember.service.AdminMemberServiceImpl;
 
 /**
- * Servlet implementation class AdminMemberPostSch
+ * Servlet implementation class UserPostSearchServlet
  */
-@WebServlet("/admin/adminMemberPostSch.do")
-public class AdminMemberPostSch extends HttpServlet {
+@WebServlet("/admin/userPostSearch.do")
+public class UserPostSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminMemberPostSch() {
+    public UserPostSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,28 +34,31 @@ public class AdminMemberPostSch extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
+		
 		int currentPage;
 		
 		if(request.getParameter("currentPage")==null)
 		{
-			//index.jsp에서 게시판으로 이동하는 경우에는 가장 첫 페이지인1page로 셋팅
+			
 			currentPage = 1;
 		}else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		//키워드 가지고 오는 코드
 		
 		//인코딩
 		request.setCharacterEncoding("UTF-8");
 		
-		String keyword = request.getParameter("keyword"); //검색한 단어
-		String type = request.getParameter("type"); //검색 옵션
+		String keyword = request.getParameter("keyword");
+		String type = request.getParameter("type");
 		
+		/*System.out.println(keyword);
+		System.out.println(type);*/
 		//해당 값을 가지고, 비즈니스 로직 처리를 해서 키워드에 해당하는 게시물을 검색하여 페이징처리하여 리턴
 		AdminMemberService amService = new AdminMemberServiceImpl();
-		HashMap<String,Object> map =  amService.selectSearchPost(currentPage,keyword,type);
-				
+		HashMap<String,Object> map = amService.selectSearchPost(currentPage,keyword,type);
+		//3가지 가지고 가는 이유 currentPage는 페이지 처리하기 위해, 나머지 두개는 DB에서 찾기 위해
+		
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/member_sch_wrote.jsp");
 		
 		request.setAttribute("pageDataMap", map);
