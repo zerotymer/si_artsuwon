@@ -1,7 +1,6 @@
 package kr.or.artsuwon.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,24 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import kr.or.artsuwon.member.model.service.MemberService;
 import kr.or.artsuwon.member.model.service.MemberServiceImpl;
 import kr.or.artsuwon.member.model.vo.Member;
-import kr.or.artsuwon.member.model.vo.Reservation;
 
 /**
- * Servlet implementation class MemberMyPageServlet
+ * Servlet implementation class MemberPwdChangeServlet
  */
-@WebServlet("/member/memberMyPage.do")
-public class MemberMyPageServlet extends HttpServlet {
+@WebServlet("/member/memberPwdChange.do")
+public class MemberPwdChangeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberMyPageServlet() {
+    public MemberPwdChangeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,42 +33,31 @@ public class MemberMyPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
+request.setCharacterEncoding("UTF-8");
 		
-		//로그인 정보
-	    String memberId = ((Member)(request.getSession()).getAttribute("member")).getMemberId();
-	    String memberPwd = ((Member)(request.getSession()).getAttribute("member")).getMemberPwd();
-	
+		String pwd = request.getParameter("pwd");
+		String newPwd = request.getParameter("new_pwd");
+		
+		//session에서 해당 유저를 구분할 수 있는 정보를 추출
+		String memberId = ((Member)request.getSession().getAttribute("member")).getMemberId();
+		
+		//패스워드 변경을 위한 비즈니스 로직
 		MemberService mService = new MemberServiceImpl();
-		Member m = mService.selectOneMember(memberId, memberPwd);
-	
+		int result = mService.updatePwdMember(memberId, pwd, newPwd);
 		
-		RequestDispatcher view;
+		//변경 성공 : 정상적으로 기존 패스워드와 변경할 때 패스워드를 입력했다면 / result값은 1
+		//변경 실패 : 기존 패스워드가 잘 못 되었을 때 / result값은 0
 		
-		if(session.getAttribute("member") == null)
+		RequestDispatcher view = request.getRequestDispatcher("/views/member/memberPwdChResult.jsp");
+		
+		if(result>0)
 		{
-			view = request.getRequestDispatcher("/views/common/memberError.jsp");
-			view.forward(request, response);
-			return;
-			
+			request.setAttribute("pwdResult", true);
+		}else {
+			request.setAttribute("pwdResult", false);
 		}
 		
-		
-		
-		
-		//공연예매 정보
-		ArrayList<Reservation> list = mService.selectMemberReservation(memberId);
-		
-		view = request.getRequestDispatcher("/views/member/myPage.jsp");
-	
-		request.setAttribute("member", m);
-		request.setAttribute("list", list);
-		
-		System.out.println(list);
-		System.out.println(m);
-		
 		view.forward(request, response);
-		
 	}
 
 	/**

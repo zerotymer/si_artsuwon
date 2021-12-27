@@ -195,7 +195,9 @@ public class MemberDAO {
 		
 		ArrayList<Reservation> list = new ArrayList<Reservation>();
 		
-		String query = "SELECT * FROM RESERVATION WHERE RESERVATION_ID=?";
+		String query = "SELECT RESERVATION.*, PFMC.TITLE FROM RESERVATION " + 
+					   "	LEFT JOIN PFMC ON (RESERVATION.RESERVATION_NO = PFMC.PFMC_NO) " + 
+					   "WHERE RESERVATION_ID=? ";
 		
 		try {
 			
@@ -207,17 +209,19 @@ public class MemberDAO {
 			
 			while(rset.next())
 			{
-				/*
-				list.setReservationNo(rset.getInt("reservationNo"));
-				list.setPerformanceNo(rset.getInt("performanceNo"));
-				list.setInvoiceNo(rset.getInt("invoiceNo"));
-				list.setPayMethod(rset.getString("payMethod"));
-				list.setReservationId(rset.getString("reservationId"));
-				list.setReservationDate(rset.getDate("reservationDate"));
-				list.setReservationPrice(rset.getInt("reservationPrice"));
-				list.setSeatCode(rset.getString("seatCode"));
+				Reservation reservation = new Reservation();
 				
-				list.add(list);*/
+				reservation.setReservationNo(rset.getString("reservationNo"));
+				reservation.setPerformanceNo(rset.getInt("performanceNo"));
+				reservation.setTitle(rset.getString("title"));
+				reservation.setInvoiceNo(rset.getString("invoiceNo"));
+				reservation.setPayMethod(rset.getString("payMethod"));
+				reservation.setReservationId(rset.getString("reservationId"));
+				reservation.setReservationDate(rset.getDate("reservationDate"));
+				reservation.setReservationPrice(rset.getInt("reservationPrice"));
+				reservation.setSeatCode(rset.getString("seatCode"));
+				
+				list.add(reservation);
 				
 			}
 		} catch (SQLException e) {
@@ -229,6 +233,35 @@ public class MemberDAO {
 		}
 		
 		return list;
+		
+	}
+
+	public int updatePwdMember(String memberId, String pwd, String newPwd, Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = "UPDATE MEMBER SET MEMBER_PWD=? WHERE MEMBER_ID=? AND MEMBER_PWD=?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, newPwd);
+			pstmt.setString(2, memberId);
+			pstmt.setString(3, pwd);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		return result;
 		
 	}
 

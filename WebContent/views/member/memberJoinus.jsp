@@ -189,17 +189,7 @@
 							<option>018</option>
 							<option>019</option>
 						</select> - <input type="text" name="phone" maxlength="4" size="4"/> - <input type="text" name="phone" maxlength="4" size="4"/> <br>
-				이메일 : <input type="text" name="email"/> @ <input type="text"  name="email"/> 
-						<select>
-							<option>직접입력</option>
-							<option>naver.com</option>
-							<option>daum.net</option>
-							<option>nate.com</option>
-							<option>gmail.com</option>
-							<option>hanmail.net</option>
-							<option>hotmail.com</option>
-						</select>
-						<br>
+				이메일 : <input type="text" name="email"/> @ <input type="text"  name="email"/><br>
 				SMS 수신동의 : <input type="radio" name="smsYN" value="Y" checked/>동의합니다.
 							 <input type="radio" name="smsYN" value="N"/>동의하지 않습니다.<br>
 			
