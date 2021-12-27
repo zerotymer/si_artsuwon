@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,11 +44,13 @@ public class MemberJoinServlet extends HttpServlet {
 	    String memberName = request.getParameter("memberName");
 	    String memberId = request.getParameter("memberId");
 	    String memberPwd = request.getParameter("memberPwd");
-	    String birthDate = request.getParameter("birthDate");
+	    String birthDate1 = request.getParameter("birthDate1");
+	    String birthDate2 = request.getParameter("birthDate2");
+	    String birthDate3 = request.getParameter("birthDate3");
 	    
 	    Date date = null;
 	    try {
-	       date = dateFormat.parse(birthDate);
+	       date = dateFormat.parse(String.format("%s-%s-%s", birthDate1, birthDate2, birthDate3));
 	    } catch (ParseException e) {
 	       e.printStackTrace();
 	    }
@@ -62,13 +65,26 @@ public class MemberJoinServlet extends HttpServlet {
 	    String email1 = request.getParameter("email1");
 	    String email2 = request.getParameter("email2");
 	    char smsYN = request.getParameter("smsYN").charAt(0);
+	    String phone = String.format("%s-%s-%s", phone1, phone2, phone3);
 	      
 	      
-	    Member m = new Member(memberName, memberId, memberPwd, sqlDate, gender, address, detailAddress, phone1+phone2+phone3, email1+email2, smsYN);
+	    Member m = new Member(memberName, memberId, memberPwd, sqlDate, gender, address, detailAddress, phone, email1+"@"+email2, smsYN);
 		
 		MemberService mService = new MemberServiceImpl();
 		int result = mService.insertOneMember(m);
 		
+		
+		
+		RequestDispatcher view = request.getRequestDispatcher("/views/member/memberJoin.jsp");
+		
+		if(result>0)
+		{
+			request.setAttribute("result",true);
+		}else {
+			request.setAttribute("result", false);
+		}
+		
+		view.forward(request, response);
 		
 	}
 
