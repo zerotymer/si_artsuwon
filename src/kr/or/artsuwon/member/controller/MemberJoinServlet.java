@@ -56,12 +56,15 @@ public class MemberJoinServlet extends HttpServlet {
 	    char gender = request.getParameter("gender").charAt(0);
 	    String address = request.getParameter("address");
 	    String detailAddress = request.getParameter("detailAddress");
-	    String phone = request.getParameter("phone");
-	    String email = request.getParameter("email");
+	    String phone1 = request.getParameter("phone1");
+	    String phone2 = request.getParameter("phone2");
+	    String phone3 = request.getParameter("phone3");
+	    String email1 = request.getParameter("email1");
+	    String email2 = request.getParameter("email2");
 	    char smsYN = request.getParameter("smsYN").charAt(0);
 	      
 	      
-	    Member m = new Member(memberName, memberId, memberPwd, sqlDate, gender, address, detailAddress, phone, email, smsYN);
+	    Member m = new Member(memberName, memberId, memberPwd, sqlDate, gender, address, detailAddress, phone1+phone2+phone3, email1+email2, smsYN);
 		
 		MemberService mService = new MemberServiceImpl();
 		int result = mService.insertOneMember(m);

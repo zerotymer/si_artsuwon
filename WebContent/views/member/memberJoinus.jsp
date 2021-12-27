@@ -140,7 +140,7 @@
 							<option>12</option>
 						</select>월
 						
-						<select>
+						<select name="birthDate">
 							<option>01</option>
 							<option>02</option>
 							<option>03</option>
@@ -181,15 +181,15 @@
 			
 				주소 : <input type="address" name="address" id="sample5_address" onclick="sample5_execDaumPostcode()"/>  <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
 				상세주소 : <input type="text" name="detailAddress"/><br>
-				휴대폰 : <select name="phone">
+				휴대폰 : <select name="phone1">
 							<option>010</option>
 							<option>011</option>
 							<option>016</option>
 							<option>017</option>
 							<option>018</option>
 							<option>019</option>
-						</select> - <input type="text" name="phone" maxlength="4" size="4"/> - <input type="text" name="phone" maxlength="4" size="4"/> <br>
-				이메일 : <input type="text" name="email"/> @ <input type="text"  name="email"/><br>
+						</select> - <input type="text" name="phone2" maxlength="4" size="4"/> - <input type="text" name="phone3" maxlength="4" size="4"/> <br>
+				이메일 : <input type="text" name="email1"/> @ <input type="text"  name="email2"/><br>
 				SMS 수신동의 : <input type="radio" name="smsYN" value="Y" checked/>동의합니다.
 							 <input type="radio" name="smsYN" value="N"/>동의하지 않습니다.<br>
 			
