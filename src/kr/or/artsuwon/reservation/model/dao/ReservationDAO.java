@@ -2,6 +2,7 @@ package kr.or.artsuwon.reservation.model.dao;
 
 import kr.or.artsuwon.common.JDBCTemplate;
 import kr.or.artsuwon.reservation.model.vo.Reservation;
+import kr.or.artsuwon.reservation.model.vo.SeatInfomation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,5 +49,10 @@ public class ReservationDAO {
         }
 
         return list;
+    }
+
+
+    public ArrayList<SeatInfomation> selectAllSeatsByRestriction(Connection conn, char restriction) {
+        final String QUERY = "SELECT * FROM seat_info WHERE restriction < 1";
     }
 }

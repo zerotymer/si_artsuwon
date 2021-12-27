@@ -7,6 +7,7 @@ import kr.or.artsuwon.reservation.model.vo.Reservation;
 import org.json.simple.JSONArray;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,8 +42,10 @@ public class RequestAllReservationServlet extends HttpServlet {
 		// Business Logic
 		ArrayList<Reservation> list = service.getAllReservationByPerfSchedule(scheduleNo);
 
-
-		new Gson().toJson(list, response);
+		// Encoding
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		new Gson().toJson(list, out);
 	}
 
 	/**
