@@ -36,7 +36,7 @@ public class Member {
 	 * @param detailAddress
 	 * @param smsYN
 	 */
-	public Member(String memberId, String email, String phone, String address, String detailAddress, char smsYN) {
+	public Member(String memberId, String email, String phone, String address, String detailAddress, char smsYN, char emailYN) {
 		super();
 		this.memberId = memberId;
 		this.email = email;
@@ -44,6 +44,7 @@ public class Member {
 		this.address = address;
 		this.detailAddress = detailAddress;
 		this.smsYN = smsYN;
+		this.emailYN = emailYN;
 	}
 
 

@@ -1,10 +1,13 @@
 package kr.or.artsuwon.member.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import kr.or.artsuwon.common.JDBCTemplate;
 import kr.or.artsuwon.member.model.dao.MemberDAO;
 import kr.or.artsuwon.member.model.vo.Member;
+import kr.or.artsuwon.member.model.vo.Reservation;
 
 public class MemberServiceImpl implements MemberService {
 
@@ -79,6 +82,19 @@ public class MemberServiceImpl implements MemberService {
 		JDBCTemplate.close(conn);
 		
 		return result;
+	}
+
+
+	@Override
+	public ArrayList<Reservation> selectMemberReservation(String memberId) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Reservation> list = mDAO.selectMemberReservation(memberId, conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return list;
+		
 	}
 
 }
