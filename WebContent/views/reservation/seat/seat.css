@@ -14,6 +14,7 @@
 }
 .seat span:hover {
     background-color: deepskyblue;
+    cursor: pointer;
 }
 h3 {
     text-align: center;
@@ -190,4 +191,13 @@ h3 {
 #SKS {
 /*    TODO: TEST*/
     display: none;
+}
+
+
+/* FUNCTIONAL */
+.seat .allocated { /* 사용불가능: 이미 사용중 */
+    
+}
+.seat .restrict { /* 사용불가능: 제한됨 */
+    
 }
