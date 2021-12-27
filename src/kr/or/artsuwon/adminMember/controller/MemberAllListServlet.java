@@ -37,7 +37,9 @@ public class MemberAllListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		
+		/*
+		String adminId = request.getParameter("adminId");
+		String adminPwd = request.getParameter("adminPwd");*/
 
 		HttpSession session = request.getSession();
 		
@@ -58,7 +60,7 @@ public class MemberAllListServlet extends HttpServlet {
 		
 		ArrayList<Member> list = adService.selectAllMemberList(adminNo);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/admin/memberAllList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/admin/adminMemberSelect.jsp");
 		
 		request.setAttribute("list", list);
 		request.setAttribute("adminNo", adminNo);

@@ -26,13 +26,13 @@
 		                    </a>
 	                    </c:if>
 	                    
-	                    <a class="nav-link active" href="table.html">
+	                    <a class="nav-link active" href="/admin/adminCheck.do">
 		                    <i class="fa fa-users">
 		                    </i>
 		                    <span style="font-size:17px;">회원 관리</span>
 	                    </a>
 	                    
-	                    <a class="nav-link active" href="table.html">
+	                    <a class="nav-link active" href="/views/admin/member_sch_wrote.jsp">
 		                    <i class="fa fa-users">
 		                    </i>
 		                    <span style="font-size:17px;">작성글 관리</span>

@@ -1,3 +1,5 @@
+<%@page import="kr.or.artsuwon.member.model.vo.Member"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,6 +28,15 @@
 </head>
 
 <body id="page-top">
+
+	<%
+		ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+		int adminNo = (int)request.getAttribute("adminNo");
+	
+		
+	%>
+
+
     <div id="wrapper">
     	
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: rgb(255,255,255);color: #000000;font-size: 15px;border-style: none;">
@@ -68,6 +79,9 @@
                 </div>
             </div>
         		<!--  끝 -->
+        		
+        		
+        		
         		<div class="container-fluid">
     <h3 class="text-dark mb-4">회원관리</h3>
     <div class="card shadow">
@@ -75,14 +89,33 @@
             <p class="text-primary m-0 fw-bold">전체 사용자 관리</p>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-md-6" style="width: 194px;border-radius: 5px;"><span><span class="input-group mb-3 edtFormMarg"><span class="input-group-prepend"><label class="input-group-text" for="inputGroupSelect01">Options</label></span><select id="inputGroupSelect01" class="custom-select">
+        
+        	<!-- 검색옵션 & 검색창 시작 -->
+            <div class="row"> 
+                <div class="col-md-6" style="width: 250px;border-radius: 5px;">
+                <span>
+                	<span class="input-group mb-3 edtFormMarg">
+                		<span class="input-group-prepend">
+                			<label class="input-group-text" for="inputGroupSelect01">Options</label>
+                			</span>
+                			
+                			<form action="/admin/adminMemberPostSch.do" method="get">
+                			<select name="type" class="custom-select">
                                 <option selected>검색옵션</option>
-                                <option value="1">ID</option>
-                                <option value="2">닉네임</option>
-                            </select></span></span></div>
-                <div class="col"><input type="search" style="height: 38px;width: 600px;border-radius: 5px;" /><button class="btn btn-primary" type="button">검색</button></div>
+                                <option value="memberId">ID</option>
+                                <option value="memberName">닉네임</option>
+                            </select>
+                     </span>
+                  </span>
+                  </div>
+                <div class="col">
+                	<input type="search" style="height: 38px;width: 600px;border-radius: 5px;" name="keyword"/>
+                	<input class="btn btn-primary" type="submit" value="검색"/>
+                </div>
+                </form>
             </div>
+            <!-- 검색옵션 & 검색창 끝 -->
+            
             <div id="dataTable" class="table-responsive table mt-2" role="grid" aria-describedby="dataTable_info">
                 <table id="dataTable" class="table my-0">
                     <thead>
@@ -95,14 +128,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                    
+                    	<%for(Member m : list) { %>
                         <tr>
                             <td><input type="checkbox" /></td>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="avatars/user_f.jpg" />박진경 (pjk123)</td>
-                            <td style="width: 200px;">2018/01/05</td>
-                            <td style="text-align: center;"><a href="member_sch_wrote.html">5</a></td>
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="/assets/images/memberPicture.jpg" /><%=m.getMemberName() %> (<%=m.getMemberId() %>)</td>
+                            <td style="width: 200px;"><%=m.getEnrollDate() %></td>
+                            <td style="text-align: center;"><a href="/views/admin/member_sch_wrote.jsp">5</a></td>
                             <td style="width: 200px;text-align: center;"><button class="btn btn-primary" type="button" style="height: 30px;">강제탈퇴</button><a class="btn btn-primary" role="button" href="mail2.html" style="height: 30px;">메일</a></td>
                         </tr>
-                        <tr>
+                        <%} %>
+                        <!-- <tr>
                             <td><input type="checkbox" /></td>
                             <td><img class="rounded-circle me-2" width="30" height="30" src="avatars/user_f.jpg" />오연주 (oyj123)</td>
                             <td>2018/01/05<br /></td>
@@ -163,17 +199,17 @@
                             <td></td>
                             <td></td>
                             <td><br /></td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                     <tfoot>
-                        <tr>
+                        <!-- <tr>
                             <td><input type="checkbox" /><strong></strong></td>
                             <td><strong>닉네임(ID)</strong></td>
                             <td><strong>가입일</strong></td>
                             <td>최종방문일</td>
                             <td></td>
                             <td></td>
-                        </tr>
+                        </tr> -->
                     </tfoot>
                 </table>
             </div>
