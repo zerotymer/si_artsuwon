@@ -20,45 +20,38 @@
                     	<%-- 최고관리자만 운영진관리 탭 나타남 --%>
 	                    <c:if test="${String.valueOf(sessionScope.admin.superAdminYN) eq 'Y'}">
 		                    <a class="nav-link active" href="/adminPfmc/selectAllPfmcList.do">
-			                    <i class="fa fa-music">
-			                    </i>
+			                    <i class="fa fa-music"></i>
 			                    <span style="font-size:17px;">공연현황</span>
 		                    </a>
 	                    </c:if>
 	                    
 	                    <a class="nav-link active" href="/admin/adminCheck.do">
-		                    <i class="fa fa-users">
-		                    </i>
+		                    <i class="fa fa-users"></i>
 		                    <span style="font-size:17px;">회원 관리</span>
 	                    </a>
 	                    
 	                    <a class="nav-link active" href="/views/admin/member_sch_wrote.jsp">
-		                    <i class="fa fa-users">
-		                    </i>
+		                    <i class="fa fa-users"></i>
 		                    <span style="font-size:17px;">작성글 관리</span>
 	                    </a>
 	                    
 	                    <a class="nav-link active" href="table.html">
-		                    <i class="fa fa-signal">
-		                    </i>
+		                    <i class="fa fa-signal"></i>
 		                    <span style="font-size:17px;">통계</span>
 	                    </a>
 	                    
 	                    <a class="nav-link active" href="table.html">
-		                    <i class="fa fa-th-large">
-		                    </i>
+		                    <i class="fa fa-th-large"></i>
 		                    <span style="font-size:17px;">게시판 관리</span>
 	                    </a>
 	                    
 	                    <%-- 최고관리자만 운영진관리 탭 나타남 --%>
 	                    <c:if test="${String.valueOf(sessionScope.admin.superAdminYN) eq 'Y'}">
-		                    <a class="nav-link active" href="/adminMngm/selectAllSubAdminList.do">
-			                    <i class="fa fa-user">
-			                    </i>
+		                    <a class="nav-link active" href="/adminMngm/selectAllSubAdminList.do" id="adminMngm">
+			                    <i class="fa fa-user"></i>
 			                    <span style="font-size:17px;">운영진 관리</span>
 		                    </a>
 	                    </c:if>
-	                    
                     </li>
                 </ul>
                 
@@ -69,4 +62,6 @@
         </nav>
         
         
+        
+      
 
