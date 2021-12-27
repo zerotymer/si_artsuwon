@@ -9,8 +9,8 @@
 
 
 
-
-
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -95,6 +95,7 @@
         
         	<!-- 검색옵션 & 검색창 시작 -->
             <div class="row"> 
+            	
                 <div class="col-md-6" style="width: 250px;border-radius: 5px;">
                 <span>
                 	<span class="input-group mb-3 edtFormMarg">
@@ -102,17 +103,17 @@
                 			<label class="input-group-text" for="inputGroupSelect01">Options</label>
                 			</span>
                 			
-                			<form action="/admin/adminMemberPostSch.do" method="get">
+                		<form action="/admin/adminMemberPostSch.do" method="get">	
                 			<select name="type" class="custom-select">
                                 <option selected>검색옵션</option>
                                 <option value="memberId">ID</option>
-                                <option value="memberName">닉네임</option>
+                                <option value="memberName">이름</option>
                             </select>
                      </span>
                   </span>
                   </div>
                 <div class="col">
-                	<input type="search" style="height: 38px;width: 600px;border-radius: 5px;" name="keyword"/>
+                	<input type="search" style="height: 38px; width: 620px;border-radius: 5px;" name="keyword"/>
                 	<input class="btn btn-primary" type="submit" value="검색"/>
                 </div>
                 </form>
@@ -120,7 +121,7 @@
             <!-- 검색옵션 & 검색창 끝 -->
             
             <div id="dataTable" class="table-responsive table mt-2" role="grid" aria-describedby="dataTable_info">
-                <table id="dataTable" class="table my-0">
+                <table id="dataTable1" class="table my-0">
                     <thead>
                         <tr>
                             <th style="width: 20px;"><input type="checkbox" /></th>
@@ -138,7 +139,7 @@
                             <td><img class="rounded-circle me-2" width="30" height="30" src="/assets/images/memberPicture.jpg" /><%=m.getMemberName() %> (<%=m.getMemberId() %>)</td>
                             <td style="width: 200px;"><%=m.getEnrollDate() %></td>
                             <td style="text-align: center;"><a href="/views/admin/member_sch_wrote.jsp">5</a></td>
-                            <td style="width: 200px;text-align: center;"><button class="btn btn-primary" type="button" style="height: 30px;">강제탈퇴</button><a class="btn btn-primary" role="button" href="mail2.html" style="height: 30px;">메일</a></td>
+                            <td style="width: 200px;text-align: center;"><button class="btn btn-primary active" type="button" style="height: 30px;" href="/admin/memberEndYNChange.do?memberNo=<%=m.getMemberNo() %>&memberStatus=<%=m.getMemberStatus() %>">강제탈퇴</button><a class="btn btn-primary" role="button" href="mail2.html" style="height: 30px;">메일</a></td>
                         </tr>
                         <%} %>
                         <!-- <tr>
@@ -205,14 +206,10 @@
                         </tr> -->
                     </tbody>
                     <tfoot>
-                        <!-- <tr>
-                            <td><input type="checkbox" /><strong></strong></td>
-                            <td><strong>닉네임(ID)</strong></td>
-                            <td><strong>가입일</strong></td>
-                            <td>최종방문일</td>
-                            <td></td>
-                            <td></td>
-                        </tr> -->
+                        <tr>
+                            <td><strong></strong></td>
+                            
+                        </tr> 
                     </tfoot>
                 </table>
             </div>
@@ -251,6 +248,13 @@
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/theme.js"></script>
     <script id="bs-live-reload" data-sseport="12383" data-lastchange="1640435560295" src="/js/livereload.js"></script>
+
+	<script>
+		$('.btn btn-primary active').click(function(){
+			return window.confirm("이 회원을 탈퇴처리 하겠습니까?");
+		});
+	
+	</script>
 
 
 
