@@ -85,6 +85,11 @@ public class PfmcDAO {
 	
 	public String getPageNavi(Connection conn, int naviCountPerPage, int recordCountPerPage, int currentPage, String pageNaviUrl, ArrayList<Performance> pfmc, String qs) {
 		String queryString = qs;
+
+		if (pfmc.isEmpty()) {
+			return "";
+		} 
+		
 		int totalRecordCount = pfmc.get(0).getTotalCount();
 		//int TotalRecordCount = totalCount(conn); //전체 개수 (58)
 		int TotalPageCount = 0; //전체 개수를 recordPerPage로 나누면 5.8페이지(6페이지)
@@ -143,32 +148,7 @@ public class PfmcDAO {
 			);
 		}
 	return sb.toString();
-	}
-	
-	// 데이터 총 개수 구하는 메서드 따로 작성
-	public int totalCount(Connection conn) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		int count = 0;
-		
-		String sql = "SELECT COUNT(*) AS COUNT FROM PFMC";
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-			if (rset.next()) {
-				count = rset.getInt("count");
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
-		}
-		return count;
-	}
+}
 
 	
 	public int insertPfmc(Connection conn, Performance pfmc) {

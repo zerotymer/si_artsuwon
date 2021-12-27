@@ -65,16 +65,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                      	</form>
                         
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-	                                    <select id="sortOption" onchange="sortPfmc();">
-		                                    <option value="번호순">번호순</option>
-		                                    <option value="최근순">최근순</option>
-	                            		</select>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             
                             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                                 <table class="table my-0" id="dataTable">
@@ -89,89 +80,111 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <%for(Performance pfmc:pfmcList){ %>
-                                        <tr>
-                                            <td><%=pfmc.getNum() %></td>
-                                            <td><%=pfmc.getCategory() %></td>
-                                            <td>
-	                                            <strong><a href="/adminPfmc/showPfmcInfo.do?pfmcNo=<%=pfmc.getPfmcNo()%>"
-	                                            id="pfmcNo<%=pfmc.getPfmcNo()%>"><%=pfmc.getTitle() %></a></strong>
-	                                        </td>
-                                            <td><%=pfmc.getPfmcDate() %></td>
-                                            <td><%=pfmc.getLocation() %></td>
-                                            <td><button type="button" onclick="deletePfmc(this);" class="btn btn-danger"
-                                            style="font-size:13px; padding-top:4px;padding-bottom:0px;" value=<%=pfmc.getPfmcNo()%>>삭제</button></td>
-                                        </tr>
-                                    <%} %>
+                                    <%
+                                      if(pfmcList.isEmpty()) {
+                                    %>
+                                   	      <tr>
+                                              <td colspan="6" style="text-align:center;">공연이 존재하지 않습니다.</td>
+                                          </tr>
+                                    <%  
+                                      } else {
+                                          for(Performance pfmc:pfmcList) {  
+                                    %>
+	                                        <tr>
+	                                            <td><%=pfmc.getNum() %></td>
+	                                            <td><%=pfmc.getCategory() %></td>
+	                                            <td>
+		                                            <strong><a href="/adminPfmc/showPfmcInfo.do?pfmcNo=<%=pfmc.getPfmcNo()%>"
+		                                            id="pfmcNo<%=pfmc.getPfmcNo()%>"><%=pfmc.getTitle() %></a></strong>
+		                                        </td>
+	                                            <td><%=pfmc.getPfmcDate() %></td>
+	                                            <td><%=pfmc.getLocation() %></td>
+	                                            <td><button type="button" onclick="deletePfmc(this);" class="btn btn-danger"
+	                                            style="font-size:13px; padding-top:4px;padding-bottom:0px;" value=<%=pfmc.getPfmcNo()%>>삭제</button></td>
+	                                        </tr>
+                                    <%    
+                                          }
+                                      } 
+                                    %>
                                     </tbody>
                                 </table>
                             </div>
                             
-                            <!-- 공연 삭제 -->
-                            <script>
-	                            function deletePfmc (e) {
-	                            	var pfmcNo = $(e).attr('value');
-	                            	var pfmcTitle = $('#pfmcNo'+pfmcNo).text();
-	                            	var choice = confirm(pfmcTitle + " 을(를) 삭제하시겠습니까?");
-	                            	
-	                            	if(choice){
-	                            		$.ajax({
-	                            			url : "/adminPfmc/deletePfmc.do",
-	                            			data : {"pfmcNo": pfmcNo},
-	                            			type : "get",
-	                            			success : function(resultRow){
-	                            				if(resultRow>0){
-	                            					alert('삭제되었습니다.');
-	                            					location.reload(); //새로고침
-	                            				}else{
-	                            					alert('삭제에 실패했습니다.');
-	                            				}
-	                            			},
-	                            			error : function(){
-	                            				console.log('ajax 통신 실패');
-	                            			}
-	                            		});
-	                            	    
-	                            	}else{
-	                            	    alert("삭제가 취소되었습니다.");
-	                            	}
-	                            }
-                            </script>
-                            
-                            <!-- 정렬 -->
-                            <script>
-                            </script>
-                            
-              <div class="row">
-                  <div class="col-md-6 align-self-center">
-                     <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">총 <%=pfmcList.get(0).getTotalCount() %> 건</p>
-                  </div>
-                    
-                     <div class="col-md-6">
-	                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-	                          <ul class="pagination">
-	                          	  <%=pageNavi %>
-	                          </ul>
-	                     </nav>
-                     </div>
-              </div>
-           </div>
-         </div>
-        </div>
-      </div>
+		              		<div class="row">
+			                  	<div class="col-md-6 align-self-center">
+			                     	<p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">총 <%=(pfmcList.isEmpty()?0:pfmcList.get(0).getTotalCount())%> 건</p>
+			                  	</div>
+			                    <div class="col-md-6">
+				                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+				                          <ul class="pagination">
+				                          	  <%=pageNavi %>
+				                          </ul>
+				                     </nav>
+			                    </div>
+		              		</div>
+          			 </div>
+         		</div>
+      		</div>
+    	</div>
             
-            
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
-                </div>
-            </footer>
-            
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
-    </div>
+	       <footer class="bg-white sticky-footer">
+	           <div class="container my-auto">
+	               <div class="text-center my-auto copyright"><span>Copyright © artsuwon</span></div>
+	           </div>
+	       </footer>
+           
+     </div>
+       <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+  </div>
     
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/theme.js"></script>
+     <!-- 공연 삭제 -->
+     <script>
+      function deletePfmc (e) {
+      	var pfmcNo = $(e).attr('value');
+      	var pfmcTitle = $('#pfmcNo'+pfmcNo).text();
+      	var choice = confirm(pfmcTitle + " 을(를) 삭제하시겠습니까?");
+      	
+      	if(choice){
+      		$.ajax({
+      			url : "/adminPfmc/deletePfmc.do",
+      			data : {"pfmcNo": pfmcNo},
+      			type : "get",
+      			success : function(resultRow){
+      				if(resultRow>0){
+      					alert('삭제되었습니다.');
+      					location.reload(); //새로고침
+      				}else{
+      					alert('삭제에 실패했습니다.');
+      				}
+      			},
+      			error : function(){
+      				console.log('ajax 통신 실패');
+      			}
+      		});
+      	    
+      	}else{
+      	    alert("삭제가 취소되었습니다.");
+      	}
+      }
+     </script>
+     
+     <!-- 정렬 -->
+     <script>
+     	function sortPfmc(){
+     		var sortOption = $('#sortOption').val();
+     		
+     		$.ajax({
+     			url: "/sortPfmc.do",
+     			data : {"sortOption":sortOption},
+     			type : "get",
+     			success : function(result){
+     			}
+     		})
+     	}
+     </script>
+    
+    <script src="<%=request.getContextPath()%>/assets/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
 </body>
 </html>
 
