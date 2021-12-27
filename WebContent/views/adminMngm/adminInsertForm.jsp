@@ -53,17 +53,17 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                     <form class="user" action="/adminMngm/insertAdmin.do" method="post">
                                         <div class="mb-3">
 	                                        <input class="form-control form-control-user" type="text" id="adminId" placeholder="아이디를 입력하세요" name="adminId" autocomplete="off">
-	                                        <span id="idMsg"></span>
+	                                        <span id="idMsg" style="font-size:12px;"></span>
                                         </div>
                                         
                                         <div class="mb-3">
 	                                        <input class="form-control form-control-user" type="password" id="adminPwd1" placeholder="비밀번호를 입력하세요" name="adminPwd">
-	                                    	<span id="pwdMsg1"></span>
+	                                    	<span id="pwdMsg1" style="font-size:12px;"></span>
 	                                    </div>
 	                                    
 	                                    <div class="mb-3">
 	                                        <input class="form-control form-control-user" type="password" id="adminPwd2" placeholder="비밀번호를 재입력하세요" name="adminRePwd">
-	                                    	<span id="pwdMsg2"></span>
+	                                    	<span id="pwdMsg2" style="font-size:12px;"></span>
 	                                    </div>
 	                                    
 	                                    <div class="mb-3">
@@ -110,31 +110,23 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                     </script>
                                    
                                    <script>
-                                 	//비밀번호 일치 여부 체크 (미완성)
-                                   	window.onload = function(){
+                                 	//비밀번호 일치 여부 체크
+                                 	$("#adminPwd2").blur(function(){
                                  		var pw1 = $('#adminPwd1').val();
                                  		var pw2 = $('#adminPwd2').val();
-                                 	}
-                                 	
-                                   	function check(){
-                                   		init();
-                                   		if(!(/[a-zA-Z0-9]{8,12}$/.test(pw1))){
+                                 		var rule = /[a-zA-Z0-9]{8,12}$/;
+                                 		
+                                   		if(!(rule.test(pw1)) && !(rule.test(pw2))){
                                    			$('#pwdMsg1').html("대소문자 또는 숫자 8~12글자로 입력하세요").css('color','red');
-                                   			return false;
-                                   		}else if(!(pw1==pw2)){
-                                   			$('#pwdMsg2').html("비밀번호가 일치하지 않습니다").css('color','red');
+                                   			$('#pwdMsg2').html("대소문자 또는 숫자 8~12글자로 입력하세요").css('color','red');
+                                   		}else if(pw1 != pw2){
+                                   			$('#pwdMsg2').html("비밀번호가 서로 일치하지 않습니다").css('color','red');
+                                   		}else{
+                                   			$('#pwdMsg1').html("");
+                                   			$('#pwdMsg2').html("");
                                    		}
-                                   	}
-                                    	
-                                 	
-                                 	
-                                 	
-                                    		
-                                    		
-                                    	});
+									});
                                    </script>
-                                    	
-                                    	
                                 </div>
                             </div>
                         </div>
