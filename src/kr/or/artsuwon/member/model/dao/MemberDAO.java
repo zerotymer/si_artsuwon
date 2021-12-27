@@ -195,7 +195,7 @@ public class MemberDAO {
 		
 		ArrayList<Reservation> list = new ArrayList<Reservation>();
 		
-		String query = "SELECT RESERVATION.*, PFMC.TITLE FROM RESERVATION "+ 
+		String query = "SELECT RESERVATION.*, PFMC.TITLE FROM RESERVATION " + 
 					   "	LEFT JOIN PFMC ON (RESERVATION.RESERVATION_NO = PFMC.PFMC_NO) " + 
 					   "WHERE RESERVATION_ID=? ";
 		
@@ -213,13 +213,13 @@ public class MemberDAO {
 				
 				reservation.setReservationNo(rset.getString("reservationNo"));
 				reservation.setPerformanceNo(rset.getInt("performanceNo"));
+				reservation.setTitle(rset.getString("title"));
 				reservation.setInvoiceNo(rset.getString("invoiceNo"));
 				reservation.setPayMethod(rset.getString("payMethod"));
 				reservation.setReservationId(rset.getString("reservationId"));
 				reservation.setReservationDate(rset.getDate("reservationDate"));
 				reservation.setReservationPrice(rset.getInt("reservationPrice"));
 				reservation.setSeatCode(rset.getString("seatCode"));
-				//reservation.setTitle(rset.getString("title"));
 				
 				list.add(reservation);
 				
