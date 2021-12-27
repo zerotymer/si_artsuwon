@@ -1,27 +1,29 @@
 package kr.or.artsuwon.adminBoard.controller;
 
-import kr.or.artsuwon.adminBoard.model.service.BoardAdminService;
-import kr.or.artsuwon.adminBoard.model.service.BoardAdminServiceImpl;
 
-import javax.servlet.RequestDispatcher;
+
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import kr.or.artsuwon.adminBoard.service.BoardAdminServiceImpl;
+
+
 
 /**
- * Servlet implementation class NoticePostDeleteServlet
+ * Servlet implementation class NoitceFileListServlet
  */
-@WebServlet("F")
-public class NoticePostDeleteServlet extends HttpServlet {
+@WebServlet("/notice/noticeFileList.do")
+public class NoitceFileListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticePostDeleteServlet() {
+    public NoitceFileListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,28 +32,10 @@ public class NoticePostDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		BoardAdminServiceImpl bService = new BoardAdminServiceImpl();
+		bService.selectFileList(userId);
 		
-		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));  
-		System.out.println(request.getParameter("noticeNo"));
-		
-		BoardAdminService bService = new BoardAdminServiceImpl();
-		int result = bService.deletePost(noticeNo);
-		
-		//TODO : SESSION 추가 
-		
-		RequestDispatcher view = request.getRequestDispatcher("/views/adminBoard/NoticedeletePost.jsp");
-		
-	/*	if(result>0)
-		{
-			request.setAttribute("result", true);
-		}else
-		{
-			request.setAttribute("result", false);
-		}
-		*/
-		request.setAttribute("result", result> 0);
-
-		view.forward(request, response);
 	}
 
 	/**

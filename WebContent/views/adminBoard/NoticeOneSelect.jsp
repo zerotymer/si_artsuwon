@@ -1,6 +1,5 @@
 <%@page import="kr.or.artsuwon.adminBoard.model.vo.Notice"%>
 <%@page import="kr.or.artsuwon.adminMngm.model.vo.Admin"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -110,12 +109,20 @@
 			<script>
 			$('#textUpdateBtn').click(function(){
 
-
-
-
-
-
-
+				var formTag= document.createElement("form");
+				formTag.setAttribute("action","/notice/noticePostUpdate.do");
+				formTag.setAttribute("method","post");
+				
+				var inputTag = document.createElement("input");
+				inputTag.setAttribute("type","hidden");
+				inputTag.setAttribute("value","<%=notice.getNoticeNo()%>");
+				
+				
+				//해당 문서안에 새롭게 만든 formTag를 추가시켜줘야한다.(연결시켜준다라는 의미)
+				document.body.appendChild(formTag);
+				
+				formTag.submit();
+				
 				});
 
 

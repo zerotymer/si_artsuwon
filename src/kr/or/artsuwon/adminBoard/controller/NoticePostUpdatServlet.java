@@ -56,7 +56,7 @@ public class NoticePostUpdatServlet extends HttpServlet {
         if (result > 0) {
             response.sendRedirect("/notice/noticeOneSelectContent.do?noticeNo=" + noticeNo + "&currentPage=" + currentPage);
         } else {
-            response.sendRedirect("/views/commons/error.jsp");
+            response.sendRedirect("/views/adminCommons/error.jsp");
         }
 
     }

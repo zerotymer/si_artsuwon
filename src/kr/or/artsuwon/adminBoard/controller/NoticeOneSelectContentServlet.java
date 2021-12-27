@@ -50,7 +50,7 @@ public class NoticeOneSelectContentServlet extends HttpServlet {
         Notice notice = bService.selectOneContent(noticeNo);
 
 
-        RequestDispatcher view = request.getRequestDispatcher("/views/board/NoticeOneSelect.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/views/adminBoard/NoticeOneSelect.jsp");
         request.setAttribute("notice", notice);
         request.setAttribute("currentPage", currentPage);
 

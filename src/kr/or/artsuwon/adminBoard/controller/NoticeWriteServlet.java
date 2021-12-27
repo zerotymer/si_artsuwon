@@ -53,7 +53,7 @@ public class NoticeWriteServlet extends HttpServlet {
             response.sendRedirect("/notice/noticeOneSelectContent.do?noticeNo=" + noticeNo + "&currentPage=1");
 
         } else {
-            response.sendRedirect("/views/commons/error.jsp");
+            response.sendRedirect("/views/adminCommons/error.jsp");
         }
 
 
