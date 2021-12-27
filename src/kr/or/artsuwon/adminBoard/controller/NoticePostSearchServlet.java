@@ -19,7 +19,7 @@ import kr.or.artsuwon.adminBoard.model.service.BoardAdminServiceImpl;
 /**
  * Servlet implementation class NoticePostSearchServlet
  */
-@WebServlet("/board/noticePostSearch.do")
+@WebServlet("/notice/noticePostSearch.do")
 public class NoticePostSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

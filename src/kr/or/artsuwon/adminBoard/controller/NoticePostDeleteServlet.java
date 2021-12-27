@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class NoticePostDeleteServlet
  */
-@WebServlet("F")
+@WebServlet("/notice/noticePostDelete.do")
 public class NoticePostDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

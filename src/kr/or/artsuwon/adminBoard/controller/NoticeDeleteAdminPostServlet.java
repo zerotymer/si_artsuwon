@@ -19,7 +19,7 @@ import kr.or.artsuwon.adminMngm.model.vo.Admin;
 /**
  * Servlet implementation class NoticeDeleteAdminPostServlet
  */
-@WebServlet("/admin/deleteAdminPost.do")
+@WebServlet("/notice/deleteAdminPost.do")
 public class NoticeDeleteAdminPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
