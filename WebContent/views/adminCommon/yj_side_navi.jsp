@@ -44,7 +44,7 @@
 		                    <span style="font-size:17px;">통계</span>
 	                    </a>
 	                    
-	                    <a class="nav-link active" href="table.html">
+	                    <a class="nav-link active" href="/views/adminBoard/noticeAllList.jsp">
 		                    <i class="fa fa-th-large">
 		                    </i>
 		                    <span style="font-size:17px;">게시판 관리</span>

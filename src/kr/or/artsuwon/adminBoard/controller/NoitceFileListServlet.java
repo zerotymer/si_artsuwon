@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.artsuwon.adminBoard.service.BoardAdminServiceImpl;
+import kr.or.artsuwon.member.model.vo.Member;
 
 
 
@@ -32,7 +33,9 @@ public class NoitceFileListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
+		String userId = ((Member)request.getSession().getAttribute("member")).getMemberId();
+
 		BoardAdminServiceImpl bService = new BoardAdminServiceImpl();
 		bService.selectFileList(userId);
 		
