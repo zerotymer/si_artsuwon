@@ -25,5 +25,9 @@ public interface BoardAdminService {
     int deletePost(int noticeNo);
 
     HashMap<String, Object> selectSearchPost(int currentPage, String keyword, String type);
+    
+  //체크박스 게시글 삭제
+  	int deleteAdminPost(String[] boardNoValues);
 
+  	int insertFileUpload(Notice notice);
 }

@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class NoticeOneSelectContentServlet
  */
-@WebServlet("/notice/noticeOneSelectContent.do")
+@WebServlet("/adminNotice/noticeOneSelectContent.do")
 public class NoticeOneSelectContentServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -50,7 +50,7 @@ public class NoticeOneSelectContentServlet extends HttpServlet {
         Notice notice = bService.selectOneContent(noticeNo);
 
 
-        RequestDispatcher view = request.getRequestDispatcher("/views/board/NoticeOneSelect.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/views/adminBoard/NoticeOneSelect.jsp");
         request.setAttribute("notice", notice);
         request.setAttribute("currentPage", currentPage);
 

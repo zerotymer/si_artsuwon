@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class NoticePostDeleteServlet
  */
-@WebServlet("/board/noticePostDelete.do")
+@WebServlet("/adminNotice/noticePostDelete.do")
 public class NoticePostDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,7 +39,7 @@ public class NoticePostDeleteServlet extends HttpServlet {
 		
 		//TODO : SESSION 추가 
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/board/NoticedeletePost.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/adminBoard/NoticedeletePost.jsp");
 		
 	/*	if(result>0)
 		{
