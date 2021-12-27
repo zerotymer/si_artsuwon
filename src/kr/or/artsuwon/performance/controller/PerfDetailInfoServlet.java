@@ -46,7 +46,7 @@ public class PerfDetailInfoServlet extends HttpServlet {
 		// View
 		RequestDispatcher view = request.getRequestDispatcher("/views/performance/detailView.jsp");
 		request.setAttribute("info", tuple.getSecond());
-		request.setAttribute("date", dateFormat.format(tuple.getFirst().getPerformnaceDate()));
+		request.setAttribute("date", dateFormat.format(tuple.getFirst().getPerformanceDate()));
 		request.setAttribute("location", tuple.getFirst().getLocation());
 		request.setAttribute("price", tuple.getFirst().getPrice());
 		view.forward(request, response);

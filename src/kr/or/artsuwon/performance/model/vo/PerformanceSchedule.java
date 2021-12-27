@@ -12,28 +12,28 @@ public class PerformanceSchedule {
     private int performanceNo;          // PFMC_NO: 공연번호
     private String location;            // LOCATION: 장소
     private String price;               // PRICE: 가격
-    private Date performnaceDate;       // PFMC_DATE: 공연일시
+    private Date performanceDate;       // PFMC_DATE: 공연일시
     private int restriction;            // RESTRICTION: 제한등급. 0: 비제한. 1: 좌석일부제한
 
     /// CONSTRUCTORs
     public PerformanceSchedule() {
     }
 
-    public PerformanceSchedule(int scheduleNo, int performanceNo, String location, String price, Date performnaceDate) {
+    public PerformanceSchedule(int scheduleNo, int performanceNo, String location, String price, Date performanceDate) {
         this.scheduleNo = scheduleNo;
         this.performanceNo = performanceNo;
         this.location = location;
         this.price = price;
-        this.performnaceDate = performnaceDate;
+        this.performanceDate = performanceDate;
         this.restriction = 0;
     }
 
-    public PerformanceSchedule(int scheduleNo, int performanceNo, String location, String price, Date performnaceDate, int restriction) {
+    public PerformanceSchedule(int scheduleNo, int performanceNo, String location, String price, Date performanceDate, int restriction) {
         this.scheduleNo = scheduleNo;
         this.performanceNo = performanceNo;
         this.location = location;
         this.price = price;
-        this.performnaceDate = performnaceDate;
+        this.performanceDate = performanceDate;
         this.restriction = restriction;
     }
 
@@ -42,7 +42,7 @@ public class PerformanceSchedule {
     public int getPerformanceNo() { return performanceNo; }
     public String getLocation() { return location; }
     public String getPrice() { return price; }
-    public Date getPerformnaceDate() { return performnaceDate; }
+    public Date getPerformanceDate() { return performanceDate; }
     public int getRestriction() { return restriction; }
 
     /// SETTERs
@@ -50,6 +50,6 @@ public class PerformanceSchedule {
     public void setPerformanceNo(int performanceNo) { this.performanceNo = performanceNo; }
     public void setLocation(String location) { this.location = location; }
     public void setPrice(String price) { this.price = price; }
-    public void setPerformnaceDate(Date performnaceDate) { this.performnaceDate = performnaceDate; }
+    public void setPerformanceDate(Date performanceDate) { this.performanceDate = performanceDate; }
     public void setRestriction(int restriction) { this.restriction = restriction; }
 }
