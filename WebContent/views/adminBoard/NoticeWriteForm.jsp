@@ -39,7 +39,7 @@
                     <div class="container" id="writeForm">
                         <div class="row text-capitalize" style="padding-top: 70px;height: auto;padding-bottom: 15%;">
                             <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2" style="margin-top: -50px;">
-                            	<form action="/file/fileUpload.do" method="post" enctype="multipart/form-data">
+                            	<form action="/adminNotice/fileUpload.do" method="post" enctype="multipart/form-data">
                                 <section class="article-list">
                                     <div class="container" style="padding-top: -3px;">
                                         <p class="text-center">
@@ -76,7 +76,7 @@
                                     <figure class="figure d-block"></figure>
                                     <hr/>
                                     <button class="btn btn-light btn-sm"
-                                            onclick="location.replace('/notice/adminNoticeAllList.do');"
+                                            onclick="location.replace('/adminNotice/adminNoticeAllList.do');"
                                             type="submit" style="width: 61px;height: 28px;margin: 2px;padding: 2px 2px;padding-left: 3px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 90%;border-style: none;border-color: rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);border-left-style: none;
                         border-left-color: rgb(255,255,255);font-size: 13px;text-align: center;
                         ">완료

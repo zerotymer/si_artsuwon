@@ -85,7 +85,7 @@
                                     <div class="card-body" style="width: 926; height: 826.59;">
                                         <div>
                                             <div class="table-responsive">
-	                                            <form action="/admin/deleteAdminPost.do" method="post" id="deleteForm"/>
+	                                            <form action="/adminNotice/deleteAdminPost.do" method="post" id="deleteForm"/>
 	                                            
 	                                                <table class="table">
 	                                                    <thead>
@@ -108,7 +108,7 @@
 	                                                                    <input type="checkbox" name="postNo" value="<%=notice.getNoticeNo()%>"/>
 	                                                                </td>
 	                                                                <td style="text-align: center; padding-left: 140px;">
-	                                                                    <a href="/notice/noticeOneSelectContent.do?noticeNo=<%=notice.getNoticeNo()%>"><%=notice.getNoticeTitle()%></a>
+	                                                                    <a href="/adminNotice/noticeOneSelectContent.do?noticeNo=<%=notice.getNoticeNo()%>"><%=notice.getNoticeTitle()%></a>
 	                                                                </td>
 	                                                                
 	                                                                <td style="text-align: center;"><%=notice.getRegDate()%></td>
@@ -153,7 +153,7 @@
                                     </div>
 
                                     <div style="margin-bottom: 24px; padding-right: 0px;">
-                                        <form action="/board/noticePostSearch.do" method="get">
+                                        <form action="/adminNotice/noticePostSearch.do" method="get">
                                             <div style="margin-bottom: -26px;padding-right: 0px;margin-left: 42%;">
                                                 <select class="form-select-sm" name="type" style="width: 100px;height: 30px;margin-right: 13px;">
                                                     <option value="noticeTitle" selected>제목</option>
@@ -205,7 +205,7 @@
                     
                     
                     function deletePost(postNo){
-                    	location.replace("/admin/deleteAdminPost.do?postNo="+postNo);
+                    	location.replace("/adminNotice/deleteAdminPost.do?postNo="+postNo);
                     }
            		</script>
             </div>

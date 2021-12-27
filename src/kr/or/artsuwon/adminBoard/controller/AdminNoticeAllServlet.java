@@ -16,7 +16,7 @@ import java.util.HashMap;
 /**
  * Servlet implementation class AdminNoticeAllServlet
  */
-@WebServlet("/notice/adminNoticeAllList.do")
+@WebServlet("/adminNotice/adminNoticeAllList.do")
 public class AdminNoticeAllServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

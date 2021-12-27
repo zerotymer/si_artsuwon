@@ -110,7 +110,7 @@
 			$('#textUpdateBtn').click(function(){
 
 				var formTag= document.createElement("form");
-				formTag.setAttribute("action","/notice/noticePostUpdate.do");
+				formTag.setAttribute("action","/adminNotice/noticePostUpdate.do");
 				formTag.setAttribute("method","post");
 				
 				var inputTag = document.createElement("input");
@@ -138,7 +138,7 @@
 				{// 삭제를 하기위한 폼태그 생성 - post 방식으로 처리하기 위함
 				
 					var formTag= document.createElement("form");
-					formTag.setAttribute("action","/board/noticePostDelete.do");
+					formTag.setAttribute("action","/adminNotice/noticePostDelete.do");
 					formTag.setAttribute("method","post");
 					
 					var inputTag = document.createElement("input");

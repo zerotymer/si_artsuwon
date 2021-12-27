@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class NoticeOneSelectContentServlet
  */
-@WebServlet("/notice/noticeOneSelectContent.do")
+@WebServlet("/adminNotice/noticeOneSelectContent.do")
 public class NoticeOneSelectContentServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

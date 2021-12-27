@@ -32,7 +32,7 @@ import kr.or.artsuwon.adminBoard.model.vo.Notice;
 		 maxRequestSize=1024*1024*5*5			
 			)
 
-@WebServlet("/file/fileUpload.do")
+@WebServlet("/adminNotice/fileUpload.do")
 public class FileUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

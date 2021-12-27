@@ -16,7 +16,7 @@ import kr.or.artsuwon.adminBoard.service.BoardAdminServiceImpl;
 /**
  * Servlet implementation class NoitceFileListServlet
  */
-@WebServlet("/notice/noticeFileList.do")
+@WebServlet("/adminNotice/noticeFileList.do")
 public class NoitceFileListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

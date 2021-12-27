@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class NoticePostUpdatServlet
  */
-@WebServlet("/notice/noticePostUpdate.do")
+@WebServlet("/adminNotice/noticePostUpdate.do")
 public class NoticePostUpdatServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

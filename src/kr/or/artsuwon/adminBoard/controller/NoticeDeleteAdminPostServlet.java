@@ -19,7 +19,7 @@ import kr.or.artsuwon.adminMngm.model.vo.Admin;
 /**
  * Servlet implementation class NoticeDeleteAdminPostServlet
  */
-@WebServlet("/notice/deleteAdminPost.do")
+@WebServlet("/adminNotice/deleteAdminPost.do")
 public class NoticeDeleteAdminPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,7 +52,7 @@ public class NoticeDeleteAdminPostServlet extends HttpServlet {
 		
 		if(result ==noticeNoValues.length)
 	      {
-	    	  response.sendRedirect("/notice/adminNoticeAllList.do");
+	    	  response.sendRedirect("/adminNotice/adminNoticeAllList.do");
 	      }else
 	      {
 	    	  response.sendRedirect("/views/adminCommons/error.jsp");
