@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+
 <link rel="stylesheet" type="text/css" href="/assets/css/boardFrame.css">
 <link rel="stylesheet" href="/assets/style/contentframe.css">
 <!-- boostrap5 라이브러리-->
@@ -29,7 +29,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-<title>공지사항</title>
+<title>동영상 갤러리</title>
 </head>
 <body>
 
@@ -74,29 +74,33 @@
 <article class="common_wrap"> <%if (board != null) {%>
 		<div class="board_view_box">
 			<div class="view_header">
-				<span class="cate"> 공지사항 </span>
-				<h3><%=board.getNoticeTitle()%></h3>
+				<span class="cate"> 갤러리 </span>
+				<h3><%=board.getVideoTitle()%></h3>
 				<br>
 				<div class="detail">
-					<span class="date"><%=board.getRegDate()%>
+					<span class="date"><%=board.getRegDate()%></span>
 				</div>
 			</div>
 
 		
 
 
-		
 
 		<!-- 게시판 내용 -->
 		<article class="view_content" style="width:1140px; height:600px"> 
-			<%=board.getNoticeContent()%>
+			
+			<div style="text-align:center; margin:50px"><%=board.getVideoRoute() %>
+			<br><%=board.getVideoContent()%>
+			</div>
+			
+			
 		</article>
 
 		<!-- 풋터 -->
 		<div class="view_footer">
 			<div class="btn_box">
 
-				<a href="/board/NoticeAllSelect.do?currentPage=<%=currentPage%>" class="list" style="text-align:center">목록</a>
+				<a href="/board/VideoAllSelect.do?currentPage=<%=currentPage%>" class="list" style="text-align:center">목록</a>
 
 			</div>
 		</div>
@@ -106,7 +110,7 @@
 		<%} else {%>
 		<script>
 			alert('해당글이 존재하지 않습니다. 다시 확인해주세요');
-			location.replace('/board/NoticeAllSelect.do');
+			location.replace('/board/VideoAllSelect.do');
 		</script>
 		<%}%>
 	

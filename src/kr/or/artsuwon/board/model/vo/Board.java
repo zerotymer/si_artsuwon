@@ -16,10 +16,12 @@ public class Board {
 	private int photoNo;
 	private String photoTitle;
 	private String photoContent;
+	private String photoRoute;
 	
 	private int videoNo;
 	private String videoTitle;
 	private String videoContent;
+	private String videoRoute;
 	
 	private char endYN;
 	private Date regDate;
@@ -31,8 +33,8 @@ public class Board {
 	}
 
 	public Board(String adminId, int noticeNo, String noticeTitle, String noticeContent, int newsNo, String newsTitle,
-			String newsContent, int photoNo, String photoTitle, String photoContent, int videoNo, String videoTitle,
-			String videoContent, char endYN, Date regDate, int viewCount) {
+			String newsContent, int photoNo, String photoTitle, String photoContent, String photoRoute, int videoNo,
+			String videoTitle, String videoContent, String videoRoute, char endYN, Date regDate, int viewCount) {
 		super();
 		this.adminId = adminId;
 		this.noticeNo = noticeNo;
@@ -44,9 +46,11 @@ public class Board {
 		this.photoNo = photoNo;
 		this.photoTitle = photoTitle;
 		this.photoContent = photoContent;
+		this.photoRoute = photoRoute;
 		this.videoNo = videoNo;
 		this.videoTitle = videoTitle;
 		this.videoContent = videoContent;
+		this.videoRoute = videoRoute;
 		this.endYN = endYN;
 		this.regDate = regDate;
 		this.viewCount = viewCount;
@@ -132,6 +136,14 @@ public class Board {
 		this.photoContent = photoContent;
 	}
 
+	public String getPhotoRoute() {
+		return photoRoute;
+	}
+
+	public void setPhotoRoute(String photoRoute) {
+		this.photoRoute = photoRoute;
+	}
+
 	public int getVideoNo() {
 		return videoNo;
 	}
@@ -154,6 +166,14 @@ public class Board {
 
 	public void setVideoContent(String videoContent) {
 		this.videoContent = videoContent;
+	}
+
+	public String getVideoRoute() {
+		return videoRoute;
+	}
+
+	public void setVideoRoute(String videoRoute) {
+		this.videoRoute = videoRoute;
 	}
 
 	public char getEndYN() {
@@ -185,10 +205,12 @@ public class Board {
 		return "Board [adminId=" + adminId + ", noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle
 				+ ", noticeContent=" + noticeContent + ", newsNo=" + newsNo + ", newsTitle=" + newsTitle
 				+ ", newsContent=" + newsContent + ", photoNo=" + photoNo + ", photoTitle=" + photoTitle
-				+ ", photoContent=" + photoContent + ", videoNo=" + videoNo + ", videoTitle=" + videoTitle
-				+ ", videoContent=" + videoContent + ", endYN=" + endYN + ", regDate=" + regDate + ", viewCount="
-				+ viewCount + "]";
+				+ ", photoContent=" + photoContent + ", photoRoute=" + photoRoute + ", videoNo=" + videoNo
+				+ ", videoTitle=" + videoTitle + ", videoContent=" + videoContent + ", videoRoute=" + videoRoute
+				+ ", endYN=" + endYN + ", regDate=" + regDate + ", viewCount=" + viewCount + "]";
 	}
+
+	
 
 	
 	

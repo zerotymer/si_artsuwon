@@ -28,7 +28,7 @@ public class BoardServiceImpl implements BoardService{
 		
 		
 		// 하나의 PageNavi Bar에 보여질 Navi 개수를 설정
-		int naviCountPerPage = 5;
+		int naviCountPerPage = 10;
 		
 		String pageNavi = bDAO.getPageNavi(conn,naviCountPerPage,recordCountPerPage,currentPage);
 		
@@ -179,6 +179,148 @@ public class BoardServiceImpl implements BoardService{
 		if(boardNo>0)JDBCTemplate.commit(conn);
 		else JDBCTemplate.close(conn);
 		return 0;
+	}
+
+	@Override
+	public HashMap<String, Object> PhotoSelect(int currentPage) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		// 하나의 Page에서 몇개의 목록으로 보여줄 것인지에 대한 값이 필요
+		int recordCountPerPage = 10;
+		
+		ArrayList<Board> list = bDAO.PhotoSelect(conn,currentPage,recordCountPerPage);
+		
+		
+		
+		
+		// 하나의 PageNavi Bar에 보여질 Navi 개수를 설정
+		int naviCountPerPage = 5;
+		
+		String pageNavi = bDAO.photoGetPageNavi(conn,naviCountPerPage,recordCountPerPage,currentPage);
+		
+		
+		JDBCTemplate.close(conn);
+		
+		
+		// 2가지 방법
+		//1. 별도의 VO를 따로 만들어서 작업하는 방법
+		//2. HashMap 을 이용하는 방법
+		
+		HashMap<String,Object> hm = new HashMap<String,Object>();
+		
+		hm.put("list", list);
+		hm.put("pageNavi", pageNavi);
+		
+		return hm;
+	}
+
+	@Override
+	public Board PhotoSelectOnePost(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//1개의 게시물을 가져오기 위한 DAO
+		Board board = bDAO.PhotoSelectOnePost(conn,boardNo);
+		
+		JDBCTemplate.close(conn);
+		return board;
+	}
+
+	@Override
+	public HashMap<String, Object> PhotoSearchPost(int currentPage, String keyword, String type) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//하나의 Page에서 몇개의 목록으로 보여줄것인지에 대한 값이 필요
+		int recordCountPerPage=10;
+		
+		ArrayList<Board> list = bDAO.PhotoAllPostPageList(conn,currentPage,recordCountPerPage,keyword,type);
+		
+		
+		//하나의 PageNavi Bar에 보여줄 Navi 개수를 설정
+		int naviCountPerPage=5;
+		
+		String pageNavi = bDAO.PhotoSearchPageNavi(conn,naviCountPerPage,recordCountPerPage,currentPage,keyword,type);
+		
+		//DB연결 해제
+		JDBCTemplate.close(conn);
+		
+		//리턴을 하기 위하여 HashMap객체를 만들어서 리턴
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+		
+		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> VideoSelect(int currentPage) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		// 하나의 Page에서 몇개의 목록으로 보여줄 것인지에 대한 값이 필요
+		int recordCountPerPage = 10;
+		
+		ArrayList<Board> list = bDAO.VideoSelect(conn,currentPage,recordCountPerPage);
+		
+		
+		
+		
+		// 하나의 PageNavi Bar에 보여질 Navi 개수를 설정
+		int naviCountPerPage = 5;
+		
+		String pageNavi = bDAO.VideoGetPageNavi(conn,naviCountPerPage,recordCountPerPage,currentPage);
+		
+		
+		JDBCTemplate.close(conn);
+		
+		
+		// 2가지 방법
+		//1. 별도의 VO를 따로 만들어서 작업하는 방법
+		//2. HashMap 을 이용하는 방법
+		
+		HashMap<String,Object> hm = new HashMap<String,Object>();
+		
+		hm.put("list", list);
+		hm.put("pageNavi", pageNavi);
+		
+		return hm;
+	}
+
+	@Override
+	public Board VideoSelectOnePost(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//1개의 게시물을 가져오기 위한 DAO
+		Board board = bDAO.VideoSelectOnePost(conn,boardNo);
+		
+		JDBCTemplate.close(conn);
+		return board;
+	}
+
+	@Override
+	public HashMap<String, Object> VideoSearchPost(int currentPage, String keyword, String type) {
+Connection conn = JDBCTemplate.getConnection();
+		
+		//하나의 Page에서 몇개의 목록으로 보여줄것인지에 대한 값이 필요
+		int recordCountPerPage=10;
+		
+		ArrayList<Board> list = bDAO.VideoAllPostPageList(conn,currentPage,recordCountPerPage,keyword,type);
+		
+		
+		//하나의 PageNavi Bar에 보여줄 Navi 개수를 설정
+		int naviCountPerPage=5;
+		
+		String pageNavi = bDAO.VideoSearchPageNavi(conn,naviCountPerPage,recordCountPerPage,currentPage,keyword,type);
+		
+		//DB연결 해제
+		JDBCTemplate.close(conn);
+		
+		//리턴을 하기 위하여 HashMap객체를 만들어서 리턴
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+		
+		return map;
 	}
 
 

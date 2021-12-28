@@ -24,6 +24,18 @@ public interface BoardService {
 
 	int noticeSearchBoardNo(Board board);
 
+	HashMap<String, Object> PhotoSelect(int currentPage);
+
+	Board PhotoSelectOnePost(int boardNo);
+
+	HashMap<String, Object> PhotoSearchPost(int currentPage, String keyword, String type);
+
+	HashMap<String, Object> VideoSelect(int currentPage);
+
+	Board VideoSelectOnePost(int boardNo);
+
+	HashMap<String, Object> VideoSearchPost(int currentPage, String keyword, String type);
+
 
 
 }
