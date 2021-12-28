@@ -66,9 +66,10 @@ public class MemberJoinServlet extends HttpServlet {
 	    String email2 = request.getParameter("email2");
 	    char smsYN = request.getParameter("smsYN").charAt(0);
 	    String phone = String.format("%s-%s-%s", phone1, phone2, phone3);
+	    String email = String.format("%s@%s", email1,email2);
 	      
 	      
-	    Member m = new Member(memberName, memberId, memberPwd, sqlDate, gender, address, detailAddress, phone, email1+"@"+email2, smsYN);
+	    Member m = new Member(memberName, memberId, memberPwd, sqlDate, gender, address, detailAddress, phone, email, smsYN);
 		
 		MemberService mService = new MemberServiceImpl();
 		int result = mService.insertOneMember(m);

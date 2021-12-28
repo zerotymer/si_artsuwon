@@ -67,9 +67,6 @@ public class MemberMyPageServlet extends HttpServlet {
 		request.setAttribute("member", m);
 		request.setAttribute("list", list);
 		
-		System.out.println(list);
-		System.out.println(m);
-		
 		view.forward(request, response);
 		
 	}

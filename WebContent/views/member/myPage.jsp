@@ -154,11 +154,16 @@
 			// 1. 탈퇴를 진행하시겠습니까?
 			// 2. 탈퇴를 하시게 되면, 데이터는 절대 복구 불가능합니다.
 			
-			if(window.confirm("탈퇴를 진행하시겠습니까?") && window.confirm("탈퇴를 하시게 되면, 데이터는 절대 복구 불가능합니다."))
+			if(window.confirm("탈퇴를 진행하시겠습니까?") && window.confirm("탈퇴 후 데이터 복구는 불가능합니다. 진행하시겠습니까?"))
 			{
+				alert('탈퇴 정상처리 되었습니다.');
+				location.replace("/");
 				return true;
+				
 			}else
-			{
+			{	
+				alert('탈퇴 정상처리 되었습니다.');
+				location.replace("/views/member/myPage.jsp");
 				return false;
 			}
 
