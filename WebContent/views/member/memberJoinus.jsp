@@ -38,9 +38,9 @@
 				이름 : <input type="text" name="memberName" id="memberName"/><br>
 				아이디 : <input type="text" name="memberId" id="memberId"> <input type="button" id="idCheckBtn" value="중복확인" /><br>
 					   <span id="msg"></span><br>
-				영문소문자, 숫자 10~30자리 이내<br>
+				영문소문자, 숫자 포함한 8~12자리 이내<br>
 				비밀번호 : <input type="password" name="memberPwd" id="memberPwd"/><br>
-				영문대/소, 숫자, 특수문자 2가지 이상 조합, 10~20자리 이내<br>
+				소문자,대문자,숫자를 포함한 8~12 글자 이내로 입력<br>
 				비밀번호 확인 : <input type="password" name="memberPwd_re" id="memberPwd_re"/><br>
 				동일한 비밀번호를 한 번 더 입력해주시기 바랍니다.<br>
 				생년월일 : 
@@ -313,7 +313,7 @@
 			else if (!(/^[a-z][a-z0-9]{8,10}$/.test(memberId.value))) //아이디 검사
             {
             	message.style.color = "red";
-                message.innerHTML = "영문 소문자,숫자 8~10 글자 이내로 입력";
+                message.innerHTML = "아이디는 영문 소문자,숫자 8~10 글자 이내로 입력";
                 return false;
                 
             } 
@@ -324,12 +324,6 @@
                 return false;
                 
             } 
-			else if((memberPw.value) == (memberPwd_re.value)) //PW와 PW_RE 비교 검사
-            {
-                message.innerHTML = " ";
-                return false;
-            	
-            }
 			else if (!(memberPw.value == memberPwd_re.value)) //PW와 PW_RE 비교 검사
             {
             	message.style.color = "red";
