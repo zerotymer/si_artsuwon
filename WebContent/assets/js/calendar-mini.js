@@ -1,6 +1,6 @@
 ///// JavaScript for calendar-mini.js
 // Need to import jQurey
-var curDate;
+var curDate = new Date();;
 
 // TODO: closer 함수
 window.addEventListener("load", function () {
