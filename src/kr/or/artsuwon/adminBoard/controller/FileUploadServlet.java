@@ -25,6 +25,7 @@ import kr.or.artsuwon.adminBoard.model.vo.Notice;
 
 
 
+
 @MultipartConfig(
 		 
 		 fileSizeThreshold = 1024*1024,
@@ -50,7 +51,7 @@ public class FileUploadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// multipartRequest를 만들기위한 루트 
 		String uploadFilePath = request.getServletContext().getRealPath("/upload"); //업로드 경로가져오기
-		int uploadFileSizeLimit =1024 * 1024 * 1024; //50메가 바이트 
+		int uploadFileSizeLimit =1024 * 1024 * 200;  
 		String enType ="UTF-8"; //인코딩
 		MultipartRequest multi = new MultipartRequest(request,uploadFilePath,uploadFileSizeLimit,enType, new DefaultFileRenamePolicy());
 		//
@@ -61,7 +62,7 @@ public class FileUploadServlet extends HttpServlet {
 		long currentTime = Calendar.getInstance().getTimeInMillis();	//현재시간
 		String fileRename = currentTime+"_"+fileName+"_artsuwon"; // 파일이름 재정의  
 		
-		
+		System.out.println(uploadFilePath);
 		
 		//	원본파일을 받아와서 파일객체에 담기 
 		File file = new File(uploadFilePath+"\\"+fileName);
@@ -69,7 +70,9 @@ public class FileUploadServlet extends HttpServlet {
 		String newFilePath = uploadFilePath+"\\"+fileRename;
 		
 		File reFile = new File(newFilePath);
-		long fileSize = file.length();
+		long fileSize = reFile.length();
+		
+		System.out.println("파일 사이즈 : " + fileSize);
 		
 		Notice fd = new Notice();
 		fd.setNoticeTitle(noticeTitle);
@@ -83,9 +86,12 @@ public class FileUploadServlet extends HttpServlet {
 		BoardAdminService bService = new BoardAdminServiceImpl();
 		int result = bService.insertFileUpload(fd);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/notice/adminNoticeAllList.do");
+		RequestDispatcher view = request.getRequestDispatcher("/adminNotice/adminNoticeAllList.do");
 		request.setAttribute("result", result>0);
 		view.forward(request, response);
+		
+		
+
 		
 		
 	}

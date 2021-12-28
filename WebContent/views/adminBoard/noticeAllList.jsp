@@ -114,7 +114,7 @@
 	                                                                <td style="text-align: center;"><%=notice.getRegDate()%></td>
 		                                                       		<td>
 				                                                        <div class="btn-group" role="group" style="width: 110px; height: 36px;border-right-style:none;border-right-color:rgb(130, 135, 130); text-align:center;">
-				                                                            <button class="btn btn-light btn-sm" type="button" style="height: 36px; border-style: solid; border-color: rgb(130, 130, 130); border-style: none;">
+				                                                            <button class="btn btn-light btn-sm" type="button" onclick="listUp'<%=notice.getNoticeNo()%>');" style="height: 36px; border-style: solid; border-color: rgb(130, 130, 130); border-style: none;">
 				                                                                <i class="fa fa-star" style="color: rgb(130, 130, 130);"></i>
 				                                                            </button>
 				                                                            <button class="btn btn-sm" type="button" onclick="deletePost('<%=notice.getNoticeNo()%>');" style="color: rgb(130, 135, 130); height: 36px;border-style: solid;border-color:rgb(130,130,130);border-style:none;">
@@ -153,7 +153,7 @@
                                     </div>
 
                                     <div style="margin-bottom: 24px; padding-right: 0px;">
-                                        <form action="/adminNotice/noticePostSearch.do" method="get">
+                                        <form action="/board/noticePostSearch.do" method="get">
                                             <div style="margin-bottom: -26px;padding-right: 0px;margin-left: 42%;">
                                                 <select class="form-select-sm" name="type" style="width: 100px;height: 30px;margin-right: 13px;">
                                                     <option value="noticeTitle" selected>제목</option>
@@ -206,6 +206,10 @@
                     
                     function deletePost(postNo){
                     	location.replace("/adminNotice/deleteAdminPost.do?postNo="+postNo);
+                    }
+                    
+                    function listUp(postNo){
+                    	location.replace("/adminNotice/noticePostListUp.do?postNo="+postNo);
                     }
            		</script>
             </div>

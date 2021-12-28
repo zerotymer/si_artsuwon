@@ -123,5 +123,27 @@ public class BoardAdminServiceImpl implements BoardAdminService {
 	}
 
 
+	@Override
+	public Notice selectFileInfo(int noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Notice fd = bDAO.selectFileInfo(conn,noticeNo);
+		JDBCTemplate.close(conn);
+		return fd;
+	}
+
+
+
+	@Override
+	public int listUp(int noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = bDAO.listUp(conn,noticeNo);
+		if(result==noticeNo)JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		JDBCTemplate.close(conn);
+		return result;
+		
+	}
+
+
 
 }

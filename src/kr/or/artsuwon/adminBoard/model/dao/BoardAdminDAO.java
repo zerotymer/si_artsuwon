@@ -541,13 +541,18 @@ public class BoardAdminDAO {
 	public int uploadFile(Connection conn,Notice notice) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		long fileSize = 0;
+	
+		
+		// 유효성검사
+		if (notice.getNoticeTitle() == null || notice.getNoticeTitle().equals("") ||
+			notice.getNoticeContent() == null || notice.getNoticeContent().equals(""))
+			return -1;
 		
 		
 		//파일명이 null로 들어오면 파일관련컬럼을 널로 처리
 		String query =  "";
 		
-		if(fileSize != 0 ) {
+		if(notice.getFileSize() != 0 ) {
 			query = "INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL,?,?,SYSDATE,0,'N',0,?,?,?,?)";
 		}
 		else 
@@ -555,14 +560,14 @@ public class BoardAdminDAO {
 		query = "INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL,?,?,SYSDATE,0,'N',0,null,null,null,null)";
 		
 		}
-					
+		
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, notice.getNoticeTitle());
 			pstmt.setString(2, notice.getNoticeContent());
 			
-			if(fileSize != 0 ) {	
+			if(notice.getFileSize() != 0 ) {	
 				pstmt.setString(3, notice.getFileName());
 				pstmt.setString(4, notice.getFileRename());
 				pstmt.setString(5, notice.getFilePath());
@@ -570,6 +575,70 @@ public class BoardAdminDAO {
 			}
 			
 			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+
+	
+
+	public Notice selectFileInfo(Connection conn, int noticeNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+				
+		Notice fd = null;
+		
+		String query = "SELECT * FROM NOTICE WHERE NOTICE_NO=? AND NOTICE_DEL_YN='N'";
+		
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+		
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+			{ fd = new Notice();
+			fd.setFileName(rset.getString("file_Name"));
+			fd.setFileRename(rset.getString("file_Rename"));
+			fd.setFilePath(rset.getString("file_Path"));
+			fd.setFileSize(rset.getLong("file_Size"));	
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+
+		return fd;
+			
+	}
+
+
+	public int listUp(Connection conn, int noticeNo) {
+		PreparedStatement pstmt = null;
+		int result =0;
+		
+		String query = " SELECT * FROM NOTICE ORDER BY DECODE(NOTICE_PIN,1,1) WHERE NOTICE_NO=? AND NOTICE_DEL_YN='N'";
+	
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			
+			result =pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

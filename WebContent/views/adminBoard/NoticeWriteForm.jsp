@@ -22,6 +22,8 @@
 </head>
 <body>
 
+<H1>수정 페이지</H1>
+
 <div id="wrapper">
     <!--사이드 네비바 include-->
     <%@include file="/views/adminCommon/side_navi.jsp" %>
@@ -60,7 +62,6 @@
                                                 <span class="date" style="margin-left: 0;padding-left: 0px;transform: translate(-136px);margin-right: 70%;">
                                                     <input type="file" name="file" id="file">
                                                     <span id="size">
-                                                        
                                                     </span>
                                                 </span>
                                             </p>
@@ -71,11 +72,11 @@
                                 <div class="intro"></div>
                                 <div class="text" style="padding-bottom: 8%;padding-top: 10px;">
                                     <textarea class="form-control-sm" name="noticeContent"
-                                              style="width: 100%;height: 500px;" placeholder="내용을 입력하세요"
+                                              style="width: 100%;height: 500px;" 
                                               maxlength="3000"></textarea>
                                     <figure class="figure d-block"></figure>
                                     <hr/>
-                                    <button class="btn btn-light btn-sm"
+                                    <button class="btn btn-light btn-sm" id="fileSubmitBtn"
                                             onclick="location.replace('/adminNotice/adminNoticeAllList.do');"
                                             type="submit" style="width: 61px;height: 28px;margin: 2px;padding: 2px 2px;padding-left: 3px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 90%;border-style: none;border-color: rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);border-left-style: none;
                         border-left-color: rgb(255,255,255);font-size: 13px;text-align: center;
@@ -88,6 +89,40 @@
                     </div>
                 </section>
             </div>
+
+		
+		<script>
+	document.getElementById('file').onchange =function(){
+	var file = document.getElementById('file');
+	var fileSize = file.files[].size/1024/1024;
+	document.getElementById("size").innerHtml ="("+(fileSize.toFixed(3)+"MB)"};
+	
+	document.getElementById('fileSubmitBtn').onclick=function(){
+		var file = document.getElementById('file');
+		var fileSize = file.fies[0].size;
+		if(fileSize>(50*1024*1024))
+		{
+			alert('업로드 가능한 최대사이즈는 50MB 입니다.')
+			return false;
+		}else
+		{
+			return true;
+		}
+		
+	};
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
 
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
