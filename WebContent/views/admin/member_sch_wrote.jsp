@@ -61,7 +61,7 @@
 
 		</nav>
 		<div class="d-flex flex-column" id="content-wrapper">
-			<div id="content">
+			<div id="content1">
 
 				<!--상단 네비바 include1234-->
 				<%@include file="/views/adminCommon/top_navi.jsp"%>
@@ -138,12 +138,12 @@
 
 					<!-- content 시작 -->
 
-					<div id="content">
+					<div id="content2" >
 						
 						<div class="container-fluid">
 							<h3 class="text-dark mb-4">회원관리</h3>
-							<div class="card shadow">
-								<div class="card-header py-3">
+							<div class="card shadow" >
+								<div class="card-header py-3" >
 									<p class="text-primary m-0 fw-bold">작성글 관리</p>
 								</div>
 								<div class="card-body" style="border-radius: 5px;">
@@ -160,7 +160,7 @@
 												</select></label>
 											</div>
 										</div>
-										<div class="col-md-6">
+										<!-- <div class="col-md-6">
 											<div id="dataTable_filter"
 												class="text-md-end dataTables_filter"
 												style="border-radius: 5px;">
@@ -173,7 +173,7 @@
 												</select><label class="form-label"><input
 													class="form-control form-control-sm" type="search"
 													aria-controls="dataTable" placeholder="Search" /></label>
-											</div>
+											</div> -->
 										</div>
 									</div>
 									<div id="dataTable" class="table-responsive table mt-2"
@@ -189,15 +189,18 @@
 											</thead>
 											<tbody>
 											
-												<%for(csBoard b : list) { %>
+												
 												<tr>
 													<td><img class="rounded-circle me-2" width="30"
-														height="30" src="/assets/images/memberPicture.jpg" /><%=b.getCsWriter() %></td>
+														height="30" src="/assets/images/memberPicture.jpg" /><%=keyword %></td>
+													
+													<%for(csBoard b : list){ %>
 													<td><%=b.getCsTitle() %></td>
 													<td>CS</td>
 													<td><%=b.getCsDate() %></td>
+													<%} %>
 												</tr>
-												<%} %>
+												
 												<!-- <tr>
 													<td></td>
 													<td>그여자의 소설 감상평</td>
