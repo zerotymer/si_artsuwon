@@ -68,7 +68,13 @@
 			<legend>기본 정보</legend>
 			이름 : <%=m.getMemberName() %> <br>
 			생년월일 : <%=m.getBirthDate() %> <br>
-			성별 : <%=m.getGender() %><br>
+			성별 :  <%if(m.getGender()=='M'){ %>
+					남자
+				  <%}else{ %>
+				  	여자
+				  <%} %> 
+				  
+			<br>
 			비밀번호 변경 : <input type="button" id="pwdChangeBtn" value="비밀번호 변경"/><br>
 		</fieldset>
 		
