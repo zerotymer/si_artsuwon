@@ -1,5 +1,6 @@
-<%@page import="kr.or.artsuwon.adminBoard.model.vo.Notice"%>
 <%@page import="kr.or.artsuwon.adminMngm.model.vo.Admin"%>
+<%@page import="kr.or.artsuwon.adminBoard.model.vo.Notice"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -53,7 +54,7 @@
            
 	
 	
-	
+
 	<div class="card shadow">
     <div class="col-xxl-1">
         <div id="page" class="page"></div>
@@ -73,24 +74,29 @@
                                 
                                 <div class="btn-group" role="group" style="border-style: none;border-color: var(--bs-gray-100);margin-right: 26px;padding-right: 0px;margin-top: 0px;padding-top: 0px;">
                                 <button class="btn btn-light btn-sm" id="textUpdateBtn" type="submit" style="width: 61px;height: 28px;margin: 2px;padding: 2px 2px;padding-left: 3px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 0;border-style: none;border-color: rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);
-                                border-left-style: none;border-left-color: rgb(255,255,255);font-size: 13px;text-align: right; id="modifyBtn">수정</button>
+                                border-left-style: none;border-left-color: rgb(255,255,255);font-size: 13px;text-align: right;">수정</button>
                                 <button class="btn btn-light btn-sm"  id="deleteBtn" type="Button" style="width: 61px;height: 28px;margin: 2px;padding: 2px 2px;padding-left: 3px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 0;border-style: none;border-color: rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);border-left-style: none;border-left-color: rgb(255,255,255);font-size: 13px;text-align: center;">삭제</button>
                                 <button class="btn btn-light btn-sm" id="menuBtn" type="Button" style="width: 61px;height: 28px;margin: 2px;padding: 2px 2px;padding-left: 3px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 0;border-style: none;border-color: rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);border-left-style: none;border-left-color: rgb(255,255,255);font-size: 13px;text-align: left;">
                                	목록</button></div>
                             </div>
                             <hr style="width: 100%;" />
-                            <p class="text-center"><span class="by"> <span class="fileReName"><%=notice.getFileRename() %></span> </span>
-                             <span class="fileSize"><%=notice.getFileSize() %></span>
+                            	
+                            <p class="text-center"><span class="fileName"><%=notice.getFileName()%>       </span> </span>
+                             <span class="fileSize"><%=notice.getFileSize()/1024%>KB</span> 
+                             <form action="/adminNotice/fileDownload.do" method="post">
+                             <input type="hidden" name="noticeNo" value="<%=notice.getNoticeNo()%>"/>
+                            		<input type="submit" value="다운로드" style="text-align:center"/>
+                            	</form>
                             </p>
                         </div>
-                        
+						                        
                     </section>
-                    <hr />
+                    <hr/>
                     <div class="intro"></div>
                     <div class="text" style="padding-bottom: 8%;padding-top: 10px;">
       
                         
-                     <p class="form-control-sm" style="width: 100%;height: 500px;" placeholder="내용을 입력하세요" wrap="soft" readonly><%=notice.getNoticeContent() %></p>
+                     <p class="form-control-sm" style="width: 100%;height: 500px;" name="noticeContent" placeholder="내용을 입력하세요" wrap="soft" readonly><%=notice.getNoticeContent() %></p>
                         
                        <figure class="figure d-block"></figure>                      
                         <hr/>
@@ -110,13 +116,23 @@
 			$('#textUpdateBtn').click(function(){
 
 				var formTag= document.createElement("form");
-				formTag.setAttribute("action","/adminNotice/noticePostUpdate.do");
+				formTag.setAttribute("action","/adminNotice/noticePostReadUpdate.do");
 				formTag.setAttribute("method","post");
 				
 				var inputTag = document.createElement("input");
 				inputTag.setAttribute("type","hidden");
+				inputTag.setAttribute("name","noticeNo");
 				inputTag.setAttribute("value","<%=notice.getNoticeNo()%>");
 				
+				formTag.append(inputTag);
+				
+				
+				var inputTag = document.createElement("input");
+				inputTag.setAttribute("type","hidden");
+				inputTag.setAttribute("name","currentPage");
+				inputTag.setAttribute("value","<%=currentPage%>");
+				
+				formTag.append(inputTag);
 				
 				//해당 문서안에 새롭게 만든 formTag를 추가시켜줘야한다.(연결시켜준다라는 의미)
 				document.body.appendChild(formTag);
@@ -165,14 +181,12 @@
 			</script>
 
 
-
-
-
+		
 
  
                       
                          
-                            
+                            	
                             	</div> 
                             </div>
                         </div>

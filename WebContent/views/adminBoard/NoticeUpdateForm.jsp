@@ -1,6 +1,5 @@
 <%@page import="kr.or.artsuwon.adminBoard.model.vo.Notice"%>
 
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -37,6 +36,10 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 	   <%
 	Notice notice =(Notice)request.getAttribute("notice"); 
 	%>
+		<% 
+	int currentPage =(int)request.getAttribute("currentPage");
+	
+	%>
 	
 	   
 	   
@@ -47,15 +50,16 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
     </div>
     <section class="article-clean">
         <div class="container" id="writeForm">
+        <form action="/adminNotice/noticePostUpdate.do" method="post" id="modifyNotice">
             <div class="row text-capitalize" style="padding-top: 70px;height: auto;padding-bottom: 15%;">
                 <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2" style="margin-top: -50px;">
                     <section class="article-list">
                         <div class="container" style="padding-top: -3px;">
                             <p class="text-center"><span class="by">공지사항</span><span class="date"></span></p>
                             
-                          <form action="updateAction.jsp" method="post" id="updateAction">        
                           
-                            <hr/><input class="form-control-sm" name="noticeTitle" type="text" style="width: 80%;height: 20px;transform: translate(47px) scale(1.12);border-top-style: solid;border-top-color: rgb(237,237,237);
+                          
+                            <hr/><input class="form-control-sm" name="noticeTitle"  type="text" style="width: 80%;height: 20px;transform: translate(47px) scale(1.12);border-top-style: solid;border-top-color: rgb(237,237,237);
                             border-right-style: solid;border-right-color: rgb(237,237,237);border-left-style: solid;border-left-color: rgb(237,237,237);margin-bottom: 0px;margin-top: 20px;" value="<%=notice.getNoticeTitle() %>" /></
                             <div style="padding: 0px;padding-left: 0;margin: 48px 0px 0px 488.8px;margin-left: 69%;margin-top: 47px;margin-right: 0px;font-size: 12px;padding-right: 0px;">
                                 <div class="btn-group" role="group" style="border-style: none;border-color: var(--bs-gray-100);margin-right: 26px;padding-right: 0px;margin-top: 0px;padding-top: 0px;"></div>
@@ -63,7 +67,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                             <div>
                                 <p class="text-center" style="margin-top: 0px;padding-top: 9px;"><span class="date" style="margin-left: 0;padding-left: 0px;transform: translate(-136px);margin-right: 70%;">
                                 
-                                
+                                <input type="hidden" name="noticeNo" value="<%=notice.getNoticeNo() %>"/>
                                 <button class="btn btn-secondary btn-sm" type="submit" style="width: 56px;height: 28px;margin: 0px;padding: 0;padding-left: 0px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 0;border-style: none;border-color: 
                                 rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);border-left-style: none;border-left-color: rgb(255,255,255);
                                 font-size: 13px;text-align: center;">업로드</button><%=notice.getFileRename() %></span></p>
@@ -73,53 +77,46 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                     <hr />
                     <div class="intro"></div>
                     <div class="text" style="padding-bottom: 8%;padding-top: 10px;">
-                    <textarea class="form-control-sm"  name="noticeContent" style="width: 100%;height: 500px;" maxlength="3000" value="<%=notice.getNoticeContent() %>"> </textarea>
+                    <textarea class="form-control-sm" name="noticeContent"
+                                              style="width: 100%;height: 500px;" 
+                                              maxlength="3000"> <%=notice.getNoticeContent()%></textarea> 
                         <figure class="figure d-block"></figure>
-                        <hr /><button class="btn btn-light btn-sm" id="#modifyBtn"
+                        <hr /><button class="btn btn-light btn-sm" id="modifyBtn"
                         type="submit"  style="width: 61px;height: 28px;margin: 2px;padding: 2px 2px;padding-left: 3px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 90%;border-style: none;border-color: rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);border-left-style: none;
                         border-left-color: rgb(255,255,255);font-size: 13px;text-align: center; 
-                        ">완료</button>
+                        ">수정하기</button>
                     </div>
                 </div>
             </div>
+            </form>
         </div>
     </section>
 
-<input type="hidden" name="boardNo" value="<%=notice.getNoticeNo() %>"/>
-	<input name="noticeTitle"  style="color: rgb(0,0,0); value="<%=notice.getNoticeTitle() %>"/>
-	
-	
-</form>
+
+
 
 </div>
 
 
 
               
-                      <script>
-                      $('#modifyBtn').click(function(){
-                    
-                    	  var text = $(this).text();
-                    	  
-                    	  if(text=='수정')
-                    	{
-                    		  $(this).text('완료');
-                    		  $('#contentArea').prop('disable',false);
-                    	
-                    		  
-                    	}else if(text='완료')
-                    		{
-                    			$('#textUpdateForm').submit();
-                    		}
-                    	  
-                    	  
-                      });
-                    
-                      </script>
-                      
+			<script>
+			$('#modifyBtn').click(function(){
 
-
-
+				var $formTag = $('#modifyNotice');
+				
+				
+				var inputTag = document.createElement("input");
+				inputTag.setAttribute("type","hidden");
+				inputTag.setAttribute("name","currentPage");
+				inputTag.setAttribute("value",<%=currentPage%>);
+				
+				$formTag.append(inputTag);
+				formTag.submit();
+				
+				});
+		              
+			</script>
 
 
 

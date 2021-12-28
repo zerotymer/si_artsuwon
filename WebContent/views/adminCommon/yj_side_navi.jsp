@@ -40,8 +40,14 @@
 		                    <span style="font-size:17px;">통계</span>
 	                    </a>
 	                    
+<<<<<<< HEAD
+	                    <a class="nav-link active" href="/views/adminBoard/noticeAllList.jsp">
+		                    <i class="fa fa-th-large">
+		                    </i>
+=======
 	                    <a class="nav-link active" href="table.html">
 		                    <i class="fa fa-th-large"></i>
+>>>>>>> b06d86d2824bfd6978c4d090cc7f422b8bbd88c4
 		                    <span style="font-size:17px;">게시판 관리</span>
 	                    </a>
 	                    

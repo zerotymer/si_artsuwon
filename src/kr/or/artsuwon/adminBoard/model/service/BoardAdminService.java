@@ -30,4 +30,8 @@ public interface BoardAdminService {
   	int deleteAdminPost(String[] boardNoValues);
 
   	int insertFileUpload(Notice notice);
+
+	Notice selectFileInfo(int noticeNo);
+
+	int listUp(int noticeNo);
 }

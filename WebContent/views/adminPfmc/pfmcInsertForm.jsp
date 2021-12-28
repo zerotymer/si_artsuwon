@@ -47,7 +47,8 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                     	<label class="form-label" for="category" style="margin-bottom:0;"><strong>공연 분류</strong><br></label>
                                     	<select class="form-select" name="category">
                                             <option value="정기공연/관현악">정기공연/관현악</option>
-                                            <option value="정기공연/관현악">시민공연/특별공연</option>
+                                            <option value="정기공연/실내악">정기공연/실내악</option>
+                                            <option value="시민공연/특별공연">시민공연/특별공연</option>
                                             <option value="시민공연/찾아가는음악회">시민공연/찾아가는음악회</option>
                                             <option value="교육공연/일반인교육">교육공연/일반인교육</option>
                                         </select>
