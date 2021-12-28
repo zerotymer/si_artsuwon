@@ -273,7 +273,8 @@
     height: 36px;
     font: bold 14px/40px 'Noto Sans KR', sans-serif;
 }
-.my-span:hover .my-ul {
+/* .my-span:hover .my-ul, */
+.func-mypageOver {
     display: flex;
         flex-direction: column;
 }

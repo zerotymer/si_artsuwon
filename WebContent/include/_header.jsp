@@ -47,11 +47,11 @@
       </ul>
     </nav>
     <div class="icons">
-      <span class="my-span">
+      <span class="my-span" id="mypageIcon">
         <img class="icon" src="/assets/icon/member.svg" />
-        <ul class="my-ul">
+        <ul class="my-ul" id="mypageSubmenu">
           <li id="login">
-            <a href="1">로그인</a>
+            <a href="/memberIndex.jsp">로그인</a>
           </li>
           <li>
             <a href="1">마이페이지</a>
@@ -81,3 +81,4 @@
   </div>
   <div class="header-subnav"></div>
 </div>
+<script src=/assets/js/header.js></script>

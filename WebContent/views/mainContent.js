@@ -47,13 +47,11 @@ function initailize_card() {
         data: { count: 4 },
         dataType: 'json',
         success: out => {
-            // console.log(out);
             let cards = $('.perf-cards');
             cards.children().remove();
             var map = out.forEach( item => {
                 cards.append(createCard(item));
             });
-            // console.log(map);
         },
         error: err => console.log('ajax 요청 실패: ', err)
     })
@@ -66,7 +64,6 @@ function initailize_card() {
  * @author 신현진
  */
 function createCard(card) {
-    console.log(card);
     // 상세정보 - 내용
     let content = document.createElement('div');            // 상세정보 - 내용 div
 
