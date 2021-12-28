@@ -21,4 +21,12 @@ public interface ReservationService {
      * @author 신현진
      */
     ArrayList<SeatInfomation> getAllSeatsByRestriction(int restriction);
+
+    /**
+     * 새로운 예약정보를 추가한다.
+     * @param reservation 예약정보
+     * @return 성공여부
+     * @author 신현진
+     */
+    boolean insertReservation(Reservation reservation);
 }

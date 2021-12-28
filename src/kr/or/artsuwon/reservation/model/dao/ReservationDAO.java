@@ -89,4 +89,33 @@ public class ReservationDAO {
 
         return list;
     }
+
+    /**
+     * 새로운 예약정보를 추가하는 메서드
+     * @param conn 연걸정보
+     * @param reservation  예약정보
+     * @return 성공여부, 성공시 1, 실패시 0
+     * @author 신현진
+     */
+    public int insertReservation(Connection conn, Reservation reservation) {
+        final String QUERY =
+                "INSERT INTO reservation " +
+                "VALUES (TO_CHAR(SYSDATE, 'YYYYMMDD-') || reservation_no.nextval, ?, ?, 'card', ?, SYSDATE, ?, ?)";
+        int result = 0;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(QUERY)) {
+            pstmt.setInt(1, reservation.getPerformanceNo());
+            pstmt.setString(2, reservation.getInvoiceNo());
+            pstmt.setString(3, reservation.getReservationId());
+            pstmt.setInt(4, reservation.getReservationPrice());
+            pstmt.setString(5, reservation.getSeatCode());
+
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } // AutoClosable pstmt
+
+        return result;
+    }
 }
