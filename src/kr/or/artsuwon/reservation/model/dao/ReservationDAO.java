@@ -20,7 +20,7 @@ public class ReservationDAO {
      * @author 신현진
      */
     public ArrayList<Reservation> selectAllReservationByPerfSchedule(Connection conn, int scheduleNo) {
-        final String QUERY = "SELECT * FROM reservation WHERE schedule_no = ? ";
+        final String QUERY = "SELECT * FROM reservation WHERE pfmc_no = ? ";
         ResultSet rset = null;
         ArrayList<Reservation> list = new ArrayList<>();
 
@@ -30,14 +30,14 @@ public class ReservationDAO {
 
             while (rset.next()) {
                 Reservation reservation = new Reservation(
-                    rset.getString("reservation_no"),
-                    rset.getInt("pfmc_no"),
-                    rset.getString("invoice_no"),
-                    rset.getString("schedule_no"),
-                    rset.getString("reservation_id"),
-                    rset.getDate("reservation_date"),
-                    rset.getInt("reservation_price"),
-                    rset.getString("seat_code"));
+                    rset.getString("RESERAVATION_NO"),
+                    rset.getInt("PFMC_NO"),
+                    rset.getString("INVOICE_NO"),
+                    rset.getString("PAY_METHOD"),
+                    rset.getString("RESERVATION_ID"),
+                    rset.getDate("RESERVATION_DATE"),
+                    rset.getInt("RESERVATION_PRICE"),
+                    rset.getString("SEAT_CODE"));
                 list.add(reservation);
             }
 
@@ -52,7 +52,41 @@ public class ReservationDAO {
     }
 
 
-    public ArrayList<SeatInfomation> selectAllSeatsByRestriction(Connection conn, char restriction) {
-        final String QUERY = "SELECT * FROM seat_info WHERE restriction < 1";
+    /**
+     * 좌석정보를 구하는 메서드
+     * @param conn 연결정보
+     * @param restriction 제약조건
+     * @return 좌석정보 리스트
+     * @author 신현진
+     */
+    public ArrayList<SeatInfomation> selectAllSeatsByRestriction(Connection conn, int restriction) {
+        final String QUERY = "SELECT * FROM seat_info WHERE restriction <= ?";
+        ResultSet rset = null;
+        ArrayList<SeatInfomation> list = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(QUERY)) {
+            pstmt.setInt(1, restriction);
+            rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+                SeatInfomation seatInfomation = new SeatInfomation(
+                    rset.getString("CODE"),
+                    rset.getString("LOCATION").charAt(0),
+                    rset.getString("GRADE").charAt(0),
+                    rset.getString("SPECIAL_NEED").charAt(0),
+                    rset.getString("RESTRICTION").charAt(0),
+                    rset.getString("MEMO"));
+
+                list.add(seatInfomation);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(rset);
+            // AutoClosable pstmt
+        }
+
+        return list;
     }
 }

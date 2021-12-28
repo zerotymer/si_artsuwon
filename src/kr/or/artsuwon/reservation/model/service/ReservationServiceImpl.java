@@ -3,6 +3,7 @@ package kr.or.artsuwon.reservation.model.service;
 import kr.or.artsuwon.common.JDBCTemplate;
 import kr.or.artsuwon.reservation.model.dao.ReservationDAO;
 import kr.or.artsuwon.reservation.model.vo.Reservation;
+import kr.or.artsuwon.reservation.model.vo.SeatInfomation;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -22,6 +23,20 @@ public class ReservationServiceImpl implements ReservationService {
     public ArrayList<Reservation> getAllReservationByPerfSchedule(int scheduleNo) {
         Connection conn = JDBCTemplate.getConnection();
         ArrayList<Reservation> list = rDAO.selectAllReservationByPerfSchedule(conn, scheduleNo);
+        JDBCTemplate.close(conn);
+        return list;
+    }
+
+    /**
+     * 좌석정보를 조회하는 메서드
+     * @param restriction 제약조건
+     * @return 좌석정보 리스트
+     * @author 신현진
+     */
+    @Override
+    public ArrayList<SeatInfomation> getAllSeatsByRestriction(int restriction) {
+        Connection conn = JDBCTemplate.getConnection();
+        ArrayList<SeatInfomation> list = rDAO.selectAllSeatsByRestriction(conn, restriction);
         JDBCTemplate.close(conn);
         return list;
     }
