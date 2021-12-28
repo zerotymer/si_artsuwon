@@ -63,3 +63,7 @@ function setCategoryCSS(element) {
         case '교육공연': element.classList.add('education-invert-color'); break;
     }
 }
+
+function reserve(scheduleNo){
+    var win = window.open(`/views/reservation/book.jsp?scheduleNo=${scheduleNo}`, '_popup', "height: 620px, width: 1000px");
+}

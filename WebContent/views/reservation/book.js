@@ -160,6 +160,7 @@ function toggleSeat(code) {
     let selected = document.getElementById('perf-selected');
     let price = document.getElementById('perf-price');
     if (seat.classList.contains("seat-reserved") || seat.classList.contains("seat-restrict")) {
+        alert("선택불가능한 좌석입니다.");
         return;
     } else if (seat.classList.contains("seat-selected")) {
         seat.classList.remove("seat-selected");
@@ -189,9 +190,10 @@ function setSeatData(id, data) {
 }
 
 function setReservedSeat(id) {
-    let seat = document.getElementById(id);
+    console.log(id);
+    let seat = document.getElementById(id.trim());
     (seat == undefined) && console.log(id);
-    seat.classList.add('seat-resereved');
+    seat.classList.add('seat-reserved');
 }
 
 
@@ -253,8 +255,8 @@ function initializeSeatInfo(scheduleNo) {
         dataType: 'json',
         data: { scheduleNo: scheduleNo },
         success: (data) => {
-            Object.values(data).forEach( value => {
-                setReservedSeat(value);
+            Object.keys(data).forEach( key => {
+                setReservedSeat(key.trim());
             });
         },
         error: () => console.log('ajax 통신 에러3')
@@ -273,7 +275,8 @@ function checkPay() {
     var buyer = document.getElementById('buyer').value;
     var title = document.getElementById('perf-title').innerText;
     var price = priceObject[seat.getAttribute('grade')];
-    var uid = `artsuwon-${schedule}-` + new Date().getTime();
+    var scheduleNum = document.getElementById('scheduleNoInput').value;
+    var uid = `artsuwon-${scheduleNum}-` + new Date().getTime();
     
     // 결제창 호출
     IMP.request_pay({
@@ -289,9 +292,9 @@ function checkPay() {
         rsp.success || alert("결제 실패");
         if (rsp.success) {
             // submit 호출
-            document.getElementById('priceInput').value = price;
+            document.getElementById('priceInput').value = rsp.paid_amount;
             document.getElementById('seatCodeInput').value = selectedSeatCode;
-            document.getElementById('uidInput').value = uid;
+            document.getElementById('uidInput').value = rsp.imp_uid;
             document.getElementById('bookForm').submit();
         }
     });

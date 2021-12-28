@@ -49,6 +49,7 @@ public class PerfDetailInfoServlet extends HttpServlet {
 		request.setAttribute("date", dateFormat.format(tuple.getFirst().getPerformanceDate()));
 		request.setAttribute("location", tuple.getFirst().getLocation());
 		request.setAttribute("price", tuple.getFirst().getPrice());
+		request.setAttribute("scheduleNo", scheduleNo);
 		view.forward(request, response);
 	}
 

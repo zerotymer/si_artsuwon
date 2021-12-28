@@ -24,7 +24,7 @@ public class BoardDAO {
 		// 모든 게시글을 가져오는 Query 구문
 		String query = " SELECT * " +
 				"	FROM(SELECT ROW_NUMBER() OVER(order BY NOTICE_NO DESC)AS NUM,NOTICE.* " +
-				"	FROM NOTICE) " + "	WHERE NUM BETWEEN ? AND ?";
+				"	FROM NOTICE) " + " WHERE NOTICE_DEL_YN='N' AND NUM BETWEEN ? AND ?";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -385,7 +385,7 @@ public class BoardDAO {
 		// 모든 게시글을 가져오는 Query 구문
 		String query = " SELECT * " +
 				"	FROM(SELECT ROW_NUMBER() OVER(order BY NEWS_NO DESC)AS NUM,NEWS.* " +
-				"	FROM NEWS) " + "	WHERE NUM BETWEEN ? AND ?";
+				"	FROM NEWS) " + "	WHERE NEWS_DEL_YN='N' AND NUM BETWEEN ? AND ?";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -675,6 +675,495 @@ public class BoardDAO {
 		}
 		
 		return boardNo;
+	}
+
+
+
+	public ArrayList<Board> PhotoSelect(Connection conn, int currentPage, int recordCountPerPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = new ArrayList<Board>();
+
+		int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
+		int end = currentPage * recordCountPerPage;
+
+		// 모든 게시글을 가져오는 Query 구문
+		String query = " SELECT * " +
+				"	FROM(SELECT ROW_NUMBER() OVER(order BY PHOTO_NO DESC)AS NUM,PHOTO.* " +
+				"	FROM PHOTO) " + "	WHERE NUM BETWEEN ? AND ?";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				Board board = new Board();
+
+				board.setPhotoNo(rset.getInt("Photo_No"));
+				board.setPhotoTitle(rset.getString("Photo_title"));
+				board.setRegDate(rset.getDate("photo_date"));
+				list.add(board);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return list;
+	}
+
+
+
+	public String photoGetPageNavi(Connection conn, int naviCountPerPage, int recordCountPerPage, int currentPage) {
+		int recordTotalCount = totalCount(conn); // 전체 글 개수
+
+		int pageTotalCount = 0; // 전체 페이지 개수
+
+		pageTotalCount = (int) Math.ceil(recordTotalCount / (double) recordCountPerPage);
+
+		int startNavi = (((currentPage - 1) / naviCountPerPage) * naviCountPerPage) + 1;
+		int endNavi = startNavi + (naviCountPerPage - 1);
+
+		if (endNavi > pageTotalCount) 
+		{
+			endNavi = pageTotalCount;
+		}
+
+		// PageNavi 모양 만들기
+
+		StringBuilder sb = new StringBuilder();
+		
+		if(startNavi!=1)
+		{
+			sb.append("<a class='prev' href='/board/PhotoAllSelect.do?currentPage="+(startNavi-1)+"'> < </a>	");
+		}else
+		{
+			sb.append("<a class='prev' href='/board/PhotoAllSelect.do?currentPage="+(startNavi-1)+"'> < </a>	");
+		}
+		
+		for(int i=startNavi; i<=endNavi;i++)
+		{
+			if(i==currentPage)
+			{
+				sb.append("<a href='/board/PhotoAllSelect.do?currentPage="+i+"'><B style='font-size:1.2em'>"+i+"</B></a> ");
+			}else
+			{
+				sb.append("<a  href='/board/PhotoAllSelect.do?currentPage="+i+"'>"+i+"</a> ");
+			}
+			
+		}
+		
+		if(endNavi!=pageTotalCount)
+		{
+			sb.append(" <a class='next' href='/board/PhotoAllSelect.do?currentPage="+(endNavi+1)+"'> > </a> ");
+		}else
+		{
+			sb.append(" <a class='next' href='/board/PhotoAllSelect.do?currentPage="+(endNavi+1)+"'> > </a> ");
+		}
+		
+		
+		
+		return sb.toString();
+	}
+
+
+
+	public Board PhotoSelectOnePost(Connection conn, int boardNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		Board board = null;
+
+		String query = "	SELECT*FROM PHOTO " + 
+						"	WHERE PHOTO_NO=? AND PHOTO_DEL_YN='N'";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				board = new Board();
+				board.setPhotoNo(rset.getInt("Photo_No"));
+				board.setPhotoTitle(rset.getString("Photo_title"));
+				board.setPhotoContent(rset.getString("Photo_Content"));
+				board.setRegDate(rset.getDate("Photo_date"));
+				board.setPhotoRoute(rset.getString("Photo_Route"));
+
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return board;
+	}
+
+
+
+	public ArrayList<Board> PhotoAllPostPageList(Connection conn, int currentPage, int recordCountPerPage,
+			String keyword, String type) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = new ArrayList<Board>();
+		
+		
+		int start =  currentPage * recordCountPerPage - (recordCountPerPage-1);
+		int end = currentPage * recordCountPerPage;
+		
+		
+		String query =" SELECT * " + 
+				"	FROM(SELECT ROW_NUMBER() OVER(ORDER BY PHOTO_NO DESC)AS NUM,PHOTO.* " + 
+				"	FROM PHOTO " + 
+				"	WHERE PHOTO_DEL_YN='N' AND PHOTO_TITLE LIKE ? " + 
+				"	) " + 
+				"	WHERE NUM BETWEEN ? AND ?";  
+		
+
+		try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, "%"+keyword+"%");
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next())
+				{
+					Board board = new Board();
+					
+					board.setPhotoNo(rset.getInt("Photo_No"));
+					board.setPhotoTitle(rset.getString("Photo_title"));
+					board.setPhotoContent(rset.getString("Photo_content"));
+					board.setRegDate(rset.getDate("Photo_Date"));
+					board.setEndYN(rset.getString("Photo_del_yn").charAt(0));
+					
+					list.add(board);
+				}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+		
+	}
+
+
+
+	public String PhotoSearchPageNavi(Connection conn, int naviCountPerPage, int recordCountPerPage, int currentPage,
+			String keyword, String type) {
+		int recordTotalCount = noticeTotalSearchCount(conn,keyword,type); //전체 글 개수
+
+		int pageTotalCount = 0; // 전체 페이지 개수
+		
+		pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
+
+		int startNavi = (((currentPage-1) / naviCountPerPage) * naviCountPerPage) + 1;
+		
+		int endNavi = startNavi + (naviCountPerPage-1);
+		
+	
+		if(endNavi > pageTotalCount)
+		{
+			endNavi = pageTotalCount;
+		}
+		
+		// PageNavi 모양 만들기
+		
+		StringBuilder sb = new StringBuilder();
+		
+		if(startNavi!=1)
+		{
+			sb.append("<a class='prev' href='/board/PhotoPostSearch.do?currentPage="+(startNavi-1)+"&keyword="+keyword+"'> < </a>");
+		}else
+		{
+			sb.append("<a class='prev' href='/board/PhotoPostSearch.do?currentPage="+(startNavi-1)+"&keyword="+keyword+"'> < </a>	");
+		}
+		
+		for(int i=startNavi; i<=endNavi;i++)
+		{
+			if(i==currentPage)
+			{
+				sb.append("<a href='/board/PhotoPostSearch.do?currentPage="+i+"&keyword="+keyword+"'><B style='font-size:1.2em'>"+i+"</B></a> ");
+			}else
+			{
+				sb.append("<a  href='/board/PhotoPostSearch.do?currentPage="+i+"&keyword="+keyword+"'>"+i+"</a> ");
+			}
+			
+		}
+		
+		if(endNavi!=pageTotalCount)
+		{
+			sb.append(" <a class='next' href='/board/PhotoPostSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"'> > </a> ");
+		}else
+		{
+			sb.append(" <a class='next' href='/board/PhotoPostSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"'> > </a> ");
+		}
+		
+		
+		
+		return sb.toString();
+}
+
+
+
+	public ArrayList<Board> VideoSelect(Connection conn, int currentPage, int recordCountPerPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = new ArrayList<Board>();
+
+		int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
+		int end = currentPage * recordCountPerPage;
+
+		// 모든 게시글을 가져오는 Query 구문
+		String query = " SELECT * " +
+				"	FROM(SELECT ROW_NUMBER() OVER(order BY VIDEO_NO DESC)AS NUM,VIDEO.* " +
+				"	FROM VIDEO) " + "	WHERE NUM BETWEEN ? AND ?";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				Board board = new Board();
+
+				board.setVideoNo(rset.getInt("Video_No"));
+				board.setVideoTitle(rset.getString("Video_title"));
+				board.setRegDate(rset.getDate("Video_date"));
+				list.add(board);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return list;
+	}
+
+
+
+	public String VideoGetPageNavi(Connection conn, int naviCountPerPage, int recordCountPerPage, int currentPage) {
+		int recordTotalCount = totalCount(conn); // 전체 글 개수
+
+		int pageTotalCount = 0; // 전체 페이지 개수
+
+		pageTotalCount = (int) Math.ceil(recordTotalCount / (double) recordCountPerPage);
+
+		int startNavi = (((currentPage - 1) / naviCountPerPage) * naviCountPerPage) + 1;
+		int endNavi = startNavi + (naviCountPerPage - 1);
+
+		if (endNavi > pageTotalCount) 
+		{
+			endNavi = pageTotalCount;
+		}
+
+		// PageNavi 모양 만들기
+
+		StringBuilder sb = new StringBuilder();
+		
+		if(startNavi!=1)
+		{
+			sb.append("<a class='prev' href='/board/VideoAllSelect.do?currentPage="+(startNavi-1)+"'> < </a>	");
+		}else
+		{
+			sb.append("<a class='prev' href='/board/VideoAllSelect.do?currentPage="+(startNavi-1)+"'> < </a>	");
+		}
+		
+		for(int i=startNavi; i<=endNavi;i++)
+		{
+			if(i==currentPage)
+			{
+				sb.append("<a href='/board/VideoAllSelect.do?currentPage="+i+"'><B style='font-size:1.2em'>"+i+"</B></a> ");
+			}else
+			{
+				sb.append("<a  href='/board/VideoAllSelect.do?currentPage="+i+"'>"+i+"</a> ");
+			}
+			
+		}
+		
+		if(endNavi!=pageTotalCount)
+		{
+			sb.append(" <a class='next' href='/board/VideoAllSelect.do?currentPage="+(endNavi+1)+"'> > </a> ");
+		}else
+		{
+			sb.append(" <a class='next' href='/board/VideoAllSelect.do?currentPage="+(endNavi+1)+"'> > </a> ");
+		}
+		
+		
+		
+		return sb.toString();
+	}
+
+
+
+	public Board VideoSelectOnePost(Connection conn, int boardNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		Board board = null;
+
+		String query = "	SELECT*FROM VIDEO " + 
+						"	WHERE VIDEO_NO=? AND VIDEO_DEL_YN='N'";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				board = new Board();
+				board.setVideoNo(rset.getInt("Video_No"));
+				board.setVideoTitle(rset.getString("Video_title"));
+				board.setVideoContent(rset.getString("Video_Content"));
+				board.setRegDate(rset.getDate("Video_date"));
+				board.setVideoRoute(rset.getString("Video_Route"));
+
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return board;
+	}
+
+
+
+	public ArrayList<Board> VideoAllPostPageList(Connection conn, int currentPage, int recordCountPerPage,
+			String keyword, String type) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = new ArrayList<Board>();
+		
+		
+		int start =  currentPage * recordCountPerPage - (recordCountPerPage-1);
+		int end = currentPage * recordCountPerPage;
+		
+		
+		String query =" SELECT * " + 
+				"	FROM(SELECT ROW_NUMBER() OVER(ORDER BY VIDEO_NO DESC)AS NUM,VIDEO.* " + 
+				"	FROM VIDEO " + 
+				"	WHERE VIDEO_DEL_YN='N' AND VIDEO_TITLE LIKE ? " + 
+				"	) " + 
+				"	WHERE NUM BETWEEN ? AND ?";  
+		
+
+		try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, "%"+keyword+"%");
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next())
+				{
+					Board board = new Board();
+					
+					board.setVideoNo(rset.getInt("Video_No"));
+					board.setVideoTitle(rset.getString("Video_title"));
+					board.setVideoContent(rset.getString("Video_content"));
+					board.setRegDate(rset.getDate("Video_Date"));
+					board.setEndYN(rset.getString("Video_del_yn").charAt(0));
+					
+					list.add(board);
+				}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+		
+	}
+
+
+
+	public String VideoSearchPageNavi(Connection conn, int naviCountPerPage, int recordCountPerPage, int currentPage,
+			String keyword, String type) {
+
+			int recordTotalCount = noticeTotalSearchCount(conn,keyword,type); //전체 글 개수
+
+			int pageTotalCount = 0; // 전체 페이지 개수
+			
+			pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
+
+			int startNavi = (((currentPage-1) / naviCountPerPage) * naviCountPerPage) + 1;
+			
+			int endNavi = startNavi + (naviCountPerPage-1);
+			
+		
+			if(endNavi > pageTotalCount)
+			{
+				endNavi = pageTotalCount;
+			}
+			
+			// PageNavi 모양 만들기
+			
+			StringBuilder sb = new StringBuilder();
+			
+			if(startNavi!=1)
+			{
+				sb.append("<a class='prev' href='/board/VideoPostSearch.do?currentPage="+(startNavi-1)+"&keyword="+keyword+"'> < </a>");
+			}else
+			{
+				sb.append("<a class='prev' href='/board/VideoPostSearch.do?currentPage="+(startNavi-1)+"&keyword="+keyword+"'> < </a>	");
+			}
+			
+			for(int i=startNavi; i<=endNavi;i++)
+			{
+				if(i==currentPage)
+				{
+					sb.append("<a href='/board/VideoPostSearch.do?currentPage="+i+"&keyword="+keyword+"'><B style='font-size:1.2em'>"+i+"</B></a> ");
+				}else
+				{
+					sb.append("<a  href='/board/VideoPostSearch.do?currentPage="+i+"&keyword="+keyword+"'>"+i+"</a> ");
+				}
+				
+			}
+			
+			if(endNavi!=pageTotalCount)
+			{
+				sb.append(" <a class='next' href='/board/VideoPostSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"'> > </a> ");
+			}else
+			{
+				sb.append(" <a class='next' href='/board/VideoPostSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"'> > </a> ");
+			}
+			
+			
+			
+			return sb.toString();
 	}
 	
 	
