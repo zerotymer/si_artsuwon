@@ -24,21 +24,34 @@
             integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
             crossorigin="anonymous"></script>
 
-	<style>
-		fieldset {
-			width: 400px;
-			height: 500px;
-			margin: 0 auto;
-		}
-		legend {
-			text-align: center;
-		}
-		img{
-			width : 200px;
-			height : 50px;
-			margin: 0 auto;
-		}
-	</style>
+<style>
+    .wrapper{
+        box-sizing: border-box;
+        background-color: aliceblue;
+        border: 1px solid black;
+        width: 70%;
+        height: 1000px;
+        margin: 0 auto;
+    }
+    .info{
+        box-sizing: border-box;
+        background-color: aqua;
+        border: 1px solid black;
+        width: 100%;
+        height: 180px;
+        float: left;
+        
+    }
+    .join{
+        box-sizing: border-box;
+        background-color: beige;
+        border: 1px solid black;
+        width: 100%;
+        height: 820px;
+        float: left;
+    }
+    
+</style>
 
 </head>
 <body>
@@ -49,10 +62,19 @@
 </div>
 
 
+<!-- Header -->
+<%@ include file="/include/_header.jsp" %>
 
-
-
-
+<div class="wrapper">
+        <div class="info">
+            <H2>회원가입</H2><br>
+            세계 최고의 교향악단으로 거듭나기 위한 수원시향은 늘 대중에게 한걸음 가까이 다가서기 위해 노력하고 있습니다.<br>
+            클래식 음악을 사랑하는 서울시향의 모든 회원님들께 공연정보와 다양한 혜택을 제공해 드립니다.
+        </div>
+        <div class="join">
+            
+        </div>
+</div>
 
 	
 	
@@ -405,7 +427,9 @@
 	</script>
 	
 	
-	
+
+<!-- footer -->
+<%@ include file="/include/_footer.jsp" %>
 	
 	
 	
