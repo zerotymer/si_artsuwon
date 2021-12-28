@@ -1,7 +1,6 @@
 package kr.or.artsuwon.board.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,18 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.artsuwon.board.model.service.BoardService;
 import kr.or.artsuwon.board.model.service.BoardServiceImpl;
+import kr.or.artsuwon.board.model.vo.Board;
 
 /**
- * Servlet implementation class NoticePostSearchServlet
+ * Servlet implementation class NewsSelectContentServlet
  */
-@WebServlet("/board/NoticePostSearch.do")
-public class NoticePostSearchServlet extends HttpServlet {
+@WebServlet("/board/NewsSelectContent.do")
+public class NewsSelectContentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticePostSearchServlet() {
+    public NewsSelectContentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,33 +32,18 @@ public class NoticePostSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int currentPage;
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
-		if(request.getParameter("currentPage")==null)
-		{
-
-			currentPage=1;
-		}else {
-			currentPage=Integer.parseInt(request.getParameter("currentPage"));
-		}
-		
-
-		
-		//인코딩
-		request.setCharacterEncoding("UTF-8");
-		
-		String keyword = request.getParameter("keyword");
-		String type=request.getParameter("type");
-		
-		//비즈니스로직
 		BoardService bService = new BoardServiceImpl();
-		HashMap<String,Object> map = bService.NoticeSearchPost(currentPage,keyword,type);
+		Board board = bService.NewsSelectOnePost(boardNo);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/board/notice-board.jsp");
+
+		RequestDispatcher view = request.getRequestDispatcher("/views/board/news-board-content.jsp");
 		
-		request.setAttribute("pageDataMap", map);
+		request.setAttribute("board", board);
 		request.setAttribute("currentPage", currentPage);
-		request.setAttribute("keyword", keyword);
+		
 		view.forward(request, response);
 	}
 

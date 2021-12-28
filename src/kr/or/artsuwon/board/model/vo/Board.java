@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Board {
 	
+	private String adminId;
 	private int noticeNo;
 	private String noticeTitle;
 	private String noticeContent;
@@ -29,10 +30,11 @@ public class Board {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Board(int noticeNo, String noticeTitle, String noticeContent, int newsNo, String newsTitle,
+	public Board(String adminId, int noticeNo, String noticeTitle, String noticeContent, int newsNo, String newsTitle,
 			String newsContent, int photoNo, String photoTitle, String photoContent, int videoNo, String videoTitle,
 			String videoContent, char endYN, Date regDate, int viewCount) {
 		super();
+		this.adminId = adminId;
 		this.noticeNo = noticeNo;
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
@@ -48,6 +50,14 @@ public class Board {
 		this.endYN = endYN;
 		this.regDate = regDate;
 		this.viewCount = viewCount;
+	}
+
+	public String getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
 	}
 
 	public int getNoticeNo() {
@@ -172,12 +182,14 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-				+ ", newsNo=" + newsNo + ", newsTitle=" + newsTitle + ", newsContent=" + newsContent + ", photoNo="
-				+ photoNo + ", photoTitle=" + photoTitle + ", photoContent=" + photoContent + ", videoNo=" + videoNo
-				+ ", videoTitle=" + videoTitle + ", videoContent=" + videoContent + ", endYN=" + endYN + ", regDate="
-				+ regDate + ", viewCount=" + viewCount + "]";
+		return "Board [adminId=" + adminId + ", noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle
+				+ ", noticeContent=" + noticeContent + ", newsNo=" + newsNo + ", newsTitle=" + newsTitle
+				+ ", newsContent=" + newsContent + ", photoNo=" + photoNo + ", photoTitle=" + photoTitle
+				+ ", photoContent=" + photoContent + ", videoNo=" + videoNo + ", videoTitle=" + videoTitle
+				+ ", videoContent=" + videoContent + ", endYN=" + endYN + ", regDate=" + regDate + ", viewCount="
+				+ viewCount + "]";
 	}
+
 	
 	
 	
