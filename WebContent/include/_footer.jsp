@@ -7,7 +7,7 @@
   <div class="wrapper">
     <div id="FNB">
       <ul>
-        <li><a href="">오시는 길</a></li>
+        <li><a href="https://map.kakao.com/?urlX=497029.0&urlY=1058463.0&itemId=20315360&q=%EC%88%98%EC%9B%90SK%EC%95%84%ED%8A%B8%EB%A6%AC%EC%9B%80&srcid=20315360&map_type=TYPE_MAP&from=roughmap">오시는 길</a></li>
         <li><a href="">개인정보처리방침</a></li>
         <li><a href="">이메일무단수집거부</a></li>
         <li><a href="">이용약관</a></li>

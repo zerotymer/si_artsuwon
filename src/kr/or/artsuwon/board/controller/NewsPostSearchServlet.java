@@ -14,16 +14,16 @@ import kr.or.artsuwon.board.model.service.BoardService;
 import kr.or.artsuwon.board.model.service.BoardServiceImpl;
 
 /**
- * Servlet implementation class NoticePostSearchServlet
+ * Servlet implementation class NewsPostSearchServlet
  */
-@WebServlet("/board/NoticePostSearch.do")
-public class NoticePostSearchServlet extends HttpServlet {
+@WebServlet("/board/NewsPostSearch.do")
+public class NewsPostSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticePostSearchServlet() {
+    public NewsPostSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -52,9 +52,9 @@ public class NoticePostSearchServlet extends HttpServlet {
 		
 		//비즈니스로직
 		BoardService bService = new BoardServiceImpl();
-		HashMap<String,Object> map = bService.NoticeSearchPost(currentPage,keyword,type);
+		HashMap<String,Object> map = bService.NewsSearchPost(currentPage,keyword,type);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/board/notice-board.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/board/news-board.jsp");
 		
 		request.setAttribute("pageDataMap", map);
 		request.setAttribute("currentPage", currentPage);

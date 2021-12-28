@@ -6,22 +6,40 @@
 <html lang="en">
 <head>
     <title>공지사항</title>
-    <link rel="stylesheet" type="text/css" href="/assets/css/boardFrame.css">
+    <link rel="stylesheet" href="/assets/css/boardFrame.css">
      <link rel="stylesheet" href="/assets/style/contentframe.css">
 <!-- boostrap5 라이브러리-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 
 <!-- jQuery 라이브러리 -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <title>공지사항</title>
 </head>
 
+
+
 <body>
+<jsp:include page="/include/_header.jsp"/>
+
+<%
+	// 페이징 처리되어 넘어온 데이터를 가져와야 함
+	HashMap<String,Object> pageDataMap = (HashMap<String,Object>)request.getAttribute("pageDataMap");
+	
+	ArrayList<Board> list = (ArrayList<Board>)pageDataMap.get("list");
+	String pageNavi = (String)pageDataMap.get("pageNavi");
+	int currentPage = (int)request.getAttribute("currentPage");
+
+	String keyword = (String)request.getAttribute("keyword");
+	
+%>
 
 
-   <content>
 <!-- Local Navi Bar-->
+   <content>
         <div class="nav_div">
             <nav id="LNB" class="LNB">
                 <ul class="nav-menu">
@@ -57,80 +75,97 @@
                 </ul>
             </nav>
         </div>
-        </content>
-<!-- Board Content -->
- <div class="wrapper">
-        <div class="title">
-            <b>공지사항</b>
-        </div>
-      
-        <div class="search">
-            <input type="text" name="searchKeyword" id="searchKeyword" placeholder="검색어를 입력하세요." 
-            title="공지사항명  검색"><button type="submit" class="searchform_submit" title="검색" onclick="fnSearchButton">검색</button>
-        </div>
+        <div class="wrapper">
 
-        <div class="table_box">
-           	 테이블박스
         </div>
+       
+<!-- 게시판 -->
+<article class="common_wrap">
+     <h3 class="title">공지사항</h3>
 
-        <div class="default_info">
-           <div class="align">
-                <button type="button" class="on">최신순</button>
-                <button type="button">등록순</button>
-            </div>
+
+       
+<!-- 검색창 -->
+<form class="search_form" action="/board/NoticePostSearch.do" method="get">
+	<div class="search_box">
+		<input class="search_content" type="text" name="keyword" placeholder=" 검색어를 입력하세요."/><button class="search_button" type="submit"><img src="/assets/icon/search_button.png" style="width:20px"></button>
+	</div>
+</form>
+
+<div style="text-align:center">
+<%if(keyword != null){ %>
+	[<%=keyword %>]로 검색한결과
+<%} %>
+</div>
+
+
+
+
+
+<!-- 게시판 내용 -->
+    <!-- 건/등록순 최신순 -->
+	<div class="table_box">
+		<div class="default_info fl">
+          		<div class="total" id="total">총 <em></em>건</div>
+          		<div class="page" id="page"></div>
+            	<span>1</span> / <span>?</span> page
         </div>
-
-        <div id="notice-board">
-           
-            <table class="table table-hover">
+     </div>
+	 <div class="default_info fr">
+			<div class="align">
+				<button type="button" class="on" onclick="fnAlign(this, 'DESC')">최신순 </button>
+				<button type="button" class="on"onclick="fnAlign(this, 'ASC')">  등록순</button>
+			</div>
+	 </div>
+	 
+	<!-- 테이블 내용 -->
+     <table class="table table-hover" id="tbl" >
+            <thead class="table_head">   
                    <tr>
                         <th style="width:10%">번호</th>
                         <th style="width:80%">제목</th>
                         <th style="width:10%">등록일</th>
                    </tr>
-
+			</thead>
               
-                <tbody>
-                   <tr>
-                        <td>10</td>
-                        <td>게시글 몇글자까요</td>
-                        <td>2021.12.22</td>
-                    </tr>
-                    <tr>
-                        <td>20</td>
-                        <td>게시글 몇글자까요</td>
-                        <td>2021.12.22</td>
-                    </tr>
-                    <tr>
-                        <td>20</td>
-                        <td>게시글 몇글까요</td>
-                        <td>2021.12.22</td>
-                    </tr>
-                    <tr>
-                        <td>20</td>
-                        <td>게시글 몇글자까요</td>
-                        <td>2021.12.22</td>
-                    </tr>   
-                </tbody>
-            </table>
-        </div>
-        
-<!-- 페이지 네비 -->
-        <div class="board-page">
-            <ul class="pagination">
-               <li><a href="#">1</a></li>
-               <li><a href="#">2</a></li>
-               <li><a href="#">3</a></li>
-               <li><a href="#">4</a></li>     
-            </ul>
-        </div>
-        
-    </div>
+            <tbody>
+				<%for(Board board : list) {%>
+				<tr style="height:60px">
+					<td><%=board.getNoticeNo() %></td>
+					<td><a href="/board/NoticeSelectContent.do?boardNo=<%=board.getNoticeNo()%>&currentPage=<%=currentPage%>"><%=board.getNoticeTitle() %></a></td>
+					<td><%=board.getRegDate() %></td>
+				</tr>
+            </tbody>
+                <%} %>
+      </table>
 
+
+<!-- 페이지 네비 -->
+	
+			
+			<div class="page_wrap">
+				   <div class="page_nation">
+				      
+				    	 <%=pageNavi %>
+				      
+				   </div>
+			</div>
+			
+
+	</article>
+    </content>
+        
 
 </body>
+
+
+
+
+
+
+
 <!-- footer -->
 <footer>
-
- <footer>
+<jsp:include page="/include/_footer.jsp"/>
+</footer>
 </html>

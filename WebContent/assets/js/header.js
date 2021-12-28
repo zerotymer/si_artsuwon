@@ -12,4 +12,9 @@ window.addEventListener('load', function() {
     mypageSubmenu.addEventListener('mouseout', function() {
         this.classList.remove('func-show');
     });
+    document.querySelectorAll('.menu').forEach(element => {
+        element.addEventListener('mouseover', function() {
+            mypageSubmenu.classList.remove('func-show');
+        });
+    });
 });

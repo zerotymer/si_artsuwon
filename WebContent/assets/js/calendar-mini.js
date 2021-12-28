@@ -1,11 +1,11 @@
 ///// JavaScript for calendar-mini.js
 // Need to import jQurey
+var curDate;
 
 // TODO: closer 함수
 window.addEventListener("load", function () {
-    var curdate = setCurDate();
-    this.document.getElementsByClassName('curBtn')[0].onclick = curdate(-1);
-    this.document.getElementsByClassName('curBtn')[1].onclick = curdate(1);
+    curDate = new Date();
+    setCurDate(0);
 });
 
 /**
@@ -75,20 +75,17 @@ function createTbody(month = new Date().getMonth(), year = new Date().getFullYea
  * 현재 날짜에 대한 설정
  * @returns 
  */
-function setCurDate() {
+function setCurDate(value) {
     // initialize
-    var cur_date = new Date();
+    (value == 0) && (curDate = new Date());
 
-    // use closer function
-    return function (value) {
-        cur_date.setMonth(cur_date.getMonth() + value);
+    curDate.setMonth(curDate.getMonth() + value);
 
-        let title = document.getElementById('miniCalendar-title');
-        title.innerText = cur_date.getFullYear() + '년 ' + (cur_date.getMonth() + 1) + '월';
-        
-        createTbody(cur_date.getMonth(), cur_date.getFullYear());
-        getPrefData(cur_date.getMonth(), cur_date.getFullYear());
-    };
+    let title = document.getElementById('miniCalendar-title');
+    title.innerText = curDate.getFullYear() + '년 ' + (curDate.getMonth() + 1) + '월';
+    
+    createTbody(curDate.getMonth(), curDate.getFullYear());
+    getPrefData(curDate.getMonth(), curDate.getFullYear());
 }
 
 
