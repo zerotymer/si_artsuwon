@@ -165,9 +165,9 @@ function setSeatData(id, data) {
 }
 
 function setReservedSeat(id) {
-    let seat = document.getElementById(id);
+    let seat = document.getElementById(id.trim());
     (seat == undefined) && console.log(id);
-    seat.classList.add('seat-resereved');
+    seat.classList.add('seat-reserved');
 }
 
 
@@ -175,6 +175,8 @@ function setReservedSeat(id) {
  * 좌석 기본정보 획득
  */
 function initializeSeatInfo(scheduleNo) {
+
+    
     // Ajax: 공연일정 호출
     $.ajax({
         url: '/performance/detailInfo.json',
@@ -195,10 +197,10 @@ function initializeSeatInfo(scheduleNo) {
         data: { restriction: 5},        // 5: 모든 정보 조회
         datatype: 'json', 
         success: (data) => {
-            // console.log(Object.keys(data));
             Object.keys(data).forEach( key => {
                 setSeatData(key, data[key]);
             });
+            console.log('ajax 통신 성공');
         },
         error: () => console.log('ajax 통신 에러2')
     });
@@ -210,8 +212,8 @@ function initializeSeatInfo(scheduleNo) {
         dataType: 'json',
         data: { scheduleNo: scheduleNo },
         success: (data) => {
-            Object.values(data).forEach( value => {
-                setReservedSeat(value);
+            Object.keys(data).forEach( key => {
+                setReservedSeat(key.trim());
             });
         },
         error: () => console.log('ajax 통신 에러3')
