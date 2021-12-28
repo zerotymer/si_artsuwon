@@ -58,5 +58,16 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		return map;
 		
 	}
+	@Override
+	public int updateMemberEndYN(int memberNo, char memberStatus) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		int result = adDAO.updateMemberEndYN(memberNo,memberStatus,conn);
+		
+		if(result>0)JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+			JDBCTemplate.close(conn);
+			return result;
+	}
 
 }

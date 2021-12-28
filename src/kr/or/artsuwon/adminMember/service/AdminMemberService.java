@@ -9,4 +9,6 @@ public interface AdminMemberService {
 	public ArrayList<Member> selectAllMemberList(int adminNo);
 
 	public HashMap<String,Object> selectSearchPost(int currentPage, String keyword, String type);
+
+	public int updateMemberEndYN(int memberNo, char memberStatus);
 }
