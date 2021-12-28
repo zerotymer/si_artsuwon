@@ -45,6 +45,12 @@
         </li>
         <li class="menu">
           <a href="">시향소식</a>
+          <ul>
+            <li class="submenu"><a href="/board/NoticeAllSelect.do">공지사항</a></li>
+            <li class="submenu"><a href="/board/NewsAllSelect.do">뉴스</a></li>
+            <li class="submenu"><a href="/board/PhotoAllSelect.do">갤러리</a></li>
+            <li class="submenu"><a href="/board/VideoAllSelect.do">동영상</a></li>
+          </ul>
         </li>
         <!--                    <li>후원</li>-->
       </ul>
@@ -81,7 +87,7 @@
         <a href="">기관소개</a>
       </span>
       <span class="icon_box">
-        <a href="">정보공개</a>
+        <a href="https://www.open.go.kr/">정보공개</a>
       </span>
     </div>
   </div>

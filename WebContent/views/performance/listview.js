@@ -134,7 +134,7 @@ function createPrefItem(data) {
     imgDiv.classList.add('image');
     let img = document.createElement('img');
     img.src = IMAGE_PATH + data['photo'];
-    img.setAttribute('onerror', "this.src='" + IMAGE_PATH + "'");
+    img.setAttribute('onerror', "this.src='" + ALT_IMAGE + "'");
     imgDiv.appendChild(img);
 
     let detail = document.createElement('div');                          // 공연정보를 담는 div
