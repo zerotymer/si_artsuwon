@@ -1,3 +1,4 @@
+<%@ page import="kr.or.artsuwon.member.model.vo.Member" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <link rel="stylesheet" type="text/css" href="/assets/style/header.css" />
@@ -11,9 +12,11 @@
 <div class="header">
   <div class="header-nav">
     <div class="header-logo">
-      <img
+      <a href="/">
+        <img
         style="width: 60px; filter: invert(100%)"
         src="/assets/images/logo.jpg" />
+      </a>
     </div>
     <nav id="gnb" class="gnb">
       <ul>
@@ -47,17 +50,20 @@
       </ul>
     </nav>
     <div class="icons">
-      <span class="my-span">
+      <span class="my-span" id="mypageIcon">
         <img class="icon" src="/assets/icon/member.svg" />
-        <ul class="my-ul">
-          <li id="login">
-            <a href="1">로그인</a>
+        <ul class="my-ul" id="mypageSubmenu">
+          <li id="login" class="loginCheck">
+            <a href="/memberIndex.jsp" >로그인</a>
           </li>
-          <li>
-            <a href="1">마이페이지</a>
+          <li class="loginCheck">
+            <a href="/memberJoinus.jsp" >회원가입</a>
           </li>
-          <li>
-            <a href="1">로그아웃</a>
+          <li class="loginCheck">
+            <a href="/member/memberMyPage.do">마이페이지</a>
+          </li>
+          <li class="loginCheck">
+            <a href="/member/logout.do">로그아웃</a>
           </li>
         </ul>
       </span>
@@ -81,3 +87,18 @@
   </div>
   <div class="header-subnav"></div>
 </div>
+<script src="/assets/js/header.js"></script>
+<script>
+  var login = ${sessionScope['member'] != null}; // EL tag로 회원이름 가져오기
+  window.addEventListener('load', function () {
+    let loginCheck = document.querySelectorAll('.loginCheck');
+    if (login) {
+      loginCheck[0].style.display = 'none';
+      loginCheck[1].style.display = 'none';
+    } else {
+      loginCheck[2].style.display = 'none';
+      loginCheck[3].style.display = 'none';
+    }
+  });
+
+</script>

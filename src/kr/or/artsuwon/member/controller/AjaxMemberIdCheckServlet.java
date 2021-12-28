@@ -41,9 +41,7 @@ public class AjaxMemberIdCheckServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		
-		
-		
+		out.print(result);
 	}
 
 	/**

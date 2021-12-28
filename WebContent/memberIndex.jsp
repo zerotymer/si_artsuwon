@@ -8,6 +8,74 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MEMBER MAIN PAGE</title>
+
+<style>
+    #wrapper{
+        box-sizing: border-box;
+        width: 80%;
+        height: 500px;
+        margin: 0 auto;
+    }
+    #login{
+        box-sizing: border-box;
+        border: 1px solid black;
+        width: 50%;
+        height: 100%;
+        float: left;
+    }
+    #kakao_login{
+        box-sizing: border-box;
+        background-color: yellow;
+        width: 80px;
+        height: 80px;
+        float: left;
+    }
+    #naver_login{
+        box-sizing: border-box;
+        background-color: green;
+        width: 80px;
+        height: 80px;
+        float: left;
+    }
+    #choice{
+        box-sizing: border-box;
+        border: 1px solid black;
+        width: 50%;
+        height: 100%;
+        float: left;
+    }
+    #choice_join{
+        box-sizing: border-box;
+        border: 1px solid black;
+        width: 100%;
+        height: 20%;
+        float: left;
+        margin: 100px 0px auto;
+    }
+    #choice_id{
+        box-sizing: border-box;
+        border: 1px solid black;
+        width: 100%;
+        height: 20%;
+        float: left;
+    }
+    #choice_pwd{
+        box-sizing: border-box;
+        border: 1px solid black;
+        width: 100%;
+        height: 20%;
+        float: left;
+    }
+    .choice_icon{
+        border: 1px solid black;
+        width: 10%;
+        height: 50%;
+        margin: 20px auto auto 20px;
+        float: left;
+    }
+    
+</style>
+
 </head>
 <body>
 	
