@@ -29,22 +29,5 @@
 		</form>
 	</div>
 	
-	
-	
-		<%-- 
-		if (!(/[a-zA-Z0-9]{8,12} $/.test(pw.value))) {
-            
-                pw.style.backgroundColor = "red";
-                message.innerHTML = "비밀번호는 소문자,대문자,숫자 중 8~12글자로 입력 바랍니다.";
-                return false;
-            } else if (!(pw.value == pw_re.value)) //PW와 PW_RE 비교 검사
-            {
-                pw.style.backgroundColor = "red";
-                pw_re.style.backgroundColor = "red";
-                message.innerHTML = "비밀번호와 비밀번호 확인 값은 같아야 합니다.";
-                return false;
-            } 
-          --%>
-
 </body>
 </html>

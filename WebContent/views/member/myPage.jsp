@@ -68,7 +68,13 @@
 			<legend>기본 정보</legend>
 			이름 : <%=m.getMemberName() %> <br>
 			생년월일 : <%=m.getBirthDate() %> <br>
-			성별 : <%=m.getGender() %><br>
+			성별 :  <%if(m.getGender()=='M'){ %>
+					남자
+				  <%}else{ %>
+				  	여자
+				  <%} %> 
+				  
+			<br>
 			비밀번호 변경 : <input type="button" id="pwdChangeBtn" value="비밀번호 변경"/><br>
 		</fieldset>
 		
@@ -154,12 +160,13 @@
 			// 1. 탈퇴를 진행하시겠습니까?
 			// 2. 탈퇴를 하시게 되면, 데이터는 절대 복구 불가능합니다.
 			
-			if(window.confirm("탈퇴를 진행하시겠습니까?") && window.confirm("탈퇴를 하시게 되면, 데이터는 절대 복구 불가능합니다."))
+			if(window.confirm("탈퇴를 진행하시겠습니까?") && window.confirm("탈퇴 후 데이터 복구는 불가능합니다. 진행하시겠습니까?"))
 			{
-				return true;
+				location.replace("/member/memberWithDraw.do");				
 			}else
-			{
-				return false;
+			{	
+				alert('탈퇴를 취소하였습니다.');
+
 			}
 
 			
