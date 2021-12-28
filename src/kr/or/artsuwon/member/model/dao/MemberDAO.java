@@ -169,7 +169,7 @@ public class MemberDAO {
 		int result = 0;
 		
 		String query = "UPDATE MEMBER SET MEMBER_STATUS='2' WHERE MEMBER_NO=?";
-		
+		System.out.println("탈퇴된 회원 Member_NO : "+ memberNo);
 		try {
 			
 			pstmt = conn.prepareStatement(query);
@@ -195,9 +195,11 @@ public class MemberDAO {
 		
 		ArrayList<Reservation> list = new ArrayList<Reservation>();
 		
-		String query = "SELECT RESERVATION.*, PFMC.TITLE FROM RESERVATION " + 
-					   "	LEFT JOIN PFMC ON (RESERVATION.RESERVATION_NO = PFMC.PFMC_NO) " + 
-					   "WHERE RESERVATION_ID=? ";
+		String query = "SELECT reservation.*, pfmc.pfmc_no AS \"REF_PFMC\", title " + 
+				"		FROM reservation " + 
+				"    		LEFT JOIN pfmc_schedule ON (reservation.pfmc_no = pfmc_schedule.schedule_no) " + 
+				"   		LEFT JOIN pfmc ON (pfmc_schedule.pfmc_no = pfmc.pfmc_no) " + 
+				"		WHERE RESERVATION_ID=? ";
 		
 		try {
 			
@@ -211,15 +213,16 @@ public class MemberDAO {
 			{
 				Reservation reservation = new Reservation();
 				
-				reservation.setReservationNo(rset.getString("reservationNo"));
-				reservation.setPerformanceNo(rset.getInt("performanceNo"));
+				reservation.setReservationNo(rset.getString("reservation_No"));
+				reservation.setPerformanceNo(rset.getInt("ref_Pfmc"));
+				reservation.setScheduleNo(rset.getInt("ref_Pfmc"));
 				reservation.setTitle(rset.getString("title"));
-				reservation.setInvoiceNo(rset.getString("invoiceNo"));
-				reservation.setPayMethod(rset.getString("payMethod"));
-				reservation.setReservationId(rset.getString("reservationId"));
-				reservation.setReservationDate(rset.getDate("reservationDate"));
-				reservation.setReservationPrice(rset.getInt("reservationPrice"));
-				reservation.setSeatCode(rset.getString("seatCode"));
+				reservation.setInvoiceNo(rset.getString("invoice_No"));
+				reservation.setPayMethod(rset.getString("pay_Method"));
+				reservation.setReservationId(rset.getString("reservation_Id"));
+				reservation.setReservationDate(rset.getDate("reservation_Date"));
+				reservation.setReservationPrice(rset.getInt("reservation_Price"));
+				reservation.setSeatCode(rset.getString("seat_Code"));
 				
 				list.add(reservation);
 				

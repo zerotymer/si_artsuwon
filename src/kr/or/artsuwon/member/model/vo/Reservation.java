@@ -10,6 +10,7 @@ public class Reservation {
     /// FIELDs
     private String reservationNo;           // RESERVATION_NO: 예약번호
     private int performanceNo;              // PFMC_NO: 공연번호
+    private int scheduleNo;             	// SCHDULE_NO: 일정번호
     private String title;           		// TITLE: 공연제목
     private String invoiceNo;                  // INVOICE_NO: 결제번호
     private String payMethod;               // PAY_METHOD: 결제방법
@@ -20,9 +21,10 @@ public class Reservation {
 
     /// CONSTRUCTORs
     public Reservation() {}
-    public Reservation(String reservationNo, int performanceNo, String title, String invoiceNo, String payMethod, String reservationId, Date reservationDate, int reservationPrice, String seatCode) {
+    public Reservation(String reservationNo, int performanceNo, int scheduleNo , String title, String invoiceNo, String payMethod, String reservationId, Date reservationDate, int reservationPrice, String seatCode) {
         this.reservationNo = reservationNo;
         this.performanceNo = performanceNo;
+        this.scheduleNo = scheduleNo;
         this.title = title;
         this.invoiceNo = invoiceNo;
         this.payMethod = payMethod;
@@ -35,6 +37,7 @@ public class Reservation {
     /// GETTERs
     public String getReservationNo() { return reservationNo; }
     public int getPerformanceNo() { return performanceNo; }
+    public int scheduleNo() { return scheduleNo; }
     public String getTitle() { return title; }
     public String getInvoiceNo() { return invoiceNo; }
     public String getPayMethod() { return payMethod; }
@@ -46,6 +49,7 @@ public class Reservation {
     /// SETTERs
     public void setReservationNo(String reservationNo) { this.reservationNo = reservationNo; }
     public void setPerformanceNo(int performanceNo) { this.performanceNo = performanceNo; }
+    public void setScheduleNo(int scheduleNo) { this.scheduleNo = scheduleNo; }
     public void setTitle(String title) { this.title = title; }
     public void setInvoiceNo(String invoiceNo) { this.invoiceNo = invoiceNo; }
     public void setPayMethod(String payMethod) { this.payMethod = payMethod; }
