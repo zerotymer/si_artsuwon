@@ -32,6 +32,9 @@
 	display: flex;
 	flex-direction: row;
 }
+#content2 {
+	flex: 1 0 auto;
+}
 </style>
 </head>
 
@@ -193,76 +196,23 @@
 										</thead>
 										<tbody>
 
-
-											<tr>
-												<td><img class="rounded-circle me-2" width="30"
-													height="30" src="/assets/images/memberPicture.jpg" /><%=keyword%></td>
-
 												<%
 													for (csBoard b : list) {
 												%>
+											<tr>
+												<td><img class="rounded-circle me-2" width="30"
+													height="30" src="/assets/images/memberPicture.jpg" /><%=b.getCsWriter()%></td>
+
+												
 												<td><%=b.getCsTitle()%></td>
 												<td>CS</td>
 												<td><%=b.getCsDate()%></td>
+												
+											</tr>
+
 												<%
 													}
 												%>
-											</tr>
-
-											<!-- <tr>
-													<td></td>
-													<td>그여자의 소설 감상평</td>
-													<td>공연감상평<br /></td>
-													<td>2021/04/15<br /></td>
-												</tr>
-												<tr>
-													<td></td>
-													<td>온라인 공연 감상 후기</td>
-													<td>공연감상평</td>
-													<td>2020/10/07</td>
-												</tr>
-												<tr>
-													<td></td>
-													<td>스쿨 클래식! 완전 좋아요!^^</td>
-													<td>공연감상평</td>
-													<td>2018/05/31<br /></td>
-												</tr>
-												<tr>
-													<td></td>
-													<td>안녕하세요 수원시립교향악단에 문의드립니다.</td>
-													<td>관객제안 </td>
-													<td>2020/08/05<br /></td>
-												</tr>
-												<tr>
-													<td></td>
-													<td>어제 클라리넷 앵콜곡 문의</td>
-													<td>관객제안</td>
-													<td>2020/07/01<br /></td>
-												</tr>
-												<tr>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td><br /></td>
-												</tr>
-												<tr>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td><br /></td>
-												</tr>
-												<tr>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td><br /></td>
-												</tr>
-												<tr>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td><br /></td>
-												</tr> -->
 										</tbody>
 
 									</table>
