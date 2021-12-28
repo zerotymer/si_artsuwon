@@ -5,7 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-    <title>뉴스&소식</title>
     <link rel="stylesheet" href="/assets/css/boardFrame.css">
      <link rel="stylesheet" href="/assets/style/contentframe.css">
 <!-- boostrap5 라이브러리-->
@@ -17,19 +16,24 @@
 
 <!-- jQuery 라이브러리 -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<title>뉴스&소식</title>
+<title>갤러리</title>
 </head>
 
+
+
 <body>
+
+
 <%
 	// 페이징 처리되어 넘어온 데이터를 가져와야 함
 	HashMap<String,Object> pageDataMap = (HashMap<String,Object>)request.getAttribute("pageDataMap");
 	
 	ArrayList<Board> list = (ArrayList<Board>)pageDataMap.get("list");
-	String PageNavi = (String)pageDataMap.get("PageNavi");
+	String pageNavi = (String)pageDataMap.get("pageNavi");
 	int currentPage = (int)request.getAttribute("currentPage");
 
 	String keyword = (String)request.getAttribute("keyword");
+	
 %>
 
 
@@ -70,20 +74,23 @@
                 </ul>
             </nav>
         </div>
-        </content>
-        
+        <div class="wrapper">
 
+        </div>
+       
 <!-- 게시판 -->
 <article class="common_wrap">
-     <h3 class="title">뉴스&소식</h3>
+     <h3 class="title">동영상 게시판</h3>
+
+
        
 <!-- 검색창 -->
-
-<form class="search_form" action="/board/NewsPostSearch.do" method="get">
+<form class="search_form" action="/board/PhotoPostSearch.do" method="get">
 	<div class="search_box">
-		<input class="search_content" type="text" name="keyword" placeholder=" 검색어를 입력하세요."><button class="search_button" type="submit"><img src="/assets/icon/search_button.png" style="width:20px"></button>
+		<input class="search_content" type="text" name="keyword" placeholder=" 검색어를 입력하세요."/><button class="search_button" type="submit"><img src="/assets/icon/search_button.png" style="width:20px"></button>
 	</div>
 </form>
+
 <div style="text-align:center">
 <%if(keyword != null){ %>
 	[<%=keyword %>]로 검색한결과
@@ -91,12 +98,13 @@
 </div>
 
 
+
+
+
 <!-- 게시판 내용 -->
 
-
- 
 	<!-- 테이블 내용 -->
-        <table class="table table-hover" id="tbl">
+     <table class="table table-hover" id="tbl" >
             <thead class="table_head">   
                    <tr>
                         <th style="width:10%">번호</th>
@@ -108,32 +116,35 @@
             <tbody>
 				<%for(Board board : list) {%>
 				<tr style="height:60px">
-					<td><%=board.getNewsNo() %></td>
-					<td><a href="/board/NewsSelectContent.do?boardNo=<%=board.getNewsNo()%>&currentPage=<%=currentPage%>"><%=board.getNewsTitle() %></a></td>
+					<td><%=board.getPhotoNo() %></td>
+					<td><a href="/board/PhotoSelectContent.do?boardNo=<%=board.getPhotoNo()%>&currentPage=<%=currentPage%>"><%=board.getPhotoTitle() %></a></td>
 					<td><%=board.getRegDate() %></td>
 				</tr>
-				
-				
             </tbody>
                 <%} %>
-              </table>
-   
+      </table>
 
 
-		<!-- 페이지 네비 -->
+<!-- 페이지 네비 -->
+	
+			
 			<div class="page_wrap">
 				   <div class="page_nation">
 				      
-				    	 <%=PageNavi %>
+				    	 <%=pageNavi %>
 				      
 				   </div>
 			</div>
 			
-	
-			</table>
-</article>
-		
+
+	</article>
+    </content>
+        
+
 </body>
+
+
+
 
 
 
@@ -141,5 +152,5 @@
 <!-- footer -->
 <footer>
 
- <footer>
+</footer>
 </html>
