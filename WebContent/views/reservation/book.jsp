@@ -60,19 +60,19 @@
                     <fieldset>
                         <legend>예매하기</legend>
                         <dl>
-                            <dt>예약자이름</dt><dd id="buyer">${sessionScope["member"].getUserName()} (${sessionScope["member"].getUserId()})</dd>
+                            <dt>예약자이름</dt><dd id="buyer">${sessionScope.member.memberName} (${sessionScope.member.memberId})</dd>
                             <dt>공연이름</dt><dd id="perf-title"></dd>
                             <dt>공연일시</dt><dd id="perf-date">DDD</dd>
                             <dt>공연장소</dt><dd id="perf-location">LOL</dd>
-                            <dt>선택된 좌석</dt><dd id="perf-selected">A블럭 7열 23</dd>
-                            <dt>가격</dt><dd id="perf-price">20000원</dd>
+                            <dt>선택된 좌석</dt><dd id="perf-selected"></dd>
+                            <dt>가격</dt><dd id="perf-price"></dd>
                         </dl>
                         <input type="hidden" name="price" id="priceInput" value="0">
-                        <input type="hidden" name="scheduleNo" id="scheduleNoInput" value="${requestScope.scheduleNo}">
+                        <input type="hidden" name="scheduleNo" id="scheduleNoInput" value="<%= request.getParameter("scheduleNo") %>">
                         <input type="hidden" name="invoiceNo" id="uidInput" value="">
                         <input type="hidden" name="seatCode" id="seatCodeInput" value="">
-                        <input type="button" value="결제하기" style="background-color: red;" onclick=""> <br>
-                        <input type="reset" value="취소하기" style="background-color: #666;">
+                        <input type="button" value="결제하기" style="background-color: red;" onclick="checkPay();"> <br>
+                        <input type="button" value="취소하기" style="background-color: #666;"onclick="window.close();">
                     </fieldset>
                 </form>
             </div>

@@ -175,7 +175,7 @@ function showDetail(scheduleNo) {
 }
 
 function showReservePage(scheduleNo) {
-    location.replace("/reservation/reserve.do?scheduleNo=" + scheduleNo);
+    var win = window.open(`/views/reservation/book.jsp?scheduleNo=${scheduleNo}`, '_popup', "height: 620px, width: 1000px");
 }
 
 /**
