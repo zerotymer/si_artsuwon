@@ -41,7 +41,7 @@ public class NoticePostListUpServlet extends HttpServlet {
 		Admin admin = (Admin)session.getAttribute("admin");
 		
 		if(admin == null) {
-			response.sendRedirect("/views/commons/error.jsp");
+			response.sendRedirect("/views/adminCommons/error.jsp");
 			return;
 		}
 		
@@ -54,7 +54,7 @@ public class NoticePostListUpServlet extends HttpServlet {
 	    	  response.sendRedirect("/adminNotice/adminNoticeAllList.do");
 	      }else
 	      {
-	    	  response.sendRedirect("/views/commons/error.jsp");
+	    	  response.sendRedirect("/views/adminCommons/error.jsp");
 	      }
 		
 	}

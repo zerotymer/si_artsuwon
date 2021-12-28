@@ -205,26 +205,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                                  
                                   
                                   
-                                 <!-- 사진 등록 용량 안내 -->
-                                  <script>
-                                   document.getElementById('file').onchange=function(){
-                                		var file = document.getElementById('file');
-                                		var fileSize = file.files[0].size/1024/1024;
-                                		document.getElementById("size").innerHTML = "("+(fileSize.toFixed(3))+"MB)";
-                                		}
-                                   
-
-                                	document.getElementById('fileSubmitBtn').onclick=function(){
-                                		var file = document.getElementById('file');
-                                		var fileSize = file.files[0].size;
-                                		if(fileSize>(50*1024*1024)){
-                                			alert('업로드 가능한 최대 사이즈는 50MB입니다');
-                                			return false;
-                                		}else{
-                                			return true;
-                                		}
-                                	};	
-                                  </script>
+                                
                                   
                              </div>
                          </div>

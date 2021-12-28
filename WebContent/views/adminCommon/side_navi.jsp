@@ -21,11 +21,11 @@
                 <hr class="sidebar-divider my-0" />
                 <ul id="accordionSidebar" class="navbar-nav text-light">
                     <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link disabled active" href="table.html" style="text-align: center;background: #f7f7f7;"><span style="color: rgb(0,0,0);">통계 관리</span></a>
-                        <div class="nav-item dropdown show visible" style="text-align: center;"><a class="active" aria-expanded="true" data-bs-toggle="dropdown" href="#" style="color: rgb(0,0,0);border-bottom-style: solid;border-bottom-color: rgb(225,216,212);font-size: 13px;font-weight: bold;">공연 관리 </a>
+                    <li class="nav-item"><a class="nav-link disabled active" href="table.html" style="text-align: center;background: #f7f7f7;"><span style="color: rgb(0,0,0);">통계 관리</span></a>
+                        <div class="nav-item dropdown show visible" style="text-align: center;"><a class="active" aria-expanded="true" data-bs-toggle="dropdown" href="#" style="color: rgb(0,0,0);border-bottom-style: solid;border-bottom-color: rgb(225,216,212);font-size: 13px;font-weight: bold;">공연 관리 </a>
                             <div class="dropdown-menu dropdown-menu-start show"><a class="dropdown-item" href="#" style="background: rgb(247,247,247);">공지사항</a><a class="dropdown-item" href="#" style="background: rgba(0,0,0,0.03);">뉴스&amp;이슈</a></div>
                         </div>
-                        <div class="nav-item dropdown show visible" style="text-align: center;background: #ffffff;"><a aria-expanded="true" data-bs-toggle="dropdown" href="#" style="color: rgb(0,0,0);border-bottom-style: solid;border-bottom-color: rgb(225,216,212);font-size: 13px;font-weight: bold;">사용자 관리 </a>
+                        <div class="nav-item dropdown show visible" style="text-align: center;background: #ffffff;"><a aria-expanded="true" data-bs-toggle="dropdown" href="#" style="color: rgb(0,0,0);border-bottom-style: solid;border-bottom-color: rgb(225,216,212);font-size: 13px;font-weight: bold;">사용자 관리 </a>
                             <div class="dropdown-menu dropdown-menu-start show"><a class="dropdown-item" href="#" style="background: rgb(247,247,247);">공지사항</a><a class="dropdown-item" href="#" style="background: rgb(247,247,247);">뉴스&amp;이슈</a></div>
                         </div>
                         
@@ -33,7 +33,7 @@
                         
                         
                         
-                        <div class="nav-item dropdown show visible" style="text-align: center;font-size: 13px;"><a aria-expanded="true" data-bs-toggle="dropdown" href="#" style="color: rgb(0,0,0);border-bottom-style: solid;border-bottom-color: rgb(225,216,212);font-weight: bold;">게시판 관리 </a>
+                        <div class="nav-item dropdown show visible" style="text-align: center;font-size: 13px;"><a aria-expanded="true" data-bs-toggle="dropdown" href="#" style="color: rgb(0,0,0);border-bottom-style: solid;border-bottom-color: rgb(225,216,212);font-weight: bold;">게시판 관리 </a>
                             <div class="dropdown-menu dropdown-menu-start show">
                             <a class="dropdown-item" href="/adminNotice/adminNoticeAllList.do" style="background: #f7f7f7;">공지사항</a>
                             <a class="dropdown-item" href="/artsuwon/" style="background: #f7f7f7;">뉴스&amp;이슈</a>
@@ -55,4 +55,3 @@
 </body>
 
 </html>
-

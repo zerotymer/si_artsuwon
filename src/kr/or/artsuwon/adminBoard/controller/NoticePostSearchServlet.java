@@ -62,7 +62,7 @@ public class NoticePostSearchServlet extends HttpServlet {
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("keyword", keyword);
 		
-		view.forward(request, response);
+			view.forward(request, response);
 	}
 
 	/**

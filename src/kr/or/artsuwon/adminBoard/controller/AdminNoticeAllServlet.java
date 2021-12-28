@@ -54,7 +54,7 @@ public class AdminNoticeAllServlet extends HttpServlet {
         request.setAttribute("pageDataMap", pageDataMap);
 
 
-        RequestDispatcher view = request.getRequestDispatcher("/views/AdminBoard/noticeAllList.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/views/adminBoard/noticeAllList.jsp");
 
         request.setAttribute("pageDataMap", pageDataMap);
         request.setAttribute("currentPage", currentPage);
