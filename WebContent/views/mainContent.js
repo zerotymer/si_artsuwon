@@ -128,5 +128,7 @@ function createCard(card) {
  * @author 신현진
  */
 function reservePerformance(scheduleNo) {
-    location.replace("/reservation/reserve.do?scheduleNo=" + scheduleNo);
+    var win = window.open(`/views/reservation/book.jsp?scheduleNo=${scheduleNo}`, '_popup', "height: 620px, width: 1000px");
+    // win && alert('결제가 정상적으로 처리되었습니다.');
+    // location.replace("/reservation/reserve.do?scheduleNo=" + scheduleNo);
 }

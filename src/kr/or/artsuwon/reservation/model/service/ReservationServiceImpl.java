@@ -40,4 +40,22 @@ public class ReservationServiceImpl implements ReservationService {
         JDBCTemplate.close(conn);
         return list;
     }
+
+    /**
+     * 예약을 추가하는 메서드
+     * @param reservation 예약정보
+     * @return 성공여부
+     * @author 신현진
+     */
+    @Override
+    public boolean insertReservation(Reservation reservation) {
+        Connection conn = JDBCTemplate.getConnection();
+        int result = rDAO.insertReservation(conn, reservation);
+
+        if(result > 0) JDBCTemplate.commit(conn);
+        else JDBCTemplate.rollback(conn);
+
+        JDBCTemplate.close(conn);
+        return result > 0;
+    }
 }
