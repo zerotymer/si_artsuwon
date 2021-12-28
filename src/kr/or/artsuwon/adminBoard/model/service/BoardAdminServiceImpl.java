@@ -172,6 +172,23 @@ public class BoardAdminServiceImpl implements BoardAdminService {
 
 
 
+	@Override
+	public int increaseNotice(int noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = bDAO.increaseNotice(conn,noticeNo);
+		if(result>0)JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		JDBCTemplate.close(conn);
+		return result;
+		
+	}
+
+
+
+
+
+
+
 
 
 

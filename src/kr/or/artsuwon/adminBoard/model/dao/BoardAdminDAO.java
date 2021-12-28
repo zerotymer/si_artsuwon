@@ -13,7 +13,7 @@ public class BoardAdminDAO {
 
 
     public ArrayList<Notice> selectAllPostPageList(Connection conn, int currentPage, int recordCountPerPage) {
-
+    	
         PreparedStatement pstmt = null;
         ResultSet rset = null;
         ArrayList<Notice> list = new ArrayList<Notice>();
@@ -33,7 +33,7 @@ public class BoardAdminDAO {
 
             rset = pstmt.executeQuery();
 
-            while (rset.next()) {
+            while (rset !=null && rset.next()) {
                 Notice notice = new Notice();
 
                 notice.setNoticeNo(rset.getInt("NOTICE_NO"));
@@ -61,7 +61,32 @@ public class BoardAdminDAO {
         return list;
 
     }
+    
+    
+    public int increaseNotice(Connection conn, int noticeNo) {
+        PreparedStatement pstmt = null;
+        int result = 0;
 
+        String query = "UPDATE NOTICE SET VIEW_COUNT = VIEW_COUNT+1 WHERE NOTICE_NO=?";
+        try {
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, noticeNo);
+           
+            result = pstmt.executeUpdate();
+
+            System.out.println("조회수증가");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(pstmt);
+        }
+
+        return result;
+    }
+    
+    
 
     public int totalCount(Connection conn) {// 총페이지 찾기
         PreparedStatement pstmt = null;
@@ -406,8 +431,9 @@ public class BoardAdminDAO {
 			}
 		 
 		 StringBuilder sb = new StringBuilder();
+	   
 		 
-	        if(startNavi==1) {
+	/*	 if(startNavi==1) {
 
 	            sb.append("<li class='page-item disabled'><span class='page-link'' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>"+
 	               	  "</span></li>");
@@ -418,33 +444,36 @@ public class BoardAdminDAO {
 	                "href='/adminNotice/noticePostSearch.do?currentPage="+(startNavi-1)+"&keyword="+keyword+"&type="+type+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" + 
 	                "</a></li>");
 	        }
-
+*/
 	        for(int i=startNavi; i<=endNavi; i++)
 	        {
 	            if(i==currentPage)
 	            {
 	                sb.append("<li class='page-item active' aria-current='page'>" + 
-	                        "<a class='page-link' href='/adminNotice/noticePostSearch.do?currentPage="+i+"&keyword="+keyword+"&type="+type+"'>"+i+"</a></li>");
+	                        "<a class='page-link' href='/adminNotice/noticePostSearch.do="+i+"&keyword="+keyword+"&type="+type+"'>"+i+"</a></li>");
 	            }else
 	            {
-	                sb.append("<li class='page-item'><a class='page-link text-dark' href='/adminNotice/noticePostSearch.do?currentPage="+i+"&keyword="+keyword+"&type="+type+"'>"+i+"</a></li>");
+	                sb.append("<li class='page-item'><a class='page-link text-dark' href='/adminNotice/noticePostSearch.do="+i+"&keyword="+keyword+"&type="+type+"'>"+i+"</a></li>");
 	            }
 
 	        }
 
 	        if(endNavi==pageTotalCount)
 	        {
-	            sb.append("<li class='page-item disabled'><span class='page-link'" + 
+	            sb.append("<li class='page-item active'><span class='page-link'" + 
 	                    "aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + 
 	                    "</span></li>");
 	        }else
 	        {
 	            sb.append("<li class='page-item'><a class='page-link text-dark'" + 
-	                "href='/adminNotice/noticePostSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"&type="+type+"' aria-label='Next'> <span aria-hidden='true'>&&raquo;</span>" + 
+	                "href='/adminNotice/noticePostSearch.do="+(endNavi+1)+"&keyword="+keyword+"&type="+type+"' aria-label='Next'> <span aria-hidden='true'>&&raquo;</span>" + 
 	                "</a></li>");
 	        }
 
-
+	        
+	        
+		
+	        
 			return sb.toString();		
 		
 		
