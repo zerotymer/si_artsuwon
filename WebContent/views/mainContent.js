@@ -17,7 +17,9 @@ window.addEventListener('load', function() {
 
 
 /// METHODs
-
+/**
+ * 달력 데이터를 설정
+ */
 function setCalendar() {
     let date = new Date();
     var max = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -32,6 +34,9 @@ function setCalendar() {
     });
 }
 
+/**
+ * ajax를 호출하여 공연정보를 받아옴
+ */
 function initailize_card() {
     let $cards = $('.card-item');
 
@@ -119,9 +124,9 @@ function createCard(card) {
 
 /**
  * 공연예약페이지를 호출하는 함수
- * @param {number} perfId 공연번호(일정번호)
+ * @param {number} scheduleNo 공연번호(일정번호)
  * @author 신현진
  */
-function reservePerformance(perfId) {
-
+function reservePerformance(scheduleNo) {
+    location.replace("/reservation/reserve.do?scheduleNo=" + scheduleNo);
 }

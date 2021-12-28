@@ -56,7 +56,7 @@ public class PerfRecentListServlet extends HttpServlet {
 			json.put("schedule_no", tuple.getFirst().getScheduleNo());						// 스케줄번호
 			json.put("title", tuple.getSecond().getTitle());								// 공연제목
 			json.put("category", tuple.getSecond().getCategory());							// 공연카테고리
-			json.put("date", dateFormat.format(tuple.getFirst().getPerformnaceDate()));		// 공연일자
+			json.put("date", dateFormat.format(tuple.getFirst().getPerformanceDate()));		// 공연일자
 			json.put("location", tuple.getFirst().getLocation());							// 공연장소
 			json.put("photo", NullChecker.NullCheckString(tuple.getSecond().getPhoto()));	// 공연사진
 

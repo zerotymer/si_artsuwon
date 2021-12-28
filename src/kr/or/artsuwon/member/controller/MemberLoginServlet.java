@@ -44,7 +44,7 @@ public class MemberLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", m);
 			
-			response.sendRedirect("/views/member/myPage.jsp");
+			response.sendRedirect("/memberIndex.jsp");
 			
 			
 		}else {

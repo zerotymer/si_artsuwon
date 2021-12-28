@@ -176,6 +176,23 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 							var price = $("#price").val();
 							var restriction = $("#restriction").val();
 							
+							if(pfmcDate==""){
+								alert('공연일자를 입력하세요');
+								return false;
+							}else if(pfmcTime==""){
+								alert('시간을 입력하세요');
+								return false;
+							}else if(location==""){
+								alert('장소를 입력하세요');
+								return false;
+							}else if(price==""){
+								alert('가격을 입력하세요');
+								return false;
+							}else if(restriction==null){
+								alert("좌석제한을 선택하세요");
+								return false;
+							}
+							
 							$.ajax({
 								url:"/adminPfmc/insertPfmcSkdl.do",
 								data : {"pfmcNo" : ${requestScope.pfmcNo},
@@ -264,11 +281,6 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                             <button class="btn btn-primary" type="submit">수정하기</button>
                             </form>
                                 <div class="mb-3"></div>
-                                 
-                                  
-                                  
-                                 <!-- 사진 등록 용량 안내 -->	
-                                
                                   
                              </div>
                          </div>

@@ -62,4 +62,15 @@ public interface MemberService {
 	 */
 	public ArrayList<Reservation> selectMemberReservation(String memberId);
 
+	/**
+	 * 작성자 : 김영주
+	 * 작성일 : 2021.12.27
+	 * @param memberId
+	 * @param pwd
+	 * @param newPwd
+	 * @return int
+	 * Description : 비밀번호 변경 메소드
+	 */
+	public int updatePwdMember(String memberId, String pwd, String newPwd);
+
 }

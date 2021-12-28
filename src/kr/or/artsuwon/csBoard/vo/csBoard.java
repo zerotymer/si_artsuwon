@@ -1,4 +1,4 @@
-package kr.or.artsuwon.board.model.dao;
+package kr.or.artsuwon.csBoard.vo;
 
 import java.sql.Date;
 

@@ -392,21 +392,22 @@ public class PfmcDAO {
 		int end = currentPage * recordCountPerPage;
 		
 		String sql = "select * from"
-				+ "               ("
-				+ "                select ROW_NUMBER() OVER(ORDER BY A.PFMC_NO) AS NUM"
-				+ "                , A.PFMC_NO"
-				+ "                , A.TITLE"
-				+ "                , A.CATEGORY"
-				+ "                , to_char(B.pfmc_date,'YYYY-MM-DD') pfmc_date"
-				+ "                , B.location"
-				+ "				   , COUNT(*) OVER() AS CNT"
-				+ "                 from pfmc A"
-				+ "                 left join pfmc_schedule B on (A.PFMC_NO = B.PFMC_NO)"
-				+ "                 where to_char(B.pfmc_date,'YYYY-MM-DD') = nvl(?, to_char(B.pfmc_date,'YYYY-MM-DD'))"
-				+ "                 and A.category = nvl(?, A.category)"
-				+ "                 and A.title like '%' || ? || '%'"
-				+ "                )"
-				+ " where num between ? and ?";
+				+ "                    ("
+				+ "                    select ROW_NUMBER() OVER(ORDER BY A.PFMC_NO) AS NUM"
+				+ "                    , A.PFMC_NO"
+				+ "                    , min(A.TITLE) TITLE"
+				+ "                    , min(A.CATEGORY) CATEGORY"
+				+ "                    , to_char(min(B.pfmc_date),'YYYY-MM-DD') pfmc_date"
+				+ "                    , min(B.location) LOCATION"
+				+ "                    , COUNT(*) OVER() AS CNT"
+				+ "                    from pfmc A"
+				+ "                    left join pfmc_schedule B on (A.PFMC_NO = B.PFMC_NO)"
+				+ "                    WHERE NVL(to_char(B.pfmc_date,'YYYY-MM-DD'), '9999-12-31') = nvl(?, NVL(to_char(B.pfmc_date,'YYYY-MM-DD'), '9999-12-31'))"
+				+ "                    and A.category = nvl(?, A.category)"
+				+ "                    and A.title like '%' || ? || '%'"
+				+ "                    group by a.pfmc_no"
+				+ "                    ) "
+				+ "where num between ? and ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
