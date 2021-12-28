@@ -4,9 +4,16 @@ var selectedSeatCode = "";
 var schedule;
 var priceObject = new Object();
 var IMP = window.IMP;
-    
 
 window.addEventListener("load", function() {
+    var buyerName = document.getElementById("buyer").value;
+    if (buyerName == undefined || buyerName == null || buyerName == "") {
+        this.alert('잘못된 접근경로입니다.');
+        this.window.close();
+    }
+
+    this.document.getElementById('payBtn').removeAttribute('disabled');
+
     schedule = document.getElementById("scheduleNoInput").value;
     IMP.init("imp63157978");
 
@@ -257,17 +264,17 @@ function initializeSeatInfo(scheduleNo) {
 function checkPay() {
     // payment by i'mport
     if (selectedSeatCode === "")
-        return alert("좌석을 선택해주세요.");
+    return alert("좌석을 선택해주세요.");
     
     let seat = document.getElementById(selectedSeatCode);
     if (seat == undefined) 
-        return alert("오류입니다. 관리자에게 문의해주세요.");
-        
-    var buyer = document.getElementById('buyer').innerText;
+    return alert("오류입니다. 관리자에게 문의해주세요.");
+    
+    var buyer = document.getElementById('buyer').value;
     var title = document.getElementById('perf-title').innerText;
     var price = priceObject[seat.getAttribute('grade')];
     var uid = `artsuwon-${schedule}-` + new Date().getTime();
-
+    
     // 결제창 호출
     IMP.request_pay({
         pg: "html5_inicis",

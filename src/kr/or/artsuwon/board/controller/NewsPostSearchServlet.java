@@ -1,5 +1,4 @@
-package kr.or.artsuwon.adminBoard.controller;
-
+package kr.or.artsuwon.board.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -11,22 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.artsuwon.adminBoard.model.service.BoardAdminService;
-import kr.or.artsuwon.adminBoard.model.service.BoardAdminServiceImpl;
-
-
+import kr.or.artsuwon.board.model.service.BoardService;
+import kr.or.artsuwon.board.model.service.BoardServiceImpl;
 
 /**
- * Servlet implementation class NoticePostSearchServlet
+ * Servlet implementation class NewsPostSearchServlet
  */
-@WebServlet("/adminNotice/noticePostSearch.do")
-public class NoticePostSearchServlet extends HttpServlet {
+@WebServlet("/board/NewsPostSearch.do")
+public class NewsPostSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticePostSearchServlet() {
+    public NewsPostSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,34 +32,34 @@ public class NoticePostSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		int currentPage;
 		
-		if(request.getParameter("currentPage") == null)
-		{	// 즉, index.jsp 에서 게시판으로 이동하는 경우에는 가장 첫페이지인 1page로 셋팅
-			currentPage = 1;
+		if(request.getParameter("currentPage")==null)
+		{
+
+			currentPage=1;
 		}else {
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));	
-			
-		}	
-	
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+
+		
+		//인코딩
 		request.setCharacterEncoding("UTF-8");
 		
 		String keyword = request.getParameter("keyword");
-		String type = request.getParameter("type");
-	/*	System.out.println(keyword);
-		System.out.println(type);
-		*/
-		BoardAdminService bService = new BoardAdminServiceImpl();
-		HashMap<String,Object> map = bService.selectSearchPost(currentPage,keyword,type);
+		String type=request.getParameter("type");
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/adminBoard/noticeAllList.jsp");
+		//비즈니스로직
+		BoardService bService = new BoardServiceImpl();
+		HashMap<String,Object> map = bService.NewsSearchPost(currentPage,keyword,type);
+		
+		RequestDispatcher view = request.getRequestDispatcher("/views/board/news-board.jsp");
 		
 		request.setAttribute("pageDataMap", map);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("keyword", keyword);
-		
-			view.forward(request, response);
+		view.forward(request, response);
 	}
 
 	/**

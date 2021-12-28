@@ -63,7 +63,7 @@
             <a href="/memberIndex.jsp" >로그인</a>
           </li>
           <li class="loginCheck">
-            <a href="/memberJoinus.jsp" >회원가입</a>
+            <a href="/views/member/memberJoinus.jsp" >회원가입</a>
           </li>
           <li class="loginCheck">
             <a href="/member/memberMyPage.do">마이페이지</a>
