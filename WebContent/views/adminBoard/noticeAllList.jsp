@@ -153,7 +153,7 @@
                                     </div>
 
                                     <div style="margin-bottom: 24px; padding-right: 0px;">
-                                        <form action="/board/noticePostSearch.do" method="get">
+                                        <form action="/adminNotice/noticePostSearch.do" method="get">
                                             <div style="margin-bottom: -26px;padding-right: 0px;margin-left: 42%;">
                                                 <select class="form-select-sm" name="type" style="width: 100px;height: 30px;margin-right: 13px;">
                                                     <option value="noticeTitle" selected>제목</option>

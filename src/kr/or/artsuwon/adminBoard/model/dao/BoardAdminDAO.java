@@ -125,16 +125,16 @@ public class BoardAdminDAO {
 
         } else {
             sb.append("<li class='page-item'><a class='page-link text-dark'" +
-                    "href='/notice/adminNoticeAllList.do?currentPage=" + (startNavi - 1) + "' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" +
+                    "href='/adminNotice/adminNoticeAllList.do?currentPage=" + (startNavi - 1) + "' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" +
                     "</a></li>");
         }
 
         for (int i = startNavi; i <= endNavi; i++) {
             if (i == currentPage) {
                 sb.append("<li class='page-item active' aria-current='page'>" +
-                        "<a class='page-link' href='/notice/adminNoticeAllList.do?currentPage=" + i + "'>" + i + "</a></li>");
+                        "<a class='page-link' href='/adminNotice/adminNoticeAllList.do?currentPage=" + i + "'>" + i + "</a></li>");
             } else {
-                sb.append("<li class='page-item'><a class='page-link text-dark' href='/notice/adminNoticeAllList.do?currentPage=" + i + "'>" + i + "</a></li>");
+                sb.append("<li class='page-item'><a class='page-link text-dark' href='/adminNotice/adminNoticeAllList.do?currentPage=" + i + "'>" + i + "</a></li>");
             }
 
         }
@@ -145,7 +145,7 @@ public class BoardAdminDAO {
                     "</span></li>");
         } else {
             sb.append("<li class='page-item'><a class='page-link text-dark'" +
-                    "href='/notice/adminNoticeAllList.do?currentPage=" + (endNavi + 1) + "' aria-label='Next'> <span aria-hidden='true'>&&raquo;</span>" +
+                    "href='/adminNotice/adminNoticeAllList.do?currentPage=" + (endNavi + 1) + "' aria-label='Next'> <span aria-hidden='true'>&&raquo;</span>" +
                     "</a></li>");
         }
 
@@ -415,7 +415,7 @@ public class BoardAdminDAO {
 	        }else
 	        {
 	        sb.append("<li class='page-item'><a class='page-link text-dark'" + 
-	                "href='/board/noticePostSearch.do?currentPage="+(startNavi-1)+"&keyword="+keyword+"&type="+type+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" + 
+	                "href='/adminNotice/noticePostSearch.do?currentPage="+(startNavi-1)+"&keyword="+keyword+"&type="+type+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" + 
 	                "</a></li>");
 	        }
 
@@ -424,10 +424,10 @@ public class BoardAdminDAO {
 	            if(i==currentPage)
 	            {
 	                sb.append("<li class='page-item active' aria-current='page'>" + 
-	                        "<a class='page-link' href='/board/noticePostSearch.do?currentPage="+i+"&keyword="+keyword+"&type="+type+"'>"+i+"</a></li>");
+	                        "<a class='page-link' href='/adminNotice/noticePostSearch.do?currentPage="+i+"&keyword="+keyword+"&type="+type+"'>"+i+"</a></li>");
 	            }else
 	            {
-	                sb.append("<li class='page-item'><a class='page-link text-dark' href='/board/noticePostSearch.do?currentPage="+i+"&keyword="+keyword+"&type="+type+"'>"+i+"</a></li>");
+	                sb.append("<li class='page-item'><a class='page-link text-dark' href='/adminNotice/noticePostSearch.do?currentPage="+i+"&keyword="+keyword+"&type="+type+"'>"+i+"</a></li>");
 	            }
 
 	        }
@@ -440,7 +440,7 @@ public class BoardAdminDAO {
 	        }else
 	        {
 	            sb.append("<li class='page-item'><a class='page-link text-dark'" + 
-	                "href='/board/noticePostSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"&type="+type+"' aria-label='Next'> <span aria-hidden='true'>&&raquo;</span>" + 
+	                "href='/adminNotice/noticePostSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"&type="+type+"' aria-label='Next'> <span aria-hidden='true'>&&raquo;</span>" + 
 	                "</a></li>");
 	        }
 
