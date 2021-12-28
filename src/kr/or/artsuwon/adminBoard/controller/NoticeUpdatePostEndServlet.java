@@ -61,7 +61,7 @@ public class NoticeUpdatePostEndServlet extends HttpServlet {
 		
 		}else
 		{
-			response.sendRedirect("/views/commons/error.jsp");
+			response.sendRedirect("/views/adminCommons/error.jsp");
 		}
 		
 	}

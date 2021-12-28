@@ -2,6 +2,7 @@ package kr.or.artsuwon.adminBoard.model.service;
 
 import kr.or.artsuwon.adminBoard.model.vo.Notice;
 
+import java.sql.Connection;
 import java.util.HashMap;
 
 public interface BoardAdminService {
@@ -34,4 +35,6 @@ public interface BoardAdminService {
 	Notice selectFileInfo(int noticeNo);
 
 	int listUp(int noticeNo);
+	
+	int increaseNotice(int noticeNo);
 }
