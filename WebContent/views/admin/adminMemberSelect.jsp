@@ -125,10 +125,14 @@
                     <thead>
                         <tr>
                             <th style="width: 20px;"><input type="checkbox" /></th>
-                            <th style="color: rgb(133, 135, 150);width: 300px;">닉네임(ID)</th>
+                            <th style="color: rgb(133, 135, 150);width: 300px;">이름(ID)</th>
                             <th style="color: rgb(133, 135, 150);width: 200px;">가입일</th>
-                            <th style="width: 100px;text-align: center;">게시글수</th>
-                            <th style="width: 300px;text-align: center;"><button class="btn btn-primary" type="button" style="height: 30px;">강제탈퇴</button><a class="btn btn-primary" role="button" href="mail2.html" style="height: 30px;">메일</a></th>
+                            <th style="color: rgb(133, 135, 150);width: 200px;">이메일</th>
+                            <th style="color: rgb(133, 135, 150);width: 200px;">주소</th>
+                            
+                            <th style="width: 300px;text-align: center;">
+                            <button class="btn btn-primary" type="button" style="height: 30px;">강제탈퇴</button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -138,8 +142,10 @@
                             <td><input type="checkbox" /></td>
                             <td><img class="rounded-circle me-2" width="30" height="30" src="/assets/images/memberPicture.jpg" /><%=m.getMemberName() %> (<%=m.getMemberId() %>)</td>
                             <td style="width: 200px;"><%=m.getEnrollDate() %></td>
-                            <td style="text-align: center;"><a href="/views/admin/member_sch_wrote.jsp">5</a></td>
-                            <td style="width: 200px;text-align: center;"><button class="btn btn-primary active" type="button" style="height: 30px;" href="/admin/memberEndYNChange.do?memberNo=<%=m.getMemberNo() %>&memberStatus=<%=m.getMemberStatus() %>">강제탈퇴</button><a class="btn btn-primary" role="button" href="mail2.html" style="height: 30px;">메일</a></td>
+                            <td style="width: 200px;"><%=m.getEmail() %></td>
+                            <td style="width: 250px;"><%=m.getAddress() %></td>
+                            <td style="width: 200px;text-align: center;">
+                            <button class="btn btn-primary active" type="button" style="height: 30px;" onclick="location.href='/admin/memberEndYNChange.do?memberNo=<%=m.getMemberNo() %>&memberStatus=<%=m.getMemberStatus() %>';">강제탈퇴</button></td>
                         </tr>
                         <%} %>
                         <!-- <tr>

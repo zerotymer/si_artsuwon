@@ -50,7 +50,7 @@ public class NoticeWriteServlet extends HttpServlet {
         if (result > 0) {
             int noticeNo = bService.searchNoticeNo(notice);
 
-            response.sendRedirect("/notice/noticeOneSelectContent.do?noticeNo=" + noticeNo + "&currentPage=1");
+            response.sendRedirect("/adminNotice/noticeOneSelectContent.do?noticeNo=" + noticeNo + "&currentPage=1");
 
         } else {
             response.sendRedirect("/views/adminCommons/error.jsp");

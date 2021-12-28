@@ -34,6 +34,7 @@ public class AdminMemberDAO {
 				m.setMemberId(rset.getString("member_Id"));
 				m.setMemberName(rset.getString("member_Name"));
 				m.setEmail(rset.getString("email"));
+				m.setAddress(rset.getString("address"));
 				m.setPhone(rset.getString("phone"));
 				m.setEmailYN(rset.getString("email_YN").charAt(0));
 				m.setSmsYN(rset.getString("sms_YN").charAt(0));
@@ -301,7 +302,7 @@ public class AdminMemberDAO {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String query = "UPDATE MEMBER SET MEMBER_STATUS=? WHERE MEMBER_NO=?'";
+		String query = "UPDATE MEMBER SET MEMBER_STATUS=? WHERE MEMBER_NO=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
