@@ -67,13 +67,7 @@
         height: 60%;
         float: left;
     }
-    .detail_info_table{
-        border: 1px solid black;
-        width: 400px;
-        height: 300px;
-        margin: 0 auto;
-        
-    }
+   
     
 </style>
 
@@ -181,7 +175,7 @@
                     </tr>
                     <tr>
                       <th scope="row"> 비밀번호 변경</th>
-                      <td colspan="3"><button type="button" id="pwdChangeBtn" class="btn btn-primary" style="background-color: #4375DB;">비밀번호 변경</button></td>
+                      <td colspan="3"><button id="pwdChangeBtn" class="btn btn-primary" style="background-color: #ED4C00;" >비밀번호변경</button></td>
                     </tr>
                   </tbody>
                 </table>
@@ -198,11 +192,11 @@
                   <tbody>
                     <tr>
                       <th scope="row"> 주소 </th>
-                      <td colspan="3"><input type="address" name="address" id="sample5_address" onclick="sample5_execDaumPostcode()" size="50"/>    <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색" > </td>
+                      <td colspan="3"><input class="form-control" name="address" type="text" id="sample5_address" onclick="sample5_execDaumPostcode()" size="30">   <input type="button" onclick="sample5_execDaumPostcode()" class="btn btn-primary" style="background-color: #ED4C00;" value="주소 검색"> </td>
                     </tr>
                     <tr>
                       <th scope="row"> 상세주소 </th>
-                      <td colspan="3"><input type="text" name="detailAddress"/></td>
+                      <td colspan="3"><input class="form-control" name="detailAddress" type="text" size="30"></td>
                     </tr>
                     <tr>
                       <th scope="row"> 핸드폰 </th>
