@@ -169,7 +169,7 @@ public class MemberDAO {
 		int result = 0;
 		
 		String query = "UPDATE MEMBER SET MEMBER_STATUS='2' WHERE MEMBER_NO=?";
-		
+		System.out.println("탈퇴된 회원 Member_NO : "+ memberNo);
 		try {
 			
 			pstmt = conn.prepareStatement(query);

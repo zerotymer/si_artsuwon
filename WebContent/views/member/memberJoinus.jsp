@@ -20,6 +20,11 @@
 		legend {
 			text-align: center;
 		}
+		img{
+			width : 200px;
+			height : 50px;
+			margin: 0 auto;
+		}
 	</style>
 
 </head>
@@ -192,6 +197,9 @@
 				SMS 수신동의 : <input type="radio" name="smsYN" value="Y" checked/>동의합니다.
 							 <input type="radio" name="smsYN" value="N"/>동의하지 않습니다.<br>
 			
+				<br><br>
+				<span id="message"></span>
+			
 		</fieldset>
 		
 		<input type="reset" value="취소" id="reset"/> <input type="submit" value="가입 완료" id="joinBtn"/>
@@ -200,7 +208,7 @@
 	</form>
 	
 	
-	
+	<img src="/assets/images/memberKakaoLogin.png" />
 	
 	
 	
@@ -276,13 +284,13 @@
 	<%--종합 검증 --%>
 	
 	<script>
-	
-        window.onload = function() {
+
             var message = document.getElementById("message");
+            var memberName = document.getElementById("memberName");
             var memberId = document.getElementById("memberId");
             var memberPwd = document.getElementById("memberPwd");
             var memberPwd_re = document.getElementById("memberPwd_re");
-            var memberName = document.getElementById("memberName");
+            
             var sample5_address = document.getElementById("sample5_address");
             var detailAddress = document.getElementById("detailAddress");
             var email1 = document.getElementById("email1");
@@ -291,104 +299,88 @@
             var phone2 = document.getElementById("phone2");
             var phone3 = document.getElementById("phone3");
 
-        }
 
         function check() {
 
-            init();
-            if (!(/^[a-z][a-z0-9]{8,10}$/.test(memberId.value))) //아이디 검사
+            
+        	if (!(/[가-힣]+$/.test(memberName.value))) //이름 검사
             {
-                memberId.style.font-color = "red";
+            	message.style.color = "red";
+                message.innerHTML = "이름은 한글(최소1글자)만 가능합니다.";
+                return false;
+                
+            } 
+			else if (!(/^[a-z][a-z0-9]{8,10}$/.test(memberId.value))) //아이디 검사
+            {
+            	message.style.color = "red";
                 message.innerHTML = "영문 소문자,숫자 8~10 글자 이내로 입력";
                 return false;
                 
-            } else if (!(/[a-zA-Z0-9]{8,12}$/.test(memberPwd.value))) //비밀번호 검사
+            } 
+			else if (!(/[a-zA-Z0-9]{8,12}$/.test(memberPwd.value))) //비밀번호 검사
             {
-                memberPwd.style.color = "red";
+            	message.style.color = "red";
                 message.innerHTML = "비밀번호는 소문자,대문자,숫자를 포함한 8~12 글자 이내로 입력";
                 return false;
                 
-            } else if (!(memberPw.value == memberPwd_re.value)) //PW와 PW_RE 비교 검사
-            {
-                memberPwd_re.style.color = "red";
-                message.innerHTML = "비밀번호가 일치하지 않습니다.";
-                return false;
-       			
-            }else if((memberPw.value) == (memberPwd_re.value)) //PW와 PW_RE 비교 검사
+            } 
+			else if((memberPw.value) == (memberPwd_re.value)) //PW와 PW_RE 비교 검사
             {
                 message.innerHTML = " ";
                 return false;
             	
-            }else if (!(/[가-힣]+$/.test(memberName.value))) //이름 검사
+            }
+			else if (!(memberPw.value == memberPwd_re.value)) //PW와 PW_RE 비교 검사
             {
-                memberName.style.color = "red";
-                message.innerHTML = "이름은 한글(최소1글자)만 가능합니다.";
+            	message.style.color = "red";
+                message.innerHTML = "비밀번호가 일치하지 않습니다.";
                 return false;
-                
-            } else if ((/[a-z]+$/i).test(sample5_address.value) || sample5_address.value == "") //주소검사
+       			
+            }
+			else if ((/[a-z]+$/i).test(sample5_address.value) || sample5_address.value == "") //주소검사
             {
-            	sample5_address.style.color = "red";
+            	message.style.color = "red";
                 message.innerHTML = "주소 입력은 영어 사용이 불가합니다. (공백 불가)";
                 return false;
                 
-            } else if ((/[a-z]+$/i).test(detailAddress.value) || detailAddress.value == "") //주소검사
+            } 
+			else if ((/[a-z]+$/i).test(detailAddress.value) || detailAddress.value == "") //주소검사
             {
-            	detailAddress.style.color = "red";
+            	message.style.color = "red";
                 message.innerHTML = "주소 입력은 영어 사용이 불가합니다. (공백 불가)";
                 return false;
                 
-            } else if (!(/^[a-z0-9]{4,12}.test(email1.value))) //이메일 검사
+            } 
+			else if (!((/^010$/.test(phone1.value)) && (/[0-9]{3,4}$/.test(phone2.value)) && (/[0-9]{4}$/.test(phone3.value)))) //폰 검사
             {
-                email1.style.color = "red";
-                message.innerHTML = "이메일을 재확인해주세요.";
-                return false;
-            } else if (!((/^010$/.test(phone1.value)) && (/[0-9]{3,4}$/.test(phone2.value)) && (/[0-9]{4}$/.test(phone3.value)))) //폰 검사
-            {
-            	phone1.style.color = "red";
-            	phone2.style.color = "red";
-            	phone3.style.color = "red";
+            	message.style.color = "red";
                 message.innerHTML = "전화번호 재확인 바랍니다.";
                 return false;
             }
+			else if (!(/^[a-z0-9]{4,12}/).test(email1.value)) //이메일 검사
+            {
+            	message.style.color = "red";
+                message.innerHTML = "이메일을 재확인해주세요.";
+                return false;
+            } 	
+			else{
+            	return true;	
+            }
             
-            return true;
+            
         }
 
-        function init() {
-            message.innerHTML = "";
-            memberName.innerHTML = "";
-            memberId.innerHTML = "";
-            memberPwd.innerHTML = "";
-            memberPwd_re.innerHTML = "";
-            sample5_address.innerHTML = "";
-            detailAddress.innerHTML = "";
-            phone1.innerHTML = "";
-            phone2.innerHTML = "";
-            phone3.innerHTML = "";
-            email1 .innerHTML = "";
-            email2 .innerHTML = "";
-            <%--
-            user_id.style.backgroundColor = "white";
-            pw.style.backgroundColor = "white";
-            pw_re.style.backgroundColor = "white";
-            user_name.style.backgroundColor = "white";
-            addr.style.backgroundColor = "white";
-            post_1.style.backgroundColor = "white";
-            post_2.style.backgroundColor = "white";
-            email.style.backgroundColor = "white";
-            tel1.style.backgroundColor = "white";
-            tel2.style.backgroundColor = "white";
-            tel3.style.backgroundColor = "white";
-            --%>
-        }
+      
+   
     </script>
     
     
     <%--submit 이동 시 이벤트 --%>
 	<script>
+
 		function mustHave(){
-			message.innerText = "test";
-			return confirm("test");
+			
+			return check();
 			
 		}
 	</script>
