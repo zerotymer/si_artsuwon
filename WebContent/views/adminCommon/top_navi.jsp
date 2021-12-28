@@ -21,7 +21,7 @@
 			           <div class="dropdown-menu dropdown-menu-end animated--grow-in">
 				           <%-- 최고관리자는 프로필 수정탭 안나타남 --%>
 							 <c:if test="${String.valueOf(sessionScope.admin.superAdminYN) eq 'N'}">	
-					             <a class="dropdown-item" href="/showAdminInfo.do?adminNo=${sessionScope.admin.adminNo }">
+					             <a class="dropdown-item" href="/adminMngm/showAdminInfo.do?adminNo=${sessionScope.admin.adminNo }">
 					             	<i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;프로필
 					             </a>
 				        	 </c:if>
