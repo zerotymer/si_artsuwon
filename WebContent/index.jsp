@@ -3,6 +3,16 @@
 <html>
 
 <head>
+	<!-- google analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-0X1753Z7NZ"></script>
+	<script>
+	  	window.dataLayer = window.dataLayer || [];
+	  	function gtag(){dataLayer.push(arguments);}
+	  	gtag('js', new Date());
+	
+	  	gtag('config', 'G-0X1753Z7NZ');
+	</script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>수원 시립 예술단</title>
 </head>
