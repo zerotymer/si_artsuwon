@@ -24,52 +24,46 @@
     <style>
         #wrapper {
             box-sizing: border-box;
-            width: 80%;
+            width: 70%;
             height: 500px;
             margin: 0 auto;
-
-            background-color: skyblue;
-            
         }
 
         .login {
             box-sizing: border-box;
-            width: 100%;
-            height: 100%;
+            /* width: 50%; */
+            /* height: 100%; */
             /*        float: left;*/
-/*            padding: 10px 20px;*/
             display: flex;
-            flex-direction: row;
+            flex-direction: row;    /* 자식 요소 수평으로 배치 */
         }
         .loginform {
-            margin: 20px 0px;
-            flex: 1 1 auto;
-            width: 50%;
+            flex: 1 0 50%;          /* 자동늘리기1, 자동줄이기0, 기본크기 50% */
+            padding: 30px 15px;
         }
         .form-floating {
             margin-top: 20px;
+            font-size: 1.2em;
         }
-        .form-control {
-            line-height: 20px;
-            height: 40px;
+        .form-floating>input{
+            font-size: 1.2em;
         }
-        .loginform > div:last-child {
+        .orangeBtn {
             margin-top: 100px;
         }
         #loginBtn {
             width: 100%;
-            height: 50px;
+            height: 60px;
+            font-size: 1.2em;
         }
         .joinus {
-            flex: 1 1 auto;
+            flex: 1 0 50%;          /* 자동늘리기1, 자동줄이기0, 기본크기 50% */
             box-sizing: border-box;
-/*            width: 50%;*/
             height: 100%;
-            /*        float: left;*/
-            background-color: aqua;
+            padding: 0px 15px;
         }
         #joinus_info {
-/*            margin: 0% auto;*/
+            margin: 0% auto;
         }
         #kakao_login {
 
@@ -77,16 +71,16 @@
         #naver_login {
 
         }
-        #choice_icon {
-            width: 80px;
-            height: 80px;
+        #choice_icon > img{
+            width: 100px;
+            height: 100px;
             float: left;
             margin: 8%;
         }
         #choice_join {
-            height: 35%;
-            margin: 30% auto;
-            background-color: #FFFFD2;
+            height: 200px;
+            margin: 25% auto;
+            /*background-color: #FFFFD2;*/
         }
     </style>
 
@@ -94,6 +88,8 @@
 <body>
 <%
     Member m = (Member) session.getAttribute("member");
+    // 로그인 실패시 fail - false, 로그인 안하고 넘어오는경우 null - true
+    boolean notLogin = request.getAttribute("result") == null; 
 %>
 
 <!-- Header -->
@@ -102,47 +98,55 @@
 
 <div id="wrapper">
     <div class="login">
-        <div class="loginform">
+       <form action="/member/login.do" method="post"  class="loginform">
+        <div>
             <div class="form-floating mb-3">
-                아이디 <input type="email" class="form-control" id="floatingInput" placeholder="ID">
+                아이디 <input type="text" name="memberId" class="form-control" id="floatingInput" placeholder="ID">
             </div>
             <div class="form-floating">
-                비밀번호 <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                비밀번호 <input type="password" name="memberPwd" class="form-control" id="floatingPassword" placeholder="Password">
             </div>
-            <div class="d-grid gap-2">
-                <button class="btn btn-primary" id="loginBtn" type="button" style="background-color: #ED4C00;" type="submit">로그인</button>
+            <div class="d-grid gap-2 orangeBtn">
+                <button class="btn btn-primary" id="loginBtn" type="submit" style="background-color: #ED4C00;" >로그인</button>
             </div>
         </div>
-
+        </form>
         <div class="joinus">
             <div id="choice_join">
+               <div style = "cursor: pointer;" onclick="location.href='/views/member/memberJoinus.jsp';">
                 <div id="choice_icon">
-                    <img src="/assets/images/"/>
+                    <img src="/assets/images/pngwing.com.png"/>
                 </div>
                 <br>
-                <div id="joinus_info">
+                <div id="joinus_info"> 
                     <h5><b>회원가입</b></h5>
                     <br>
                     아직 회원이 아닌가요?<br>
-                    회원이 되시면 홈페이지에서 제공하는 온라인 서비스를 이용하실 수 있습니다.
+                    회원이 되시면 홈페이지에서 제공하는 온라인 서비스를 이용하실 수 있습니다.<br>
                 </div>
+            </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
 <% if (m != null) { %>
+
 <script>
     location.replce("/");
 </script>
-<%} else { %>
-<form action="/member/login.do" method="post">
-    <input type="text" name="memberId" placeholder="ID"/><br>
-    <input type="password" name="memberPwd" placeholder="Password"/><br>
-    <input type="submit" value="로그인"/>
-    <br>
-    <a href="/views/member/memberJoinus.jsp">회원가입</a>
-</form>
-<%} %>
+
+<%}%>
+
+<script>
+    var notLogin = <%= notLogin %>;
+    if (!notLogin) {
+        alert("로그인에 실패하였습니다. 다시 시도해주세요.");
+    }
+</script>
+
 <!-- footer -->
 <%@ include file="/include/_footer.jsp" %>
 

@@ -17,7 +17,7 @@
 			alert('비밀번호 변경 성공');
 			window.close(); //나 자신의 브라우저를 닫아라
 		<%}else{%>
-			alert('비밀번호 변경 실패 \n 비밀번호를 재확인 해주세요');
+			alert('비밀번호 변경 실패. 비밀번호 재확인 바랍니다.');
 			location.replace("/views/member/memberPasswordChangeWindow.jsp");
 		<%}%>
 	</script>
