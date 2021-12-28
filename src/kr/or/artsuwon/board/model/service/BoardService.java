@@ -14,6 +14,16 @@ public interface BoardService {
 
 	HashMap<String, Object> NoticeSearchPost(int currentPage, String keyword, String type);
 
-	HashMap<String, Object> NewsSelect(int currentPage);;
+	HashMap<String, Object> NewsSelect(int currentPage);
+
+	Board NewsSelectOnePost(int boardNo);
+
+	HashMap<String, Object> NewsSearchPost(int currentPage, String keyword, String type);
+
+	int noticePostWrite(Board board);
+
+	int noticeSearchBoardNo(Board board);
+
+
 
 }

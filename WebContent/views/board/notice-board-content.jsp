@@ -31,47 +31,56 @@
 	crossorigin="anonymous"></script>
 <title>공지사항</title>
 </head>
-</head>
 <body>
-
+<jsp:include page="/include/_header.jsp"/>
 	<%
 		Board board = (Board) request.getAttribute("board");
 		int currentPage = (int) request.getAttribute("currentPage");
 	%>
 	<!-- Local Navi Bar-->
-<content>
-		<div class="nav_div">
-		<nav id="LNB" class="LNB">
-		<ul class="nav-menu">
-			<li class="menu-item menu-img"><a href=""><img
-					src="/assets/icon/home.svg" alt=""></a></li>
-			<li class="menu-item"><a href=""><strong>공연/예매</strong></a>
-				<ul class="nav-submenu">
-					<li class="submenu-item"><a href=""><strong>공연/예매</strong></a></li>
-					<li class="submenu-item"><a href="">교육</a></li>
-					<li class="submenu-item"><a href="">오케스트라</a></li>
-					<li class="submenu-item"><a href="">시향소식</a></li>
-					<li class="submenu-item"><a href="">기관소개</a></li>
-				</ul></li>
-			<li class="menu-item"><a href=""><strong>공연일정</strong></a>
-				<ul class="nav-submenu">
-					<li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
-					<li class="submenu-item"><a href="">공연소개</a></li>
-					<li class="submenu-item"><a href="">예매안내</a></li>
-				</ul></li>
-			<li class="menu-item hide"><a href="">test</a>
-				<ul class="nav-submenu">
-					<li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
-					<li class="submenu-item"><a href="">공연소개</a></li>
-					<li class="submenu-item"><a href="">예매안내</a></li>
-				</ul></li>
-		</ul>
-		</nav>
-		</div>
-</content>
+   <content>
+        <div class="nav_div">
+            <nav id="LNB" class="LNB">
+                <ul class="nav-menu">
+                    <li class="menu-item menu-img">
+                        <a href=""><img src="/assets/icon/home.svg" alt=""></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href=""><strong>공연/예매</strong></a>
+                        <ul class="nav-submenu">
+                            <li class="submenu-item"><a href=""><strong>공연/예매</strong></a></li>
+                            <li class="submenu-item"><a href="">교육</a></li>
+                            <li class="submenu-item"><a href="">오케스트라</a></li>
+                            <li class="submenu-item"><a href="">시향소식</a></li>
+                            <li class="submenu-item"><a href="">기관소개</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href=""><strong>공연일정</strong></a>
+                        <ul class="nav-submenu">
+                            <li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
+                            <li class="submenu-item"><a href="">공연소개</a></li>
+                            <li class="submenu-item"><a href="">예매안내</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item hide">
+                        <a href="">test</a>
+                        <ul class="nav-submenu">
+                            <li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
+                            <li class="submenu-item"><a href="">공연소개</a></li>
+                            <li class="submenu-item"><a href="">예매안내</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="wrapper">
+
+        </div>
+       
 
 
-		<!-- 게시판 헤더 -->
+		
 <article class="common_wrap"> <%if (board != null) {%>
 		<div class="board_view_box">
 			<div class="view_header">
@@ -84,6 +93,7 @@
 				</div>
 			</div>
 
+		
 
 
 		<!-- 파일첨부 -->
@@ -97,15 +107,12 @@
 		<!-- 풋터 -->
 		<div class="view_footer">
 			<div class="btn_box">
-				<div class="prv">
-					<button>이전글</button>
-				</div>
+
 				<a href="/board/NoticeAllSelect.do?currentPage=<%=currentPage%>" class="list" style="text-align:center">목록</a>
-				<div class="nex_no">
-					<button>다음글</button>
-				</div>
+
 			</div>
 		</div>
+			
 
 
 		<%} else {%>
@@ -114,9 +121,15 @@
 			location.replace('/board/NoticeAllSelect.do');
 		</script>
 		<%}%>
-	
-</article>
 
+	</article>
+    </content>
+        
 
 </body>
+
+<!-- footer -->
+<footer>
+<jsp:include page="/include/_footer.jsp"/>
+</footer>
 </html>
