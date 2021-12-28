@@ -31,7 +31,7 @@ public class AdminLoginServlet extends HttpServlet {
 		if(admin!=null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("admin", admin);
-			response.sendRedirect("/views/adminMngm/adminMain.jsp"); 
+			response.sendRedirect("/adminPfmc/selectAllPfmcList.do"); 
 		}else {
 			response.sendRedirect("/views/adminMngm/adminLoginFail.jsp"); 
 		}
