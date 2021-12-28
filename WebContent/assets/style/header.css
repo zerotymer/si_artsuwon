@@ -93,8 +93,6 @@
     /* border-bottom: 3px solid #F36F21; */
 }
 
-
-
 .submenu {
     width: 150px;
     display: none;
@@ -182,8 +180,6 @@
 }
 
 
-
-
 /* Event */
 
 .header:hover > .header-nav {
@@ -247,8 +243,6 @@
     color: black;
 }
 
-
-
 /* 개인정보 */
 .my-ul {
     display: none;
@@ -260,7 +254,6 @@
     margin-top: 32px;
     background-color: #EEE;
 }
-
 .my-ul > li {  
     display: inline-block;
     padding: 10px;
@@ -274,7 +267,11 @@
     font: bold 14px/40px 'Noto Sans KR', sans-serif;
 }
 /* .my-span:hover .my-ul, */
-.func-mypageOver {
+.func-show {
     display: flex;
-        flex-direction: column;
+     flex-direction: column; 
+}
+
+.menu-disabled {
+    display: none;
 }

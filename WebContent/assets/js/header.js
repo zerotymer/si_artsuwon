@@ -4,11 +4,12 @@ window.addEventListener('load', function() {
     let mypageSubmenu = document.getElementById('mypageSubmenu');
     let myPageIcon = document.getElementById('mypageIcon');
     myPageIcon.addEventListener('mouseover', function() {
-        mypageSubmenu.classList.add('func-mypageOver');
+        mypageSubmenu.classList.add('func-show');
     });
     mypageSubmenu.addEventListener('mouseover', function() {
-        this.classList.add('func-mypageOver');
-    }).addEventListener('mouseout', function() {
-        this.classList.remove('func-mypageOver');
+        this.classList.add('func-show');
+    });
+    mypageSubmenu.addEventListener('mouseout', function() {
+        this.classList.remove('func-show');
     });
 });
