@@ -50,8 +50,8 @@ public class MemberEndYNChangeServlet extends HttpServlet {
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		char memberStatus = request.getParameter("memberStatus").charAt(0);
 		
-		if(memberStatus=='2') memberStatus='0';
-		else		   memberStatus='2';
+		if(memberStatus=='0') memberStatus='2';
+		else		   memberStatus='0';
 		
 		
 		AdminMemberService adService = new AdminMemberServiceImpl();
