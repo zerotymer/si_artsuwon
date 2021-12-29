@@ -286,7 +286,7 @@
                <br><br>
                <span id="message"></span> <br><br><br>
             <button class="btn btn-primary" id="loginBtn" type="reset" style="background-color: #D8D8D8; width: 90px; height: 50px" class="moveBtn" >취소</button> &nbsp;
-            <button class="btn btn-primary" id="joinBtn" class="moveBtn" type="submit" style="background-color: #ED4C00; width: 90px; height: 50px" >변경하기</button>
+            <button class="btn btn-primary" id="joinBtn" class="moveBtn" type="submit" style="background-color: #ED4C00; width: 90px; height: 50px" >가입하기</button>
              
         </div>
     </form>
