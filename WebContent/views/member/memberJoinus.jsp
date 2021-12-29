@@ -37,6 +37,7 @@
         height: 180px;
         float: left;
         background-color: #F6F6F6;
+        padding: 20px;
     }
     .join{
         box-sizing: border-box;
@@ -385,8 +386,7 @@
 
 
         function check() {
-
-            
+			
         	if (!(/[가-힣]+$/.test(memberName.value))) //이름 검사
             {
             	message.style.color = "red";
@@ -408,7 +408,7 @@
                 return false;
                 
             } 
-			else if (!(memberPw.value == memberPwd_re.value)) //PW와 PW_RE 비교 검사
+			else if (!(memberPwd.value == memberPwd_re.value)) //PW와 PW_RE 비교 검사
             {
             	message.style.color = "red";
                 message.innerHTML = "※비밀번호가 일치하지 않습니다.";
