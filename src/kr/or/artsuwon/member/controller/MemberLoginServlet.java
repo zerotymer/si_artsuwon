@@ -43,20 +43,13 @@ public class MemberLoginServlet extends HttpServlet {
 		{
 			HttpSession session = request.getSession();
 			session.setAttribute("member", m);
-			
-			response.sendRedirect("/memberIndex.jsp");
-			
-			
+			response.sendRedirect("/");
 		}else {
-			
-			RequestDispatcher view = request.getRequestDispatcher("/views/member/memberLoginFail.jsp");
-			
+			RequestDispatcher view = request.getRequestDispatcher("/memberIndex.jsp");
+			request.setAttribute("result", false);
 			view.forward(request, response);
 			
 		}
-		
-		
-		
 		
 	}
 

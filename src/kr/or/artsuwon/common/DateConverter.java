@@ -29,4 +29,9 @@ public class DateConverter {
 
         return newDate;
     }
+
+    public static String convertSQLDateToString(java.sql.Date date, String format) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        return dateFormat.format(new Date(date.getTime()));
+    }
 }

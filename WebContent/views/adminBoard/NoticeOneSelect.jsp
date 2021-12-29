@@ -25,7 +25,7 @@
 
 	<div id="wrapper">
 		<!--사이드 네비바 include-->
-         <%@include file="/views/adminCommon/side_navi.jsp" %>
+         <%@include file="/views/adminCommon/yj_side_navi.jsp" %>
     
         	<!-- 컨텐츠 영역 -->
        		<div class="d-flex flex-column" id="content-wrapper">
@@ -76,7 +76,7 @@
                                 <button class="btn btn-light btn-sm" id="textUpdateBtn" type="submit" style="width: 61px;height: 28px;margin: 2px;padding: 2px 2px;padding-left: 3px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 0;border-style: none;border-color: rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);
                                 border-left-style: none;border-left-color: rgb(255,255,255);font-size: 13px;text-align: right;">수정</button>
                                 <button class="btn btn-light btn-sm"  id="deleteBtn" type="Button" style="width: 61px;height: 28px;margin: 2px;padding: 2px 2px;padding-left: 3px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 0;border-style: none;border-color: rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);border-left-style: none;border-left-color: rgb(255,255,255);font-size: 13px;text-align: center;">삭제</button>
-                                <button class="btn btn-light btn-sm" id="menuBtn" type="Button" style="width: 61px;height: 28px;margin: 2px;padding: 2px 2px;padding-left: 3px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 0;border-style: none;border-color: rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);border-left-style: none;border-left-color: rgb(255,255,255);font-size: 13px;text-align: left;">
+                                <button class="btn btn-light btn-sm"onclick="location.replace('/adminNotice/adminNoticeAllList.do');" id="menuBtn" type="Button" style="width: 61px;height: 28px;margin: 2px;padding: 2px 2px;padding-left: 3px;opacity: 1;filter: brightness(90%) contrast(200%) saturate(113%);margin-left: 0;border-style: none;border-color: rgb(252,252,252);border-top-style: none;border-top-color: rgb(255,255,255);border-right-style: none;border-right-color: rgb(255,255,255);border-bottom-style: none;border-bottom-color: rgb(255,255,255);border-left-style: none;border-left-color: rgb(255,255,255);font-size: 13px;text-align: left;">
                                	목록</button></div>
                             </div>
                             <hr style="width: 100%;" />

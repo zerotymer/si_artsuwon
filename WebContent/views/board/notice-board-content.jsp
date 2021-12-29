@@ -32,52 +32,42 @@
 <title>공지사항</title>
 </head>
 <body>
-<jsp:include page="/include/_header.jsp"/>
+
 	<%
 		Board board = (Board) request.getAttribute("board");
 		int currentPage = (int) request.getAttribute("currentPage");
 	%>
 	<!-- Local Navi Bar-->
-   <content>
-        <div class="nav_div">
-            <nav id="LNB" class="LNB">
-                <ul class="nav-menu">
-                    <li class="menu-item menu-img">
-                        <a href=""><img src="/assets/icon/home.svg" alt=""></a>
-                    </li>
-                    <li class="menu-item">
-                        <a href=""><strong>공연/예매</strong></a>
-                        <ul class="nav-submenu">
-                            <li class="submenu-item"><a href=""><strong>공연/예매</strong></a></li>
-                            <li class="submenu-item"><a href="">교육</a></li>
-                            <li class="submenu-item"><a href="">오케스트라</a></li>
-                            <li class="submenu-item"><a href="">시향소식</a></li>
-                            <li class="submenu-item"><a href="">기관소개</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href=""><strong>공연일정</strong></a>
-                        <ul class="nav-submenu">
-                            <li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
-                            <li class="submenu-item"><a href="">공연소개</a></li>
-                            <li class="submenu-item"><a href="">예매안내</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item hide">
-                        <a href="">test</a>
-                        <ul class="nav-submenu">
-                            <li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
-                            <li class="submenu-item"><a href="">공연소개</a></li>
-                            <li class="submenu-item"><a href="">예매안내</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="wrapper">
-
-        </div>
-       
+<content>
+		<div class="nav_div">
+		<nav id="LNB" class="LNB">
+		<ul class="nav-menu">
+			<li class="menu-item menu-img"><a href=""><img
+					src="/assets/icon/home.svg" alt=""></a></li>
+			<li class="menu-item"><a href=""><strong>공연/예매</strong></a>
+				<ul class="nav-submenu">
+					<li class="submenu-item"><a href=""><strong>공연/예매</strong></a></li>
+					<li class="submenu-item"><a href="">교육</a></li>
+					<li class="submenu-item"><a href="">오케스트라</a></li>
+					<li class="submenu-item"><a href="">시향소식</a></li>
+					<li class="submenu-item"><a href="">기관소개</a></li>
+				</ul></li>
+			<li class="menu-item"><a href=""><strong>공연일정</strong></a>
+				<ul class="nav-submenu">
+					<li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
+					<li class="submenu-item"><a href="">공연소개</a></li>
+					<li class="submenu-item"><a href="">예매안내</a></li>
+				</ul></li>
+			<li class="menu-item hide"><a href="">test</a>
+				<ul class="nav-submenu">
+					<li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
+					<li class="submenu-item"><a href="">공연소개</a></li>
+					<li class="submenu-item"><a href="">예매안내</a></li>
+				</ul></li>
+		</ul>
+		</nav>
+		</div>
+</content>
 
 
 		
@@ -88,19 +78,17 @@
 				<h3><%=board.getNoticeTitle()%></h3>
 				<br>
 				<div class="detail">
-					<span class="date"><%=board.getRegDate()%></span>&nbsp | &nbsp<span
-						class="count">조회수 <%=board.getViewCount()%></span>
+					<span class="date"><%=board.getRegDate()%>
 				</div>
 			</div>
 
 		
 
 
-		<!-- 파일첨부 -->
-		<div class="file_link">파일첨부</div>
+		
 
 		<!-- 게시판 내용 -->
-		<article class="view_content"> 
+		<article class="view_content" style="width:1140px; height:600px"> 
 			<%=board.getNoticeContent()%>
 		</article>
 
@@ -121,15 +109,9 @@
 			location.replace('/board/NoticeAllSelect.do');
 		</script>
 		<%}%>
+	
+</article>
 
-	</article>
-    </content>
-        
 
 </body>
-
-<!-- footer -->
-<footer>
-<jsp:include page="/include/_footer.jsp"/>
-</footer>
 </html>

@@ -6,7 +6,7 @@
 <!-- Header -->
 <div class="header-noti">
   <!-- 공지사항 -->
-  공지사항 작성란
+  
 </div>
 <!-- Header Navi-->
 <div class="header">
@@ -21,7 +21,7 @@
     <nav id="gnb" class="gnb">
       <ul>
         <li class="menu">
-          <a href="">공연/예매</a>
+          <a href="/views/performance/listview.jsp">공연/예매</a>
           <ul>
             <li class="submenu">
               <a href="/views/performance/listview.jsp">공연일정</a>
@@ -63,7 +63,7 @@
             <a href="/memberIndex.jsp" >로그인</a>
           </li>
           <li class="loginCheck">
-            <a href="/memberJoinus.jsp" >회원가입</a>
+            <a href="/views/member/memberJoinus.jsp" >회원가입</a>
           </li>
           <li class="loginCheck">
             <a href="/member/memberMyPage.do">마이페이지</a>

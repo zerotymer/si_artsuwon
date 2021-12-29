@@ -60,25 +60,26 @@
                     <fieldset>
                         <legend>예매하기</legend>
                         <dl>
-                            <dt>예약자이름</dt><dd id="buyer">${sessionScope.member.memberName} (${sessionScope.member.memberId})</dd>
+                            <dt>예약자이름</dt><dd>${sessionScope.member.memberName} (${sessionScope.member.memberId})</dd>
                             <dt>공연이름</dt><dd id="perf-title"></dd>
                             <dt>공연일시</dt><dd id="perf-date">DDD</dd>
                             <dt>공연장소</dt><dd id="perf-location">LOL</dd>
                             <dt>선택된 좌석</dt><dd id="perf-selected"></dd>
                             <dt>가격</dt><dd id="perf-price"></dd>
                         </dl>
+                        <input type="hidden" name="buyer" id="buyer" value="${sessionScope.member.memberId}">
                         <input type="hidden" name="price" id="priceInput" value="0">
                         <input type="hidden" name="scheduleNo" id="scheduleNoInput" value="<%= request.getParameter("scheduleNo") %>">
                         <input type="hidden" name="invoiceNo" id="uidInput" value="">
                         <input type="hidden" name="seatCode" id="seatCodeInput" value="">
-                        <input type="button" value="결제하기" style="background-color: red;" onclick="checkPay();"> <br>
+                        <input type="button" id="payBtn" value="결제하기" style="background-color: red;" onclick="checkPay();" disabled="disabled"> <br>
                         <input type="button" value="취소하기" style="background-color: #666;"onclick="window.close();">
                     </fieldset>
                 </form>
             </div>
         </div>
     </div>
-    <script src="./book.js"></script>
+    <script src="/views/reservation/book.js"></script>
     <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
 </body>
 </html>

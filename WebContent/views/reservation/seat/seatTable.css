@@ -130,7 +130,7 @@
 
 .seat-reserved {
     /* 예약된 좌석 */
-    background-color: #ffc107;
+    background-color: #ffc107 !important;
     cursor: default;
 }
 .seat-reserved:hover {

@@ -31,7 +31,7 @@
 
 <div id="wrapper">
     <!--사이드 네비바 include-->
-    <%@include file="/views/adminCommon/side_navi.jsp" %>
+    <%@include file="/views/adminCommon/yj_side_navi.jsp" %>
 
     <!-- 컨텐츠 영역 -->
     <div class="d-flex flex-column" id="content-wrapper">
@@ -95,17 +95,7 @@
                 </section>
             </div>
 
- <script>
-        $(document).ready(function () {
 
-            $('#myEditor').summernote({
-                lang: 'ko-KR',
-                height: 300,
-            });
-
-
-        });
-    </script>
 
 
 

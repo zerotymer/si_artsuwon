@@ -144,36 +144,41 @@ public class BoardAdminDAO {
             endNavi = pageTotalCount;
         }
 
+        if(startNavi==1) {
 
-        if (startNavi == 1) {
+            sb.append("<li class='page-item disabled'><span class='page-link'' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>"+
+               	  "</span></li>");
 
-            sb.append("<li class='page-item disabled'><span class='page-link'' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" +
-                    "</span></li>");
-
-        } else {
-            sb.append("<li class='page-item'><a class='page-link text-dark'" +
-                    "href='/adminNotice/adminNoticeAllList.do?currentPage=" + (startNavi - 1) + "' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" +
-                    "</a></li>");
+        }else
+        {
+        sb.append("<li class='page-item'><a class='page-link text-dark'" + 
+                "href='/adminNotice/adminNoticeAllList.do?currentPage="+(startNavi-1)+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" + 
+                "</a></li>");
         }
 
-        for (int i = startNavi; i <= endNavi; i++) {
-            if (i == currentPage) {
-                sb.append("<li class='page-item active' aria-current='page'>" +
-                        "<a class='page-link' href='/adminNotice/adminNoticeAllList.do?currentPage=" + i + "'>" + i + "</a></li>");
-            } else {
-                sb.append("<li class='page-item'><a class='page-link text-dark' href='/adminNotice/adminNoticeAllList.do?currentPage=" + i + "'>" + i + "</a></li>");
+        for(int i=startNavi; i<=endNavi; i++)
+        {
+            if(i==currentPage)
+            {
+                sb.append("<li class='page-item active' aria-current='page'>" + 
+                        "<a class='page-link' href='/adminNotice/adminNoticeAllList.do?currentPage="+i+"'>"+i+"</a></li>");
+            }else
+            {
+                sb.append("<li class='page-item'><a class='page-link text-dark' href='/adminNotice/adminNoticeAllList.do?currentPage="+i+"'>"+i+"</a></li>");
             }
 
         }
 
-        if (endNavi == pageTotalCount) {
-            sb.append("<li class='page-item disabled'><span class='page-link'" +
-                    "aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" +
+        if(endNavi==pageTotalCount)
+        {
+            sb.append("<li class='page-item disabled'><span class='page-link'" + 
+                    "aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + 
                     "</span></li>");
-        } else {
-            sb.append("<li class='page-item'><a class='page-link text-dark'" +
-                    "href='/adminNotice/adminNoticeAllList.do?currentPage=" + (endNavi + 1) + "' aria-label='Next'> <span aria-hidden='true'>&&raquo;</span>" +
-                    "</a></li>");
+        }else
+        {
+            sb.append("<li class='page-item'><a class='page-link text-dark'" + 
+                "href='/adminNotice/adminNoticeAllList.do?currentPage="+(endNavi+1)+"' aria-label='Next'> <span aria-hidden='true'>&&raquo;</span>" + 
+                "</a></li>");
         }
 
 

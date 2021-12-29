@@ -56,7 +56,7 @@
 
         <!-- details -->
         <div class="detailView">
-            <a href="">공연일정 화면으로 이동</a>
+            <a href="/views/performance/listview.jsp">공연일정 화면으로 이동</a>
             <div class="title">
                 <span class="tag" id="tag">${ requestScope.info.category }</span>
                 <h2>${ requestScope.info.title }</h2>
@@ -97,7 +97,7 @@
                             </dl>
                         </div>
                         <div class="reserveDiv">
-                                <span class="reserveBtn">
+                                <span id="reserveBtn" class="reserveBtn" onclick="reserve(${requestScope.scheduleNo});">
                                     예약하기
                                 </span>
                             <div>
@@ -131,7 +131,6 @@
                 </div>
             </div>
         </div>
-
     </content>
     <script src="/views/performance/detailview.js"></script>
 

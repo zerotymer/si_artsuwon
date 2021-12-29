@@ -21,9 +21,6 @@
 </head>
 
 <body>
-<jsp:include page="/include/_header.jsp"/>
-
-
 <%
 	// 페이징 처리되어 넘어온 데이터를 가져와야 함
 	HashMap<String,Object> pageDataMap = (HashMap<String,Object>)request.getAttribute("pageDataMap");
@@ -73,9 +70,7 @@
                 </ul>
             </nav>
         </div>
-        <div class="wrapper">
-
-        </div>
+        </content>
         
 
 <!-- 게시판 -->
@@ -99,21 +94,7 @@
 <!-- 게시판 내용 -->
 
 
-       
-    <!-- 건/등록순 최신순 -->
-	<div class="table_box">
-		<div class="default_info fl">
-          		<div class="total" id="total">총 <em></em>건</div>
-          		<div class="page" id="page"></div>
-            	<span>?</span> / <span>?</span> page
-        </div>
-     </div>
-		<div class="default_info fr">
-			<div class="align">
-				<button type="button" class="on" onclick="fnAlign(this, 'DESC')">최신순 </button>
-				<button type="button" class="on"onclick="fnAlign(this, 'ASC')">  등록순</button>
-			</div>
-		</div>
+ 
 	<!-- 테이블 내용 -->
         <table class="table table-hover" id="tbl">
             <thead class="table_head">   
@@ -149,9 +130,9 @@
 			</div>
 			
 	
-		
+			</table>
 </article>
-		    </content>
+		
 </body>
 
 
@@ -159,6 +140,6 @@
 
 <!-- footer -->
 <footer>
-<jsp:include page="/include/_footer.jsp"/>
- </footer>
+
+ <footer>
 </html>
