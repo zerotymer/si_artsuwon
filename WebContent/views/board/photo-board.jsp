@@ -81,7 +81,7 @@
        
 <!-- 게시판 -->
 <article class="common_wrap">
-     <h3 class="title">동영상 게시판</h3>
+     <h3 class="title">갤러리 </h3>
 
 
        
@@ -146,9 +146,6 @@
 
 
 
-
-
-<!-- footer -->
 <footer>
     <!-- footer -->
     <%@ include file="/include/_footer.jsp" %>

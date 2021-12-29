@@ -146,10 +146,6 @@
 
 
 
-
-
-
-<!-- footer -->
 <footer>
     <!-- footer -->
     <%@ include file="/include/_footer.jsp" %>
