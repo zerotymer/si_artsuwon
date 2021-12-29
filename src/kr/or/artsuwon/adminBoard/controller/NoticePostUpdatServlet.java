@@ -42,21 +42,19 @@ public class NoticePostUpdatServlet extends HttpServlet {
         int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
         int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 
-
         Notice notice = new Notice();
         notice.setNoticeContent(noticeContent);
         notice.setNoticeTitle(noticeTitle);
         notice.setNoticeNo(noticeNo);
 
-
+    	
         BoardAdminService bService = new BoardAdminServiceImpl();
         int result = bService.updatePost(notice);
-
 
         if (result > 0) {
             response.sendRedirect("/adminNotice/noticeOneSelectContent.do?noticeNo="+noticeNo+"&currentPage="+currentPage);
         } else {
-            response.sendRedirect("/views/adminCommons/error.jsp");
+            response.sendRedirect("/views/adminCommon/error.jsp");
         }
 
     }

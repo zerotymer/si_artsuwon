@@ -250,7 +250,7 @@ public class BoardAdminDAO {
         } finally {
             JDBCTemplate.close(pstmt);
         }
-        return -1;
+        return result;
     }
 
 
