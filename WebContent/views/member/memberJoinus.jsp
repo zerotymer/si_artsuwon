@@ -27,43 +27,41 @@
 <style>
     .wrapper{
         box-sizing: border-box;
-        background-color: aliceblue;
-        border: 1px solid black;
         width: 70%;
-        height: 1000px;
+        height: 1300px;
         margin: 0 auto;
     }
     .info{
         box-sizing: border-box;
-        background-color: aqua;
-        border: 1px solid black;
         width: 100%;
         height: 180px;
         float: left;
-        
+        background-color: #F6F6F6;
     }
     .join{
         box-sizing: border-box;
-        background-color: beige;
-        border: 1px solid black;
         width: 100%;
         height: 820px;
         float: left;
+        text-align: center;
     }
+    .moveBtn{
+        margin: auto;
+        display: block;
+    }
+    .address{
+        width: 350px;
+    }
+    
     
 </style>
 
 </head>
 <body>
 
-<div class="wrapper">
-    <div class=""></div>
-    
-</div>
-
-
 <!-- Header -->
 <%@ include file="/include/_header.jsp" %>
+
 
 <div class="wrapper">
         <div class="info">
@@ -71,27 +69,43 @@
             세계 최고의 교향악단으로 거듭나기 위한 수원시향은 늘 대중에게 한걸음 가까이 다가서기 위해 노력하고 있습니다.<br>
             클래식 음악을 사랑하는 서울시향의 모든 회원님들께 공연정보와 다양한 혜택을 제공해 드립니다.
         </div>
+        
+        <br><br><br>
+        
+    <form action="/member/memberJoin.do" method="post" onsubmit="return mustHave();">
         <div class="join">
-            
-        </div>
-</div>
-
-	
-	
-	<form action="/member/memberJoin.do" method="post" onsubmit="return mustHave();">
-		<fieldset>
-			<legend>기본정보</legend>
-			
-				이름 : <input type="text" name="memberName" id="memberName"/><br>
-				아이디 : <input type="text" name="memberId" id="memberId"> <input type="button" id="idCheckBtn" value="중복확인" /><br>
-					   <span id="msg"></span><br>
-				영문소문자, 숫자 포함한 8~12자리 이내<br>
-				비밀번호 : <input type="password" name="memberPwd" id="memberPwd"/><br>
-				소문자,대문자,숫자를 포함한 8~12 글자 이내로 입력<br>
-				비밀번호 확인 : <input type="password" name="memberPwd_re" id="memberPwd_re"/><br>
-				동일한 비밀번호를 한 번 더 입력해주시기 바랍니다.<br>
-				생년월일 : 
-				<select name="birthDate1">
+           <br><br>
+            <table class="table">
+                  <thead>
+                    <tr>
+                        <th scope="col" colspan="4"><h4>기본정보</h4> <p style="color: orangered">※원활한 서비스를 위해 정확히 기재해주세요</p></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row"> 이름＊</th>
+                      <td colspan="3"><input type="text" name="memberName" id="memberName" maxlength="5"/></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"> 아이디＊ </th>
+                      <td colspan="3"><input type="text" name="memberId" id="memberId"> <button class="btn btn-primary" id="idCheckBtn" style="background-color: #ED4C00;" >중복확인</button><br>
+                        <p style="font-size: 0.9em; color: darkgray;">아이디는 영문 소문자,숫자 8~10 글자 이내로 입력하세요.</p>
+					   <span id="msg"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"> 비밀번호＊ </th>
+                      <td colspan="3"><input type="password" name="memberPwd" id="memberPwd"/><br>
+				        <p style="font-size: 0.9em; color: darkgray;">소문자,대문자,숫자를 포함한 8~12 글자 이내로 입력하세요.</p></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"> 비밀번호 확인＊</th>
+                      <td colspan="3"><input type="password" name="memberPwd_re" id="memberPwd_re"/><br>
+				        <p style="font-size: 0.9em; color: darkgray;">동일한 비밀번호를 한 번 더 입력하세요.</p></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"> 생년월일＊ </th>
+                      <td colspan="3">
+                      <select name="birthDate1">
 							<option value="1940">1940</option>
 							<option value="1941">1941</option>
 							<option value="1942">1942</option>
@@ -223,39 +237,62 @@
 							<option value="29">29</option>
 							<option value="30">30</option>
 							<option value="31">31</option>
-						</select>일
-						<br>
-				성별 : <input type="radio" name="gender" value="M" checked/>남자
-					 <input type="radio" name="gender" value="F" />여자<br>
-				
-			<legend>추가정보</legend>
-			
-				주소 : <input type="address" name="address" id="sample5_address" onclick="sample5_execDaumPostcode()"/>  <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-				상세주소 : <input type="text" name="detailAddress" id="detailAddress"/><br>
-				휴대폰 : <select name="phone1" id="phone1">
+						</select>일</td>
+                      <tr>
+                      <th scope="row"> 성별＊ </th>
+                      <td colspan="3"><input type="radio" name="gender" value="M" checked/>남자
+					 <input type="radio" name="gender" value="F" />여자</td>
+                  </tbody>
+                </table>
+                <br><br>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="4"><h4>추가정보</h4></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row"> 주소＊ </th>
+                      <td colspan="3"><input type="address" name="address" id="sample5_address" onclick="sample5_execDaumPostcode()" class="address"/>  <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"> 상세주소＊ </th>
+                      <td colspan="3"><input type="text" name="detailAddress" id="detailAddress" class="address"/></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"> 휴대폰＊ </th>
+                      <td colspan="3"><select name="phone1" id="phone1">
 							<option>010</option>
 							<option>011</option>
 							<option>016</option>
 							<option>017</option>
 							<option>018</option>
 							<option>019</option>
-						</select> - <input type="text" name="phone2" id="phone2" maxlength="4" size="4"/> - <input type="text" name="phone3" id="phone3" maxlength="4" size="4"/> <br>
-				이메일 : <input type="text" name="email1" id="email1"/> @ <input type="text" name="email2" id="email2"/><br>
-				SMS 수신동의 : <input type="radio" name="smsYN" value="Y" checked/>동의합니다.
-							 <input type="radio" name="smsYN" value="N"/>동의하지 않습니다.<br>
-			
-				<br><br>
-				<span id="message"></span>
-			
-		</fieldset>
-		
-		<input type="reset" value="취소" id="reset"/> <input type="submit" value="가입 완료" id="joinBtn"/>
-		
-		
-	</form>
+						</select> - <input type="text" name="phone2" id="phone2" maxlength="4" size="4"/> - <input type="text" name="phone3" id="phone3" maxlength="4" size="4"/></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"> 이메일＊ </th>
+                      <td colspan="3"><input type="text" name="email1" id="email1"/> @ <input type="text" name="email2" id="email2"/></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"> SMS 수신동의＊ </th>
+                      <td colspan="3"><input type="radio" name="smsYN" value="Y" checked/>동의합니다.
+							 <input type="radio" name="smsYN" value="N"/>동의하지 않습니다.</td>
+                    </tr>
+                  </tbody>
+                </table>
+               <br><br>
+               <span id="message"></span> <br><br><br>
+            <button class="btn btn-primary" id="loginBtn" type="reset" style="background-color: #D8D8D8; width: 90px; height: 50px" class="moveBtn" >취소</button> &nbsp;
+            <button class="btn btn-primary" id="joinBtn" class="moveBtn" type="submit" style="background-color: #ED4C00; width: 90px; height: 50px" >변경하기</button>
+             
+        </div>
+    </form>
+</div>
+
 	
 	
-	<img src="/assets/images/memberKakaoLogin.png" />
 	
 	
 	
@@ -353,55 +390,55 @@
         	if (!(/[가-힣]+$/.test(memberName.value))) //이름 검사
             {
             	message.style.color = "red";
-                message.innerHTML = "이름은 한글(최소1글자)만 가능합니다.";
+                message.innerHTML = "※이름은 한글(최소1글자)만 가능합니다.";
                 return false;
                 
             } 
 			else if (!(/^[a-z][a-z0-9]{8,10}$/.test(memberId.value))) //아이디 검사
             {
             	message.style.color = "red";
-                message.innerHTML = "아이디는 영문 소문자,숫자 8~10 글자 이내로 입력";
+                message.innerHTML = "※아이디는 영문 소문자,숫자 8~10 글자 이내로 입력";
                 return false;
                 
             } 
 			else if (!(/[a-zA-Z0-9]{8,12}$/.test(memberPwd.value))) //비밀번호 검사
             {
             	message.style.color = "red";
-                message.innerHTML = "비밀번호는 소문자,대문자,숫자를 포함한 8~12 글자 이내로 입력";
+                message.innerHTML = "※비밀번호는 소문자,대문자,숫자를 포함한 8~12 글자 이내로 입력";
                 return false;
                 
             } 
 			else if (!(memberPw.value == memberPwd_re.value)) //PW와 PW_RE 비교 검사
             {
             	message.style.color = "red";
-                message.innerHTML = "비밀번호가 일치하지 않습니다.";
+                message.innerHTML = "※비밀번호가 일치하지 않습니다.";
                 return false;
        			
             }
 			else if ((/[a-z]+$/i).test(sample5_address.value) || sample5_address.value == "") //주소검사
             {
             	message.style.color = "red";
-                message.innerHTML = "주소 입력은 영어 사용이 불가합니다. (공백 불가)";
+                message.innerHTML = "※주소 입력은 영어 사용이 불가합니다. (공백 불가)";
                 return false;
                 
             } 
 			else if ((/[a-z]+$/i).test(detailAddress.value) || detailAddress.value == "") //주소검사
             {
             	message.style.color = "red";
-                message.innerHTML = "주소 입력은 영어 사용이 불가합니다. (공백 불가)";
+                message.innerHTML = "※주소 입력은 영어 사용이 불가합니다. (공백 불가)";
                 return false;
                 
             } 
 			else if (!((/^010$/.test(phone1.value)) && (/[0-9]{3,4}$/.test(phone2.value)) && (/[0-9]{4}$/.test(phone3.value)))) //폰 검사
             {
             	message.style.color = "red";
-                message.innerHTML = "전화번호 재확인 바랍니다.";
+                message.innerHTML = "※전화번호 재확인 바랍니다.";
                 return false;
             }
 			else if (!(/^[a-z0-9]{4,12}/).test(email1.value)) //이메일 검사
             {
             	message.style.color = "red";
-                message.innerHTML = "이메일을 재확인해주세요.";
+                message.innerHTML = "※이메일을 재확인해주세요.";
                 return false;
             } 	
 			else{

@@ -192,14 +192,14 @@
                   <tbody>
                     <tr>
                       <th scope="row"> 주소 </th>
-                      <td colspan="3"><input class="form-control" name="address" type="text" id="sample5_address" onclick="sample5_execDaumPostcode()" size="30">   <input type="button" onclick="sample5_execDaumPostcode()" class="btn btn-primary" style="background-color: #ED4C00;" value="주소 검색"> </td>
+                      <td colspan="3"> <input type="address" name="address" id="sample5_address" onclick="sample5_execDaumPostcode()" size="20"/>  <input type="button" onclick="sample5_execDaumPostcode()" class="btn btn-primary" style="background-color: #ED4C00;" value="주소 검색"> </td>
                     </tr>
                     <tr>
                       <th scope="row"> 상세주소 </th>
-                      <td colspan="3"><input class="form-control" name="detailAddress" type="text" size="30"></td>
+                      <td colspan="3"><input type="text" name="detailAddress" size="20"/></td>
                     </tr>
                     <tr>
-                      <th scope="row"> 핸드폰 </th>
+                      <th scope="row"> 휴대폰 </th>
                       <td colspan="3"><select name="phone1">
 							<option>010</option>
 							<option>011</option>
