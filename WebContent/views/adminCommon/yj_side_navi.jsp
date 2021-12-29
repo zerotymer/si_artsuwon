@@ -40,7 +40,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 	                     <a class="nav-link active" style="padding-top:0; color:black;" href="/admin/adminCheck.do" >
 		                    <span style="font-size:15px;">- 사용자 관리</span><br>
 	                    </a>
-	                     <a class="nav-link active" style="padding-top:0; color:black;" href="">
+	                     <a class="nav-link active" style="padding-top:0; color:black;" href="https://analytics.google.com/analytics/web/#/p297428169/realtime/overview?params=_u..nav%3Dmaui">
 		                    <span style="font-size:15px;">- 통계</span><br>
 	                    </a>
 	                    
@@ -54,7 +54,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 		                    <span style="font-size:15px;">- 공지사항</span><br>
 	                    </a>
 	                    
-	                    <a class="nav-link active" style="padding-top:0; color:black;" href="">
+	                    <a class="nav-link active" style="padding-top:0; color:black;" href="/adminNotice/CsAllList.do">
 		                    <span style="font-size:15px;">- CS게시판</span><br>
 	                    </a>
 	                    

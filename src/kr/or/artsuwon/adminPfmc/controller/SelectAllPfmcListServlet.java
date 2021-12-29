@@ -26,8 +26,8 @@ public class SelectAllPfmcListServlet extends HttpServlet {
 		//관리자 세션체크
 		Admin adminSession = (Admin)request.getSession().getAttribute("admin");
 				
-		// 세션이 없거나 or 세션이있으나 슈퍼관리자가 아닌경우 접근 불가
-		if(adminSession == null || (adminSession != null && adminSession.getSuperAdminYN() == 'N')) {
+		// 세션이 없는 경우 접근 불가
+		if(adminSession == null) {
 			response.sendRedirect("/views/adminCommon/error.jsp");
 			return;
 		}
