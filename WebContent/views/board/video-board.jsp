@@ -136,9 +136,7 @@
 				      
 				   </div>
 			</div>
-			
-
-		</table>
+		
 	</article>
 	    </content>
 </body>

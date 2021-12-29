@@ -48,7 +48,7 @@
                 <li class="submenu-item">
                   <a href=""><strong>공연일정</strong></a>
                 </li>
-                <li class="submenu-item"><a href="">공연소개</a></li>
+                <li class="submenu-item"><a href="/views/performance/introduce.jsp">공연소개</a></li>
                 <li class="submenu-item"><a href="">예매안내</a></li>
               </ul>
             </li>
