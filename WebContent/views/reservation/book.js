@@ -8,7 +8,7 @@ var IMP = window.IMP;
 window.addEventListener("load", function() {
     var buyerName = document.getElementById("buyer").value;
     if (buyerName == undefined || buyerName == null || buyerName == "") {
-        this.alert('잘못된 접근경로입니다.');
+        this.alert('로그인해 주세요');
         this.window.close();
     }
 

@@ -1,5 +1,6 @@
 package kr.or.artsuwon.performance.controller;
 
+import kr.or.artsuwon.common.DateConverter;
 import kr.or.artsuwon.common.NullChecker;
 import kr.or.artsuwon.common.Tuple;
 import kr.or.artsuwon.performance.model.service.PerformanceService;
@@ -25,7 +26,7 @@ public class PerfDetailInfoAjaxServelt extends HttpServlet {
 	/// FIELDs
 	private static final long serialVersionUID = 1L;
 	private PerformanceService service = new PerformanceServiceImpl();
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd EEE요일 HH:mm");
+	private final String dateFormat = "yyyy.MM.dd EEE요일 HH:mm";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -50,7 +51,7 @@ public class PerfDetailInfoAjaxServelt extends HttpServlet {
 		json.put("title", tuple.getSecond().getTitle());
 		json.put("location", tuple.getFirst().getLocation());
 		json.put("price", tuple.getFirst().getPrice());
-		json.put("date", dateFormat.format(tuple.getFirst().getPerformanceDate()));
+		json.put("date", DateConverter.convertSQLDateToString(tuple.getFirst().getPerformanceDate(), dateFormat));
 		json.put("restriction", tuple.getFirst().getRestriction());
 
 		response.setContentType("application/json; charset=utf-8");

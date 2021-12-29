@@ -1,5 +1,6 @@
 package kr.or.artsuwon.performance.controller;
 
+import kr.or.artsuwon.common.DateConverter;
 import kr.or.artsuwon.common.NullChecker;
 import kr.or.artsuwon.common.Tuple;
 import kr.or.artsuwon.performance.model.service.PerformanceService;
@@ -29,7 +30,7 @@ public class PerfRecentListServlet extends HttpServlet {
 	/// FIELDs
 	private static final long serialVersionUID = 1L;
 	private PerformanceService service = new PerformanceServiceImpl();
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd(EEE) aaa hh:mm");			// 날짜 출력 포멧
+	private final String dateFormat = "yyyy.MM.dd(EEE) aaa hh:mm";			// 날짜 출력 포멧
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -56,7 +57,7 @@ public class PerfRecentListServlet extends HttpServlet {
 			json.put("schedule_no", tuple.getFirst().getScheduleNo());						// 스케줄번호
 			json.put("title", tuple.getSecond().getTitle());								// 공연제목
 			json.put("category", tuple.getSecond().getCategory());							// 공연카테고리
-			json.put("date", dateFormat.format(tuple.getFirst().getPerformanceDate()));		// 공연일자
+			json.put("date", DateConverter.convertSQLDateToString(tuple.getFirst().getPerformanceDate(), dateFormat));		// 공연일자
 			json.put("location", tuple.getFirst().getLocation());							// 공연장소
 			json.put("photo", NullChecker.NullCheckString(tuple.getSecond().getPhoto()));	// 공연사진
 
