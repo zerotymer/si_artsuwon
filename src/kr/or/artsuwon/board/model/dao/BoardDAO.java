@@ -102,7 +102,8 @@ public class BoardDAO {
 			sb.append(" <a class='next' href='/board/NoticeAllSelect.do?currentPage="+(endNavi+1)+"'> > </a> ");
 		}
 		
-		
+
+
 		
 		return sb.toString();
 
