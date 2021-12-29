@@ -1,8 +1,10 @@
 package kr.or.artsuwon.adminBoard.model.service;
 
 import kr.or.artsuwon.adminBoard.model.vo.Notice;
+import kr.or.artsuwon.csBoard.vo.csBoard;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public interface BoardAdminService {
@@ -37,4 +39,6 @@ public interface BoardAdminService {
 	int listUp(int noticeNo);
 	
 	int increaseNotice(int noticeNo);
+
+	HashMap<String,Object> CsAllList(int currentPage);
 }

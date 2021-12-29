@@ -30,11 +30,12 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 			                    <span style="font-size:17px;">공연현황</span>
 		                    </a>
 	                    </c:if>
-	                    
+
 	                    <a class="nav-link active" style="color:black">
 		                    <i class="fa fa-users" style="color:black">
 		                    </i>
 		                    <span style="font-size:17px;">회원 관리</span><br>
+
 	                    </a>
 	                    
 	                     <a class="nav-link active" style="padding-top:0; color:black;" href="/admin/adminCheck.do" >
@@ -54,7 +55,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 		                    <span style="font-size:15px;">- 공지사항</span><br>
 	                    </a>
 	                    
-	                    <a class="nav-link active" style="padding-top:0; color:black;" href="">
+	                    <a class="nav-link active" style="padding-top:0; color:black;" href="/adminNotice/CsAllList.do">
 		                    <span style="font-size:15px;">- CS게시판</span><br>
 	                    </a>
 	                    

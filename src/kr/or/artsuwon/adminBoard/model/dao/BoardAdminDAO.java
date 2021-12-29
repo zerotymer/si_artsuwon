@@ -1,7 +1,9 @@
 package kr.or.artsuwon.adminBoard.model.dao;
 
+import kr.or.artsuwon.adminBoard.model.vo.CsBoard;
 import kr.or.artsuwon.adminBoard.model.vo.Notice;
 import kr.or.artsuwon.common.JDBCTemplate;
+import kr.or.artsuwon.csBoard.vo.csBoard;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -142,36 +144,41 @@ public class BoardAdminDAO {
             endNavi = pageTotalCount;
         }
 
+        if(startNavi==1) {
 
-        if (startNavi == 1) {
+            sb.append("<li class='page-item disabled'><span class='page-link'' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>"+
+               	  "</span></li>");
 
-            sb.append("<li class='page-item disabled'><span class='page-link'' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" +
-                    "</span></li>");
-
-        } else {
-            sb.append("<li class='page-item'><a class='page-link text-dark'" +
-                    "href='/adminNotice/adminNoticeAllList.do?currentPage=" + (startNavi - 1) + "' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" +
-                    "</a></li>");
+        }else
+        {
+        sb.append("<li class='page-item'><a class='page-link text-dark'" + 
+                "href='/adminNotice/adminNoticeAllList.do?currentPage="+(startNavi-1)+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" + 
+                "</a></li>");
         }
 
-        for (int i = startNavi; i <= endNavi; i++) {
-            if (i == currentPage) {
-                sb.append("<li class='page-item active' aria-current='page'>" +
-                        "<a class='page-link' href='/adminNotice/adminNoticeAllList.do?currentPage=" + i + "'>" + i + "</a></li>");
-            } else {
-                sb.append("<li class='page-item'><a class='page-link text-dark' href='/adminNotice/adminNoticeAllList.do?currentPage=" + i + "'>" + i + "</a></li>");
+        for(int i=startNavi; i<=endNavi; i++)
+        {
+            if(i==currentPage)
+            {
+                sb.append("<li class='page-item active' aria-current='page'>" + 
+                        "<a class='page-link' href='/adminNotice/adminNoticeAllList.do?currentPage="+i+"'>"+i+"</a></li>");
+            }else
+            {
+                sb.append("<li class='page-item'><a class='page-link text-dark' href='/adminNotice/adminNoticeAllList.do?currentPage="+i+"'>"+i+"</a></li>");
             }
 
         }
 
-        if (endNavi == pageTotalCount) {
-            sb.append("<li class='page-item disabled'><span class='page-link'" +
-                    "aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" +
+        if(endNavi==pageTotalCount)
+        {
+            sb.append("<li class='page-item disabled'><span class='page-link'" + 
+                    "aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + 
                     "</span></li>");
-        } else {
-            sb.append("<li class='page-item'><a class='page-link text-dark'" +
-                    "href='/adminNotice/adminNoticeAllList.do?currentPage=" + (endNavi + 1) + "' aria-label='Next'> <span aria-hidden='true'>&&raquo;</span>" +
-                    "</a></li>");
+        }else
+        {
+            sb.append("<li class='page-item'><a class='page-link text-dark'" + 
+                "href='/adminNotice/adminNoticeAllList.do?currentPage="+(endNavi+1)+"' aria-label='Next'> <span aria-hidden='true'>&&raquo;</span>" + 
+                "</a></li>");
         }
 
 
@@ -243,7 +250,7 @@ public class BoardAdminDAO {
         } finally {
             JDBCTemplate.close(pstmt);
         }
-        return -1;
+        return result;
     }
 
 
@@ -676,6 +683,51 @@ public class BoardAdminDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+
+
+	public ArrayList<csBoard> CsAllList(Connection conn, int currentPage, int recordCountPerPage) {
+			PreparedStatement pstmt = null;
+	        ResultSet rset = null;
+	       
+	        ArrayList<csBoard> list = new ArrayList<csBoard>();
+
+	        int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
+	        int end = currentPage * recordCountPerPage;
+
+	     String query = " SELECT * FROM(SELECT ROW_NUMBER() OVER(ORDER BY  CS_NO DESC) AS NUM, CS.* "+
+	        		"FROM CS WHERE CS_DEL_YN='N') WHERE NUM BETWEEN ? AND ?";
+	        
+	     try {
+			pstmt = conn.prepareStatement(query);
+			 	pstmt.setInt(1, start);
+	            pstmt.setInt(2, end);
+
+	            rset = pstmt.executeQuery();
+
+	            while (rset.next()) {
+	                csBoard csBoard = new csBoard();
+
+	                csBoard.setCsNo(rset.getInt("CS_NO"));
+	                csBoard.setCsTitle(rset.getString("CS_TITLE"));
+	                csBoard.setCsContent(rset.getString("CS_CONTENT"));
+	                csBoard.setCsDate(rset.getDate("CS_DATE"));
+	                csBoard.setCsDelYN(rset.getString("CS_DEL_YN").charAt(0));
+	                csBoard.setCsWriter(rset.getString("CS_WRITER"));
+	                csBoard.setPrivateYN(rset.getString("private_YN").charAt(0));
+	                	
+	                list.add(csBoard);
+	          
+	            	}
+	            } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	       }finally {
+	    	   JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+	       }
+	     return list;
+	    
 	}
 		
 	

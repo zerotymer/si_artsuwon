@@ -1,8 +1,10 @@
 package kr.or.artsuwon.adminBoard.model.service;
 
 import kr.or.artsuwon.adminBoard.model.dao.BoardAdminDAO;
+import kr.or.artsuwon.adminBoard.model.vo.CsBoard;
 import kr.or.artsuwon.adminBoard.model.vo.Notice;
 import kr.or.artsuwon.common.JDBCTemplate;
+import kr.or.artsuwon.csBoard.vo.csBoard;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -185,8 +187,29 @@ public class BoardAdminServiceImpl implements BoardAdminService {
 
 
 
-
-
+	@Override
+	public HashMap<String,Object> CsAllList(int currentPage) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int recordCountPerPage = 10;
+		
+		ArrayList<csBoard> list = bDAO.CsAllList(conn, currentPage, recordCountPerPage);
+		
+		int naviCountPerPage = 5;
+	
+		String pageNavi = bDAO.getPageNavi(conn,naviCountPerPage,recordCountPerPage,currentPage);
+		
+		JDBCTemplate.close(conn);
+		
+		
+		HashMap<String,Object> hm = new HashMap<String,Object>();
+		
+		hm.put("list",list);
+		hm.put("pageNavi", pageNavi);
+			
+		
+		return hm;
+	}
 
 
 
