@@ -27,7 +27,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		//하나의 페이지에서  몇개의 목록으로 보여줄 것인지에 대한 값이 필요
-		int recordCountPerPage = 10;
+		int recordCountPerPage = 5;
 		
 		ArrayList<csBoard> list = adDAO.selectSearchPostList(conn,currentPage,recordCountPerPage,keyword,type);
 		
