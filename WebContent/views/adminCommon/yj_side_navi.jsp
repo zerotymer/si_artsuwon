@@ -40,9 +40,9 @@
 		                    <span style="font-size:17px;">통계</span>
 	                    </a>
 	                    
-            <a class="nav-link active" >
+            			<a class="nav-link active" href="/adminNotice/CsAllList.do">
 		                    <i class="fa fa-th-large">
-		                    </i>
+		                    </i>1:1 문의 
 
 	                    <a class="nav-link active" href="/adminNotice/adminNoticeAllList.do">
 		                    <i class="fa fa-th-large"></i>

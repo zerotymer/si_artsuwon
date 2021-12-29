@@ -101,8 +101,26 @@ public class BoardAdminServiceImpl implements BoardAdminService{
 
 	@Override
 	public HashMap<String, Object> selectSearchPost(int currentPage, String keyword, String type) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int recordCountPerPage = 10;
+		
+		ArrayList<Notice> list = bDAO.selectAllPostPageList(conn, currentPage, recordCountPerPage);
+		
+		int naviCountPerPage = 5; 
+		
+		String pageNavi = bDAO.getPageNavi(conn,naviCountPerPage,recordCountPerPage,currentPage);
+		
+		JDBCTemplate.close(conn);
+		
+		
+		HashMap <String,Object> hm = new HashMap<String,Object>();
+		
+		hm.put("list",list);
+		hm.put("pageNavi", pageNavi);
+			
+		
+		return hm;
 	}
 
 

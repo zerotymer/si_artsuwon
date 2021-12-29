@@ -1,16 +1,14 @@
-<%@page import="kr.or.artsuwon.adminMngm.model.vo.Admin"%>
-<%@page import="kr.or.artsuwon.adminBoard.model.vo.Notice"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>공지사항</title>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>게시글</title>
+    <title>1:1문의게시판</title>
       <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/bootstrap.min.css">
             <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/untitled.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -21,7 +19,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 <body>
-
 
 	<div id="wrapper">
 		<!--사이드 네비바 include-->
@@ -68,7 +65,7 @@
                             <p class="text-center"><span class="by">공지사항</span><span class="date"></span></p>
                             <hr />
                           <H3>  <p class="text-center" style="color: rgb(0,0,0);"><%=notice.getNoticeTitle() %></p></H3>
-                            <p class="text-center"><span class="date"><%=notice.getRegDate() %></span><span class="by"><%-- | </span> 조회수 : <%=notice.getViewCount() %></p> --%>
+                            <p class="text-center"><span class="date"><%=notice.getRegDate() %></span><span class="by">| </span> 조회수 : <%=notice.getViewCount() %></p>
                             <div style="padding: 0px;padding-left: 0;margin: 48px 0px 0px 488.8px;margin-left: 69%;margin-top: 47px;margin-right: 0px;font-size: 12px;padding-right: 0px;">
                                 
                                 
@@ -107,83 +104,6 @@
         </div>
     </section>
     
-    <input type="hidden" name="boardNo" value="<%=notice.getNoticeNo() %>"/>
-    
-    
-    
-</div>
-			<script>
-			$('#textUpdateBtn').click(function(){
-
-				var formTag= document.createElement("form");
-				formTag.setAttribute("action","/adminNotice/noticePostReadUpdate.do");
-				formTag.setAttribute("method","post");
-				
-				var inputTag = document.createElement("input");
-				inputTag.setAttribute("type","hidden");
-				inputTag.setAttribute("name","noticeNo");
-				inputTag.setAttribute("value","<%=notice.getNoticeNo()%>");
-				
-				formTag.append(inputTag);
-				
-				
-				var inputTag = document.createElement("input");
-				inputTag.setAttribute("type","hidden");
-				inputTag.setAttribute("name","currentPage");
-				inputTag.setAttribute("value","<%=currentPage%>");
-				
-				formTag.append(inputTag);
-				
-				//해당 문서안에 새롭게 만든 formTag를 추가시켜줘야한다.(연결시켜준다라는 의미)
-				document.body.appendChild(formTag);
-				
-				formTag.submit();
-				
-				});
-
-
-
-
-			</script>
-			<!--삭제하는 버튼  -->
-			
-			<script>
-			$('#deleteBtn').click(function(){
-
-				if(window.confirm('정말로 삭제하시겠습니까?'))
-				{// 삭제를 하기위한 폼태그 생성 - post 방식으로 처리하기 위함
-				
-					var formTag= document.createElement("form");
-					formTag.setAttribute("action","/adminNotice/noticePostDelete.do");
-					formTag.setAttribute("method","post");
-					
-					var inputTag = document.createElement("input");
-					inputTag.setAttribute("type","hidden");
-					inputTag.setAttribute("name","noticeNo");				
-					inputTag.setAttribute("value","<%=notice.getNoticeNo()%>");
-					
-					formTag.appendChild(inputTag);
-					
-					//해당 문서안에 새롭게 만든 formTag를 추가시켜줘야한다.(연결시켜준다라는 의미)
-					document.body.appendChild(formTag);
-					
-					formTag.submit();
-					
-				}else
-				{
-						alert('삭제를 취소하였습니다');	
-				}
-				
-				
-			});
-			
-			
-			</script>
-
-
-		
-
- 
                       
                          
                             	
@@ -203,7 +123,11 @@
     </div>
     <script src="//<%=request.getContextPath()%>/assets/js/bootstrap.min.js"></script>
     <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
+    
+
+
+
+
 
 </body>
-
 </html>

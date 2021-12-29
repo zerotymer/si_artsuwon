@@ -5,7 +5,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Table - Brand</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/untitled.css">
     <link rel="stylesheet"
@@ -17,12 +16,18 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+    <!-- 스타일관련 -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.css" rel="stylesheet">
+    <!-- 자바스크립트관련 -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.js"></script>
+    <!-- 한글관련 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/lang/summernote-ko-KR.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>글쓰기</title>
 </head>
 <body>
 
-<H1>수정 페이지</H1>
 
 <div id="wrapper">
     <!--사이드 네비바 include-->
@@ -71,7 +76,7 @@
                                 <hr/>
                                 <div class="intro"></div>
                                 <div class="text" style="padding-bottom: 8%;padding-top: 10px;">
-                                    <textarea class="form-control-sm" name="noticeContent"
+                                    <textarea class="form-control-sm" id="myEditor" name="noticeContent"
                                               style="width: 100%;height: 500px;" 
                                               maxlength="3000"></textarea>
                                     <figure class="figure d-block"></figure>
@@ -90,36 +95,17 @@
                 </section>
             </div>
 
-		
-		<script>
-	document.getElementById('file').onchange =function(){
-	var file = document.getElementById('file');
-	var fileSize = file.files[].size/1024/1024;
-	document.getElementById("size").innerHtml ="("+(fileSize.toFixed(3)+"MB)"};
-	
-	document.getElementById('fileSubmitBtn').onclick=function(){
-		var file = document.getElementById('file');
-		var fileSize = file.fies[0].size;
-		if(fileSize>(50*1024*1024))
-		{
-			alert('업로드 가능한 최대사이즈는 50MB 입니다.')
-			return false;
-		}else
-		{
-			return true;
-		}
-		
-	};
+ <script>
+        $(document).ready(function () {
+
+            $('#myEditor').summernote({
+                lang: 'ko-KR',
+                height: 300,
+            });
 
 
-</script>
-
-
-
-
-
-
-
+        });
+    </script>
 
 
 
