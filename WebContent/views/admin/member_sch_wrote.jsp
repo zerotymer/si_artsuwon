@@ -13,20 +13,22 @@
 
 
 
-<link
+	<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<meta charset="utf-8">
-<meta name="viewport"
+	<meta charset="utf-8">
+	<meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Table - Brand</title>
-<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-<link rel="stylesheet" href="/fonts/fontawesome-all.min.css">
-<link rel="stylesheet" href="/untitled.css">
+	<title>회원 작성글 조회</title>
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+	<link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    
 <style>
 .content-div {
 	display: flex;
@@ -35,6 +37,7 @@
 #content2 {
 	flex: 1 0 auto;
 }
+
 </style>
 </head>
 
@@ -47,8 +50,8 @@
 		HashMap<String, Object> pageDataMap = (HashMap<String, Object>) request.getAttribute("pageDataMap");
 
 		ArrayList<csBoard> list = (ArrayList<csBoard>) pageDataMap.get("list");
-		String pageNavi = (String) pageDataMap.get("pageNavi");
-		int currentPage = (int) request.getAttribute("currentPage");
+		String pageNavi = (String)pageDataMap.get("pageNavi");
+		int currentPage = (int)request.getAttribute("currentPage");
 
 		String keyword = (String) request.getAttribute("keyword");
 	%>
@@ -58,83 +61,18 @@
 
 	<div id="wrapper">
 
-		<nav
-			class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"
-			style="background: rgb(255,255,255);color: #000000;font-size: 15px;border-style: none;">
-
-		</nav>
+		 <!--사이드 네비바 include-->
+        <%@include file="/views/adminCommon/yj_side_navi.jsp" %>
+        		
+       
 		<div class="d-flex flex-column" id="content-wrapper">
 			<div id="content1">
 
-				<!--상단 네비바 include1234-->
-				<%@include file="/views/adminCommon/top_navi.jsp"%>
+				<!--상단 네비바 include-->
+        		<%@include file="/views/adminCommon/top_navi.jsp" %>
 
 				<div class="content-div">
-					<!--  시작 -->
-					<div>
-						<div class="container-fluid d-flex flex-column p-0">
-							<a
-								class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
-								href="#" style="background: rgb(162, 155, 145);">
-								<div class="sidebar-brand-icon rotate-n-15"></div>
-								<div class="sidebar-brand-text mx-3">
-									<span style="color: rgb(0, 0, 0);">ADMIN PAGE</span>
-								</div>
-							</a>
-							<hr class="sidebar-divider my-0">
-							<ul class="navbar-nav text-light" id="accordionSidebar">
-								<li class="nav-item"></li>
-								<li class="nav-item"><a class="nav-link disabled active"
-									href="table.html"
-									style="text-align: center; background: #f7f7f7;"><span
-										style="color: rgb(0, 0, 0);">통계&nbsp;관리</span></a>
-									<div class="nav-item dropdown show visible"
-										style="text-align: center;">
-										<a class="active" aria-expanded="true"
-											data-bs-toggle="dropdown" href="#"
-											style="color: rgb(0, 0, 0); border-bottom-style: solid; border-bottom-color: rgb(225, 216, 212); font-size: 13px; font-weight: bold;">공연
-											관리&nbsp;</a>
-										<div class="dropdown-menu dropdown-menu-start show">
-											<a class="dropdown-item" href="#"
-												style="background: rgb(247, 247, 247);">공지사항</a><a
-												class="dropdown-item" href="#"
-												style="background: rgba(0, 0, 0, 0.03);">뉴스&amp;이슈</a>
-										</div>
-									</div>
-									<div class="nav-item dropdown show visible"
-										style="text-align: center; background: #ffffff;">
-										<a aria-expanded="true" data-bs-toggle="dropdown" href="#"
-											style="color: rgb(0, 0, 0); border-bottom-style: solid; border-bottom-color: rgb(225, 216, 212); font-size: 13px; font-weight: bold;">회원관리</a>
-										<div class="dropdown-menu dropdown-menu-start show">
-											<a class="dropdown-item" href="#"
-												style="background: rgb(247, 247, 247);"></a><a
-												class="dropdown-item" href="#"
-												style="background: rgb(247, 247, 247);">전체 사용자 관리</a>
-										</div>
-									</div>
-									<div class="nav-item dropdown show visible"
-										style="text-align: center; font-size: 13px;">
-										<a aria-expanded="true" data-bs-toggle="dropdown" href="#"
-											style="color: rgb(0, 0, 0); border-bottom-style: solid; border-bottom-color: rgb(225, 216, 212); font-weight: bold;">게시판
-											관리&nbsp;</a>
-										<div class="dropdown-menu dropdown-menu-start show">
-											<a class="dropdown-item" href="#"
-												style="background: #f7f7f7;">공지사항</a><a
-												class="dropdown-item" href="#" style="background: #f7f7f7;">뉴스&amp;이슈</a><a
-												class="dropdown-item" href="#" style="background: #f7f7f7;">사진
-												갤러리</a><a class="dropdown-item" href="#"
-												style="background: #f7f7f7;">동영상 갤러리</a><a
-												class="dropdown-item" href="#" style="background: #f7f7f7;">1
-												:1 문의게시판</a>
-										</div>
-									</div></li>
-								<li class="nav-item"></li>
-							</ul>
-							<div class="collapse navbar-collapse"></div>
-							<div class="text-center d-none d-md-inline"></div>
-						</div>
-
-						<!--  끝 -->
+					
 
 						<!-- content 시작 -->
 
@@ -148,7 +86,7 @@
 					<div id="content2">
 
 						<div class="container-fluid">
-							<h3 class="text-dark mb-4">회원관리</h3>
+							<!-- <h3 class="text-dark mb-4">회원관리</h3> -->
 							<div class="card shadow" width="900px">
 								<div class="card-header py-3">
 									<p class="text-primary m-0 fw-bold">작성글 관리</p>
@@ -156,31 +94,9 @@
 								<div class="card-body" style="border-radius: 5px;">
 									<div class="row">
 										<div class="col-md-6 text-nowrap">
-											<!-- <div id="dataTable_length" class="dataTables_length"
-												aria-controls="dataTable">
-												<label class="form-label">Show <select
-													class="d-inline-block form-select form-select-sm">
-														<option value="10" selected>10</option>
-														<option value="25">25</option>
-														<option value="50">50</option>
-														<option value="100">100</option>
-												</select></label>
-											</div> -->
+											
 										</div>
-										<!-- <div class="col-md-6">
-											<div id="dataTable_filter"
-												class="text-md-end dataTables_filter"
-												style="border-radius: 5px;">
-												<select style="height: 31px; border-radius: 3.2px;">
-													<optgroup label="This is a group">
-														<option value="12" selected>This is item 1</option>
-														<option value="13">This is item 2</option>
-														<option value="14">This is item 3</option>
-													</optgroup>
-												</select><label class="form-label"><input
-													class="form-control form-control-sm" type="search"
-													aria-controls="dataTable" placeholder="Search" /></label>
-											</div> -->
+										
 									</div>
 								</div>
 								<div id="dataTable" class="table-responsive table mt-2"
@@ -219,21 +135,22 @@
 								</div>
 								<div class="row">
 									<div class="col-md-6 align-self-center">
-										<p id="dataTable_info" class="dataTables_info" role="status"
-											aria-live="polite">Showing 1 to 10 of 27</p>
+										<!-- <p id="dataTable_info" class="dataTables_info" role="status"
+											aria-live="polite">Showing 1 to 10 of 27</p> -->
 									</div>
 									<div class="col-md-6">
 										<nav
 											class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
 										<ul class="pagination">
-											<li class="page-item disabled"><a class="page-link"
+											<!-- <li class="page-item disabled"><a class="page-link"
 												href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
 											<li class="page-item active"><a class="page-link"
 												href="#">1</a></li>
 											<li class="page-item"><a class="page-link" href="#">2</a></li>
 											<li class="page-item"><a class="page-link" href="#">3</a></li>
 											<li class="page-item"><a class="page-link" href="#"
-												aria-label="Next"><span aria-hidden="true">»</span></a></li>
+												aria-label="Next"><span aria-hidden="true">»</span></a></li> -->
+												<%=pageNavi %>
 										</ul>
 										</nav>
 									</div>
