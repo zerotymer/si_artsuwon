@@ -72,8 +72,10 @@
             font-size: 20px;
             line-height: 50px;
             text-align: center;
-            text-decoration: none;
             color: darkblue;
+        }
+        .scheduleBtn a {
+            text-decoration: none;
         }
     </style>
 </head>
