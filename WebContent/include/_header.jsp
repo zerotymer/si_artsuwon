@@ -6,7 +6,7 @@
 <!-- Header -->
 <div class="header-noti">
   <!-- 공지사항 -->
-  공지사항 작성란
+  
 </div>
 <!-- Header Navi-->
 <div class="header">

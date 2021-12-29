@@ -33,9 +33,6 @@ public class PerfMonthListServlet extends HttpServlet {
 	/// FIELDs
 	private static final long serialVersionUID = 1L;
 	private PerformanceService service = new PerformanceServiceImpl();
-	private final SimpleDateFormat dayFormat = new SimpleDateFormat("MM.dd");			// 날짜 출력 포멧
-	private final SimpleDateFormat weekdayFormat = new SimpleDateFormat("EEE요일");		// 요일 출력 포멧
-	private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");			// 시간 출력 포멧
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -66,9 +63,9 @@ public class PerfMonthListServlet extends HttpServlet {
 			json.put("perf_no", tuple.getFirst().getPerformanceNo());							// 공연번호
 			json.put("schedule_no", tuple.getFirst().getScheduleNo());							// 스케줄번호
 			json.put("location", tuple.getFirst().getLocation());								// 공연장소
-			json.put("day", dayFormat.format(tuple.getFirst().getPerformanceDate()));			// 공연일자
-			json.put("weekday", weekdayFormat.format(tuple.getFirst().getPerformanceDate()));	// 공연요일
-			json.put("time", timeFormat.format(tuple.getFirst().getPerformanceDate()));			// 공연시간
+			json.put("day", DateConverter.convertSQLDateToString(tuple.getFirst().getPerformanceDate(), "MM.dd"));			// 공연일자
+			json.put("weekday", DateConverter.convertSQLDateToString(tuple.getFirst().getPerformanceDate(), "EEE요일"));		// 공연요일
+			json.put("time", DateConverter.convertSQLDateToString(tuple.getFirst().getPerformanceDate(), "HH:mm"));			// 공연시간
 			json.put("photo", NullChecker.NullCheckString(tuple.getSecond().getPhoto()));		// 공연사진
 			json.put("category", tuple.getSecond().getCategory());								// 공연카테고리
 			json.put("title", tuple.getSecond().getTitle());									// 공연제목
