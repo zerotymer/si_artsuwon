@@ -30,7 +30,7 @@ public class ReservationDAO {
 
             while (rset.next()) {
                 Reservation reservation = new Reservation(
-                    rset.getString("RESERAVATION_NO"),
+                    rset.getString("RESERVATION_NO"),
                     rset.getInt("PFMC_NO"),
                     rset.getString("INVOICE_NO"),
                     rset.getString("PAY_METHOD"),

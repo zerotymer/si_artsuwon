@@ -6,7 +6,7 @@
 <!-- Header -->
 <div class="header-noti">
   <!-- 공지사항 -->
-  공지사항 작성란
+  
 </div>
 <!-- Header Navi-->
 <div class="header">
@@ -21,7 +21,7 @@
     <nav id="gnb" class="gnb">
       <ul>
         <li class="menu">
-          <a href="">공연/예매</a>
+          <a href="/views/performance/listview.jsp">공연/예매</a>
           <ul>
             <li class="submenu">
               <a href="/views/performance/listview.jsp">공연일정</a>

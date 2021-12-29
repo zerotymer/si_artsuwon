@@ -1,5 +1,6 @@
 package kr.or.artsuwon.performance.controller;
 
+import kr.or.artsuwon.common.DateConverter;
 import kr.or.artsuwon.common.Tuple;
 import kr.or.artsuwon.performance.model.service.PerformanceService;
 import kr.or.artsuwon.performance.model.service.PerformanceServiceImpl;
@@ -23,7 +24,7 @@ public class PerfDetailInfoServlet extends HttpServlet {
 	/// FIELDs
 	private static final long serialVersionUID = 1L;
 	private PerformanceService service = new PerformanceServiceImpl();
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd EEE요일 HH:mm");
+	private final String dateFormat = "yyyy.MM.dd EEE요일 HH:mm";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -46,9 +47,10 @@ public class PerfDetailInfoServlet extends HttpServlet {
 		// View
 		RequestDispatcher view = request.getRequestDispatcher("/views/performance/detailView.jsp");
 		request.setAttribute("info", tuple.getSecond());
-		request.setAttribute("date", dateFormat.format(tuple.getFirst().getPerformanceDate()));
+		request.setAttribute("date", DateConverter.convertSQLDateToString(tuple.getFirst().getPerformanceDate(), dateFormat));
 		request.setAttribute("location", tuple.getFirst().getLocation());
 		request.setAttribute("price", tuple.getFirst().getPrice());
+		request.setAttribute("scheduleNo", scheduleNo);
 		view.forward(request, response);
 	}
 

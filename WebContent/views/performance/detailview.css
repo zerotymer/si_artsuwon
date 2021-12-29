@@ -126,6 +126,7 @@ article {
         font-weight: 500;
     color: white;
     background-color: var(--reserve-color);
+    cursor: pointer;
 }
 .reserveDiv > div {
     margin-top: 40px;
