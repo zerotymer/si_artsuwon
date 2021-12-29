@@ -31,6 +31,8 @@
 	crossorigin="anonymous"></script>
 <title>갤러리</title>
 </head>
+    <!-- Header -->
+    <%@ include file="/include/_header.jsp" %>
 <body>
 
 	<%
@@ -38,36 +40,43 @@
 		int currentPage = (int) request.getAttribute("currentPage");
 	%>
 	<!-- Local Navi Bar-->
-<content>
-		<div class="nav_div">
-		<nav id="LNB" class="LNB">
-		<ul class="nav-menu">
-			<li class="menu-item menu-img"><a href=""><img
-					src="/assets/icon/home.svg" alt=""></a></li>
-			<li class="menu-item"><a href=""><strong>공연/예매</strong></a>
-				<ul class="nav-submenu">
-					<li class="submenu-item"><a href=""><strong>공연/예매</strong></a></li>
-					<li class="submenu-item"><a href="">교육</a></li>
-					<li class="submenu-item"><a href="">오케스트라</a></li>
-					<li class="submenu-item"><a href="">시향소식</a></li>
-					<li class="submenu-item"><a href="">기관소개</a></li>
-				</ul></li>
-			<li class="menu-item"><a href=""><strong>공연일정</strong></a>
-				<ul class="nav-submenu">
-					<li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
-					<li class="submenu-item"><a href="">공연소개</a></li>
-					<li class="submenu-item"><a href="">예매안내</a></li>
-				</ul></li>
-			<li class="menu-item hide"><a href="">test</a>
-				<ul class="nav-submenu">
-					<li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
-					<li class="submenu-item"><a href="">공연소개</a></li>
-					<li class="submenu-item"><a href="">예매안내</a></li>
-				</ul></li>
-		</ul>
-		</nav>
-		</div>
-</content>
+   <content>
+        <div class="nav_div">
+            <nav id="LNB" class="LNB">
+                <ul class="nav-menu">
+                    <li class="menu-item menu-img">
+                        <a href=""><img src="/assets/icon/home.svg" alt=""></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href=""><strong>공연/예매</strong></a>
+                        <ul class="nav-submenu">
+                            <li class="submenu-item"><a href=""><strong>공연/예매</strong></a></li>
+                            <li class="submenu-item"><a href="">교육</a></li>
+                            <li class="submenu-item"><a href="">오케스트라</a></li>
+                            <li class="submenu-item"><a href="">시향소식</a></li>
+                            <li class="submenu-item"><a href="">기관소개</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href=""><strong>공연일정</strong></a>
+                        <ul class="nav-submenu">
+                            <li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
+                            <li class="submenu-item"><a href="">공연소개</a></li>
+                            <li class="submenu-item"><a href="">예매안내</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item hide">
+                        <a href="">test</a>
+                        <ul class="nav-submenu">
+                            <li class="submenu-item"><a href=""><strong>공연일정</strong></a></li>
+                            <li class="submenu-item"><a href="">공연소개</a></li>
+                            <li class="submenu-item"><a href="">예매안내</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
 
 
 		
@@ -111,9 +120,14 @@
 			location.replace('/board/PhotoAllSelect.do');
 		</script>
 		<%}%>
-	
-</article>
-
-
+		</table>
+	</article>
+	    </content>
 </body>
+<footer>
+    <!-- footer -->
+    <%@ include file="/include/_footer.jsp" %>
+ <footer>
+
+
 </html>

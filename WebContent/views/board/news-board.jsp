@@ -5,7 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-    <title>뉴스&소식</title>
     <link rel="stylesheet" href="/assets/css/boardFrame.css">
      <link rel="stylesheet" href="/assets/style/contentframe.css">
 <!-- boostrap5 라이브러리-->
@@ -20,6 +19,8 @@
 <title>뉴스&소식</title>
 </head>
 
+<!-- Header -->
+    <%@ include file="/include/_header.jsp" %>
 <body>
 <%
 	// 페이징 처리되어 넘어온 데이터를 가져와야 함
@@ -70,7 +71,7 @@
                 </ul>
             </nav>
         </div>
-        </content>
+
         
 
 <!-- 게시판 -->
@@ -130,16 +131,18 @@
 			</div>
 			
 	
-			</table>
-</article>
-		
+		</table>
+	</article>
+	    </content>
 </body>
 
 
 
 
-<!-- footer -->
-<footer>
 
+
+<footer>
+    <!-- footer -->
+    <%@ include file="/include/_footer.jsp" %>
  <footer>
 </html>
