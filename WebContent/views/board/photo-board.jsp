@@ -18,7 +18,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <title>갤러리</title>
 </head>
-
+   <!-- Header -->
+    <%@ include file="/include/_header.jsp" %>
 
 
 <body>
@@ -80,7 +81,7 @@
        
 <!-- 게시판 -->
 <article class="common_wrap">
-     <h3 class="title">동영상 게시판</h3>
+     <h3 class="title">갤러리 </h3>
 
 
        
@@ -136,21 +137,17 @@
 				   </div>
 			</div>
 			
-
+		</table>
 	</article>
-    </content>
-        
-
+	    </content>
 </body>
 
 
 
 
 
-
-
-<!-- footer -->
 <footer>
-
+    <!-- footer -->
+    <%@ include file="/include/_footer.jsp" %>
 </footer>
 </html>
