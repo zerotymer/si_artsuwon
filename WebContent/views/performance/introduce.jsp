@@ -15,6 +15,10 @@
             width: 100%;
             margin-top: 30px;
         }
+
+        hr {
+            border: 1px solid lightgray;
+        }
         /* notes */
         .perfBtns {
 
@@ -58,7 +62,6 @@
         .note-area .disable {
             display: none;
         }
-
         .scheduleBtn {
             margin-top: 30px;
             box-sizing: border-box;
