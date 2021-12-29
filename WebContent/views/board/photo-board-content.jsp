@@ -96,7 +96,7 @@
 
 
 		<!-- 게시판 내용 -->
-		<article class="view_content" style="width:1140px; height:600px"> 
+		<article class="view_content" style="width:1140px; height:700px ;border-bottom:1px solid black;"> 
 			
 			<div style="text-align:center; margin:50px"><%=board.getPhotoRoute() %></div><br>
 			<%=board.getPhotoContent()%>
