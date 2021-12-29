@@ -22,25 +22,25 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item">
-                    	<%-- 최고관리자만 운영진관리 탭 나타남 --%>
-	                    <c:if test="${String.valueOf(sessionScope.admin.superAdminYN) eq 'Y'}">
+                    	
 		                    <a class="nav-link active" style="color:black;" href="/adminPfmc/selectAllPfmcList.do">
 			                    <i class="fa fa-music" style="color:black;">
 			                    </i>
 			                    <span style="font-size:17px;">공연현황</span>
 		                    </a>
-	                    </c:if>
-	                    
+	                   
+
 	                    <a class="nav-link active" style="color:black">
 		                    <i class="fa fa-users" style="color:black">
 		                    </i>
 		                    <span style="font-size:17px;">회원 관리</span><br>
+
 	                    </a>
 	                    
 	                     <a class="nav-link active" style="padding-top:0; color:black;" href="/admin/adminCheck.do" >
 		                    <span style="font-size:15px;">- 사용자 관리</span><br>
 	                    </a>
-	                     <a class="nav-link active" style="padding-top:0; color:black;" href="">
+	                     <a class="nav-link active" style="padding-top:0; color:black;" href="https://analytics.google.com/analytics/web/#/p297428169/realtime/overview?params=_u..nav%3Dmaui">
 		                    <span style="font-size:15px;">- 통계</span><br>
 	                    </a>
 	                    
@@ -54,7 +54,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 		                    <span style="font-size:15px;">- 공지사항</span><br>
 	                    </a>
 	                    
-	                    <a class="nav-link active" style="padding-top:0; color:black;" href="">
+	                    <a class="nav-link active" style="padding-top:0; color:black;" href="/adminNotice/CsAllList.do">
 		                    <span style="font-size:15px;">- CS게시판</span><br>
 	                    </a>
 	                    

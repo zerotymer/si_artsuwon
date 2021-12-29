@@ -25,8 +25,6 @@ public class BoardServiceImpl implements BoardService{
 		ArrayList<Board> list = bDAO.NoticeSelect(conn,currentPage,recordCountPerPage);
 		
 		
-		
-		
 		// 하나의 PageNavi Bar에 보여질 Navi 개수를 설정
 		int naviCountPerPage = 10;
 		

@@ -1,12 +1,14 @@
+<%@page import="kr.or.artsuwon.adminBoard.model.vo.CsBoard"%>
+<%@page import="kr.or.artsuwon.csBoard.vo.csBoard"%>
 <%@page import="kr.or.artsuwon.adminMngm.model.vo.Admin"%>
 <%@page import="kr.or.artsuwon.adminBoard.model.vo.Notice"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="java.util.HashMap" %>
 <%@page import="java.util.ArrayList" %>
-<%-- <%@ page import="kr.or.artsuwon.adminMngm.model.vo.Admin" %>
+<%@ page import="kr.or.artsuwon.adminMngm.model.vo.Admin" %>
 <%@ page import="kr.or.artsuwon.adminBoard.model.vo.Notice" %>
- --%>
+
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -16,7 +18,7 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>공지사항</title>
+    <title>Table - Brand</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/untitled.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -34,11 +36,10 @@
       ArrayList<Admin> adminList = (ArrayList<Admin>) request.getAttribute("adminList");
 
       //페이징처리되어 넘어온 데이터를 가져와야한다.
-
-      HashMap<String, Object> pageDataMap = (HashMap<String, Object>) request.getAttribute("pageDataMap");
-      ArrayList<Notice> list = (ArrayList<Notice>) pageDataMap.get("list");
-      String pageNavi = (String) pageDataMap.get("pageNavi");
-      int currentPage = (int) request.getAttribute("currentPage");
+      
+   	HashMap<String,Object> CsAllList = (HashMap<String, Object>) request.getAttribute("CsAllList");
+      ArrayList<csBoard> list = (ArrayList<csBoard>)CsAllList.get("list");
+      String pageNavi = (String) CsAllList.get("pageNavi");
       String keyword = (String) request.getAttribute("keyword");
 %>
 
@@ -76,7 +77,7 @@
                                                 style="width: 70px; height: 35px; color: #000000; background: rgb(255, 255, 255); border-style: solid; border-top-style: solid; border-top-color: rgb(126, 126, 126); border-right-style: solid;
                                                 border-right-color: rgb(126, 126, 126); border-bottom-style: solid; border-bottom-color: rgb(126, 126, 126); border-left-style: solid; border-left-color: rgb(126, 126, 126);">삭제</button>
                                         <button class="btn btn-primary"
-                                                onclick="location.replace('/views/adminBoard/NoticeWriteForm.jsp');"
+                                                onclick="location.replace('/views/#');"
                                                 type="button" style="width: 75px; height: 35px; color: #000000; background: rgb(255, 255, 255); border-style: solid; border-top-style: solid; border-top-color: rgb(126, 126, 126);
                                                 border-right-style: solid; border-right-color: rgb(126, 126, 126); border-bottom-style: solid; border-bottom-color: rgb(126, 126, 126); border-left-style: solid; border-left-color: rgb(126, 126, 126);">글쓰기</button>
                                     </div>
@@ -85,7 +86,7 @@
                                     <div class="card-body" style="width: 926; height: 826.59;">
                                         <div>
                                             <div class="table-responsive">
-	                                            <form action="/adminNotice/deleteAdminPost.do" method="post" id="deleteForm"/>
+	                                            <form action="#" method="post" id="deleteForm"/>
 	                                            
 	                                                <table class="table">
 	                                                    <thead>
@@ -101,20 +102,20 @@
 	                                                    </tr>
 	                                                    </thead>
 	                                                    <tbody>
-	                                                    	<%for (Notice notice : list) {%>
+	                                                    	 <%for(csBoard csBoard : list){%>
 	                                                        	<tr>
-	                                                                <td><%=notice.getNoticeNo()%></td>
+	                                                                <td><%=csBoard.getCsNo()%></td>
 	                                                                <td>
-	                                                                    <input type="checkbox" name="postNo" value="<%=notice.getNoticeNo()%>"/>
+	                                                                    <input type="checkbox" name="postNo" value="<%=csBoard.getCsNo()%>"/>
 	                                                                </td>
 	                                                                <td style="text-align: center; padding-left: 140px;">
-	                                                                    <a href="/adminNotice/noticeOneSelectContent.do?noticeNo=<%=notice.getNoticeNo()%>"><%=notice.getNoticeTitle()%></a>
+	                                                                    <a href="/adminNotice/noticeOneSelectContent.do?noticeNo=<%=csBoard.getCsNo()%>"><%=csBoard.getCsTitle()%></a>
 	                                                                </td>
 	                                                                
-	                                                                <td style="text-align: center;"><%=notice.getRegDate()%></td>
+	                                                                <td style="text-align: center;"><%=csBoard.getCsDate()%></td>
 		                                                       		<td>
 				                                                        <div class="btn-group" role="group" style="width: 110px; height: 36px;border-right-style:none;border-right-color:rgb(130, 135, 130); text-align:center;">
-				                                                           <button class="btn btn-sm" type="button" onclick="deletePost('<%=notice.getNoticeNo()%>');" style="color: rgb(130, 135, 130); height: 36px;border-style: solid;border-color:rgb(130,130,130);border-style:none;">
+				                                                             <button class="btn btn-sm" type="button" onclick="deletePost('<%=csBoard.getCsNo()%>');" style="color: rgb(130, 135, 130); height: 36px;border-style: solid;border-color:rgb(130,130,130);border-style:none;">
 				                                                                <i class="fas fa-trash" style="color: rgb(130, 130, 130);"></i>
 				                                                            </button>
 				                                                        </div>
@@ -123,7 +124,7 @@
 	                                                        <%}%>                             
 	                                                    </tbody>
 	                                                </table>
-	                                            </form>
+	                                            </>
                                             </div>
                                         </div>
                                     </div>
@@ -144,7 +145,7 @@
                                     <div class="pagination-wrapper clearfix">
                                         <nav style="text-align: left; margin-top: 5px; margin-left: 85%;">
                                             <ul class="pagination float--right" id="pages">
-                                                <%=pageNavi%>
+                                               
                                             </ul>
                                         </nav>
                                     </div>
@@ -153,8 +154,8 @@
                                         <form action="/adminNotice/noticePostSearch.do" method="get">
                                             <div style="margin-bottom: -26px;padding-right: 0px;margin-left: 42%;">
                                                 <select class="form-select-sm" name="type" style="width: 100px;height: 30px;margin-right: 13px;">
-                                                    <option value="noticeTitle" selected>제목</option>
-                                                    <option value="noticeContent" selected>내용</option>
+                                                    <option value="csTitle" selected>제목</option>
+                                                    <option value="csContent" selected>내용</option>
                                                     <option value="All" selected>제목+내용</option>
                                                 </select>
                                                 <input class="form-control-sm" type="text" name="keyword" style="width: 175px;margin: 69px 0px 0px;margin-right: 0;margin-top: 30px;padding-bottom: 0px;
@@ -191,24 +192,7 @@
                 </div>
                 <script src="//<%=request.getContextPath()%>/assets/js/bootstrap.min.js"></script>
                 <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
-                <script>
-                    $("#allCheck").change(function () {
-                        $("input:checkbox").prop('checked', $(this).prop("checked"));
-                    })
-                    
-                    $("#deleteBtn").click(function(){
-                    	$("#deleteForm").submit();
-                    })
-                    
-                    
-                    function deletePost(postNo){
-                    	location.replace("/adminNotice/deleteAdminPost.do?postNo="+postNo);
-                    }
-                    
-                    function listUp(postNo){
-                    	location.replace("/adminNotice/noticePostListUp.do?postNo="+postNo);
-                    }
-           		</script>
+              
             </div>
         </div>
     </body>
