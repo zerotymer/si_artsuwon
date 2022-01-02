@@ -1,6 +1,8 @@
 package kr.or.artsuwon.adminMngm.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,9 +32,13 @@ public class UpdateAdminPwdServlet extends HttpServlet {
 		//비지니스 로직
 		AdminService adminSer = new AdminServiceImpl();
 		int resultRow = adminSer.updateAdminPwd(adminNo, currentPwd, newPwd);
+		Admin admin = adminSer.showAdminInfo(adminNo);
 		
-		//일단 빈 메인으로 이동
-		response.sendRedirect("/views/adminMngm/adminMain.jsp");
+		//다시 프로필로 이동
+		RequestDispatcher RD = request.getRequestDispatcher("/views/adminMngm/adminInfo.jsp");
+		request.setAttribute("admin", admin);
+		RD.forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
