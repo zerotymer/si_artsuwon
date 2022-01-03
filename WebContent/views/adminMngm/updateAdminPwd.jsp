@@ -42,18 +42,18 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
                          <h4 class="text-dark mb-4"><b>비밀번호 변경</b></h4>
                      </div>
                       <hr>
-                      <form action="/updateAdminPwd.do" method="post">
+                      <form action="/adminMngm/updateAdminPwd.do" method="post">
 	                      <div class="mb-3">
-	                         <input class="form-control form-control-user" type="password" name="currentPwd" placeholder="현재 비밀번호를 입력하세요">
+	                         <input class="form-control form-control-user" type="password" name="currentPwd" placeholder="현재 비밀번호를 입력하세요" style="font-size:13px">
 	                      </div>
 	                                
 	                      <div class="mb-3">
-	                         <input class="form-control form-control-user" type="password" name="newPwd" id="pw1" placeholder="새 비밀번호를 입력하세요">
+	                         <input class="form-control form-control-user" type="password" name="newPwd" id="pw1" placeholder="새 비밀번호를 입력하세요" style="font-size:13px">
 	                         <span id="msg1" style="font-size:12px;"></span>
 	                      </div>
 	                             
 	                      <div class="mb-3">
-	                         <input class="form-control form-control-user" type="password" name="newPwd_re" id="pw2" placeholder="새 비밀번호를 다시 입력하세요">
+	                         <input class="form-control form-control-user" type="password" name="newPwd_re" id="pw2" placeholder="새 비밀번호를 다시 입력하세요" style="font-size:13px">
 	                         <span id="msg2" style="font-size:12px;"></span>
 	                      </div>
 	                                   
@@ -71,11 +71,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 	    </div>
 	  </div>
 
-      <footer class="bg-white sticky-footer">
-         <div class="container my-auto">
-             <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
-         </div>
-      </footer>
+     
             
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
  </div>
